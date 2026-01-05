@@ -1,7 +1,7 @@
 <template>
   <aside
     :class="[
-      'fixed left-0 top-0 z-40 h-screen bg-white border-r border-gray-200 transition-all duration-300 shadow-lg',
+      'fixed left-0 top-0 z-40 h-screen bg-white border-r border-gray-200 transition-all duration-300 shadow-lg flex flex-col',
       collapsed ? 'w-20' : 'w-64'
     ]"
   >
@@ -38,7 +38,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 overflow-y-auto py-4 px-3">
+    <nav class="flex-1 overflow-y-auto py-4 px-3 sidebar-scroll">
       <div class="space-y-1">
         <NuxtLink
           v-for="item in menuItems"
@@ -136,13 +136,6 @@ onMounted(async () => {
   await fetchUser()
 })
 
-const { user, fetch: fetchUser } = useUserSession()
-
-// Fetch user session on mount
-onMounted(async () => {
-  await fetchUser()
-})
-
 const userName = computed(() => user.value?.name || 'Admin User')
 const userRole = computed(() => {
   const role = user.value?.role || 'ADMINISTRATOR'
@@ -208,3 +201,28 @@ const toggleUserMenu = (event: Event) => {
   userMenu.value.toggle(event)
 }
 </script>
+
+<style scoped>
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.7);
+}
+</style>

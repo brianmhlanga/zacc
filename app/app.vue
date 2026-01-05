@@ -1,5 +1,7 @@
 <template>
   <NuxtPage />
+  <Toast />
+  <ConfirmDialog />
 </template>
 
 <script setup>
@@ -10,3 +12,9 @@ useHead({
   }
 })
 </script>
+
+<style>
+input.p-password-input {
+    width: 100% !important;
+}
+</style>

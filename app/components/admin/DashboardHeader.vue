@@ -26,6 +26,17 @@
 
       <!-- Right Section -->
       <div class="flex items-center gap-3">
+        <!-- User Info -->
+        <div class="flex items-center gap-3 px-3 py-2 rounded-lg">
+          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-zaccGreen text-white font-semibold text-sm">
+            {{ userInitials }}
+          </div>
+          <div class="hidden md:block">
+            <div class="text-sm font-semibold text-gray-900">{{ userName }}</div>
+            <div class="text-xs text-gray-500">{{ userRole }}</div>
+          </div>
+        </div>
+
         <!-- Notifications -->
         <Menu ref="notificationsMenu" :model="notificationMenuItems" popup />
         <button
@@ -58,14 +69,15 @@
           </span>
         </button>
 
-        <!-- Quick Actions -->
-        <SplitButton
-          label="New"
-          icon="pi pi-plus"
-          :model="quickActions"
-          @click="handleQuickAction"
-          style="background: #209341; border-color: #209341;"
-        />
+        <!-- User Menu -->
+        <Menu ref="userMenu" :model="userMenuItems" popup />
+        <button
+          @click="toggleUserMenu"
+          class="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label="User menu"
+        >
+          <i class="pi pi-ellipsis-v text-gray-600 text-lg"></i>
+        </button>
       </div>
     </div>
   </header>
@@ -79,9 +91,58 @@ defineEmits<{
 const searchQuery = ref('')
 const notificationsMenu = ref()
 const messagesMenu = ref()
+const userMenu = ref()
 
 const notificationCount = ref(5)
 const messageCount = ref(3)
+
+// Get user session
+const { user, fetch: fetchUser } = useUserSession()
+
+// Fetch user session on mount
+onMounted(async () => {
+  await fetchUser()
+})
+
+const userName = computed(() => user.value?.name || 'Admin User')
+const userRole = computed(() => {
+  const role = user.value?.role || 'ADMINISTRATOR'
+  return role.replace(/_/g, ' ')
+})
+const userInitials = computed(() => {
+  if (user.value?.name) {
+    const names = user.value.name.split(' ')
+    return names.length > 1 ? `${names[0][0]}${names[1][0]}`.toUpperCase() : names[0][0].toUpperCase()
+  }
+  return 'AU'
+})
+
+const userMenuItems = [
+  {
+    label: 'Profile',
+    icon: 'pi pi-user',
+    command: () => {
+      navigateTo('/admin/profile')
+    }
+  },
+  {
+    label: 'Settings',
+    icon: 'pi pi-cog',
+    command: () => {
+      navigateTo('/admin/settings')
+    }
+  },
+  { separator: true },
+  {
+    label: 'Logout',
+    icon: 'pi pi-sign-out',
+    command: async () => {
+      const { clear } = useUserSession()
+      await clear()
+      navigateTo('/admin/login')
+    }
+  }
+]
 
 const notificationMenuItems = [
   {
@@ -158,7 +219,7 @@ const toggleMessages = (event: Event) => {
   messagesMenu.value.toggle(event)
 }
 
-const handleQuickAction = () => {
-  navigateTo('/admin/news/new')
+const toggleUserMenu = (event: Event) => {
+  userMenu.value.toggle(event)
 }
 </script>

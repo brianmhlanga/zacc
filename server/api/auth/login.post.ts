@@ -81,9 +81,13 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Log the actual error for debugging
+    console.error('Login error:', error)
+    console.error('Error stack:', error.stack)
+
     throw createError({
       statusCode: 500,
-      statusMessage: 'An error occurred during login'
+      statusMessage: error.message || 'An error occurred during login'
     })
   }
 })

@@ -1,15 +1,56 @@
+import 'dotenv/config'
 import { PrismaClient } from './generated/prisma/client'
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import bcrypt from 'bcrypt'
 
+function parseDatabaseUrl(url: string | undefined) {
+  if (!url) {
+    throw new Error('DATABASE_URL environment variable is not set. Please check your .env file.')
+  }
+  
+  // Parse mysql://user:password@host:port/database or mysql://user@host:port/database
+  // Try with password first
+  let match = url.match(/^mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/)
+  if (match) {
+    const [, user, password, host, port, database] = match
+    return {
+      host,
+      port: parseInt(port, 10),
+      user,
+      password,
+      database
+    }
+  }
+  
+  // Try without password
+  match = url.match(/^mysql:\/\/([^@]+)@([^:]+):(\d+)\/(.+)$/)
+  if (match) {
+    const [, user, host, port, database] = match
+    return {
+      host,
+      port: parseInt(port, 10),
+      user,
+      password: undefined,
+      database
+    }
+  }
+  
+  throw new Error(`Invalid DATABASE_URL format: ${url}. Expected format: mysql://user:password@host:port/database or mysql://user@host:port/database`)
+}
+
 async function main() {
   console.log('🌱 Starting database seed...')
 
-  // Create adapter factory and connect
-  const adapterFactory = new PrismaMariaDb(process.env.DATABASE_URL!)
-  const adapter = await adapterFactory.connect()
+  // Parse connection string and create adapter factory
+  const dbUrl = process.env.DATABASE_URL
+  if (!dbUrl) {
+    throw new Error('DATABASE_URL environment variable is not set. Please create a .env file with DATABASE_URL="mysql://user:password@host:port/database"')
+  }
+  
+  const poolConfig = parseDatabaseUrl(dbUrl)
+  const adapterFactory = new PrismaMariaDb(poolConfig)
   const prisma = new PrismaClient({
-    adapter,
+    adapter: adapterFactory,
     log: ['query', 'info', 'warn', 'error']
   })
 
@@ -44,7 +85,6 @@ async function main() {
     console.log('⚠️  Please change the password after first login!')
   } finally {
     await prisma.$disconnect()
-    await adapter.dispose()
   }
 }
 
