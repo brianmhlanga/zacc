@@ -4,7 +4,12 @@ import Aura from '@primeuix/themes/aura'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@primevue/nuxt-module'],
+  modules: ['@nuxtjs/tailwindcss', '@primevue/nuxt-module', 'nuxt-auth-utils'],
+  runtimeConfig: {
+    session: {
+      maxAge: 60 * 60 * 24 * 7 // 1 week
+    }
+  },
   css: ['~/assets/css/main.css'],
   primevue: {
     options: {

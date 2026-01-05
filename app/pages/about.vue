@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <!-- Hero Section for About Page -->
+  <NuxtLayout name="main">
+    <div>
+      <!-- Hero Section for About Page -->
     <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
       <div class="absolute inset-0">
         <img src="/flag.jpg" alt="Zimbabwe flag" class="absolute inset-0 h-full w-full object-cover opacity-20" />
@@ -438,7 +439,8 @@
         </div>
       </div>
     </section>
-  </div>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">

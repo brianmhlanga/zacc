@@ -1,14 +1,682 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
   provider = "prisma-client"
+  output = "./generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mysql"
+}
+
+// ============================================
+// AUTHENTICATION & AUTHORIZATION
+// ============================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String
+  role          UserRole  @default(EDITOR)
+  isActive      Boolean   @default(true)
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  createdPageContent  PageContent[]    @relation("PageContentCreator")
+  updatedPageContent  PageContent[]    @relation("PageContentUpdater")
+  createdNews         News[]           @relation("NewsCreator")
+  updatedNews         News[]           @relation("NewsUpdater")
+  createdRulings      Ruling[]         @relation("RulingCreator")
+  updatedRulings      Ruling[]         @relation("RulingUpdater")
+  createdJobs         Job[]            @relation("JobCreator")
+  updatedJobs         Job[]            @relation("JobUpdater")
+  createdDownloads    Download[]       @relation("DownloadCreator")
+  updatedDownloads    Download[]       @relation("DownloadUpdater")
+  createdGalleryImages GalleryImage[]  @relation("GalleryCreator")
+  updatedGalleryImages GalleryImage[]  @relation("GalleryUpdater")
+
+  @@map("users")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+// ============================================
+// SITE SETTINGS & CONFIGURATION
+// ============================================
+// Use this for miscellaneous site-wide settings like:
+// - Site name, tagline, copyright text
+// - SEO defaults (meta description, keywords)
+// - Footer text, header announcements
+// - Feature flags, maintenance mode
+// - Any other key-value configuration
+
+model SiteSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String   @db.Text
+  type        String   // 'text', 'number', 'boolean', 'json', 'image', 'url'
+  category    String?  // 'general', 'seo', 'appearance', 'footer', 'header'
+  description String?
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+
+  @@map("site_settings")
+}
+
+// ============================================
+// SOCIAL MEDIA LINKS
+// ============================================
+// Store all social media platform links here
+// Examples: Facebook, Twitter/X, LinkedIn, YouTube, Instagram, etc.
+
+model SocialMedia {
+  id          String   @id @default(cuid())
+  platform    String   @unique // 'facebook', 'twitter', 'linkedin', 'youtube', 'instagram', etc.
+  url         String
+  icon        String?  // Icon identifier or class name
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("social_media")
+  @@index([platform])
+}
+
+// ============================================
+// ORGANIZATIONAL VALUES
+// ============================================
+// Store core organizational values (e.g., Integrity, Independence, Professionalism)
+// Used on About page and other places where values are displayed
+
+model Value {
+  id          String   @id @default(cuid())
+  title       String
+  letter      String?  // Single letter identifier (e.g., 'I' for Integrity)
+  description String   @db.Text
+  icon        String?  // Icon identifier
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("values")
+  @@index([order])
+}
+
+// ============================================
+// PAGE CONTENT (Dynamic content for hardcoded pages)
+// ============================================
+// This model stores dynamic content for pages that have hardcoded structure.
+// Example: About page has sections like 'introduction', 'mandate', 'mission', etc.
+// The Vue components remain static, but the text/images come from this table.
+
+model PageContent {
+  id          String   @id @default(cuid())
+  pageKey     String   // 'about', 'legislation', 'home', 'contact', etc.
+  sectionKey  String   // 'hero', 'introduction', 'mandate', 'mission', 'history', etc.
+  title       String?
+  content     String   @db.Text
+  imageUrl    String?
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  metadata    Json?    // Flexible JSON for additional data (e.g., list items, cards data)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+  updatedBy   String?
+  creator     User?    @relation("PageContentCreator", fields: [createdBy], references: [id])
+  updater     User?    @relation("PageContentUpdater", fields: [updatedBy], references: [id])
+
+  @@map("page_content")
+  @@unique([pageKey, sectionKey])
+  @@index([pageKey, sectionKey])
+  @@index([pageKey, order])
+}
+
+// ============================================
+// HERO SLIDES
+// ============================================
+
+model HeroSlide {
+  id          String   @id @default(cuid())
+  title       String
+  subtitle    String?  @db.Text
+  description String?  @db.Text
+  imageUrl    String
+  linkUrl     String?
+  linkText    String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("hero_slides")
+  @@index([order])
+}
+
+// ============================================
+// STATISTICS
+// ============================================
+// Store numerical statistics with labels (e.g., "8,641 Projects Tracked", "$25m Assets Recovered")
+// Used on homepage statistics section and other pages
+
+model Statistic {
+  id          String   @id @default(cuid())
+  label       String
+  value       Int
+  prefix      String?  // e.g., "$"
+  suffix      String?  // e.g., "+", "m", "k"
+  icon        String?  // Icon identifier
+  color       String?  // 'green', 'gold', 'black', etc.
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  section     String   @default("homepage") // 'homepage', 'about', etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("statistics")
+  @@index([section, order])
+}
+
+// ============================================
+// SERVICES (What We Do / Functions)
+// ============================================
+// Store organizational functions/services (e.g., Public Education, Investigations, Prevention)
+// Used on homepage "What We Do" section
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String   @db.Text
+  icon        String?  // Icon identifier or SVG
+  iconColor   String?  // 'green', 'gold', etc.
+  linkUrl     String?
+  linkText    String?
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("services")
+  @@index([order])
+}
+
+// ============================================
+// COMMISSIONERS
+// ============================================
+
+model Commissioner {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  title       String?  // e.g., "Chairperson", "Vice Chairperson"
+  description String   @db.Text
+  bio         String?  @db.Text
+  imageUrl    String
+  email       String?
+  phone       String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("commissioners")
+  @@index([order])
+}
+
+// ============================================
+// NEWS & ARTICLES
+// ============================================
+
+model News {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String   @db.Text
+  content     String   @db.Text
+  imageUrl    String?
+  category    String   // 'announcements', 'case-updates', 'events', 'educational', 'partnerships', 'compliance'
+  isFeatured  Boolean  @default(false)
+  isPublished Boolean  @default(false)
+  publishedAt DateTime?
+  views       Int      @default(0)
+  
+  // SEO
+  metaTitle   String?
+  metaDescription String? @db.Text
+
+  // Relations
+  tags        NewsTag[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  createdBy   String?
+  updatedBy   String?
+  creator     User?     @relation("NewsCreator", fields: [createdBy], references: [id])
+  updater     User?     @relation("NewsUpdater", fields: [updatedBy], references: [id])
+
+  @@map("news")
+  @@index([category, publishedAt])
+  @@index([isPublished, publishedAt])
+  @@index([isFeatured])
+}
+
+model NewsTag {
+  id        String   @id @default(cuid())
+  newsId    String
+  news      News     @relation(fields: [newsId], references: [id], onDelete: Cascade)
+  tag       String
+
+  @@map("news_tags")
+  @@index([newsId])
+  @@index([tag])
+}
+
+// ============================================
+// DOWNLOADS
+// ============================================
+
+model Download {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  category    String   // 'forms', 'reports', 'policies', 'guidelines', 'publications', 'legal'
+  fileType    String   // 'pdf', 'doc', 'docx', 'xls', 'xlsx', etc.
+  fileUrl     String
+  fileSize    Int      // Size in bytes
+  downloadCount Int    @default(0)
+  year        String?
+  isPublished Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+  updatedBy   String?
+  creator     User?    @relation("DownloadCreator", fields: [createdBy], references: [id])
+  updater     User?    @relation("DownloadUpdater", fields: [updatedBy], references: [id])
+
+  @@map("downloads")
+  @@index([category])
+  @@index([isPublished])
+}
+
+// ============================================
+// COURT RULINGS
+// ============================================
+
+model Ruling {
+  id              String   @id @default(cuid())
+  caseNumber      String
+  title           String
+  slug            String   @unique
+  summary         String   @db.Text
+  details         String   @db.Text
+  court           String
+  judge           String
+  date            DateTime
+  outcome         String   // 'Conviction', 'Acquittal', 'Settlement', 'Dismissed'
+  assetsRecovered String?  @db.Text
+  sentence        String?  @db.Text
+  downloadUrl     String?
+  year            String
+  views           Int      @default(0)
+  isPublished     Boolean  @default(false)
+  publishedAt     DateTime?
+
+  // Relations
+  tags            RulingTag[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  createdBy       String?
+  updatedBy       String?
+  creator         User?     @relation("RulingCreator", fields: [createdBy], references: [id])
+  updater         User?     @relation("RulingUpdater", fields: [updatedBy], references: [id])
+
+  @@map("rulings")
+  @@index([outcome, date])
+  @@index([year])
+  @@index([isPublished, publishedAt])
+}
+
+model RulingTag {
+  id        String   @id @default(cuid())
+  rulingId  String
+  ruling    Ruling   @relation(fields: [rulingId], references: [id], onDelete: Cascade)
+  tag       String
+
+  @@map("ruling_tags")
+  @@index([rulingId])
+  @@index([tag])
+}
+
+// ============================================
+// GALLERY
+// ============================================
+
+model GalleryImage {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  @db.Text
+  category    String   // 'events', 'office', 'commissioners', 'activities', 'awards', 'training'
+  imageUrl    String
+  thumbnailUrl String?
+  alt         String?
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  createdBy   String?
+  updatedBy   String?
+  creator     User?    @relation("GalleryCreator", fields: [createdBy], references: [id])
+  updater     User?    @relation("GalleryUpdater", fields: [updatedBy], references: [id])
+
+  @@map("gallery_images")
+  @@index([category])
+  @@index([isPublished])
+}
+
+// ============================================
+// CAREERS / JOBS
+// ============================================
+
+model Job {
+  id              String   @id @default(cuid())
+  title           String
+  slug            String   @unique
+  department      String   // 'investigations', 'legal', 'compliance', 'administration', 'it', 'finance', 'hr', 'communications'
+  location        String
+  type            String   // 'Full-time', 'Part-time', 'Contract', 'Internship'
+  summary         String   @db.Text
+  description     String   @db.Text
+  keyRequirements Json     // Array of requirements stored as JSON
+  responsibilities Json    // Array of responsibilities stored as JSON
+  benefits        String?  @db.Text
+  closingDate     DateTime
+  isPublished     Boolean  @default(false)
+  isActive        Boolean  @default(true)
+  publishedAt     DateTime?
+  applicationCount Int     @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  createdBy       String?
+  updatedBy       String?
+  creator         User?    @relation("JobCreator", fields: [createdBy], references: [id])
+  updater         User?    @relation("JobUpdater", fields: [updatedBy], references: [id])
+
+  // Relations
+  applications    JobApplication[]
+
+  @@map("jobs")
+  @@index([department])
+  @@index([isPublished, isActive, closingDate])
+}
+
+model JobApplication {
+  id            String   @id @default(cuid())
+  jobId         String
+  job           Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  name          String
+  email         String
+  phone         String
+  qualification String?
+  experience    Int?
+  coverLetter   String   @db.Text
+  cvUrl         String
+  status        ApplicationStatus @default(PENDING)
+  notes         String?  @db.Text
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("job_applications")
+  @@index([jobId])
+  @@index([status])
+  @@index([email])
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  SHORTLISTED
+  INTERVIEWED
+  ACCEPTED
+  REJECTED
+}
+
+// ============================================
+// CORRUPTION REPORTS
+// ============================================
+
+model CorruptionReport {
+  id                  String   @id @default(cuid())
+  reportNumber        String   @unique @default(uuid())
+  isAnonymous         Boolean  @default(true)
+  
+  // Optional contact info
+  name                String?
+  email               String?
+  phone               String?
+  organization        String?
+
+  // Report details
+  corruptionType      String   // 'bribery', 'embezzlement', 'fraud', etc.
+  incidentDescription String   @db.Text
+  location            String
+  province            String?
+  incidentDate        DateTime?
+  incidentTime        String?
+  peopleInvolved      String?  @db.Text
+  additionalInfo      String?  @db.Text
+
+  // Status
+  status              ReportStatus @default(NEW)
+  priority            ReportPriority @default(MEDIUM)
+  assignedTo          String?
+  notes               String?  @db.Text
+
+  // Relations
+  files               ReportFile[]
+  updates             ReportUpdate[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("corruption_reports")
+  @@index([status])
+  @@index([corruptionType])
+  @@index([createdAt])
+}
+
+model ReportFile {
+  id          String   @id @default(cuid())
+  reportId    String
+  report      CorruptionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  fileName    String
+  fileUrl     String
+  fileSize    Int
+  fileType    String
+  uploadedAt  DateTime @default(now())
+
+  @@map("report_files")
+  @@index([reportId])
+}
+
+model ReportUpdate {
+  id          String   @id @default(cuid())
+  reportId    String
+  report      CorruptionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  status      ReportStatus
+  notes       String?  @db.Text
+  updatedBy   String?
+  createdAt   DateTime @default(now())
+
+  @@map("report_updates")
+  @@index([reportId])
+}
+
+enum ReportStatus {
+  NEW
+  ACKNOWLEDGED
+  UNDER_INVESTIGATION
+  REFERRED_TO_PROSECUTION
+  CLOSED
+  ARCHIVED
+}
+
+enum ReportPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+// ============================================
+// CONTACT SUBMISSIONS
+// ============================================
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  subject     String
+  message     String   @db.Text
+  isAnonymous Boolean  @default(false)
+  status      ContactStatus @default(NEW)
+  respondedAt DateTime?
+  response    String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("contact_submissions")
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum ContactStatus {
+  NEW
+  IN_PROGRESS
+  RESPONDED
+  CLOSED
+}
+
+// ============================================
+// MEDIA MANAGEMENT
+// ============================================
+
+model Media {
+  id          String   @id @default(cuid())
+  fileName    String
+  originalName String
+  fileUrl     String
+  thumbnailUrl String?
+  mimeType    String
+  fileSize    Int      // Size in bytes
+  width       Int?
+  height      Int?
+  alt         String?
+  caption     String?
+  category    String?  // 'image', 'document', 'video', etc.
+  folder      String?  // For organization
+  uploadedBy  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("media")
+  @@index([category])
+  @@index([folder])
+}
+
+// ============================================
+// CONTACT INFORMATION
+// ============================================
+// Store contact details and addresses for offices
+// Examples: Head Office, Regional Offices, Report Centre
+// Includes: address, phone, email, office hours
+
+model ContactInfo {
+  id          String   @id @default(cuid())
+  type        String   // 'head-office', 'regional-office', 'report-centre', etc.
+  name        String
+  address     String?  @db.Text
+  city        String?
+  province    String?
+  country     String   @default("Zimbabwe")
+  phone       String?
+  email       String?
+  hours       String?  @db.Text
+  isActive    Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("contact_info")
+  @@index([type])
+}
+
+// ============================================
+// LEGISLATION CONTENT
+// ============================================
+
+model Legislation {
+  id          String   @id @default(cuid())
+  title       String
+  type        String   // 'constitutional', 'act', 'regulation', 'international'
+  chapter     String?  // e.g., "Chapter 9:22"
+  description String   @db.Text
+  content     String?  @db.Text
+  provisions  Json     // Array of key provisions stored as JSON
+  downloadUrl String?
+  isPublished Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("legislation")
+  @@index([type])
+  @@index([isPublished])
+}
+
+// ============================================
+// NEWSLETTER SUBSCRIPTIONS
+// ============================================
+
+model NewsletterSubscription {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  isActive    Boolean  @default(true)
+  subscribedAt DateTime @default(now())
+  unsubscribedAt DateTime?
+  source      String?  // Where they subscribed from
+
+  @@map("newsletter_subscriptions")
+  @@index([email])
+  @@index([isActive])
+}
+
+// ============================================
+// ANALYTICS & TRACKING
+// ============================================
+
+model PageView {
+  id          String   @id @default(cuid())
+  pageType    String   // 'home', 'about', 'news', 'rulings', etc.
+  pageId      String?  // ID of specific content (news article, ruling, etc.)
+  url         String
+  ipAddress   String?
+  userAgent   String?
+  referrer    String?
+  viewedAt    DateTime @default(now())
+
+  @@map("page_views")
+  @@index([pageType, pageId])
+  @@index([viewedAt])
 }

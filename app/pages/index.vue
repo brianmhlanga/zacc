@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <Hero />
+  <NuxtLayout name="main">
+    <div>
+      <Hero />
     <About />
     <Statistics />
     <WhatWeDo />
@@ -8,7 +9,8 @@
     <Commissioners />
     <Downloads />
     <Contact />
-  </div>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup>

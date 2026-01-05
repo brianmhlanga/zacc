@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <!-- Hero Section -->
+  <NuxtLayout name="main">
+    <div>
+      <!-- Hero Section -->
     <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
       <div class="absolute inset-0">
         <img src="/gavel.jpg" alt="Legal framework" class="absolute inset-0 h-full w-full object-cover opacity-20" />
@@ -445,7 +446,8 @@
         </div>
       </div>
     </section>
-  </div>
+    </div>
+  </NuxtLayout>
 </template>
 
 <script setup>
