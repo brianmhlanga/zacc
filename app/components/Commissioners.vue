@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-7xl px-6">
       <div class="mb-8 flex items-end justify-between">
         <div>
-          <h2 class="text-2xl font-extrabold text-white">ZACC Commissioners</h2>
+          <h2 class="text-2xl font-extrabold text-white">Our Leadership Team</h2>
           <div class="mt-2 h-1 w-20 rounded bg-white/70"></div>
           <p class="mt-2 text-white/90">Leadership team guiding Zimbabwe's anti‑corruption mandate.</p>
         </div>
