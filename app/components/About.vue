@@ -17,46 +17,39 @@
               style="background: radial-gradient(65% 55% at 100% 0%, rgba(212,175,55,0.35), transparent 60%)"
             ></div>
             <!-- Overlaid mini stats on image bottom -->
-            <div class="absolute inset-x-4 bottom-4 grid gap-3 sm:grid-cols-3">
-              <div class="rounded-lg bg-zaccGreen/95 p-4 text-center text-white shadow-glow">
+            <div v-if="aboutStats.length > 0" class="absolute inset-x-4 bottom-4 grid gap-3 sm:grid-cols-3">
+              <div
+                v-for="stat in aboutStats"
+                :key="stat.id"
+                :class="[
+                  'rounded-lg p-4 text-center text-white shadow-glow',
+                  stat.color === 'green' ? 'bg-zaccGreen/95' : stat.color === 'gold' ? 'bg-zaccGold/95' : 'bg-zaccBlack/95'
+                ]"
+              >
                 <div class="text-2xl font-extrabold">
-                  <span class="countup" data-target="20">0</span>+
+                  <span
+                    class="countup"
+                    :data-target="stat.value"
+                    :data-prefix="stat.prefix || ''"
+                    :data-suffix="stat.suffix || ''"
+                  >0</span>
                 </div>
-                <div class="text-xs text-white/90">Years Serving Zimbabwe</div>
-              </div>
-              <div class="rounded-lg bg-zaccGold/95 p-4 text-center text-white shadow-glow">
-                <div class="text-2xl font-extrabold">
-                  <span class="countup" data-target="300">0</span>+
-                </div>
-                <div class="text-xs text-white/90">Institutions Engaged</div>
-              </div>
-              <div class="rounded-lg bg-zaccBlack/95 p-4 text-center text-white shadow-glow">
-                <div class="text-2xl font-extrabold">
-                  <span class="countup" data-target="120">0</span>+
-                </div>
-                <div class="text-xs text-white/90">Public Education Forums</div>
+                <div class="text-xs text-white/90">{{ stat.label }}</div>
               </div>
             </div>
           </div>
         </div>
         <div class="space-y-4">
           <div>
-            <h2 class="text-2xl font-extrabold">About ZACC</h2>
+            <h2 class="text-2xl font-extrabold">{{ aboutContent.title || 'About ZACC' }}</h2>
             <div class="mt-2 h-1 w-20 rounded bg-zaccGold"></div>
           </div>
-          <p class="text-zaccBlack/70">
-            ZACC investigates and combats corruption, promotes integrity, and advises on anti-corruption policy and
-            legislation. We work with citizens and institutions to strengthen accountability across Zimbabwe.
-          </p>
-          <p class="text-zaccBlack/70">
-            Through investigations, asset recovery, and prosecution support, we disrupt networks that enable graft and
-            misuse of public resources. Our teams collaborate with justice sector partners to ensure due process,
-            robust evidence handling, and timely resolution of cases.
-          </p>
-          <p class="text-zaccBlack/70">
-            Beyond enforcement, we prioritize prevention and public education. ZACC conducts risk assessments, integrity
-            audits, and civic awareness campaigns to help ministries, agencies, and communities establish stronger
-            controls, transparent workflows, and a culture of ethics.
+          <p
+            v-for="(paragraph, index) in aboutContent.paragraphs"
+            :key="index"
+            class="text-zaccBlack/70"
+          >
+            {{ paragraph }}
           </p>
           <div class="grid gap-4 sm:grid-cols-2">
             <div class="rounded-[5px] bg-white p-5 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]">
@@ -76,9 +69,9 @@
                   />
                 </svg>
               </div>
-              <div class="font-semibold">Our Mission</div>
+              <div class="font-semibold">{{ aboutContent.mission?.title || 'Our Mission' }}</div>
               <p class="mt-1 text-sm text-zaccBlack/70">
-                To rid Zimbabwe of corruption through lawful enforcement and robust prevention.
+                {{ aboutContent.mission?.content || 'To rid Zimbabwe of corruption through lawful enforcement and robust prevention.' }}
               </p>
             </div>
             <div class="rounded-[5px] bg-white p-5 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]">
@@ -98,13 +91,13 @@
                   />
                 </svg>
               </div>
-              <div class="font-semibold">Our Vision</div>
-              <p class="mt-1 text-sm text-zaccBlack/70">A Zimbabwe free from all forms of corruption.</p>
+              <div class="font-semibold">{{ aboutContent.vision?.title || 'Our Vision' }}</div>
+              <p class="mt-1 text-sm text-zaccBlack/70">{{ aboutContent.vision?.content || 'A Zimbabwe free from all forms of corruption.' }}</p>
             </div>
           </div>
           <div class="mt-4">
             <NuxtLink
-              to="#"
+              to="/about"
               class="inline-flex items-center gap-2 rounded-md bg-zaccGreen px-4 py-2 font-semibold text-white shadow-glow hover:brightness-110"
             >
               Read More
@@ -129,7 +122,63 @@
 <script setup lang="ts">
 const { observeStats } = useCountUp()
 
-onMounted(() => {
+const aboutContent = ref<any>({
+  title: '',
+  paragraphs: [],
+  mission: null,
+  vision: null
+})
+const aboutStats = ref<any[]>([])
+
+// Fetch about content
+const fetchAboutContent = async () => {
+  try {
+    const content = await $fetch('/api/public/page-content', {
+      params: { pageKey: 'home' }
+    })
+    
+    const contentMap: any = {}
+    content.forEach((item: any) => {
+      contentMap[item.sectionKey] = item
+    })
+    
+    aboutContent.value = {
+      title: contentMap['about-title']?.content || '',
+      paragraphs: [
+        contentMap['about-paragraph-1']?.content || '',
+        contentMap['about-paragraph-2']?.content || '',
+        contentMap['about-paragraph-3']?.content || ''
+      ].filter(p => p),
+      mission: contentMap['about-mission'] ? {
+        title: contentMap['about-mission'].title,
+        content: contentMap['about-mission'].content
+      } : null,
+      vision: contentMap['about-vision'] ? {
+        title: contentMap['about-vision'].title,
+        content: contentMap['about-vision'].content
+      } : null
+    }
+  } catch (error) {
+    console.error('Error fetching about content:', error)
+  }
+}
+
+// Fetch about statistics
+const fetchAboutStats = async () => {
+  try {
+    const stats = await $fetch('/api/public/statistics', {
+      params: { section: 'about' }
+    })
+    aboutStats.value = stats || []
+  } catch (error) {
+    console.error('Error fetching about stats:', error)
+    aboutStats.value = []
+  }
+}
+
+onMounted(async () => {
+  await Promise.all([fetchAboutContent(), fetchAboutStats()])
+  await nextTick()
   observeStats()
 })
 </script>

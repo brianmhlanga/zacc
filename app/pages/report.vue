@@ -171,6 +171,7 @@
                 </label>
                 <Editor
                   id="incidentDescription"
+                  ref="incidentDescriptionEditor"
                   v-model="form.incidentDescription"
                   editorStyle="height: 300px"
                   :class="{ 'p-invalid': !form.incidentDescription && submitted }"
@@ -265,6 +266,7 @@
                 </label>
                 <Editor
                   id="peopleInvolved"
+                  ref="peopleInvolvedEditor"
                   v-model="form.peopleInvolved"
                   editorStyle="height: 200px"
                 >
@@ -327,6 +329,7 @@
                 </label>
                 <Editor
                   id="additionalInfo"
+                  ref="additionalInfoEditor"
                   v-model="form.additionalInfo"
                   editorStyle="height: 200px"
                 >
@@ -445,7 +448,9 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useToast } from 'primevue/usetoast'
+
 useHead({
   title: 'Report Corruption - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -455,6 +460,44 @@ useHead({
     }
   ]
 })
+
+const toast = useToast()
+
+// Editor refs
+const incidentDescriptionEditor = ref()
+const peopleInvolvedEditor = ref()
+const additionalInfoEditor = ref()
+
+// Form reset helper
+const resetForm = async () => {
+  form.isAnonymous = true
+  form.name = ''
+  form.email = ''
+  form.phone = ''
+  form.organization = ''
+  form.corruptionType = null
+  form.incidentDescription = ''
+  form.location = ''
+  form.province = null
+  form.incidentDate = null
+  form.incidentTime = null
+  form.peopleInvolved = ''
+  form.files = []
+  form.additionalInfo = ''
+  submitted.value = false
+  
+  // Reset Editor components
+  await nextTick()
+  if (incidentDescriptionEditor.value) {
+    incidentDescriptionEditor.value.setContent('')
+  }
+  if (peopleInvolvedEditor.value) {
+    peopleInvolvedEditor.value.setContent('')
+  }
+  if (additionalInfoEditor.value) {
+    additionalInfoEditor.value.setContent('')
+  }
+}
 
 const corruptionTypes = [
   { label: 'Bribery', value: 'bribery' },
@@ -535,37 +578,83 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    // Here you would typically send the form data to your backend
-    // For now, we'll just log it and show a success message
-    console.log('Form submitted:', form)
+    // Prepare form data
+    const formData = new FormData()
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    // Add form fields
+    formData.append('isAnonymous', form.isAnonymous.toString())
+    formData.append('corruptionType', form.corruptionType)
+    formData.append('incidentDescription', form.incidentDescription)
+    formData.append('location', form.location)
     
-    alert('Thank you for your report. It has been submitted successfully and will be reviewed by our team.')
+    if (form.province) {
+      formData.append('province', form.province)
+    }
     
-    // Reset form
-    Object.assign(form, {
-      isAnonymous: true,
-      name: '',
-      email: '',
-      phone: '',
-      organization: '',
-      corruptionType: null,
-      incidentDescription: '',
-      location: '',
-      province: null,
-      incidentDate: null,
-      incidentTime: null,
-      peopleInvolved: '',
-      files: [],
-      additionalInfo: ''
+    if (form.incidentDate) {
+      formData.append('incidentDate', form.incidentDate instanceof Date 
+        ? form.incidentDate.toISOString() 
+        : new Date(form.incidentDate).toISOString())
+    }
+    
+    if (form.incidentTime) {
+      formData.append('incidentTime', typeof form.incidentTime === 'string' 
+        ? form.incidentTime 
+        : form.incidentTime.toString())
+    }
+    
+    if (form.peopleInvolved) {
+      formData.append('peopleInvolved', form.peopleInvolved)
+    }
+    
+    if (form.additionalInfo) {
+      formData.append('additionalInfo', form.additionalInfo)
+    }
+    
+    // Add contact info only if not anonymous
+    if (!form.isAnonymous) {
+      if (form.name) formData.append('name', form.name)
+      if (form.email) formData.append('email', form.email)
+      if (form.phone) formData.append('phone', form.phone)
+      if (form.organization) formData.append('organization', form.organization)
+    }
+    
+    // Add files
+    form.files.forEach((file) => {
+      formData.append('files', file)
     })
     
-    submitted.value = false
-  } catch (error) {
+    // Submit to API
+    const response = await $fetch('/api/public/reports', {
+      method: 'POST',
+      body: formData
+    })
+    
+    // Reset form first
+    resetForm()
+    
+    // Show success message with report number
+    await nextTick()
+    toast.add({
+      severity: 'success',
+      summary: 'Report Submitted Successfully',
+      detail: `Your report has been received. Report Number: ${response.reportNumber}. We will review it and get back to you.`,
+      life: 10000
+    })
+    
+    // Scroll to top to show success message
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  } catch (error: any) {
     console.error('Error submitting form:', error)
-    alert('There was an error submitting your report. Please try again or contact us directly.')
+    await nextTick()
+    toast.add({
+      severity: 'error',
+      summary: 'Submission Failed',
+      detail: error.data?.message || 'There was an error submitting your report. Please try again or contact us directly.',
+      life: 5000
+    })
   } finally {
     isSubmitting.value = false
   }

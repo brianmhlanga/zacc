@@ -76,7 +76,9 @@ export const ModelName = {
   ContactInfo: 'ContactInfo',
   Legislation: 'Legislation',
   NewsletterSubscription: 'NewsletterSubscription',
-  PageView: 'PageView'
+  PageView: 'PageView',
+  Menu: 'Menu',
+  MenuItem: 'MenuItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -554,6 +556,38 @@ export const PageViewScalarFieldEnum = {
 export type PageViewScalarFieldEnum = (typeof PageViewScalarFieldEnum)[keyof typeof PageViewScalarFieldEnum]
 
 
+export const MenuScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  location: 'location',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MenuScalarFieldEnum = (typeof MenuScalarFieldEnum)[keyof typeof MenuScalarFieldEnum]
+
+
+export const MenuItemScalarFieldEnum = {
+  id: 'id',
+  menuId: 'menuId',
+  label: 'label',
+  type: 'type',
+  url: 'url',
+  target: 'target',
+  icon: 'icon',
+  order: 'order',
+  isVisible: 'isVisible',
+  parentId: 'parentId',
+  pageId: 'pageId',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MenuItemScalarFieldEnum = (typeof MenuItemScalarFieldEnum)[keyof typeof MenuItemScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -954,4 +988,30 @@ export const PageViewOrderByRelevanceFieldEnum = {
 } as const
 
 export type PageViewOrderByRelevanceFieldEnum = (typeof PageViewOrderByRelevanceFieldEnum)[keyof typeof PageViewOrderByRelevanceFieldEnum]
+
+
+export const MenuOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  location: 'location',
+  description: 'description'
+} as const
+
+export type MenuOrderByRelevanceFieldEnum = (typeof MenuOrderByRelevanceFieldEnum)[keyof typeof MenuOrderByRelevanceFieldEnum]
+
+
+export const MenuItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  menuId: 'menuId',
+  label: 'label',
+  type: 'type',
+  url: 'url',
+  target: 'target',
+  icon: 'icon',
+  parentId: 'parentId',
+  pageId: 'pageId',
+  categoryId: 'categoryId'
+} as const
+
+export type MenuItemOrderByRelevanceFieldEnum = (typeof MenuItemOrderByRelevanceFieldEnum)[keyof typeof MenuItemOrderByRelevanceFieldEnum]
 

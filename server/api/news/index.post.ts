@@ -13,7 +13,14 @@ const createNewsSchema = z.object({
   publishedAt: z.string().optional(), // ISO date string
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
-  tags: z.array(z.string()).default([])
+  tags: z.preprocess(
+    (val) => {
+      if (val === null || val === undefined) return []
+      if (!Array.isArray(val)) return []
+      return val.filter((tag): tag is string => tag !== null && tag !== undefined && typeof tag === 'string' && tag.trim().length > 0)
+    },
+    z.array(z.string())
+  ).default([])
 })
 
 export default defineEventHandler(async (event) => {

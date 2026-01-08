@@ -13,7 +13,14 @@ const updateNewsSchema = z.object({
   publishedAt: z.string().optional().nullable(), // ISO date string or null
   metaTitle: z.string().optional().nullable(),
   metaDescription: z.string().optional().nullable(),
-  tags: z.array(z.string()).optional()
+  tags: z.preprocess(
+    (val) => {
+      if (val === undefined || val === null) return undefined
+      if (!Array.isArray(val)) return []
+      return val.filter((tag): tag is string => tag !== null && tag !== undefined && typeof tag === 'string' && tag.trim().length > 0)
+    },
+    z.array(z.string())
+  ).optional()
 })
 
 export default defineEventHandler(async (event) => {

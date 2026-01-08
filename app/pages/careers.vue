@@ -116,8 +116,21 @@
           </div>
         </div>
 
+        <!-- Loading State -->
+        <div v-if="loading" class="space-y-6 mb-12">
+          <Card v-for="i in 3" :key="i" class="animate-pulse">
+            <template #content>
+              <div class="p-6">
+                <div class="h-6 bg-zaccGreen/10 rounded w-3/4 mb-4"></div>
+                <div class="h-4 bg-zaccGreen/10 rounded w-1/2 mb-2"></div>
+                <div class="h-4 bg-zaccGreen/10 rounded w-2/3"></div>
+              </div>
+            </template>
+          </Card>
+        </div>
+
         <!-- Job Listings -->
-        <div v-if="filteredJobs.length > 0" class="space-y-6 mb-12">
+        <div v-else-if="filteredJobs.length > 0" class="space-y-6 mb-12">
           <Card
             v-for="job in paginatedJobs"
             :key="job.id"
@@ -153,7 +166,12 @@
                           {{ job.summary }}
                         </p>
                         <div class="flex flex-wrap gap-2">
-                          <Tag v-for="requirement in job.keyRequirements.slice(0, 3)" :key="requirement" :value="requirement" severity="secondary" />
+                          <Tag 
+                            v-for="(requirement, idx) in (Array.isArray(job.keyRequirements) ? job.keyRequirements : []).slice(0, 3)" 
+                            :key="idx" 
+                            :value="requirement" 
+                            severity="secondary" 
+                          />
                         </div>
                       </div>
                     </div>
@@ -180,7 +198,7 @@
         </div>
 
         <!-- No Results -->
-        <div v-else class="text-center py-20">
+        <div v-else-if="!loading" class="text-center py-20">
           <i class="pi pi-briefcase text-6xl text-zaccBlack/20 mb-4"></i>
           <h3 class="text-xl font-semibold text-zaccBlack mb-2">No Jobs Found</h3>
           <p class="text-zaccBlack/60">Try adjusting your search or filter criteria.</p>
@@ -261,7 +279,7 @@
 
           <h4 class="font-extrabold text-lg mb-3">Key Requirements</h4>
           <ul class="space-y-2 mb-6">
-            <li v-for="(req, index) in selectedJob.keyRequirements" :key="index" class="flex items-start gap-2 text-zaccBlack/80">
+            <li v-for="(req, index) in (Array.isArray(selectedJob.keyRequirements) ? selectedJob.keyRequirements : [])" :key="index" class="flex items-start gap-2 text-zaccBlack/80">
               <i class="pi pi-check-circle text-zaccGreen mt-0.5"></i>
               <span>{{ req }}</span>
             </li>
@@ -269,7 +287,7 @@
 
           <h4 class="font-extrabold text-lg mb-3">Responsibilities</h4>
           <ul class="space-y-2 mb-6">
-            <li v-for="(resp, index) in selectedJob.responsibilities" :key="index" class="flex items-start gap-2 text-zaccBlack/80">
+            <li v-for="(resp, index) in (Array.isArray(selectedJob.responsibilities) ? selectedJob.responsibilities : [])" :key="index" class="flex items-start gap-2 text-zaccBlack/80">
               <i class="pi pi-circle-fill text-zaccGold text-xs mt-1.5"></i>
               <span>{{ resp }}</span>
             </li>
@@ -453,7 +471,10 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useToast } from 'primevue/usetoast'
+
+const toast = useToast()
 useHead({
   title: 'Careers - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -476,217 +497,8 @@ const departments = [
   { label: 'Communications', value: 'communications' }
 ]
 
-const jobs = [
-  {
-    id: 1,
-    title: 'Senior Corruption Investigator',
-    department: 'investigations',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-15',
-    summary: 'Lead complex corruption investigations and work with multidisciplinary teams to build strong cases.',
-    description: 'We are seeking an experienced Senior Corruption Investigator to lead high-profile corruption investigations. The successful candidate will be responsible for planning and executing investigations, coordinating with legal teams, and ensuring thorough documentation of evidence.',
-    keyRequirements: [
-      'Bachelor\'s degree in Law, Criminology, or related field',
-      'Minimum 5 years of investigation experience',
-      'Strong analytical and problem-solving skills',
-      'Excellent written and verbal communication',
-      'Knowledge of anti-corruption legislation'
-    ],
-    responsibilities: [
-      'Plan and execute complex corruption investigations',
-      'Collect and analyze evidence from multiple sources',
-      'Coordinate with legal and compliance teams',
-      'Prepare comprehensive investigation reports',
-      'Testify in court proceedings when required',
-      'Mentor junior investigators'
-    ],
-    benefits: 'Competitive salary, health insurance, professional development opportunities, and a supportive work environment.'
-  },
-  {
-    id: 2,
-    title: 'Legal Officer',
-    department: 'legal',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-10',
-    summary: 'Provide legal support and advice on anti-corruption matters, case preparation, and compliance.',
-    description: 'The Legal Officer will provide comprehensive legal support to ZACC operations, including case preparation, legal research, drafting legal documents, and providing advice on compliance matters.',
-    keyRequirements: [
-      'LLB degree from a recognized university',
-      'Admitted legal practitioner in Zimbabwe',
-      'Minimum 3 years of legal practice experience',
-      'Experience in criminal law or anti-corruption law preferred',
-      'Strong research and writing skills'
-    ],
-    responsibilities: [
-      'Provide legal advice on anti-corruption matters',
-      'Prepare legal documents and briefs',
-      'Conduct legal research and analysis',
-      'Assist in case preparation and prosecution support',
-      'Review contracts and agreements',
-      'Ensure compliance with legal requirements'
-    ],
-    benefits: 'Competitive salary package, professional development, and opportunities for career advancement.'
-  },
-  {
-    id: 3,
-    title: 'Compliance Analyst',
-    department: 'compliance',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-20',
-    summary: 'Monitor compliance with anti-corruption policies and regulations across public and private sectors.',
-    description: 'The Compliance Analyst will be responsible for monitoring, assessing, and reporting on compliance with anti-corruption policies and regulations. This role involves working with various stakeholders to ensure adherence to integrity standards.',
-    keyRequirements: [
-      'Bachelor\'s degree in Business, Law, or related field',
-      'Minimum 2 years of compliance experience',
-      'Strong analytical and attention to detail',
-      'Knowledge of compliance frameworks',
-      'Excellent report writing skills'
-    ],
-    responsibilities: [
-      'Monitor compliance with anti-corruption policies',
-      'Conduct compliance assessments and audits',
-      'Prepare compliance reports and recommendations',
-      'Provide compliance training and guidance',
-      'Track and report on compliance metrics',
-      'Assist in policy development'
-    ],
-    benefits: 'Competitive benefits package and opportunities for professional growth.'
-  },
-  {
-    id: 4,
-    title: 'IT Security Specialist',
-    department: 'it',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-18',
-    summary: 'Ensure the security and integrity of ZACC\'s IT systems and data.',
-    description: 'We are looking for an IT Security Specialist to protect ZACC\'s digital infrastructure, implement security measures, and ensure data protection in line with best practices.',
-    keyRequirements: [
-      'Bachelor\'s degree in IT, Computer Science, or related field',
-      'Certifications in cybersecurity (preferred)',
-      'Minimum 3 years of IT security experience',
-      'Knowledge of network security and data protection',
-      'Strong problem-solving abilities'
-    ],
-    responsibilities: [
-      'Implement and maintain IT security measures',
-      'Monitor systems for security threats',
-      'Conduct security audits and assessments',
-      'Develop and enforce security policies',
-      'Respond to security incidents',
-      'Provide security training to staff'
-    ],
-    benefits: 'Competitive salary, health benefits, and continuous learning opportunities.'
-  },
-  {
-    id: 5,
-    title: 'Communications Officer',
-    department: 'communications',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-12',
-    summary: 'Manage ZACC\'s public communications, media relations, and awareness campaigns.',
-    description: 'The Communications Officer will be responsible for developing and implementing communication strategies, managing media relations, and creating content for various platforms to raise awareness about anti-corruption efforts.',
-    keyRequirements: [
-      'Bachelor\'s degree in Communications, Journalism, or related field',
-      'Minimum 3 years of communications experience',
-      'Strong writing and editing skills',
-      'Experience with social media and digital platforms',
-      'Media relations experience'
-    ],
-    responsibilities: [
-      'Develop communication strategies and campaigns',
-      'Manage media relations and press releases',
-      'Create content for website and social media',
-      'Organize public awareness events',
-      'Monitor media coverage and public perception',
-      'Coordinate with internal teams on messaging'
-    ],
-    benefits: 'Dynamic work environment, competitive package, and opportunities for creative expression.'
-  },
-  {
-    id: 6,
-    title: 'Finance Officer',
-    department: 'finance',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-14',
-    summary: 'Manage financial operations, budgeting, and financial reporting for ZACC.',
-    description: 'The Finance Officer will handle financial management, budgeting, accounting, and reporting functions to ensure transparent and accountable financial operations.',
-    keyRequirements: [
-      'Bachelor\'s degree in Accounting, Finance, or related field',
-      'Professional accounting qualification (preferred)',
-      'Minimum 3 years of finance experience',
-      'Knowledge of public sector finance',
-      'Proficiency in accounting software'
-    ],
-    responsibilities: [
-      'Manage financial operations and accounting',
-      'Prepare budgets and financial reports',
-      'Monitor expenditure and ensure compliance',
-      'Process payments and manage accounts',
-      'Coordinate audits and financial reviews',
-      'Provide financial analysis and recommendations'
-    ],
-    benefits: 'Competitive salary, professional development, and comprehensive benefits.'
-  },
-  {
-    id: 7,
-    title: 'Junior Investigator',
-    department: 'investigations',
-    location: 'Bulawayo',
-    type: 'Full-time',
-    closingDate: '2025-12-22',
-    summary: 'Entry-level position for aspiring investigators to learn and contribute to corruption investigations.',
-    description: 'An excellent opportunity for recent graduates to start a career in anti-corruption investigations. The Junior Investigator will work under supervision to learn investigation techniques and contribute to case work.',
-    keyRequirements: [
-      'Bachelor\'s degree in Law, Criminology, or related field',
-      'Strong interest in anti-corruption work',
-      'Good analytical and communication skills',
-      'Willingness to learn and develop',
-      'Ability to work in a team environment'
-    ],
-    responsibilities: [
-      'Assist in corruption investigations',
-      'Collect and organize evidence',
-      'Conduct interviews and research',
-      'Prepare investigation reports',
-      'Support senior investigators',
-      'Maintain case files and documentation'
-    ],
-    benefits: 'Training and mentorship program, competitive entry-level salary, and career development opportunities.'
-  },
-  {
-    id: 8,
-    title: 'Human Resources Officer',
-    department: 'hr',
-    location: 'Harare',
-    type: 'Full-time',
-    closingDate: '2025-12-16',
-    summary: 'Manage HR functions including recruitment, employee relations, and organizational development.',
-    description: 'The HR Officer will support all aspects of human resources management, including recruitment, employee relations, performance management, and policy implementation.',
-    keyRequirements: [
-      'Bachelor\'s degree in Human Resources, Business, or related field',
-      'Minimum 3 years of HR experience',
-      'Knowledge of labor laws and regulations',
-      'Strong interpersonal and communication skills',
-      'Experience in recruitment and employee relations'
-    ],
-    responsibilities: [
-      'Manage recruitment and selection processes',
-      'Handle employee relations and grievances',
-      'Implement HR policies and procedures',
-      'Coordinate performance management',
-      'Organize training and development programs',
-      'Maintain employee records and databases'
-    ],
-    benefits: 'Competitive package, professional development, and opportunities to shape organizational culture.'
-  }
-]
-
+const jobs = ref<any[]>([])
+const loading = ref(true)
 const searchQuery = ref('')
 const selectedDepartment = ref(null)
 const currentPage = ref(1)
@@ -708,24 +520,44 @@ const applicationForm = reactive({
   cv: null
 })
 
-const filteredJobs = computed(() => {
-  let filtered = jobs
-
-  // Filter by department
-  if (selectedDepartment.value) {
-    filtered = filtered.filter(job => job.department === selectedDepartment.value)
+// Fetch jobs from API
+const fetchJobs = async () => {
+  loading.value = true
+  try {
+    const params: any = {}
+    if (selectedDepartment.value) {
+      params.department = selectedDepartment.value
+    }
+    
+    const data = await $fetch('/api/public/jobs', { params })
+    jobs.value = data
+  } catch (error: any) {
+    console.error('Error fetching jobs:', error)
+    jobs.value = []
+  } finally {
+    loading.value = false
   }
+}
 
-  // Filter by search query
+const filteredJobs = computed(() => {
+  let filtered = jobs.value
+
+  // Filter by search query (department is already filtered by API)
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(job =>
-      job.title.toLowerCase().includes(query) ||
-      job.summary.toLowerCase().includes(query) ||
-      job.department.toLowerCase().includes(query) ||
-      job.location.toLowerCase().includes(query) ||
-      job.keyRequirements.some(req => req.toLowerCase().includes(query))
-    )
+    filtered = filtered.filter(job => {
+      const keyReqs = Array.isArray(job.keyRequirements) ? job.keyRequirements : []
+      const responsibilities = Array.isArray(job.responsibilities) ? job.responsibilities : []
+      
+      return (
+        job.title.toLowerCase().includes(query) ||
+        job.summary.toLowerCase().includes(query) ||
+        job.department.toLowerCase().includes(query) ||
+        job.location.toLowerCase().includes(query) ||
+        keyReqs.some((req: string) => req.toLowerCase().includes(query)) ||
+        responsibilities.some((resp: string) => resp.toLowerCase().includes(query))
+      )
+    })
   }
 
   return filtered
@@ -737,8 +569,8 @@ const paginatedJobs = computed(() => {
   return filteredJobs.value.slice(start, end)
 })
 
-const formatDate = (dateString) => {
-  const date = new Date(dateString)
+const formatDate = (dateString: string | Date) => {
+  const date = typeof dateString === 'string' ? new Date(dateString) : dateString
   return date.toLocaleDateString('en-GB', {
     day: '2-digit',
     month: 'long',
@@ -793,16 +625,35 @@ const handleApplicationSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    // Here you would typically send the application to your backend
-    console.log('Application submitted:', {
-      job: applicationJob.value?.title,
-      ...applicationForm
+    // Create FormData for file upload
+    const formData = new FormData()
+    formData.append('jobId', applicationJob.value?.id || '')
+    formData.append('name', applicationForm.name)
+    formData.append('email', applicationForm.email)
+    formData.append('phone', applicationForm.phone)
+    if (applicationForm.qualification) {
+      formData.append('qualification', applicationForm.qualification)
+    }
+    if (applicationForm.experience !== null) {
+      formData.append('experience', applicationForm.experience.toString())
+    }
+    formData.append('coverLetter', applicationForm.coverLetter)
+    if (applicationForm.cv) {
+      formData.append('cv', applicationForm.cv)
+    }
+
+    const response = await $fetch('/api/public/jobs/apply', {
+      method: 'POST',
+      body: formData
     })
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    alert(`Thank you for your application to ${applicationJob.value?.title}. We will review your application and contact you if you are shortlisted.`)
+    await nextTick()
+    toast.add({
+      severity: 'success',
+      summary: 'Application Submitted',
+      detail: response.message || 'Thank you for your application. We will review it and contact you if you are shortlisted.',
+      life: 5000
+    })
 
     // Reset and close
     showApplicationDialog.value = false
@@ -816,9 +667,18 @@ const handleApplicationSubmit = async () => {
       cv: null
     })
     applicationSubmitted.value = false
-  } catch (error) {
+
+    // Refresh jobs to update application count
+    await fetchJobs()
+  } catch (error: any) {
     console.error('Error submitting application:', error)
-    alert('There was an error submitting your application. Please try again.')
+    await nextTick()
+    toast.add({
+      severity: 'error',
+      summary: 'Submission Failed',
+      detail: error.data?.message || 'There was an error submitting your application. Please try again.',
+      life: 5000
+    })
   } finally {
     isSubmitting.value = false
   }
@@ -830,8 +690,18 @@ const onPageChange = (event) => {
 }
 
 // Reset to page 1 when filters change
-watch([searchQuery, selectedDepartment], () => {
+watch([searchQuery], () => {
   currentPage.value = 1
+})
+
+watch(selectedDepartment, () => {
+  currentPage.value = 1
+  fetchJobs()
+})
+
+// Fetch jobs on mount
+onMounted(() => {
+  fetchJobs()
 })
 </script>
 

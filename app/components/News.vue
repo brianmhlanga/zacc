@@ -11,6 +11,7 @@
           <div class="relative w-full sm:w-64">
             <input
               id="newsSearch"
+              v-model="searchQuery"
               type="search"
               placeholder="Search news..."
               class="w-full rounded-md border border-black/10 bg-white pl-9 pr-3 py-2 text-sm placeholder:text-zaccBlack/40 outline-none focus:border-zaccGold"
@@ -48,101 +49,91 @@
           </NuxtLink>
         </div>
       </div>
-      <div id="newsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- Loading State -->
+      <div v-if="loading" id="newsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <article
-          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]"
-          data-title="ZACC enhances stakeholder engagement"
-          data-body="Strategic collaboration to strengthen integrity systems across public institutions."
+          v-for="i in 6"
+          :key="i"
+          class="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] animate-pulse"
         >
           <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden">
-            <img src="/businessman.jpg" alt="Stakeholder engagement" class="h-full w-full object-cover" />
+          <div class="aspect-[16/9] bg-zaccGreen/10"></div>
+          <div class="p-5">
+            <div class="h-3 bg-zaccGreen/10 rounded w-24 mb-2"></div>
+            <div class="h-5 bg-zaccGreen/10 rounded w-3/4 mb-2"></div>
+            <div class="h-4 bg-zaccGreen/10 rounded w-full"></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- News Grid -->
+      <div v-else-if="newsItems.length > 0" id="newsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <NuxtLink
+          v-for="article in newsItems"
+          :key="article.id"
+          :to="`/${article.slug}`"
+          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] hover:shadow-lg transition-all"
+          :data-title="article.title"
+          :data-body="article.excerpt"
+        >
+          <div class="h-1 bg-zaccGold"></div>
+          <div class="aspect-[16/9] overflow-hidden bg-zaccGreen/10">
+            <img
+              v-if="article.imageUrl"
+              :src="getImageUrl(article.imageUrl)"
+              :alt="article.title"
+              class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div v-else class="h-full w-full flex items-center justify-center bg-zaccGreen/10">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-zaccGreen/30"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+                />
+              </svg>
+            </div>
           </div>
           <div class="p-5">
-            <div class="text-xs text-zaccBlack/50">06 Nov 2025</div>
-            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow">
-              ZACC enhances stakeholder engagement
+            <div class="text-xs text-zaccBlack/50">
+              {{ formatDate(article.publishedAt || article.createdAt) }}
+            </div>
+            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow transition-colors">
+              {{ article.title }}
             </h3>
-            <p class="mt-2 text-sm text-zaccBlack/60">
-              Strategic collaboration to strengthen integrity systems across public institutions.
+            <p class="mt-2 text-sm text-zaccBlack/60 line-clamp-2">
+              {{ article.excerpt }}
             </p>
           </div>
-        </article>
-        <article
-          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]"
-          data-title="Compliance monitoring initiative"
-          data-body="Assess integrity plans and risk controls."
+        </NuxtLink>
+      </div>
+
+      <!-- No News -->
+      <div v-else-if="!loading && newsItems.length === 0" class="text-center py-12">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="mx-auto h-16 w-16 text-zaccBlack/20"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden">
-            <img src="/gavel.jpg" alt="Compliance initiative" class="h-full w-full object-cover" />
-          </div>
-          <div class="p-5">
-            <div class="text-xs text-zaccBlack/50">28 Oct 2025</div>
-            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow">Compliance monitoring initiative</h3>
-            <p class="mt-2 text-sm text-zaccBlack/60">New program to assess integrity plans and risk controls.</p>
-          </div>
-        </article>
-        <article
-          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]"
-          data-title="Asset recovery success"
-          data-body="Court outcomes reinforce deterrence against graft."
-        >
-          <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden">
-            <img src="/gavelmoney.jpg" alt="Asset recovery success" class="h-full w-full object-cover" />
-          </div>
-          <div class="p-5">
-            <div class="text-xs text-zaccBlack/50">15 Oct 2025</div>
-            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow">Asset recovery success</h3>
-            <p class="mt-2 text-sm text-zaccBlack/60">Recent court outcomes reinforce deterrence against graft.</p>
-          </div>
-        </article>
-        <article
-          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]"
-          data-title="Guidelines for expedited trials"
-          data-body="Fast-tracked corruption trial guidelines adopted."
-        >
-          <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden">
-            <img src="/flag.jpg" alt="Expedited trials" class="h-full w-full object-cover" />
-          </div>
-          <div class="p-5">
-            <div class="text-xs text-zaccBlack/50">09 Oct 2025</div>
-            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow">Guidelines for expedited trials</h3>
-            <p class="mt-2 text-sm text-zaccBlack/60">Justice sector adopts streamlined procedures for corruption cases.</p>
-          </div>
-        </article>
-        <article
-          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]"
-          data-title="Partnerships expanded"
-          data-body="New collaborations with regional integrity bodies."
-        >
-          <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden">
-            <img src="/el1.jpg" alt="Partnerships expanded" class="h-full w-full object-cover" />
-          </div>
-          <div class="p-5">
-            <div class="text-xs text-zaccBlack/50">01 Oct 2025</div>
-            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow">Partnerships expanded</h3>
-            <p class="mt-2 text-sm text-zaccBlack/60">New collaborations with regional integrity bodies.</p>
-          </div>
-        </article>
-        <article
-          class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]"
-          data-title="Capacity building initiatives"
-          data-body="Training programs for investigators and compliance officers."
-        >
-          <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden">
-            <img src="/gavel2.jpg" alt="Capacity building" class="h-full w-full object-cover" />
-          </div>
-          <div class="p-5">
-            <div class="text-xs text-zaccBlack/50">20 Sep 2025</div>
-            <h3 class="mt-1 text-base font-semibold group-hover:text-zaccYellow">Capacity building initiatives</h3>
-            <p class="mt-2 text-sm text-zaccBlack/60">Training programs for investigators and compliance officers.</p>
-          </div>
-        </article>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
+          />
+        </svg>
+        <h3 class="mt-4 text-lg font-semibold text-zaccBlack">No News Available</h3>
+        <p class="mt-2 text-sm text-zaccBlack/60">Check back later for the latest updates.</p>
       </div>
     </div>
   </section>
@@ -151,7 +142,53 @@
 <script setup lang="ts">
 const { setupSearch } = useSearch()
 
+const newsItems = ref<any[]>([])
+const loading = ref(true)
+const searchQuery = ref('')
+
+// Helper function to get image URL
+const getImageUrl = (imageUrl: string) => {
+  if (!imageUrl) return ''
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    return imageUrl
+  }
+  return imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`
+}
+
+// Format date
+const formatDate = (date: string | Date) => {
+  if (!date) return ''
+  const dateObj = typeof date === 'string' ? new Date(date) : date
+  return dateObj.toLocaleDateString('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  })
+}
+
+// Fetch news from API
+const fetchNews = async () => {
+  loading.value = true
+  try {
+    const data = await $fetch('/api/public/news', {
+      params: {
+        limit: 6
+      }
+    })
+    newsItems.value = data
+  } catch (error: any) {
+    console.error('Error fetching news:', error)
+    newsItems.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
 onMounted(() => {
-  setupSearch('newsSearch', '.news-card')
+  fetchNews()
+  // Setup search after news is loaded - this will handle DOM-based filtering
+  nextTick(() => {
+    setupSearch('newsSearch', '.news-card')
+  })
 })
 </script>

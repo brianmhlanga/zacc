@@ -150,14 +150,25 @@
               </template>
             </Column>
 
-            <Column header="Actions" :exportable="false" style="width: 120px">
+            <Column header="Actions" :exportable="false" style="width: 200px">
               <template #body="{ data }">
                 <div class="flex items-center gap-2">
+                  <Button
+                    icon="pi pi-external-link"
+                    severity="success"
+                    outlined
+                    rounded
+                    size="small"
+                    @click="previewArticle(data)"
+                    v-tooltip.top="data.isPublished ? 'View Published Article' : 'Preview Draft Article'"
+                    :disabled="!data.slug"
+                  />
                   <Button
                     icon="pi pi-pencil"
                     severity="info"
                     outlined
                     rounded
+                    size="small"
                     @click="openEditDialog(data)"
                     v-tooltip.top="'Edit Article'"
                   />
@@ -166,6 +177,7 @@
                     severity="danger"
                     outlined
                     rounded
+                    size="small"
                     @click="confirmDelete(data)"
                     v-tooltip.top="'Delete Article'"
                   />
@@ -322,15 +334,21 @@
                 class="w-full"
               />
               <small class="text-gray-500">JPG, PNG, or GIF. Maximum 5MB.</small>
-              <div v-if="newsForm.imageUrl || uploadedImage" class="mt-4">
+              <div v-if="hasImage" class="mt-4">
+                <div v-if="isEditMode && newsForm.imageUrl && !uploadedImage" class="mb-2">
+                  <small class="text-gray-600 font-semibold">Current Image:</small>
+                </div>
+                <div v-else-if="uploadedImage" class="mb-2">
+                  <small class="text-gray-600 font-semibold">New Image Preview:</small>
+                </div>
                 <div class="relative inline-block">
                   <img
                     :src="getImageUrl()"
                     alt="Feature image preview"
                     class="max-w-xs max-h-48 rounded-lg border border-gray-200 object-cover"
+                    @error="handleImageError"
                   />
                   <Button
-                    v-if="newsForm.imageUrl || uploadedImage"
                     icon="pi pi-times"
                     severity="danger"
                     rounded
@@ -354,6 +372,8 @@
               placeholder="Enter tags separated by commas"
               class="w-full"
               @blur="updateTags"
+              @keydown.enter.prevent.stop="handleTagEnter"
+              @keypress.enter.prevent.stop="handleTagEnter"
             />
             <small class="text-gray-500">Separate multiple tags with commas</small>
             <div v-if="newsForm.tags.length > 0" class="flex flex-wrap gap-2 mt-2">
@@ -492,6 +512,7 @@ const submitting = ref(false)
 const selectedCategory = ref<string | null>(null)
 const selectedStatus = ref<string | null>(null)
 const tagsInput = ref('')
+const isProcessingTag = ref(false)
 const publishedAtDate = ref<Date | null>(null)
 const uploadedImage = ref<string | null>(null)
 const uploadedImageFile = ref<File | null>(null)
@@ -520,6 +541,11 @@ const errors = reactive({
   excerpt: '',
   content: '',
   category: ''
+})
+
+// Computed property to check if there's an image to display
+const hasImage = computed(() => {
+  return !!(newsForm.imageUrl || uploadedImage.value)
 })
 
 const categoryOptions = [
@@ -578,14 +604,46 @@ const generateSlug = () => {
   }
 }
 
+const handleTagEnter = (event: KeyboardEvent) => {
+  event.preventDefault()
+  event.stopPropagation()
+  event.stopImmediatePropagation()
+  
+  // Set flag to prevent form submission
+  isProcessingTag.value = true
+  
+  // Process the tag immediately
+  updateTags()
+  
+  // Reset flag after a brief delay to allow processing to complete
+  setTimeout(() => {
+    isProcessingTag.value = false
+  }, 100)
+  
+  // Return false to ensure no further event handling
+  return false
+}
+
 const updateTags = () => {
-  if (tagsInput.value.trim()) {
+  // Ensure tags array exists
+  if (!Array.isArray(newsForm.tags)) {
+    newsForm.tags = []
+  }
+  
+  if (tagsInput.value && typeof tagsInput.value === 'string' && tagsInput.value.trim()) {
     const tags = tagsInput.value
       .split(',')
-      .map(tag => tag.trim())
-      .filter(tag => tag.length > 0)
-    newsForm.tags = [...new Set(tags)]
-    tagsInput.value = ''
+      .map(tag => tag && typeof tag === 'string' ? tag.trim() : '')
+      .filter(tag => tag && tag.length > 0)
+    
+    if (tags.length > 0) {
+      // Merge with existing tags and remove duplicates, ensuring all are strings
+      const existingTags = Array.isArray(newsForm.tags) 
+        ? newsForm.tags.filter(t => t && typeof t === 'string' && t.trim().length > 0)
+        : []
+      newsForm.tags = [...new Set([...existingTags, ...tags])]
+      tagsInput.value = ''
+    }
   }
 }
 
@@ -604,10 +662,30 @@ const getImageUrl = () => {
     if (newsForm.imageUrl.startsWith('/api/')) {
       return newsForm.imageUrl
     }
+    // If it starts with /uploads/, prepend /api
+    if (newsForm.imageUrl.startsWith('/uploads/')) {
+      return `/api${newsForm.imageUrl}`
+    }
+    // If it doesn't start with /, it might be a relative path, prepend /api/uploads/
+    if (!newsForm.imageUrl.startsWith('/')) {
+      return `/api/uploads/${newsForm.imageUrl}`
+    }
     // Otherwise, prepend /api
     return `/api${newsForm.imageUrl}`
   }
   return ''
+}
+
+const handleImageError = (event: Event) => {
+  // If image fails to load, try alternative path
+  const img = event.target as HTMLImageElement
+  if (newsForm.imageUrl && !img.src.includes('/api/')) {
+    // Try with /api prefix if not already there
+    const altUrl = newsForm.imageUrl.startsWith('/') 
+      ? `/api${newsForm.imageUrl}`
+      : `/api/uploads/${newsForm.imageUrl}`
+    img.src = altUrl
+  }
 }
 
 // Image upload handlers
@@ -713,6 +791,7 @@ const openEditDialog = (item: any) => {
   newsForm.slug = item.slug
   newsForm.excerpt = item.excerpt
   newsForm.content = item.content
+  // Ensure imageUrl is set properly - preserve the original path
   newsForm.imageUrl = item.imageUrl || ''
   newsForm.category = item.category
   newsForm.isFeatured = item.isFeatured
@@ -722,15 +801,8 @@ const openEditDialog = (item: any) => {
   newsForm.tags = item.tags?.map((t: any) => t.tag) || []
   tagsInput.value = ''
   publishedAtDate.value = item.publishedAt ? new Date(item.publishedAt) : null
-  // Set image preview - if it's a server path, we'll show it via getImageUrl
-  // Otherwise, clear the preview and let getImageUrl handle it
-  if (item.imageUrl && item.imageUrl.startsWith('/api/')) {
-    uploadedImage.value = null // Let getImageUrl handle server paths
-  } else if (item.imageUrl) {
-    uploadedImage.value = null
-  } else {
-    uploadedImage.value = null
-  }
+  // Clear any uploaded image preview - we'll use the existing image from the server
+  uploadedImage.value = null
   uploadedImageFile.value = null
   dialogVisible.value = true
 }
@@ -805,15 +877,40 @@ const validateForm = () => {
 
 // Handle submit
 const handleSubmit = async () => {
+  // Prevent submission if we're currently processing a tag
+  if (isProcessingTag.value) {
+    return
+  }
+  
   if (!validateForm()) {
     return
   }
 
-  // Update tags from input
+  // Update tags from input before submitting
   updateTags()
+  
+  // Ensure we're not processing a tag
+  if (isProcessingTag.value) {
+    return
+  }
 
   submitting.value = true
   try {
+    // Ensure tags array contains only strings and filter out any null/undefined values
+    // Double-check that tags is an array and all values are valid strings
+    let tagsArray: string[] = []
+    if (Array.isArray(newsForm.tags)) {
+      tagsArray = newsForm.tags
+    } else if (newsForm.tags !== null && newsForm.tags !== undefined) {
+      // If it's not an array, try to convert it
+      tagsArray = []
+    }
+    
+    const validTags = tagsArray
+      .filter(tag => tag !== null && tag !== undefined && typeof tag === 'string')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length > 0)
+    
     const payload: any = {
       title: newsForm.title,
       slug: newsForm.slug,
@@ -825,7 +922,7 @@ const handleSubmit = async () => {
       isPublished: newsForm.isPublished,
       metaTitle: newsForm.metaTitle || undefined,
       metaDescription: newsForm.metaDescription || undefined,
-      tags: newsForm.tags
+      tags: validTags
     }
 
     if (newsForm.isPublished && publishedAtDate.value) {
@@ -872,6 +969,29 @@ const handleSubmit = async () => {
 }
 
 // Delete news
+const previewArticle = (item: any) => {
+  if (!item.slug) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Warning',
+      detail: 'Article must have a slug to preview',
+      life: 3000
+    })
+    return
+  }
+  
+  // Build preview URL - for unpublished articles, we might need to add a preview parameter
+  let url = `/${item.slug}`
+  
+  // If article is not published, add preview parameter (if your frontend supports it)
+  if (!item.isPublished) {
+    url += `?preview=true`
+  }
+  
+  // Open article in new tab
+  window.open(url, '_blank')
+}
+
 const confirmDelete = (item: any) => {
   confirm.require({
     message: `Are you sure you want to delete "${item.title}"?`,

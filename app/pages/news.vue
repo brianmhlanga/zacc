@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout name="main">
-    <div>
+    <div class="overflow-x-hidden">
       <!-- Hero Section -->
     <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
       <div class="absolute inset-0">
@@ -60,26 +60,43 @@
         </div>
 
         <!-- News Grid -->
-        <div v-if="filteredNews.length > 0" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+        <div v-if="loading" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
           <div
+            v-for="i in 6"
+            :key="i"
+            class="news-card overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] animate-pulse"
+          >
+            <div class="h-1 bg-gray-200"></div>
+            <div class="aspect-[16/9] bg-gray-200"></div>
+            <div class="p-5">
+              <div class="h-3 bg-gray-200 rounded w-1/4 mb-2"></div>
+              <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+              <div class="h-3 bg-gray-200 rounded w-full mb-2"></div>
+              <div class="h-3 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          </div>
+        </div>
+        <div v-else-if="filteredNews.length > 0" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+          <NuxtLink
             v-for="article in paginatedNews"
             :key="article.id"
-            class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] cursor-pointer hover:shadow-xl transition-all"
-            @click="viewArticle(article)"
+            :to="`/${article.slug}`"
+            class="news-card group overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] cursor-pointer hover:shadow-xl transition-all block"
           >
             <div class="relative">
               <div class="h-1 bg-zaccGold"></div>
               <div class="aspect-[16/9] overflow-hidden">
                 <img
-                  :src="article.image"
+                  :src="getImageUrl(article.imageUrl)"
                   :alt="article.title"
                   class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  @error="(e) => { (e.target as HTMLImageElement).src = '/placeholder-news.jpg' }"
                 />
               </div>
             </div>
             <div class="p-5">
               <div class="flex items-center justify-between mb-2">
-                <div class="text-xs text-zaccBlack/50">{{ formatDate(article.date) }}</div>
+                <div class="text-xs text-zaccBlack/50">{{ formatDate(article.publishedAt || article.createdAt) }}</div>
                 <Badge :value="article.category" :severity="getCategorySeverity(article.category)" />
               </div>
               <h3 class="text-base font-semibold group-hover:text-zaccGreen transition-colors mb-2">
@@ -95,10 +112,10 @@
                 severity="secondary"
                 outlined
                 class="w-full group-hover:!bg-zaccGreen group-hover:!border-zaccGreen group-hover:!text-white transition-all duration-300"
-                @click.stop="viewArticle(article)"
+                @click.stop
               />
             </div>
-          </div>
+          </NuxtLink>
         </div>
 
         <!-- No Results -->
@@ -124,9 +141,10 @@
           <div class="grid lg:grid-cols-2">
             <div class="relative h-64 lg:h-auto">
               <img
-                :src="featuredArticle.image"
+                :src="getImageUrl(featuredArticle.imageUrl)"
                 :alt="featuredArticle.title"
                 class="h-full w-full object-cover"
+                @error="(e) => { (e.target as HTMLImageElement).src = '/placeholder-news.jpg' }"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-zaccBlack/80 to-transparent"></div>
             </div>
@@ -135,14 +153,15 @@
               <h2 class="text-3xl font-extrabold text-zaccBlack mb-4">{{ featuredArticle.title }}</h2>
               <p class="text-zaccBlack/70 mb-6 leading-relaxed">{{ featuredArticle.excerpt }}</p>
               <div class="flex items-center justify-between">
-                <div class="text-sm text-zaccBlack/50">{{ formatDate(featuredArticle.date) }}</div>
-                <Button
-                  label="Read Full Article"
-                  icon="pi pi-arrow-right"
-                  iconPos="right"
-                  @click="viewArticle(featuredArticle)"
-                  style="background: #209341; border-color: #209341;"
-                />
+                <div class="text-sm text-zaccBlack/50">{{ formatDate(featuredArticle.publishedAt || featuredArticle.createdAt) }}</div>
+                <NuxtLink :to="`/${featuredArticle.slug}`">
+                  <Button
+                    label="Read Full Article"
+                    icon="pi pi-arrow-right"
+                    iconPos="right"
+                    style="background: #209341; border-color: #209341;"
+                  />
+                </NuxtLink>
               </div>
             </div>
           </div>
@@ -158,19 +177,19 @@
       :style="{ width: '90vw', maxWidth: '900px' }"
       :closable="true"
     >
-      <div v-if="selectedArticle" class="space-y-6">
-        <div class="flex items-center gap-4 text-sm text-zaccBlack/60">
+      <div v-if="selectedArticle" class="space-y-6 overflow-x-hidden w-full max-w-full box-border">
+        <div class="flex items-center gap-4 text-sm text-zaccBlack/60 flex-wrap">
           <div class="flex items-center gap-2">
             <i class="pi pi-calendar"></i>
             <span>{{ formatDate(selectedArticle.date) }}</span>
           </div>
           <Badge :value="selectedArticle.category" :severity="getCategorySeverity(selectedArticle.category)" />
         </div>
-        <div class="aspect-video overflow-hidden rounded-lg">
-          <img :src="selectedArticle.image" :alt="selectedArticle.title" class="h-full w-full object-cover" />
+        <div v-if="selectedArticle.imageUrl" class="aspect-video overflow-hidden rounded-lg w-full max-w-full">
+          <img :src="getImageUrl(selectedArticle.imageUrl)" :alt="selectedArticle.title" class="h-full w-full object-cover max-w-full" />
         </div>
-        <div class="prose max-w-none">
-          <p class="text-lg text-zaccBlack/80 leading-relaxed">{{ selectedArticle.content }}</p>
+        <div class="w-full max-w-full box-border prose prose-sm max-w-none">
+          <div class="text-zaccBlack/80 leading-relaxed break-words overflow-wrap-anywhere word-break-break-word" v-html="selectedArticle.content"></div>
         </div>
       </div>
     </Dialog>
@@ -178,7 +197,7 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'News & Updates - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -199,117 +218,8 @@ const categories = [
   { label: 'Compliance', value: 'compliance' }
 ]
 
-const newsArticles = [
-  {
-    id: 1,
-    title: 'ZACC enhances stakeholder engagement',
-    excerpt: 'Strategic collaboration to strengthen integrity systems across public institutions.',
-    content: 'The Zimbabwe Anti-Corruption Commission has launched a comprehensive stakeholder engagement initiative aimed at strengthening integrity systems across public institutions. This program focuses on collaborative approaches to prevent corruption and promote transparency.',
-    category: 'partnerships',
-    date: '2025-11-06',
-    image: '/businessman.jpg'
-  },
-  {
-    id: 2,
-    title: 'Compliance monitoring initiative',
-    excerpt: 'New program to assess integrity plans and risk controls.',
-    content: 'ZACC has introduced a new compliance monitoring initiative designed to assess integrity plans and risk controls across various sectors. This program will help identify vulnerabilities and strengthen anti-corruption measures.',
-    category: 'compliance',
-    date: '2025-10-28',
-    image: '/gavel.jpg'
-  },
-  {
-    id: 3,
-    title: 'Asset recovery success',
-    excerpt: 'Recent court outcomes reinforce deterrence against graft.',
-    content: 'Recent successful asset recovery cases have demonstrated ZACC\'s commitment to combating corruption. Court outcomes have reinforced the deterrence message against graft and financial misconduct.',
-    category: 'case-updates',
-    date: '2025-10-15',
-    image: '/gavelmoney.jpg'
-  },
-  {
-    id: 4,
-    title: 'Guidelines for expedited trials',
-    excerpt: 'Justice sector adopts streamlined procedures for corruption cases.',
-    content: 'The justice sector has adopted new streamlined procedures for corruption cases, enabling faster resolution while maintaining due process. These guidelines aim to expedite trials without compromising fairness.',
-    category: 'announcements',
-    date: '2025-10-09',
-    image: '/flag.jpg'
-  },
-  {
-    id: 5,
-    title: 'Partnerships expanded',
-    excerpt: 'New collaborations with regional integrity bodies.',
-    content: 'ZACC has expanded its partnerships with regional integrity bodies, fostering greater cooperation in the fight against corruption. These collaborations enhance information sharing and capacity building.',
-    category: 'partnerships',
-    date: '2025-10-01',
-    image: '/el1.jpg'
-  },
-  {
-    id: 6,
-    title: 'Capacity building initiatives',
-    excerpt: 'Training programs for investigators and compliance officers.',
-    content: 'Comprehensive training programs have been launched for investigators and compliance officers, enhancing their skills in detecting and preventing corruption. These initiatives strengthen ZACC\'s operational capacity.',
-    category: 'educational',
-    date: '2025-09-20',
-    image: '/gavel2.jpg'
-  },
-  {
-    id: 7,
-    title: 'Public awareness campaign launched',
-    excerpt: 'Nationwide campaign to educate citizens about corruption reporting.',
-    content: 'A nationwide public awareness campaign has been launched to educate citizens about corruption reporting mechanisms and their rights. The campaign uses multiple media channels to reach diverse audiences.',
-    category: 'educational',
-    date: '2025-09-15',
-    image: '/el2.jpg'
-  },
-  {
-    id: 8,
-    title: 'International cooperation strengthened',
-    excerpt: 'Enhanced collaboration with international anti-corruption bodies.',
-    content: 'ZACC has strengthened its international cooperation with global anti-corruption bodies, facilitating cross-border investigations and asset recovery efforts.',
-    category: 'partnerships',
-    date: '2025-09-10',
-    image: '/businessman.jpg'
-  },
-  {
-    id: 9,
-    title: 'Digital reporting system upgraded',
-    excerpt: 'Enhanced online platform for corruption reporting.',
-    content: 'The digital reporting system has been upgraded with enhanced security features and improved user experience, making it easier for citizens to report corruption incidents confidentially.',
-    category: 'announcements',
-    date: '2025-09-05',
-    image: '/gavel.jpg'
-  },
-  {
-    id: 10,
-    title: 'Annual integrity report published',
-    excerpt: 'Comprehensive report on anti-corruption efforts and achievements.',
-    content: 'ZACC has published its annual integrity report, detailing comprehensive information about anti-corruption efforts, achievements, and challenges faced during the year.',
-    category: 'announcements',
-    date: '2025-08-28',
-    image: '/flag.jpg'
-  },
-  {
-    id: 11,
-    title: 'Training workshop for public officials',
-    excerpt: 'Specialized training on ethics and integrity for government employees.',
-    content: 'A specialized training workshop has been conducted for public officials, focusing on ethics, integrity, and corruption prevention. The program aims to build a culture of accountability.',
-    category: 'educational',
-    date: '2025-08-20',
-    image: '/gavel2.jpg'
-  },
-  {
-    id: 12,
-    title: 'High-profile case resolution',
-    excerpt: 'Successful prosecution in major corruption case.',
-    content: 'A high-profile corruption case has been successfully resolved, demonstrating ZACC\'s commitment to holding individuals accountable regardless of their position or influence.',
-    category: 'case-updates',
-    date: '2025-08-15',
-    image: '/gavelmoney.jpg'
-  }
-]
-
+const newsArticles = ref<any[]>([])
+const loading = ref(true)
 const searchQuery = ref('')
 const selectedCategory = ref(null)
 const currentPage = ref(1)
@@ -317,14 +227,52 @@ const itemsPerPage = 9
 const showDialog = ref(false)
 const selectedArticle = ref(null)
 
+// Helper function to get image URL
+const getImageUrl = (imageUrl: string | null | undefined) => {
+  if (!imageUrl) return '/placeholder-news.jpg'
+  // If it already starts with /api/, use as is
+  if (imageUrl.startsWith('/api/')) {
+    return imageUrl
+  }
+  // If it starts with /uploads/, prepend /api
+  if (imageUrl.startsWith('/uploads/')) {
+    return `/api${imageUrl}`
+  }
+  // If it doesn't start with /, it might be a relative path, prepend /api/uploads/
+  if (!imageUrl.startsWith('/')) {
+    return `/api/uploads/${imageUrl}`
+  }
+  // Otherwise, prepend /api
+  return `/api${imageUrl}`
+}
+
+// Fetch news from API
+const fetchNews = async () => {
+  loading.value = true
+  try {
+    const params: any = {}
+    if (selectedCategory.value) {
+      params.category = selectedCategory.value
+    }
+    const data = await $fetch('/api/public/news', { params })
+    newsArticles.value = data
+  } catch (error: any) {
+    console.error('Error fetching news:', error)
+    newsArticles.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
 const featuredArticle = computed(() => {
-  return newsArticles[0] // First article as featured
+  // Get the first featured article, or first article if no featured
+  return newsArticles.value.find(article => article.isFeatured) || newsArticles.value[0]
 })
 
 const filteredNews = computed(() => {
-  let filtered = newsArticles
+  let filtered = newsArticles.value
 
-  // Filter by category
+  // Filter by category (if not already filtered by API)
   if (selectedCategory.value) {
     filtered = filtered.filter(article => article.category === selectedCategory.value)
   }
@@ -334,8 +282,9 @@ const filteredNews = computed(() => {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter(article =>
       article.title.toLowerCase().includes(query) ||
-      article.excerpt.toLowerCase().includes(query) ||
-      article.content.toLowerCase().includes(query)
+      article.excerpt?.toLowerCase().includes(query) ||
+      article.content?.toLowerCase().includes(query) ||
+      (article.tags && article.tags.some((tag: any) => tag.tag?.toLowerCase().includes(query)))
     )
   }
 
@@ -348,7 +297,8 @@ const paginatedNews = computed(() => {
   return filteredNews.value.slice(start, end)
 })
 
-const formatDate = (dateString) => {
+const formatDate = (dateString: string | Date | null | undefined) => {
+  if (!dateString) return ''
   const date = new Date(dateString)
   return date.toLocaleDateString('en-GB', {
     day: '2-digit',
@@ -369,7 +319,7 @@ const getCategorySeverity = (category) => {
   return severityMap[category] || 'secondary'
 }
 
-const viewArticle = (article) => {
+const viewArticle = (article: any) => {
   selectedArticle.value = article
   showDialog.value = true
 }
@@ -383,6 +333,11 @@ const onPageChange = (event) => {
 watch([searchQuery, selectedCategory], () => {
   currentPage.value = 1
 })
+
+// Fetch news on mount
+onMounted(() => {
+  fetchNews()
+})
 </script>
 
 <style scoped>
@@ -393,6 +348,36 @@ watch([searchQuery, selectedCategory], () => {
 :deep(.p-dialog-header) {
   background: linear-gradient(to right, rgba(32, 147, 65, 0.1), rgba(212, 175, 55, 0.1));
   border-bottom: 1px solid rgba(32, 147, 65, 0.2);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+:deep(.p-dialog-header .p-dialog-title) {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+:deep(.p-dialog-content) {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  padding: 1.5rem !important;
+}
+
+:deep(.p-dialog) {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+:deep(.p-dialog .p-dialog-content-wrapper) {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
 }
 
 .line-clamp-2 {
@@ -409,5 +394,53 @@ watch([searchQuery, selectedCategory], () => {
 
 :deep(.p-button.p-button-outlined:hover) {
   transform: translateX(2px);
+}
+
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.word-break-break-word {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.prose {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.prose :deep(p) {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.prose :deep(ul),
+.prose :deep(ol) {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+}
+
+.prose :deep(li) {
+  margin-bottom: 0.25rem;
+}
+
+.prose :deep(strong) {
+  font-weight: 600;
+}
+
+.prose :deep(em) {
+  font-style: italic;
+}
+
+.prose :deep(a) {
+  color: #209341;
+  text-decoration: underline;
+}
+
+.prose :deep(a:hover) {
+  color: #1a7a33;
 }
 </style>

@@ -55,7 +55,11 @@
                         </div>
                         <div class="flex items-center gap-2">
                           <i class="pi pi-phone text-zaccGreen"></i>
-                          <a href="tel:+263242000000" class="hover:text-zaccGreen">+263 24 200 0000</a>
+                          <a href="tel:+263242369605" class="hover:text-zaccGreen">(024) 2369605</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <i class="pi pi-phone text-zaccGreen"></i>
+                          <a href="tel:+263719529483" class="hover:text-zaccGreen">0719 529 483</a>
                         </div>
                         <div class="flex items-center gap-2">
                           <i class="pi pi-envelope text-zaccGreen"></i>
@@ -81,7 +85,11 @@
                       <div class="space-y-2 text-sm text-zaccBlack/70">
                         <div class="flex items-center gap-2">
                           <i class="pi pi-phone text-zaccGold"></i>
-                          <a href="tel:+263242000000" class="hover:text-zaccGold">+263 24 200 0000</a>
+                          <a href="tel:+263242369605" class="hover:text-zaccGold">(024) 2369605</a>
+                        </div>
+                        <div class="flex items-center gap-2">
+                          <i class="pi pi-phone text-zaccGold"></i>
+                          <a href="tel:+263719529483" class="hover:text-zaccGold">0719 529 483</a>
                         </div>
                         <div class="flex items-center gap-2">
                           <i class="pi pi-envelope text-zaccGold"></i>
@@ -301,13 +309,19 @@
               </template>
               <template #content>
                 <div class="p-6">
-                  <div class="aspect-video bg-zaccGreen/10 rounded-lg flex items-center justify-center">
-                    <div class="text-center">
-                      <i class="pi pi-map-marker text-6xl text-zaccGreen/50 mb-4"></i>
-                      <p class="text-zaccBlack/60">Map integration can be added here</p>
-                      <p class="text-sm text-zaccBlack/50 mt-2">ZACC Headquarters, Harare, Zimbabwe</p>
-                    </div>
+                  <div class="aspect-video rounded-lg overflow-hidden border border-zaccGreen/20">
+                    <iframe
+                      :src="`https://www.google.com/maps?q=${mapLatitude},${mapLongitude}&hl=en&z=15&output=embed`"
+                      width="100%"
+                      height="100%"
+                      style="border:0;"
+                      allowfullscreen=""
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      class="w-full h-full"
+                    ></iframe>
                   </div>
+                  <p class="text-sm text-zaccBlack/60 mt-4 text-center">ZACC Headquarters, Harare, Zimbabwe</p>
                 </div>
               </template>
             </Card>
@@ -364,7 +378,15 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useToast } from 'primevue/usetoast'
+
+const toast = useToast()
+
+// Google Map coordinates
+const mapLatitude = -17.760845011677457
+const mapLongitude = 31.035956914647628
+
 useHead({
   title: 'Contact Us - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -442,28 +464,50 @@ const handleSubmit = async () => {
   isSubmitting.value = true
 
   try {
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', form)
-
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500))
-
-    alert('Thank you for your message. We will get back to you as soon as possible.')
-
-    // Reset form
-    Object.assign(form, {
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-      anonymous: false
+    // Submit to API
+    const response = await $fetch('/api/public/contact', {
+      method: 'POST',
+      body: {
+        name: form.name,
+        email: form.email,
+        phone: form.phone || null,
+        subject: form.subject,
+        message: form.message,
+        anonymous: form.anonymous
+      }
     })
 
+    // Show success message
+    await nextTick()
+    toast.add({
+      severity: 'success',
+      summary: 'Message Sent Successfully',
+      detail: response.message || 'Thank you for your message. We will get back to you as soon as possible.',
+      life: 5000
+    })
+
+    // Reset form
+    form.name = ''
+    form.email = ''
+    form.phone = ''
+    form.subject = ''
+    form.message = ''
+    form.anonymous = false
     submitted.value = false
-  } catch (error) {
+
+    // Scroll to top
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }, 100)
+  } catch (error: any) {
     console.error('Error submitting form:', error)
-    alert('There was an error sending your message. Please try again or contact us directly.')
+    await nextTick()
+    toast.add({
+      severity: 'error',
+      summary: 'Submission Failed',
+      detail: error.data?.message || 'There was an error sending your message. Please try again or contact us directly.',
+      life: 5000
+    })
   } finally {
     isSubmitting.value = false
   }

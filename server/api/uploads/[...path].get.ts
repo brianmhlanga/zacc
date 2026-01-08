@@ -46,20 +46,32 @@ export default defineEventHandler(async (event) => {
     const fileBuffer = await readFile(filePath)
     
     // Determine content type based on file extension
-    const extension = path.split('.').pop()?.toLowerCase()
+    const extension = filename.split('.').pop()?.toLowerCase()
     const contentTypeMap: Record<string, string> = {
+      // Images
       'jpg': 'image/jpeg',
       'jpeg': 'image/jpeg',
       'png': 'image/png',
       'gif': 'image/gif',
-      'webp': 'image/webp'
+      'webp': 'image/webp',
+      // Documents
+      'pdf': 'application/pdf',
+      'doc': 'application/msword',
+      'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'xls': 'application/vnd.ms-excel',
+      'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'ppt': 'application/vnd.ms-powerpoint',
+      'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      'txt': 'text/plain'
     }
     const contentType = contentTypeMap[extension || ''] || 'application/octet-stream'
 
-    // Set headers and return file
+    // Set headers
     setHeader(event, 'Content-Type', contentType)
     setHeader(event, 'Cache-Control', 'public, max-age=31536000') // Cache for 1 year
+    setHeader(event, 'Content-Length', fileBuffer.length.toString())
     
+    // Return the buffer directly - H3 will handle binary data correctly
     return fileBuffer
   } catch (error: any) {
     if (error.statusCode) {

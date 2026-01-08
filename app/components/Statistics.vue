@@ -10,46 +10,38 @@
     </div>
     <div class="mx-auto max-w-7xl px-6">
       <div class="text-center">
-        <h2 class="text-2xl font-extrabold text-white">ZACC Statistics</h2>
-        <p class="mt-2 text-white/80">Key indicators of our anti-corruption work and partnerships.</p>
+        <h2 class="text-2xl font-extrabold text-white">{{ sectionContent.title || 'ZACC Statistics' }}</h2>
+        <p class="mt-2 text-white/80">{{ sectionContent.description || 'Key indicators of our anti-corruption work and partnerships.' }}</p>
       </div>
-      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white">
-          <div class="text-4xl font-extrabold">
-            <span class="countup" data-target="8641">8,641</span>
-          </div>
-          <div class="mt-2 text-sm text-white/85">Constituency & Executive Projects Tracked</div>
+      <div v-if="loading" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="i in 6"
+          :key="i"
+          class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white animate-pulse"
+        >
+          <div class="h-10 bg-white/20 rounded mb-2"></div>
+          <div class="h-4 bg-white/20 rounded w-3/4 mx-auto"></div>
         </div>
-        <div class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white">
+      </div>
+      <div v-else-if="statistics.length > 0" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          v-for="stat in statistics"
+          :key="stat.id"
+          class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white"
+        >
           <div class="text-4xl font-extrabold">
-            <span class="countup" data-target="2605">2,605</span>
+            <span
+              class="countup"
+              :data-target="stat.value"
+              :data-prefix="stat.prefix || ''"
+              :data-suffix="stat.suffix || ''"
+            >{{ stat.value }}</span>
           </div>
-          <div class="mt-2 text-sm text-white/85">Prevention Activities</div>
+          <div class="mt-2 text-sm text-white/85">{{ stat.label }}</div>
         </div>
-        <div class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white">
-          <div class="text-4xl font-extrabold">
-            <span class="countup" data-target="600">600</span>
-          </div>
-          <div class="mt-2 text-sm text-white/85">Anti-Corruption & Transparency Units</div>
-        </div>
-        <div class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white">
-          <div class="text-4xl font-extrabold">
-            <span class="countup" data-target="12904">12,904</span>
-          </div>
-          <div class="mt-2 text-sm text-white/85">Participants Trained</div>
-        </div>
-        <div class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white">
-          <div class="text-4xl font-extrabold">
-            <span class="countup" data-target="1028">1,028</span>
-          </div>
-          <div class="mt-2 text-sm text-white/85">Students Anti-Corruption Clubs</div>
-        </div>
-        <div class="rounded-2xl border border-white/50 bg-transparent p-6 text-center text-white">
-          <div class="text-4xl font-extrabold">
-            <span class="countup" data-target="111">111</span>
-          </div>
-          <div class="mt-2 text-sm text-white/85">Collaborations & Partnerships</div>
-        </div>
+      </div>
+      <div v-else class="mt-10 text-center text-white/60">
+        <p>No statistics available at this time.</p>
       </div>
     </div>
   </section>
@@ -58,7 +50,51 @@
 <script setup lang="ts">
 const { observeStats } = useCountUp()
 
-onMounted(() => {
+const statistics = ref<any[]>([])
+const sectionContent = ref<any>({
+  title: '',
+  description: ''
+})
+const loading = ref(true)
+
+// Fetch statistics
+const fetchStatistics = async () => {
+  loading.value = true
+  try {
+    const stats = await $fetch('/api/public/statistics', {
+      params: { section: 'homepage' }
+    })
+    statistics.value = stats || []
+  } catch (error) {
+    console.error('Error fetching statistics:', error)
+    statistics.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
+// Fetch section content
+const fetchSectionContent = async () => {
+  try {
+    const content = await $fetch('/api/public/page-content', {
+      params: { pageKey: 'home' }
+    })
+    
+    const titleContent = content.find((item: any) => item.sectionKey === 'statistics-title')
+    const descContent = content.find((item: any) => item.sectionKey === 'statistics-description')
+    
+    sectionContent.value = {
+      title: titleContent?.content || '',
+      description: descContent?.content || ''
+    }
+  } catch (error) {
+    console.error('Error fetching section content:', error)
+  }
+}
+
+onMounted(async () => {
+  await Promise.all([fetchStatistics(), fetchSectionContent()])
+  await nextTick()
   observeStats()
 })
 </script>

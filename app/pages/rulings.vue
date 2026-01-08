@@ -75,7 +75,23 @@
         </div>
 
         <!-- Rulings List -->
-        <div v-if="filteredRulings.length > 0" class="space-y-6 mb-12">
+        <div v-if="loading" class="space-y-6 mb-12">
+          <Card
+            v-for="i in 6"
+            :key="i"
+            class="animate-pulse"
+          >
+            <template #content>
+              <div class="p-6">
+                <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+                <div class="h-6 bg-gray-200 rounded w-3/4 mb-3"></div>
+                <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                <div class="h-4 bg-gray-200 rounded w-2/3"></div>
+              </div>
+            </template>
+          </Card>
+        </div>
+        <div v-else-if="filteredRulings.length > 0" class="space-y-6 mb-12">
           <Card
             v-for="ruling in paginatedRulings"
             :key="ruling.id"
@@ -112,12 +128,19 @@
                         <p class="text-zaccBlack/70 leading-relaxed mb-4">
                           {{ ruling.summary }}
                         </p>
-                        <div class="flex flex-wrap gap-2">
+                        <div v-if="ruling.tags && ruling.tags.length > 0" class="flex flex-wrap gap-2">
                           <Tag v-for="tag in ruling.tags" :key="tag" :value="tag" severity="secondary" />
                         </div>
                       </div>
-                      <div class="flex-shrink-0">
+                      <div class="flex-shrink-0 flex gap-2">
                         <Button
+                          icon="pi pi-eye"
+                          label="View"
+                          style="background: #209341; border-color: #209341;"
+                          @click.stop="viewRuling(ruling)"
+                        />
+                        <Button
+                          v-if="ruling.downloadUrl"
                           icon="pi pi-download"
                           label="Download"
                           severity="secondary"
@@ -249,10 +272,11 @@
         </div>
         <div class="flex items-center gap-2 pt-4 border-t">
           <Button
+            v-if="selectedRuling.downloadUrl"
             label="Download Full Judgment"
             icon="pi pi-download"
             @click="downloadRuling(selectedRuling)"
-            style="background: #209341; border-color: #209341;"
+            style="background: #d4af37; border-color: #d4af37;"
           />
           <Button
             label="Close"
@@ -267,7 +291,7 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'Court Rulings - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -278,14 +302,13 @@ useHead({
   ]
 })
 
-const years = [
-  { label: 'All Years', value: null },
-  { label: '2025', value: '2025' },
-  { label: '2024', value: '2024' },
-  { label: '2023', value: '2023' },
-  { label: '2022', value: '2022' },
-  { label: '2021', value: '2021' }
-]
+const years = computed(() => {
+  const uniqueYears = [...new Set(rulings.value.map(r => r.year))].sort().reverse()
+  return [
+    { label: 'All Years', value: null },
+    ...uniqueYears.map(year => ({ label: year, value: year }))
+  ]
+})
 
 const outcomes = [
   { label: 'All Outcomes', value: null },
@@ -295,201 +318,8 @@ const outcomes = [
   { label: 'Dismissed', value: 'Dismissed' }
 ]
 
-const rulings = [
-  {
-    id: 1,
-    caseNumber: 'HC 1234/2024',
-    title: 'State v. John Doe - Bribery and Corruption Case',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Smith',
-    date: '2025-01-15',
-    outcome: 'Conviction',
-    summary: 'Landmark conviction in a high-profile bribery case involving public procurement. The accused was found guilty on multiple counts of corruption.',
-    details: 'The court found the accused guilty of accepting bribes in exchange for awarding government contracts. Evidence presented included financial records, witness testimonies, and electronic communications. The prosecution successfully demonstrated a pattern of corrupt behavior spanning several years.',
-    assetsRecovered: 'USD 2.5 million in cash and property',
-    sentence: '15 years imprisonment, fine of USD 500,000',
-    tags: ['Bribery', 'Procurement', 'Public Official'],
-    year: '2025',
-    downloadUrl: '#'
-  },
-  {
-    id: 2,
-    caseNumber: 'HC 1156/2024',
-    title: 'State v. ABC Corporation - Embezzlement Case',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Moyo',
-    date: '2024-12-20',
-    outcome: 'Conviction',
-    summary: 'Successful prosecution of corporate embezzlement involving misappropriation of public funds.',
-    details: 'The corporation was found guilty of systematically embezzling funds allocated for public infrastructure projects. The court ordered full restitution and additional penalties.',
-    assetsRecovered: 'USD 5.2 million in assets frozen and recovered',
-    sentence: 'Corporate fine of USD 2 million, directors barred from public contracts',
-    tags: ['Embezzlement', 'Corporate', 'Public Funds'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 3,
-    caseNumber: 'HC 1089/2024',
-    title: 'State v. Jane Smith - Asset Declaration Violation',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Ndlovu',
-    date: '2024-11-10',
-    outcome: 'Conviction',
-    summary: 'Public official convicted for failure to declare assets and income as required by law.',
-    details: 'The accused failed to declare substantial assets and income sources in annual declarations. The court found evidence of deliberate concealment of assets.',
-    assetsRecovered: 'USD 850,000 in undeclared assets',
-    sentence: '5 years imprisonment, forfeiture of undeclared assets',
-    tags: ['Asset Declaration', 'Public Official', 'DIAL'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 4,
-    caseNumber: 'HC 1023/2024',
-    title: 'State v. XYZ Limited - Money Laundering',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Chikwanda',
-    date: '2024-10-05',
-    outcome: 'Conviction',
-    summary: 'Company convicted for money laundering activities related to corruption proceeds.',
-    details: 'The court found the company guilty of facilitating money laundering operations, including complex financial transactions designed to conceal the origin of corrupt funds.',
-    assetsRecovered: 'USD 3.8 million in laundered funds',
-    sentence: 'Corporate fine of USD 1.5 million, liquidation of assets',
-    tags: ['Money Laundering', 'Corporate', 'Financial Crime'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 5,
-    caseNumber: 'HC 987/2024',
-    title: 'State v. Robert Brown - Abuse of Power',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Muzenda',
-    date: '2024-09-18',
-    outcome: 'Acquittal',
-    summary: 'Case dismissed due to insufficient evidence. Prosecution failed to prove beyond reasonable doubt.',
-    details: 'The court found that the prosecution did not present sufficient evidence to establish guilt. Key witnesses were unreliable and documentary evidence was inconclusive.',
-    assetsRecovered: null,
-    sentence: null,
-    tags: ['Abuse of Power', 'Insufficient Evidence'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 6,
-    caseNumber: 'HC 945/2024',
-    title: 'State v. Mary Johnson - Conflict of Interest',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Sibanda',
-    date: '2024-08-22',
-    outcome: 'Settlement',
-    summary: 'Case settled through plea agreement. Accused agreed to restitution and cooperation.',
-    details: 'The accused entered into a plea agreement, agreeing to full restitution, cooperation with ongoing investigations, and acceptance of administrative penalties.',
-    assetsRecovered: 'USD 1.2 million in restitution',
-    sentence: '2 years suspended sentence, administrative penalties',
-    tags: ['Conflict of Interest', 'Settlement', 'Plea Agreement'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 7,
-    caseNumber: 'HC 901/2024',
-    title: 'State v. David Wilson - Procurement Fraud',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Makoni',
-    date: '2024-07-14',
-    outcome: 'Conviction',
-    summary: 'Conviction in major procurement fraud case involving inflated contracts and kickbacks.',
-    details: 'The court found the accused guilty of manipulating procurement processes to award contracts to preferred suppliers in exchange for kickbacks. Evidence included bid documents, financial records, and witness testimonies.',
-    assetsRecovered: 'USD 4.5 million in assets and contracts voided',
-    sentence: '12 years imprisonment, fine of USD 750,000',
-    tags: ['Procurement Fraud', 'Kickbacks', 'Public Contracts'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 8,
-    caseNumber: 'HC 856/2024',
-    title: 'State v. Sarah Davis - Extortion Case',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Gumbo',
-    date: '2024-06-30',
-    outcome: 'Conviction',
-    summary: 'Public official convicted for extorting money from citizens in exchange for services.',
-    details: 'The accused was found guilty of systematically extorting money from citizens seeking government services. Multiple victims testified to the pattern of extortion.',
-    assetsRecovered: 'USD 320,000 in extorted funds',
-    sentence: '8 years imprisonment, restitution to victims',
-    tags: ['Extortion', 'Public Service', 'Citizen Rights'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 9,
-    caseNumber: 'HC 812/2024',
-    title: 'State v. Michael Taylor - Nepotism and Favoritism',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Mavhunga',
-    date: '2024-05-25',
-    outcome: 'Dismissed',
-    summary: 'Case dismissed due to jurisdictional issues. Matter referred to administrative tribunal.',
-    details: 'The court determined that the matter fell under administrative jurisdiction rather than criminal. The case was dismissed without prejudice to administrative proceedings.',
-    assetsRecovered: null,
-    sentence: null,
-    tags: ['Nepotism', 'Administrative', 'Jurisdiction'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 10,
-    caseNumber: 'HC 789/2024',
-    title: 'State v. Lisa Anderson - Asset Recovery Order',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Chiweshe',
-    date: '2024-04-12',
-    outcome: 'Conviction',
-    summary: 'Successful asset recovery order in corruption case. Court ordered forfeiture of all proceeds.',
-    details: 'The court issued a comprehensive asset recovery order, requiring forfeiture of all assets determined to be proceeds of corruption. This included real estate, vehicles, and financial assets.',
-    assetsRecovered: 'USD 6.8 million in various assets',
-    sentence: '10 years imprisonment, full asset forfeiture',
-    tags: ['Asset Recovery', 'Forfeiture', 'Proceeds of Crime'],
-    year: '2024',
-    downloadUrl: '#'
-  },
-  {
-    id: 11,
-    caseNumber: 'HC 756/2023',
-    title: 'State v. James White - Bribery Network',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Mutema',
-    date: '2023-12-08',
-    outcome: 'Conviction',
-    summary: 'Major bribery network dismantled. Multiple defendants convicted in coordinated prosecution.',
-    details: 'This case involved a complex bribery network with multiple defendants. The court found all accused parties guilty of participating in an organized corruption scheme.',
-    assetsRecovered: 'USD 8.2 million in network proceeds',
-    sentence: 'Sentences ranging from 8-20 years',
-    tags: ['Bribery Network', 'Organized Crime', 'Multiple Defendants'],
-    year: '2023',
-    downloadUrl: '#'
-  },
-  {
-    id: 12,
-    caseNumber: 'HC 723/2023',
-    title: 'State v. Patricia Green - Fraud and Deception',
-    court: 'High Court of Zimbabwe',
-    judge: 'Hon. Justice Makarau',
-    date: '2023-11-20',
-    outcome: 'Conviction',
-    summary: 'Conviction for fraud involving false documentation and deception in public service.',
-    details: 'The accused was found guilty of creating false documents and using deception to obtain benefits from public service. The fraud involved multiple transactions over several years.',
-    assetsRecovered: 'USD 1.5 million in fraudulently obtained benefits',
-    sentence: '7 years imprisonment, full restitution',
-    tags: ['Fraud', 'False Documents', 'Deception'],
-    year: '2023',
-    downloadUrl: '#'
-  }
-]
-
+const rulings = ref<any[]>([])
+const loading = ref(true)
 const searchQuery = ref('')
 const selectedYear = ref(null)
 const selectedOutcome = ref(null)
@@ -498,15 +328,55 @@ const itemsPerPage = 9
 const showDialog = ref(false)
 const selectedRuling = ref(null)
 
-const filteredRulings = computed(() => {
-  let filtered = rulings
+// Helper function to get download URL
+const getDownloadUrl = (downloadUrl: string | null | undefined) => {
+  if (!downloadUrl) return '#'
+  // If it already starts with /api/, use as is
+  if (downloadUrl.startsWith('/api/')) {
+    return downloadUrl
+  }
+  // If it starts with /uploads/, prepend /api
+  if (downloadUrl.startsWith('/uploads/')) {
+    return `/api${downloadUrl}`
+  }
+  // If it doesn't start with /, it might be a relative path, prepend /api/uploads/
+  if (!downloadUrl.startsWith('/')) {
+    return `/api/uploads/${downloadUrl}`
+  }
+  // Otherwise, prepend /api
+  return `/api${downloadUrl}`
+}
 
-  // Filter by year
+// Fetch rulings from API
+const fetchRulings = async () => {
+  loading.value = true
+  try {
+    const params: any = {}
+    if (selectedYear.value) {
+      params.year = selectedYear.value
+    }
+    if (selectedOutcome.value) {
+      params.outcome = selectedOutcome.value
+    }
+    const data = await $fetch('/api/public/rulings', { params })
+    rulings.value = data
+  } catch (error: any) {
+    console.error('Error fetching rulings:', error)
+    rulings.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
+const filteredRulings = computed(() => {
+  let filtered = rulings.value
+
+  // Filter by year (if not already filtered by API)
   if (selectedYear.value) {
     filtered = filtered.filter(ruling => ruling.year === selectedYear.value)
   }
 
-  // Filter by outcome
+  // Filter by outcome (if not already filtered by API)
   if (selectedOutcome.value) {
     filtered = filtered.filter(ruling => ruling.outcome === selectedOutcome.value)
   }
@@ -517,10 +387,10 @@ const filteredRulings = computed(() => {
     filtered = filtered.filter(ruling =>
       ruling.caseNumber.toLowerCase().includes(query) ||
       ruling.title.toLowerCase().includes(query) ||
-      ruling.summary.toLowerCase().includes(query) ||
+      ruling.summary?.toLowerCase().includes(query) ||
       ruling.court.toLowerCase().includes(query) ||
       ruling.judge.toLowerCase().includes(query) ||
-      ruling.tags.some(tag => tag.toLowerCase().includes(query))
+      (ruling.tags && ruling.tags.some((tag: string) => tag.toLowerCase().includes(query)))
     )
   }
 
@@ -533,14 +403,14 @@ const paginatedRulings = computed(() => {
   return filteredRulings.value.slice(start, end)
 })
 
-const totalRulings = computed(() => rulings.length)
+const totalRulings = computed(() => rulings.value.length)
 
 const convictionsCount = computed(() => {
-  return rulings.filter(r => r.outcome === 'Conviction').length
+  return rulings.value.filter(r => r.outcome === 'Conviction').length
 })
 
 const assetRecoveryTotal = computed(() => {
-  const total = rulings
+  const total = rulings.value
     .filter(r => r.assetsRecovered)
     .reduce((sum, r) => {
       const match = r.assetsRecovered?.match(/USD\s*([\d.]+)\s*million/i)
@@ -553,7 +423,7 @@ const assetRecoveryTotal = computed(() => {
 })
 
 const currentYear = computed(() => {
-  return rulings.filter(r => r.year === new Date().getFullYear().toString()).length
+  return rulings.value.filter(r => r.year === new Date().getFullYear().toString()).length
 })
 
 const formatDate = (dateString) => {
@@ -580,11 +450,11 @@ const viewRuling = (ruling) => {
   showDialog.value = true
 }
 
-const downloadRuling = (ruling) => {
-  console.log('Downloading ruling:', ruling.caseNumber)
-  // In a real application, this would trigger the actual download
-  // window.open(ruling.downloadUrl, '_blank')
-  alert(`Downloading: ${ruling.title}`)
+const downloadRuling = (ruling: any) => {
+  if (ruling.downloadUrl) {
+    const url = getDownloadUrl(ruling.downloadUrl)
+    window.open(url, '_blank')
+  }
 }
 
 const onPageChange = (event) => {
@@ -595,6 +465,11 @@ const onPageChange = (event) => {
 // Reset to page 1 when filters change
 watch([searchQuery, selectedYear, selectedOutcome], () => {
   currentPage.value = 1
+})
+
+// Fetch rulings on mount
+onMounted(() => {
+  fetchRulings()
 })
 </script>
 

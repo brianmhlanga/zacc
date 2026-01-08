@@ -24,75 +24,111 @@
         style="background: radial-gradient(40% 40% at 50% 0%, rgba(212,175,55,0.15), transparent)"
       ></div>
       <div class="mx-auto max-w-7xl px-6">
-        <!-- Search and Filter Section -->
-        <div class="mb-12 rounded-2xl bg-white p-6 shadow-lg border border-zaccGreen/10">
-          <div class="grid gap-6 lg:grid-cols-3">
-            <div class="lg:col-span-2">
-              <label for="downloadSearch" class="block text-sm font-semibold text-zaccBlack mb-2">
-                Search Downloads
-              </label>
-              <div class="relative">
-                <InputText
-                  id="downloadSearch"
-                  v-model="searchQuery"
-                  placeholder="Search by title, description, or keywords..."
-                  class="w-full pl-10"
-                />
-                <i class="pi pi-search absolute left-3 top-1/2 -translate-y-1/2 text-zaccBlack/40"></i>
-              </div>
-            </div>
-            <div>
-              <label for="categoryFilter" class="block text-sm font-semibold text-zaccBlack mb-2">
-                Filter by Category
-              </label>
-              <Dropdown
-                id="categoryFilter"
-                v-model="selectedCategory"
-                :options="categories"
-                optionLabel="label"
-                optionValue="value"
-                placeholder="All Categories"
-                class="w-full"
-                showClear
-              />
-            </div>
+        <!-- Search Section -->
+        <div class="mb-8 rounded-2xl bg-white p-6 shadow-lg border border-zaccGreen/10">
+          <label for="downloadSearch" class="block text-sm font-semibold text-zaccBlack mb-2">
+            Search Downloads
+          </label>
+          <div class="relative">
+            <InputText
+              id="downloadSearch"
+              v-model="searchQuery"
+              placeholder="Search by title, description, or keywords..."
+              class="w-full pl-10"
+            />
+            <i class="pi pi-search absolute left-3 top-1/2 -translate-y-1/2 text-zaccBlack/40"></i>
           </div>
         </div>
 
+        <!-- Category Filter Buttons -->
+        <div class="mb-8 flex flex-wrap gap-2 justify-center">
+          <Button
+            label="All"
+            :severity="selectedCategory === null ? null : 'secondary'"
+            :outlined="selectedCategory !== null"
+            @click="selectedCategory = null"
+            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === null }"
+          />
+          <Button
+            v-for="category in categories.slice(1)"
+            :key="category.value"
+            :label="category.label"
+            :severity="selectedCategory === category.value ? null : 'secondary'"
+            :outlined="selectedCategory !== category.value"
+            @click="selectedCategory = selectedCategory === category.value ? null : category.value"
+            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === category.value }"
+          />
+        </div>
+
         <!-- Downloads Grid -->
-        <div v-if="filteredDownloads.length > 0" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+        <div v-if="loading" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
+          <div
+            v-for="i in 12"
+            :key="i"
+            class="download-card group rounded-lg border border-black/10 bg-white p-4 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] animate-pulse"
+          >
+            <div class="grid grid-cols-[auto_1fr] items-start gap-4">
+              <div class="h-12 w-12 rounded-md bg-gray-200"></div>
+              <div class="flex-1 min-w-0">
+                <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                <div class="h-3 bg-gray-200 rounded w-1/2 mb-3"></div>
+                <div class="h-3 bg-gray-200 rounded w-full"></div>
+              </div>
+            </div>
+            <div class="h-10 bg-gray-200 rounded mt-4"></div>
+          </div>
+        </div>
+        <div v-else-if="filteredDownloads.length > 0" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12">
           <div
             v-for="download in paginatedDownloads"
             :key="download.id"
-            class="download-card group rounded-lg border border-black/10 bg-white p-4 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer"
-            @click="handleDownload(download)"
+            class="download-card group rounded-lg border border-black/10 bg-white p-4 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] transition-all hover:-translate-y-1 hover:shadow-lg"
           >
             <div class="grid grid-cols-[auto_1fr] items-start gap-4">
               <div class="flex h-12 w-12 items-center justify-center rounded-md bg-zaccGold/20 text-zaccBlack">
-                <i :class="getFileIcon(download.type)" class="text-2xl"></i>
+                <i :class="getFileIcon(download.fileType)" class="text-2xl"></i>
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-start justify-between gap-2 mb-1">
                   <div class="font-semibold text-sm group-hover:text-zaccGreen transition-colors line-clamp-2">
                     {{ download.title }}
                   </div>
-                  <Badge :value="download.type.toUpperCase()" :severity="getFileTypeSeverity(download.type)" class="flex-shrink-0" />
+                  <Badge :value="(download.fileType || 'PDF').toUpperCase()" :severity="getFileTypeSeverity(download.fileType)" class="flex-shrink-0" />
                 </div>
                 <div class="text-xs text-zaccBlack/60 mb-3">
-                  {{ download.size }} • Updated {{ download.year }}
+                  {{ formatFileSize(download.fileSize || 0) }}
+                  <span v-if="download.year"> • {{ download.year }}</span>
                 </div>
-                <div class="text-xs text-zaccBlack/50 line-clamp-1">
+                <div v-if="download.description" class="text-xs text-zaccBlack/50 line-clamp-1">
                   {{ download.description }}
                 </div>
               </div>
             </div>
-            <Button
-              label="Download"
-              icon="pi pi-download"
-              class="w-full mt-4"
-              style="background: #d4af37; border-color: #d4af37;"
-              @click.stop="handleDownload(download)"
-            />
+            <div class="flex gap-2 mt-4">
+              <NuxtLink
+                :to="getFileUrl(download.fileUrl)"
+                target="_blank"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-md bg-zaccGreen px-3 py-2 text-xs font-semibold text-white hover:brightness-110 transition"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                View
+              </NuxtLink>
+              <a
+                :href="getFileUrl(download.fileUrl)"
+                :download="download.title"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-md bg-zaccGold px-3 py-2 text-xs font-semibold text-white hover:brightness-110 transition"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download
+              </a>
+            </div>
           </div>
         </div>
 
@@ -113,33 +149,13 @@
             template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink"
           />
         </div>
-
-        <!-- Categories Section -->
-        <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <Card
-            v-for="category in categoryStats"
-            :key="category.name"
-            class="text-center hover:shadow-lg transition-shadow cursor-pointer"
-            @click="selectedCategory = category.value"
-          >
-            <template #content>
-              <div class="p-6">
-                <div class="w-16 h-16 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-4">
-                  <i :class="category.icon" class="text-3xl text-zaccGreen"></i>
-                </div>
-                <h3 class="font-extrabold text-lg mb-2">{{ category.name }}</h3>
-                <p class="text-sm text-zaccBlack/60">{{ category.count }} files</p>
-              </div>
-            </template>
-          </Card>
-        </div>
       </div>
     </section>
     </div>
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'Downloads - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -160,229 +176,69 @@ const categories = [
   { label: 'Legal Documents', value: 'legal' }
 ]
 
-const downloads = [
-  {
-    id: 1,
-    title: 'Self Declaration Form',
-    description: 'Statutory form for income and asset declaration',
-    category: 'forms',
-    type: 'pdf',
-    size: '1.2 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 2,
-    title: 'Annual Report 2024',
-    description: 'Comprehensive annual report on ZACC activities',
-    category: 'reports',
-    type: 'pdf',
-    size: '4.8 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 3,
-    title: 'National Anti-Corruption Survey',
-    description: 'Survey publication on corruption perceptions',
-    category: 'publications',
-    type: 'pdf',
-    size: '3.1 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 4,
-    title: 'Strategic Plan 2025-2029',
-    description: 'Strategic plan document outlining ZACC objectives',
-    category: 'reports',
-    type: 'pdf',
-    size: '2.4 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 5,
-    title: 'Quarterly Report Q1 2025',
-    description: 'First quarter performance report',
-    category: 'reports',
-    type: 'pdf',
-    size: '2.9 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 6,
-    title: 'Procurement Guidelines',
-    description: 'Guidelines for transparent procurement processes',
-    category: 'guidelines',
-    type: 'pdf',
-    size: '1.7 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 7,
-    title: 'Whistleblower Policy',
-    description: 'Policy document on whistleblower protection',
-    category: 'policies',
-    type: 'pdf',
-    size: '1.1 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 8,
-    title: 'Compliance Checklist',
-    description: 'Checklist for organizational compliance',
-    category: 'forms',
-    type: 'pdf',
-    size: '0.8 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 9,
-    title: 'DIAL Form',
-    description: 'Declaration of Income, Assets and Liabilities',
-    category: 'forms',
-    type: 'pdf',
-    size: '1.5 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 10,
-    title: 'Annual Budget Review',
-    description: 'Comprehensive budget review document',
-    category: 'reports',
-    type: 'pdf',
-    size: '3.9 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 11,
-    title: 'KLIF Progress Report',
-    description: 'Progress report on key initiatives',
-    category: 'reports',
-    type: 'pdf',
-    size: '2.1 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 12,
-    title: 'Anti-Corruption Handbook',
-    description: 'Comprehensive handbook on anti-corruption measures',
-    category: 'publications',
-    type: 'pdf',
-    size: '5.2 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 13,
-    title: 'Public Procurement Code',
-    description: 'Code document for public procurement',
-    category: 'legal',
-    type: 'pdf',
-    size: '2.0 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 14,
-    title: 'Transparency Guidelines',
-    description: 'Guidelines for transparency in public service',
-    category: 'guidelines',
-    type: 'pdf',
-    size: '1.9 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 15,
-    title: 'Corruption Report Form',
-    description: 'Form for reporting corruption incidents',
-    category: 'forms',
-    type: 'pdf',
-    size: '0.9 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 16,
-    title: 'Asset Declaration Guide',
-    description: 'Guide for completing asset declarations',
-    category: 'guidelines',
-    type: 'pdf',
-    size: '1.3 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 17,
-    title: 'Code of Conduct',
-    description: 'Code of conduct for public officials',
-    category: 'policies',
-    type: 'pdf',
-    size: '1.6 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 18,
-    title: 'Investigation Procedures',
-    description: 'Standard operating procedures for investigations',
-    category: 'guidelines',
-    type: 'pdf',
-    size: '2.3 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 19,
-    title: 'Quarterly Report Q2 2025',
-    description: 'Second quarter performance report',
-    category: 'reports',
-    type: 'pdf',
-    size: '3.2 MB',
-    year: '2025',
-    url: '#'
-  },
-  {
-    id: 20,
-    title: 'Anti-Corruption Act',
-    description: 'Full text of the Anti-Corruption Commission Act',
-    category: 'legal',
-    type: 'pdf',
-    size: '4.5 MB',
-    year: '2025',
-    url: '#'
-  }
-]
-
+const downloads = ref<any[]>([])
+const loading = ref(true)
 const searchQuery = ref('')
 const selectedCategory = ref(null)
 const currentPage = ref(1)
 const itemsPerPage = 12
 
-const filteredDownloads = computed(() => {
-  let filtered = downloads
+// Helper function to format file size
+const formatFileSize = (bytes: number): string => {
+  if (bytes === 0) return '0 B'
+  const k = 1024
+  const sizes = ['B', 'KB', 'MB', 'GB']
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i]
+}
 
-  // Filter by category
-  if (selectedCategory.value) {
-    filtered = filtered.filter(download => download.category === selectedCategory.value)
+// Helper function to get file URL
+const getFileUrl = (fileUrl: string | null | undefined) => {
+  if (!fileUrl) return '#'
+  // If it already starts with /api/, use as is
+  if (fileUrl.startsWith('/api/')) {
+    return fileUrl
   }
+  // If it starts with /uploads/, prepend /api
+  if (fileUrl.startsWith('/uploads/')) {
+    return `/api${fileUrl}`
+  }
+  // If it doesn't start with /, it might be a relative path, prepend /api/uploads/
+  if (!fileUrl.startsWith('/')) {
+    return `/api/uploads/${fileUrl}`
+  }
+  // Otherwise, prepend /api
+  return `/api${fileUrl}`
+}
 
-  // Filter by search query
+// Fetch downloads from API
+const fetchDownloads = async () => {
+  loading.value = true
+  try {
+    const params: any = {}
+    if (selectedCategory.value) {
+      params.category = selectedCategory.value
+    }
+    const data = await $fetch('/api/public/downloads', { params })
+    downloads.value = data
+  } catch (error: any) {
+    console.error('Error fetching downloads:', error)
+    downloads.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
+const filteredDownloads = computed(() => {
+  let filtered = downloads.value
+
+  // Filter by search query (category is already filtered by API)
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter(download =>
       download.title.toLowerCase().includes(query) ||
-      download.description.toLowerCase().includes(query) ||
-      download.category.toLowerCase().includes(query)
+      download.description?.toLowerCase().includes(query) ||
+      download.category?.toLowerCase().includes(query)
     )
   }
 
@@ -393,16 +249,6 @@ const paginatedDownloads = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage
   const end = start + itemsPerPage
   return filteredDownloads.value.slice(start, end)
-})
-
-const categoryStats = computed(() => {
-  const stats = categories.slice(1).map(cat => ({
-    name: cat.label,
-    value: cat.value,
-    icon: getCategoryIcon(cat.value),
-    count: downloads.filter(d => d.category === cat.value).length
-  }))
-  return stats
 })
 
 const getFileIcon = (type) => {
@@ -431,24 +277,10 @@ const getFileTypeSeverity = (type) => {
   return severityMap[type] || 'secondary'
 }
 
-const getCategoryIcon = (category) => {
-  const icons = {
-    forms: 'pi pi-file-edit',
-    reports: 'pi pi-chart-bar',
-    policies: 'pi pi-shield',
-    guidelines: 'pi pi-book',
-    publications: 'pi pi-bookmark',
-    legal: 'pi pi-gavel'
-  }
-  return icons[category] || 'pi pi-file'
-}
-
-const handleDownload = (download) => {
-  // In a real application, this would trigger the actual download
+// Track download count (optional - can be implemented with API call)
+const handleDownload = (download: any) => {
+  // Could increment download count via API
   console.log('Downloading:', download.title)
-  // window.open(download.url, '_blank')
-  // For now, just show a message
-  alert(`Downloading: ${download.title}`)
 }
 
 const onPageChange = (event) => {
@@ -457,8 +289,19 @@ const onPageChange = (event) => {
 }
 
 // Reset to page 1 when filters change
-watch([searchQuery, selectedCategory], () => {
+watch(selectedCategory, () => {
   currentPage.value = 1
+  // Refetch downloads when category changes
+  fetchDownloads()
+})
+
+watch(searchQuery, () => {
+  currentPage.value = 1
+})
+
+// Fetch downloads on mount
+onMounted(() => {
+  fetchDownloads()
 })
 </script>
 
@@ -481,13 +324,4 @@ watch([searchQuery, selectedCategory], () => {
   overflow: hidden;
 }
 
-:deep(.p-card) {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-:deep(.p-card:hover) {
-  transform: translateY(-2px);
-  border-color: rgba(32, 147, 65, 0.3);
-}
 </style>

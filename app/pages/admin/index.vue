@@ -14,10 +14,12 @@
           <div class="flex items-center justify-between">
             <div>
               <div class="text-sm font-medium text-gray-600 mb-1">Total Reports</div>
-              <div class="text-3xl font-extrabold text-zaccBlack">1,234</div>
-              <div class="flex items-center gap-1 mt-2 text-sm">
-                <i class="pi pi-arrow-up text-green-500 text-xs"></i>
-                <span class="text-green-500 font-semibold">12%</span>
+              <div class="text-3xl font-extrabold text-zaccBlack">{{ formatNumber(stats.reports.total) }}</div>
+              <div v-if="stats.reports.change !== null" class="flex items-center gap-1 mt-2 text-sm">
+                <i :class="['pi', stats.reports.isPositive ? 'pi-arrow-up' : 'pi-arrow-down', stats.reports.isPositive ? 'text-green-500' : 'text-red-500', 'text-xs']"></i>
+                <span :class="[stats.reports.isPositive ? 'text-green-500' : 'text-red-500', 'font-semibold']">
+                  {{ Math.abs(stats.reports.change) }}%
+                </span>
                 <span class="text-gray-500">vs last month</span>
               </div>
             </div>
@@ -33,10 +35,12 @@
           <div class="flex items-center justify-between">
             <div>
               <div class="text-sm font-medium text-gray-600 mb-1">News Articles</div>
-              <div class="text-3xl font-extrabold text-zaccBlack">89</div>
-              <div class="flex items-center gap-1 mt-2 text-sm">
-                <i class="pi pi-arrow-up text-green-500 text-xs"></i>
-                <span class="text-green-500 font-semibold">5%</span>
+              <div class="text-3xl font-extrabold text-zaccBlack">{{ formatNumber(stats.news.total) }}</div>
+              <div v-if="stats.news.change !== null" class="flex items-center gap-1 mt-2 text-sm">
+                <i :class="['pi', stats.news.isPositive ? 'pi-arrow-up' : 'pi-arrow-down', stats.news.isPositive ? 'text-green-500' : 'text-red-500', 'text-xs']"></i>
+                <span :class="[stats.news.isPositive ? 'text-green-500' : 'text-red-500', 'font-semibold']">
+                  {{ Math.abs(stats.news.change) }}%
+                </span>
                 <span class="text-gray-500">vs last month</span>
               </div>
             </div>
@@ -52,10 +56,12 @@
           <div class="flex items-center justify-between">
             <div>
               <div class="text-sm font-medium text-gray-600 mb-1">Job Applications</div>
-              <div class="text-3xl font-extrabold text-zaccBlack">156</div>
-              <div class="flex items-center gap-1 mt-2 text-sm">
-                <i class="pi pi-arrow-down text-red-500 text-xs"></i>
-                <span class="text-red-500 font-semibold">3%</span>
+              <div class="text-3xl font-extrabold text-zaccBlack">{{ formatNumber(stats.jobApplications.total) }}</div>
+              <div v-if="stats.jobApplications.change !== null" class="flex items-center gap-1 mt-2 text-sm">
+                <i :class="['pi', stats.jobApplications.isPositive ? 'pi-arrow-up' : 'pi-arrow-down', stats.jobApplications.isPositive ? 'text-green-500' : 'text-red-500', 'text-xs']"></i>
+                <span :class="[stats.jobApplications.isPositive ? 'text-green-500' : 'text-red-500', 'font-semibold']">
+                  {{ Math.abs(stats.jobApplications.change) }}%
+                </span>
                 <span class="text-gray-500">vs last month</span>
               </div>
             </div>
@@ -71,10 +77,12 @@
           <div class="flex items-center justify-between">
             <div>
               <div class="text-sm font-medium text-gray-600 mb-1">Contact Submissions</div>
-              <div class="text-3xl font-extrabold text-zaccBlack">342</div>
-              <div class="flex items-center gap-1 mt-2 text-sm">
-                <i class="pi pi-arrow-up text-green-500 text-xs"></i>
-                <span class="text-green-500 font-semibold">8%</span>
+              <div class="text-3xl font-extrabold text-zaccBlack">{{ formatNumber(stats.contacts.total) }}</div>
+              <div v-if="stats.contacts.change !== null" class="flex items-center gap-1 mt-2 text-sm">
+                <i :class="['pi', stats.contacts.isPositive ? 'pi-arrow-up' : 'pi-arrow-down', stats.contacts.isPositive ? 'text-green-500' : 'text-red-500', 'text-xs']"></i>
+                <span :class="[stats.contacts.isPositive ? 'text-green-500' : 'text-red-500', 'font-semibold']">
+                  {{ Math.abs(stats.contacts.change) }}%
+                </span>
                 <span class="text-gray-500">vs last month</span>
               </div>
             </div>
@@ -159,21 +167,28 @@
           </div>
         </template>
         <template #content>
-          <DataTable :value="recentReports" :paginator="false" class="text-sm">
-            <Column field="reportNumber" header="Report #" />
+          <DataTable :value="recentReports" :paginator="false" :loading="loading" class="text-sm">
+            <template #empty>
+              <div class="text-center py-8 text-gray-500">No reports found</div>
+            </template>
+            <Column field="reportNumber" header="Report #">
+              <template #body="{ data }">
+                <span class="font-mono text-xs">{{ data.reportNumber.substring(0, 8) }}...</span>
+              </template>
+            </Column>
             <Column field="type" header="Type">
               <template #body="{ data }">
-                <Tag :value="data.type" severity="danger" />
+                <Tag :value="formatCorruptionType(data.type)" severity="danger" />
               </template>
             </Column>
             <Column field="status" header="Status">
               <template #body="{ data }">
-                <Tag :value="data.status" :severity="getStatusSeverity(data.status)" />
+                <Tag :value="formatStatus(data.status)" :severity="getStatusSeverity(data.status)" />
               </template>
             </Column>
             <Column field="date" header="Date">
               <template #body="{ data }">
-                {{ formatDate(data.date) }}
+                {{ formatDate(new Date(data.date)) }}
               </template>
             </Column>
           </DataTable>
@@ -191,17 +206,24 @@
           </div>
         </template>
         <template #content>
-          <DataTable :value="recentContacts" :paginator="false" class="text-sm">
+          <DataTable :value="recentContacts" :paginator="false" :loading="loading" class="text-sm">
+            <template #empty>
+              <div class="text-center py-8 text-gray-500">No contact submissions found</div>
+            </template>
             <Column field="name" header="Name" />
-            <Column field="subject" header="Subject" />
+            <Column field="subject" header="Subject">
+              <template #body="{ data }">
+                <div class="max-w-xs truncate">{{ data.subject }}</div>
+              </template>
+            </Column>
             <Column field="status" header="Status">
               <template #body="{ data }">
-                <Tag :value="data.status" :severity="getStatusSeverity(data.status)" />
+                <Tag :value="formatStatus(data.status)" :severity="getStatusSeverity(data.status)" />
               </template>
             </Column>
             <Column field="date" header="Date">
               <template #body="{ data }">
-                {{ formatDate(data.date) }}
+                {{ formatDate(new Date(data.date)) }}
               </template>
             </Column>
           </DataTable>
@@ -230,11 +252,25 @@ definePageMeta({
 // Ensure user is authenticated
 const { loggedIn, user, fetch } = useUserSession()
 
+// State
+const loading = ref(false)
+const stats = ref({
+  reports: { total: 0, change: null, isPositive: true },
+  news: { total: 0, change: null, isPositive: true },
+  jobApplications: { total: 0, change: null, isPositive: true },
+  contacts: { total: 0, change: null, isPositive: true }
+})
+const recentReports = ref([])
+const recentContacts = ref([])
+const recentActivities = ref([])
+
 // Fetch session on mount
 onMounted(async () => {
   await fetch()
   if (!loggedIn.value) {
     await navigateTo('/admin/login')
+  } else {
+    await loadDashboardData()
   }
 })
 
@@ -246,121 +282,93 @@ const welcomeMessage = computed(() => {
   return "Welcome back! Here's what's happening today."
 })
 
-const recentActivities = [
-  {
-    id: 1,
-    title: 'New corruption report submitted',
-    description: 'Report #RPT-2025-0012 received',
-    time: '2 minutes ago',
-    icon: 'pi-flag',
-    iconBg: 'bg-red-100',
-    iconColor: 'text-red-600'
-  },
-  {
-    id: 2,
-    title: 'News article published',
-    description: '"ZACC enhances stakeholder engagement"',
-    time: '15 minutes ago',
-    icon: 'pi-check-circle',
-    iconBg: 'bg-green-100',
-    iconColor: 'text-green-600'
-  },
-  {
-    id: 3,
-    title: 'Job application received',
-    description: 'Application for Senior Investigator position',
-    time: '1 hour ago',
-    icon: 'pi-briefcase',
-    iconBg: 'bg-purple-100',
-    iconColor: 'text-purple-600'
-  },
-  {
-    id: 4,
-    title: 'Contact form submission',
-    description: 'New inquiry from john.doe@example.com',
-    time: '2 hours ago',
-    icon: 'pi-inbox',
-    iconBg: 'bg-blue-100',
-    iconColor: 'text-blue-600'
-  },
-  {
-    id: 5,
-    title: 'Media file uploaded',
-    description: '5 images added to gallery',
-    time: '3 hours ago',
-    icon: 'pi-upload',
-    iconBg: 'bg-yellow-100',
-    iconColor: 'text-yellow-600'
+// Load dashboard data
+const loadDashboardData = async () => {
+  loading.value = true
+  try {
+    const data = await $fetch('/api/dashboard/stats')
+    stats.value = data.stats
+    recentReports.value = data.recentReports
+    recentContacts.value = data.recentContacts
+    
+    // Generate recent activities from the data
+    const activities: any[] = []
+    
+    // Add recent reports as activities
+    if (data.recentReports.length > 0) {
+      const report = data.recentReports[0]
+      activities.push({
+        id: `report-${report.id}`,
+        title: 'New corruption report submitted',
+        description: `Report #${report.reportNumber.substring(0, 8)}... received`,
+        time: formatTimeAgo(new Date(report.date)),
+        icon: 'pi-flag',
+        iconBg: 'bg-red-100',
+        iconColor: 'text-red-600'
+      })
+    }
+    
+    // Add recent news as activities
+    if (data.recentNews && data.recentNews.length > 0) {
+      const news = data.recentNews[0]
+      activities.push({
+        id: `news-${news.id}`,
+        title: news.isPublished ? 'News article published' : 'News article created',
+        description: `"${news.title}"`,
+        time: formatTimeAgo(new Date(news.date)),
+        icon: 'pi-check-circle',
+        iconBg: 'bg-green-100',
+        iconColor: 'text-green-600'
+      })
+    }
+    
+    // Add recent contacts as activities
+    if (data.recentContacts.length > 0) {
+      const contact = data.recentContacts[0]
+      activities.push({
+        id: `contact-${contact.id}`,
+        title: 'Contact form submission',
+        description: `New inquiry: ${contact.subject}`,
+        time: formatTimeAgo(new Date(contact.date)),
+        icon: 'pi-inbox',
+        iconBg: 'bg-blue-100',
+        iconColor: 'text-blue-600'
+      })
+    }
+    
+    recentActivities.value = activities.slice(0, 5)
+  } catch (error: any) {
+    console.error('Failed to load dashboard data:', error)
+  } finally {
+    loading.value = false
   }
-]
+}
 
 const quickActions = [
   {
     label: 'Create News Article',
     icon: 'pi pi-file-edit',
-    command: () => navigateTo('/admin/news/new')
+    command: () => navigateTo('/admin/news')
   },
   {
     label: 'Add Download',
     icon: 'pi pi-download',
-    command: () => navigateTo('/admin/downloads/new')
+    command: () => navigateTo('/admin/downloads')
   },
   {
     label: 'Upload Media',
     icon: 'pi pi-upload',
-    command: () => navigateTo('/admin/media/upload')
+    command: () => navigateTo('/admin/gallery')
   },
   {
     label: 'Add Court Ruling',
     icon: 'pi pi-gavel',
-    command: () => navigateTo('/admin/rulings/new')
+    command: () => navigateTo('/admin/rulings')
   },
   {
     label: 'Create Job Posting',
     icon: 'pi pi-briefcase',
-    command: () => navigateTo('/admin/jobs/new')
-  }
-]
-
-const recentReports = [
-  {
-    reportNumber: 'RPT-2025-0012',
-    type: 'Bribery',
-    status: 'NEW',
-    date: new Date('2025-01-15T10:30:00')
-  },
-  {
-    reportNumber: 'RPT-2025-0011',
-    type: 'Fraud',
-    status: 'UNDER_INVESTIGATION',
-    date: new Date('2025-01-14T14:20:00')
-  },
-  {
-    reportNumber: 'RPT-2025-0010',
-    type: 'Embezzlement',
-    status: 'ACKNOWLEDGED',
-    date: new Date('2025-01-13T09:15:00')
-  }
-]
-
-const recentContacts = [
-  {
-    name: 'John Doe',
-    subject: 'General Inquiry',
-    status: 'NEW',
-    date: new Date('2025-01-15T11:00:00')
-  },
-  {
-    name: 'Jane Smith',
-    subject: 'Partnership Request',
-    status: 'IN_PROGRESS',
-    date: new Date('2025-01-14T16:45:00')
-  },
-  {
-    name: 'Robert Johnson',
-    subject: 'Media Inquiry',
-    status: 'RESPONDED',
-    date: new Date('2025-01-13T10:30:00')
+    command: () => navigateTo('/admin/jobs')
   }
 ]
 
@@ -371,9 +379,19 @@ const getStatusSeverity = (status: string) => {
     RESPONDED: 'success',
     CLOSED: 'secondary',
     UNDER_INVESTIGATION: 'warning',
-    ACKNOWLEDGED: 'info'
+    ACKNOWLEDGED: 'info',
+    REFERRED_TO_PROSECUTION: 'success',
+    ARCHIVED: 'secondary'
   }
   return severityMap[status] || 'secondary'
+}
+
+const formatStatus = (status: string) => {
+  return status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
+}
+
+const formatCorruptionType = (type: string) => {
+  return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
 
 const formatDate = (date: Date) => {
@@ -384,5 +402,27 @@ const formatDate = (date: Date) => {
     hour: '2-digit',
     minute: '2-digit'
   }).format(date)
+}
+
+const formatNumber = (num: number) => {
+  return new Intl.NumberFormat('en-US').format(num)
+}
+
+const formatTimeAgo = (date: Date) => {
+  const now = new Date()
+  const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+  
+  if (diffInSeconds < 60) {
+    return `${diffInSeconds} seconds ago`
+  } else if (diffInSeconds < 3600) {
+    const minutes = Math.floor(diffInSeconds / 60)
+    return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`
+  } else if (diffInSeconds < 86400) {
+    const hours = Math.floor(diffInSeconds / 3600)
+    return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`
+  } else {
+    const days = Math.floor(diffInSeconds / 86400)
+    return `${days} ${days === 1 ? 'day' : 'days'} ago`
+  }
 }
 </script>

@@ -4,11 +4,40 @@
       <div class="flex items-center justify-between py-2 text-sm">
         <div class="flex items-center gap-3">
           <span class="inline-flex items-center gap-2 text-white/90">
-            <span class="h-2 w-2 rounded-full bg-white"></span>
-            <span id="newsFlashText">News Flash</span>
+            <span class="h-2 w-2 rounded-full bg-white animate-pulse"></span>
+            <NuxtLink
+              v-if="currentNewsItem"
+              :to="`/${currentNewsItem.slug}`"
+              class="hover:text-white transition-colors cursor-pointer"
+            >
+              <span id="newsFlashText">{{ currentNewsItem.title }}</span>
+            </NuxtLink>
+            <span v-else id="newsFlashText">News Flash</span>
           </span>
           <NuxtLink
-            to="#news"
+            v-if="currentNewsItem"
+            :to="`/${currentNewsItem.slug}`"
+            class="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] font-semibold text-white hover:bg-white/20"
+          >
+            Read More
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="h-3 w-3"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13.5 4.5l6 6-6 6M3 12h16.5"
+              />
+            </svg>
+          </NuxtLink>
+          <NuxtLink
+            v-else
+            to="/news"
             class="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] font-semibold text-white hover:bg-white/20"
           >
             Read More
@@ -70,12 +99,6 @@
           <NuxtLink to="/gallery" class="text-white/90 hover:text-white">Gallery</NuxtLink>
         </div>
       </div>
-      <!-- Hidden data source for News Flash rotation -->
-      <div id="flashData" class="hidden">
-        <span class="flash-item">Court upholds asset seizure in landmark case</span>
-        <span class="flash-item">Compliance monitoring initiative launches nationwide</span>
-        <span class="flash-item">Stakeholder engagement strengthens integrity systems</span>
-      </div>
     </div>
     <!-- Zimbabwe flag accent stripes on the right -->
     <div
@@ -85,9 +108,45 @@
 </template>
 
 <script setup lang="ts">
-const { startNewsFlash } = useNewsFlash()
+const newsItems = ref<any[]>([])
+const currentIndex = ref(0)
+
+// Fetch latest news for flash
+const fetchNews = async () => {
+  try {
+    const data = await $fetch('/api/public/news', {
+      params: {
+        limit: 5
+      }
+    })
+    newsItems.value = data
+    
+    if (data.length > 0) {
+      // Start rotation after a short delay
+      setTimeout(() => {
+        startRotation()
+      }, 100)
+    }
+  } catch (error: any) {
+    console.error('Error fetching news for flash:', error)
+    newsItems.value = []
+  }
+}
+
+// Rotate news items
+const startRotation = () => {
+  if (newsItems.value.length <= 1) return
+  
+  setInterval(() => {
+    currentIndex.value = (currentIndex.value + 1) % newsItems.value.length
+  }, 4000)
+}
+
+const currentNewsItem = computed(() => {
+  return newsItems.value[currentIndex.value] || null
+})
 
 onMounted(() => {
-  startNewsFlash('newsFlashText', 'flashData')
+  fetchNews()
 })
 </script>

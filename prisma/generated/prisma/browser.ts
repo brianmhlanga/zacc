@@ -147,3 +147,13 @@ export type NewsletterSubscription = Prisma.NewsletterSubscriptionModel
  * 
  */
 export type PageView = Prisma.PageViewModel
+/**
+ * Model Menu
+ * 
+ */
+export type Menu = Prisma.MenuModel
+/**
+ * Model MenuItem
+ * 
+ */
+export type MenuItem = Prisma.MenuItemModel

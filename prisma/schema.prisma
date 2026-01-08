@@ -680,3 +680,51 @@ model PageView {
   @@index([pageType, pageId])
   @@index([viewedAt])
 }
+
+// ============================================
+// MENU MANAGEMENT
+// ============================================
+
+model Menu {
+  id          String     @id @default(cuid())
+  name        String     @unique
+  location    String     @unique // 'header', 'footer', 'sidebar', etc.
+  description String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  // Relations
+  items       MenuItem[]
+
+  @@map("menus")
+  @@index([location])
+}
+
+model MenuItem {
+  id          String   @id @default(cuid())
+  menuId      String
+  menu        Menu     @relation(fields: [menuId], references: [id], onDelete: Cascade)
+  label       String
+  type        String   // 'custom', 'page', 'category', 'post', 'url'
+  url         String?  // For custom links and URLs
+  target      String   @default("_self") // '_self', '_blank'
+  icon        String?  // Icon class or identifier
+  order       Int      @default(0)
+  isVisible   Boolean  @default(true)
+  
+  // Hierarchical structure
+  parentId    String?
+  parent      MenuItem? @relation("MenuItemParent", fields: [parentId], references: [id], onDelete: Cascade)
+  children    MenuItem[] @relation("MenuItemParent")
+  
+  // For linking to content
+  pageId      String?  // If type is 'page'
+  categoryId  String?  // If type is 'category'
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("menu_items")
+  @@index([menuId, order])
+  @@index([parentId])
+}

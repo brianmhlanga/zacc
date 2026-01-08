@@ -62,6 +62,14 @@
         <!-- Category Tabs -->
         <div class="mb-8 flex flex-wrap gap-2 justify-center">
           <Button
+            label="All"
+            :severity="selectedCategory === null ? null : 'secondary'"
+            :outlined="selectedCategory !== null"
+            @click="selectedCategory = null"
+            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === null }"
+          />
+          <Button
             v-for="category in categories.slice(1)"
             :key="category.value"
             :label="category.label"
@@ -73,8 +81,17 @@
           />
         </div>
 
+        <!-- Loading State -->
+        <div v-if="loading" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-12">
+          <div
+            v-for="i in 12"
+            :key="i"
+            class="aspect-square bg-zaccGreen/10 rounded-lg animate-pulse"
+          ></div>
+        </div>
+
         <!-- Gallery Grid -->
-        <div v-if="filteredImages.length > 0" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-12">
+        <div v-else-if="filteredImages.length > 0" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-12">
           <div
             v-for="image in paginatedImages"
             :key="image.id"
@@ -84,8 +101,9 @@
             <div class="aspect-square overflow-hidden bg-zaccGreen/10">
               <img
                 :src="image.src"
-                :alt="image.title"
+                :alt="image.alt || image.title"
                 class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
@@ -101,7 +119,7 @@
         </div>
 
         <!-- No Results -->
-        <div v-else class="text-center py-20">
+        <div v-else-if="!loading" class="text-center py-20">
           <i class="pi pi-images text-6xl text-zaccBlack/20 mb-4"></i>
           <h3 class="text-xl font-semibold text-zaccBlack mb-2">No Images Found</h3>
           <p class="text-zaccBlack/60">Try adjusting your search or filter criteria.</p>
@@ -163,8 +181,8 @@
       <div v-if="selectedImage" class="relative">
         <div class="aspect-video overflow-hidden rounded-lg bg-zaccGreen/10 mb-4">
           <img
-            :src="selectedImage.src"
-            :alt="selectedImage.title"
+            :src="getImageUrl(selectedImage.imageUrl || selectedImage.src)"
+            :alt="selectedImage.alt || selectedImage.title"
             class="h-full w-full object-contain"
           />
         </div>
@@ -186,7 +204,7 @@
   </NuxtLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 useHead({
   title: 'Gallery - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -207,137 +225,8 @@ const categories = [
   { label: 'Training', value: 'training' }
 ]
 
-const galleryImages = [
-  {
-    id: 1,
-    title: 'ZACC Headquarters',
-    description: 'The main headquarters building of the Zimbabwe Anti-Corruption Commission in Harare.',
-    category: 'office',
-    src: '/harare.JPG',
-    date: '2025'
-  },
-  {
-    id: 2,
-    title: 'Legal Framework',
-    description: 'Representation of the legal framework and legislation that guides ZACC operations.',
-    category: 'activities',
-    src: '/gavel2.jpg',
-    date: '2025'
-  },
-  {
-    id: 3,
-    title: 'Zimbabwe Flag',
-    description: 'The national flag symbolizing ZACC\'s commitment to serving Zimbabwe.',
-    category: 'events',
-    src: '/flag.jpg',
-    date: '2025'
-  },
-  {
-    id: 4,
-    title: 'Commissioner Portrait One',
-    description: 'Portrait of a ZACC commissioner.',
-    category: 'commissioners',
-    src: '/portraitone.png',
-    date: '2025'
-  },
-  {
-    id: 5,
-    title: 'Commissioner Portrait Two',
-    description: 'Portrait of a ZACC commissioner.',
-    category: 'commissioners',
-    src: '/portraittwo.png',
-    date: '2025'
-  },
-  {
-    id: 6,
-    title: 'Commissioner Portrait Three',
-    description: 'Portrait of a ZACC commissioner.',
-    category: 'commissioners',
-    src: '/portraitthree.png',
-    date: '2025'
-  },
-  {
-    id: 7,
-    title: 'Commissioner Portrait Four',
-    description: 'Portrait of a ZACC commissioner.',
-    category: 'commissioners',
-    src: '/portraitfour.png',
-    date: '2025'
-  },
-  {
-    id: 8,
-    title: 'Court Proceedings',
-    description: 'Legal proceedings and court activities related to corruption cases.',
-    category: 'activities',
-    src: '/gavel.jpg',
-    date: '2025'
-  },
-  {
-    id: 9,
-    title: 'Asset Recovery',
-    description: 'Visual representation of asset recovery efforts in corruption cases.',
-    category: 'activities',
-    src: '/gavelmoney.jpg',
-    date: '2025'
-  },
-  {
-    id: 10,
-    title: 'Stakeholder Engagement',
-    description: 'Engagement activities with stakeholders and partners.',
-    category: 'events',
-    src: '/businessman.jpg',
-    date: '2025'
-  },
-  {
-    id: 11,
-    title: 'Legal Documents',
-    description: 'Important legal documents and legislation materials.',
-    category: 'activities',
-    src: '/el1.jpg',
-    date: '2025'
-  },
-  {
-    id: 12,
-    title: 'Office Environment',
-    description: 'ZACC office environment and workspace.',
-    category: 'office',
-    src: '/el2.jpg',
-    date: '2025'
-  },
-  {
-    id: 13,
-    title: 'Training Session',
-    description: 'Training session for investigators and compliance officers.',
-    category: 'training',
-    src: '/gavel2.jpg',
-    date: '2025'
-  },
-  {
-    id: 14,
-    title: 'Public Awareness Event',
-    description: 'Public awareness campaign event on anti-corruption.',
-    category: 'events',
-    src: '/flag.jpg',
-    date: '2025'
-  },
-  {
-    id: 15,
-    title: 'Award Ceremony',
-    description: 'Recognition ceremony for outstanding anti-corruption efforts.',
-    category: 'awards',
-    src: '/businessman.jpg',
-    date: '2025'
-  },
-  {
-    id: 16,
-    title: 'Legal Consultation',
-    description: 'Legal consultation and advisory services.',
-    category: 'activities',
-    src: '/gavel.jpg',
-    date: '2025'
-  }
-]
-
+const galleryImages = ref<any[]>([])
+const loading = ref(true)
 const searchQuery = ref('')
 const selectedCategory = ref(null)
 const currentPage = ref(1)
@@ -346,15 +235,42 @@ const showLightbox = ref(false)
 const selectedImage = ref(null)
 const currentImageIndex = ref(0)
 
-const filteredImages = computed(() => {
-  let filtered = galleryImages
-
-  // Filter by category
-  if (selectedCategory.value) {
-    filtered = filtered.filter(image => image.category === selectedCategory.value)
+// Helper function to get image URL
+const getImageUrl = (imageUrl: string) => {
+  if (!imageUrl) return ''
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
+    return imageUrl
   }
+  return imageUrl.startsWith('/') ? imageUrl : `/${imageUrl}`
+}
 
-  // Filter by search query
+// Fetch gallery images
+const fetchGalleryImages = async () => {
+  loading.value = true
+  try {
+    const params: any = {}
+    if (selectedCategory.value) {
+      params.category = selectedCategory.value
+    }
+    
+    const data = await $fetch('/api/public/gallery', { params })
+    galleryImages.value = data.map((img: any) => ({
+      ...img,
+      src: getImageUrl(img.thumbnailUrl || img.imageUrl),
+      date: new Date(img.createdAt).getFullYear().toString()
+    }))
+  } catch (error: any) {
+    console.error('Error fetching gallery images:', error)
+    galleryImages.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
+const filteredImages = computed(() => {
+  let filtered = galleryImages.value
+
+  // Filter by search query (category is already filtered by API)
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter(image =>
@@ -398,14 +314,15 @@ const previousImage = () => {
   }
 }
 
-const downloadImage = (image) => {
-  console.log('Downloading image:', image.title)
-  // In a real application, this would trigger the actual download
-  // const link = document.createElement('a')
-  // link.href = image.src
-  // link.download = image.title
-  // link.click()
-  alert(`Downloading: ${image.title}`)
+const downloadImage = (image: any) => {
+  const imageUrl = getImageUrl(image.imageUrl || image.src)
+  const link = document.createElement('a')
+  link.href = imageUrl
+  link.download = image.title || 'gallery-image'
+  link.target = '_blank'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
 }
 
 const onPageChange = (event) => {
@@ -414,13 +331,20 @@ const onPageChange = (event) => {
 }
 
 // Reset to page 1 when filters change
-watch([searchQuery, selectedCategory], () => {
+watch([searchQuery], () => {
   currentPage.value = 1
+})
+
+watch(selectedCategory, () => {
+  currentPage.value = 1
+  fetchGalleryImages()
 })
 
 // Keyboard navigation for lightbox
 onMounted(() => {
-  const handleKeyPress = (e) => {
+  fetchGalleryImages()
+  
+  const handleKeyPress = (e: KeyboardEvent) => {
     if (showLightbox.value) {
       if (e.key === 'ArrowRight') {
         nextImage()

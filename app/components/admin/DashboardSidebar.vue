@@ -131,10 +131,22 @@ const route = useRoute()
 const userMenu = ref()
 const { user, fetch: fetchUser } = useUserSession()
 
-// Fetch user session on mount
-onMounted(async () => {
-  await fetchUser()
+const badges = ref({
+  reports: 0,
+  news: 0
 })
+
+// Fetch badge counts
+const fetchBadges = async () => {
+  try {
+    const data = await $fetch('/api/dashboard/stats') as any
+    if (data.badges) {
+      badges.value = data.badges
+    }
+  } catch (error) {
+    console.error('Failed to fetch badge counts:', error)
+  }
+}
 
 const userName = computed(() => user.value?.name || 'Admin User')
 const userRole = computed(() => {
@@ -149,19 +161,29 @@ const userInitials = computed(() => {
   return 'AU'
 })
 
-const menuItems = [
+const menuItems = computed(() => [
   { label: 'Dashboard', path: '/admin', icon: 'pi-home' },
   { label: 'Content', path: '/admin/content', icon: 'pi-file-edit' },
-  { label: 'News', path: '/admin/news', icon: 'pi-file', badge: '12' },
+  { label: 'News', path: '/admin/news', icon: 'pi-file', badge: badges.value.news > 0 ? badges.value.news.toString() : undefined },
   { label: 'Downloads', path: '/admin/downloads', icon: 'pi-download' },
   { label: 'Rulings', path: '/admin/rulings', icon: 'pi-book' },
-  { label: 'Gallery', path: '/admin/gallery', icon: 'pi-images' },
+  { label: 'Media Library', path: '/admin/gallery', icon: 'pi-images' },
   { label: 'Jobs', path: '/admin/jobs', icon: 'pi-briefcase' },
-  { label: 'Reports', path: '/admin/reports', icon: 'pi-flag', badge: '5' },
+  { label: 'Reports', path: '/admin/reports', icon: 'pi-flag', badge: badges.value.reports > 0 ? badges.value.reports.toString() : undefined },
   { label: 'Contact Submissions', path: '/admin/contact', icon: 'pi-inbox' },
-  { label: 'Users', path: '/admin/users', icon: 'pi-users' },
-  { label: 'Media', path: '/admin/media', icon: 'pi-folder' },
-]
+  { label: 'Statistics', path: '/admin/statistics', icon: 'pi-chart-bar' },
+  { label: 'Our Team', path: '/admin/commissioners', icon: 'pi-users' },
+  { label: 'Menu Settings', path: '/admin/menus', icon: 'pi-list' },
+  { label: 'Users', path: '/admin/users', icon: 'pi-user-edit' },
+])
+
+// Fetch user session and badges on mount
+onMounted(async () => {
+  await fetchUser()
+  await fetchBadges()
+  // Refresh badges every 5 minutes
+  setInterval(fetchBadges, 5 * 60 * 1000)
+})
 
 const userMenuItems = [
   {

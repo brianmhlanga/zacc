@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-zaccBlack antialiased">
+  <div class="bg-white text-zaccBlack antialiased overflow-x-hidden">
     <TopAnnouncement />
     <Header />
     <slot />
