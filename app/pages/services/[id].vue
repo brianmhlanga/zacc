@@ -2,9 +2,9 @@
   <NuxtLayout name="main">
     <div class="overflow-x-hidden">
       <!-- Hero Section -->
-      <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+      <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
         <div class="absolute inset-0">
-          <div class="absolute inset-0 bg-zaccGreen/90"></div>
+          <div class="absolute inset-0 bg-zaccBlack/90"></div>
         </div>
         <div class="relative mx-auto max-w-7xl px-6">
           <div class="text-center">

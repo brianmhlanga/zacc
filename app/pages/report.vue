@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/gavel.jpg" alt="Report corruption" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -29,7 +29,7 @@
           <Card class="border-l-4 border-l-zaccGreen">
             <template #content>
               <div class="text-center">
-                <div class="w-12 h-12 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-3">
+                <div class="w-12 h-12 rounded-full bg-zaccBlack/10 flex items-center justify-center mx-auto mb-3">
                   <i class="pi pi-lock text-zaccGreen text-2xl"></i>
                 </div>
                 <div class="font-semibold text-sm mb-1">Confidential</div>
@@ -51,7 +51,7 @@
           <Card class="border-l-4 border-l-zaccGreen">
             <template #content>
               <div class="text-center">
-                <div class="w-12 h-12 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-3">
+                <div class="w-12 h-12 rounded-full bg-zaccBlack/10 flex items-center justify-center mx-auto mb-3">
                   <i class="pi pi-bolt text-zaccGreen text-2xl"></i>
                 </div>
                 <div class="font-semibold text-sm mb-1">Fast</div>
@@ -74,7 +74,7 @@
           <template #content>
             <form @submit.prevent="handleSubmit" class="space-y-8">
               <!-- Anonymous Reporting Toggle -->
-              <div class="rounded-xl bg-zaccGreen/5 p-6 border border-zaccGreen/20">
+              <div class="rounded-xl bg-zaccBlack/5 p-6 border border-zaccGreen/20">
                 <div class="flex items-start gap-4">
                   <Checkbox
                     v-model="form.isAnonymous"
@@ -302,7 +302,7 @@
                   <div
                     v-for="(file, index) in form.files"
                     :key="index"
-                    class="flex items-center justify-between rounded-lg bg-zaccGreen/5 p-3 border border-zaccGreen/20"
+                    class="flex items-center justify-between rounded-lg bg-zaccBlack/5 p-3 border border-zaccGreen/20"
                   >
                     <div class="flex items-center gap-2 flex-1 min-w-0">
                       <i class="pi pi-file text-zaccGreen"></i>

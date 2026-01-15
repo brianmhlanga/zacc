@@ -28,7 +28,7 @@
       <div class="flex items-center gap-3">
         <!-- User Info -->
         <div class="flex items-center gap-3 px-3 py-2 rounded-lg">
-          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-zaccGreen text-white font-semibold text-sm">
+          <div class="flex h-8 w-8 items-center justify-center rounded-full bg-zaccBlack text-white font-semibold text-sm">
             {{ userInitials }}
           </div>
           <div class="hidden md:block">

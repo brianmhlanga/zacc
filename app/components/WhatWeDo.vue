@@ -110,7 +110,7 @@
           </p>
           <button
             @click="openServiceDialog(service)"
-            class="mt-3 inline-flex items-center gap-2 rounded-md bg-zaccGreen px-3 py-1.5 text-xs font-semibold text-white hover:brightness-110 transition-all w-full justify-center"
+            class="mt-3 inline-flex items-center gap-2 rounded-md bg-zaccBlack px-3 py-1.5 text-xs font-semibold text-white hover:brightness-110 transition-all w-full justify-center"
           >
             Read More
             <svg
@@ -238,15 +238,15 @@ const selectedService = ref<any>(null)
 
 // Get icon color class
 const getIconColorClass = (iconColor: string | null | undefined) => {
-  if (!iconColor) return 'bg-zaccGreen/10 text-zaccGreen'
+  if (!iconColor) return 'bg-zaccBlack/10 text-zaccGreen'
   
   const colorMap: Record<string, string> = {
-    'green': 'bg-zaccGreen/10 text-zaccGreen',
+    'green': 'bg-zaccBlack/10 text-zaccGreen',
     'gold': 'bg-zaccGold/15 text-zaccBlack',
     'black': 'bg-zaccBlack/10 text-zaccBlack'
   }
   
-  return colorMap[iconColor.toLowerCase()] || 'bg-zaccGreen/10 text-zaccGreen'
+  return colorMap[iconColor.toLowerCase()] || 'bg-zaccBlack/10 text-zaccGreen'
 }
 
 // Fetch services from API

@@ -62,8 +62,8 @@ async function main() {
 
     // Create admin user if it doesn't exist
     if (!existingAdmin) {
-      // Hash the default admin password
-      const hashedPassword = await bcrypt.hash('admin123', 10)
+      // Hash the default admin password (strong password)
+      const hashedPassword = await bcrypt.hash('Zacc@Admin2024!Secure', 10)
 
       // Create admin user
       const admin = await prisma.user.create({
@@ -78,7 +78,7 @@ async function main() {
 
       console.log('✅ Admin user created successfully!')
       console.log('📧 Email: admin@zacc.gov.zw')
-      console.log('🔑 Password: admin123')
+      console.log('🔑 Password: Zacc@Admin2024!Secure')
       console.log('⚠️  Please change the password after first login!')
     } else {
       console.log('✅ Admin user already exists, skipping admin creation...')
@@ -90,7 +90,7 @@ async function main() {
     const services = [
       {
         title: 'Public Education',
-        description: 'Nationwide awareness, civic trainings, and youth programs that foster a culture of integrity. We conduct educational campaigns, workshops, and community outreach initiatives to raise awareness about corruption and promote ethical behavior across all sectors of society.',
+        description: 'Mobilisation of anti-corruption awareness materials, developing anti-corruption education curricula, and raising anti-corruption awareness among the public and institutions. We conduct educational campaigns, workshops, and community outreach initiatives to foster a culture of integrity across all sectors of society.',
         icon: 'education',
         iconColor: 'green',
         order: 1,
@@ -98,7 +98,7 @@ async function main() {
       },
       {
         title: 'Corruption Prevention',
-        description: 'Risk assessments, integrity audits, and control frameworks for public institutions. We work proactively with government agencies and private organizations to identify vulnerabilities, strengthen internal controls, and implement preventive measures that reduce opportunities for corruption.',
+        description: 'Conducting compliance, systems and processes review assessments in public and private institutions. We monitor compliance, promote internal anti-corruption and anti-fraud policies, and make recommendations to enhance integrity, accountability and prevent improper conduct.',
         icon: 'prevention',
         iconColor: 'gold',
         order: 2,
@@ -106,24 +106,24 @@ async function main() {
       },
       {
         title: 'Investigations',
-        description: 'Evidence-led investigations, asset tracing, and collaboration with law enforcement. Our specialized investigation teams conduct thorough inquiries into corruption allegations, gather evidence, trace illicit assets, and work closely with law enforcement agencies to build strong cases.',
+        description: 'Conduct investigations on complaints alleging any form of corruption and mandate offences. We create and manage databases for criminals under ZACC investigations, refer cases to the Zimbabwe Republic Police, and provide intelligence on corruption and corruption-related offences in public and private sectors.',
         icon: 'investigations',
         iconColor: 'green',
         order: 3,
         isVisible: true
       },
       {
-        title: 'Legal',
-        description: 'Advisory on anti-corruption laws, compliance guidance, and legal support to agencies. We provide expert legal counsel on anti-corruption legislation, assist with compliance matters, and offer guidance to public and private institutions on maintaining legal and ethical standards.',
+        title: 'Asset Recovery',
+        description: 'Profile and investigate unexplained wealth and proceeds of crime. We draft case files for confiscation and unexplained wealth orders, refer case files to National Prosecuting Authority for recovery of proceeds of crime, execute confiscation orders, and manage seized assets on behalf of the Commission.',
         icon: 'legal',
         iconColor: 'gold',
         order: 4,
         isVisible: true
       },
       {
-        title: 'Prosecution',
-        description: 'Case preparation, court liaison, and recovery proceedings in coordination with ODPP. We prepare comprehensive cases for prosecution, coordinate with the Office of the Director of Public Prosecutions, and pursue asset recovery proceedings to ensure justice is served and stolen assets are returned to the state.',
-        icon: 'prosecution',
+        title: 'Legal Services',
+        description: 'Provide corporate secretarial duties, manage legal contracts and external legal service providers. We provide legal advice to departments, management and Commission, draft policy recommendations for Government approval, and liaise with the National Prosecution Authority for prosecution of cases.',
+        icon: 'legal',
         iconColor: 'green',
         order: 5,
         isVisible: true
@@ -131,6 +131,7 @@ async function main() {
     ]
 
     let servicesCreated = 0
+    let servicesUpdated = 0
     for (const serviceData of services) {
       const existing = await prisma.service.findFirst({
         where: { title: serviceData.title }
@@ -143,11 +144,34 @@ async function main() {
         servicesCreated++
         console.log(`  ✅ Created service: ${serviceData.title}`)
       } else {
-        console.log(`  ⏭️  Service already exists: ${serviceData.title}`)
+        // Update existing service
+        await prisma.service.update({
+          where: { id: existing.id },
+          data: {
+            description: serviceData.description,
+            icon: serviceData.icon,
+            iconColor: serviceData.iconColor,
+            order: serviceData.order,
+            isVisible: serviceData.isVisible
+          }
+        })
+        servicesUpdated++
+        console.log(`  🔄 Updated service: ${serviceData.title}`)
       }
     }
+    
+    // Remove "Prosecution" service if it exists
+    const prosecutionService = await prisma.service.findFirst({
+      where: { title: 'Prosecution' }
+    })
+    if (prosecutionService) {
+      await prisma.service.delete({
+        where: { id: prosecutionService.id }
+      })
+      console.log(`  🗑️  Deleted service: Prosecution`)
+    }
 
-    console.log(`\n✅ Services seeding complete! Created ${servicesCreated} new service(s).`)
+    console.log(`\n✅ Services seeding complete! Created ${servicesCreated} new service(s), updated ${servicesUpdated} existing service(s).`)
 
     // Seed Hero Slides
     console.log('\n🌱 Seeding hero slides...')
@@ -487,40 +511,24 @@ async function main() {
         pageKey: 'home',
         sectionKey: 'about-paragraph-1',
         title: null,
-        content: 'ZACC investigates and combats corruption, promotes integrity, and advises on anti-corruption policy and legislation. We work with citizens and institutions to strengthen accountability across Zimbabwe.',
+        content: 'The Zimbabwe Anti-Corruption Commission (ZACC) was established in terms of Section 254 of the Constitution (Amendment 20, 2013) and the Anti-Corruption Commission Act [Chapter 9:22]. The ZACC is one of the two Chapter 13 institutions established to Combat Corruption and Crime.',
         order: 2,
-        isVisible: true
-      },
-      {
-        pageKey: 'home',
-        sectionKey: 'about-paragraph-2',
-        title: null,
-        content: 'Through investigations, asset recovery, and prosecution support, we disrupt networks that enable graft and misuse of public resources. Our teams collaborate with justice sector partners to ensure due process, robust evidence handling, and timely resolution of cases.',
-        order: 3,
-        isVisible: true
-      },
-      {
-        pageKey: 'home',
-        sectionKey: 'about-paragraph-3',
-        title: null,
-        content: 'Beyond enforcement, we prioritize prevention and public education. ZACC conducts risk assessments, integrity audits, and civic awareness campaigns to help ministries, agencies, and communities establish stronger controls, transparent workflows, and a culture of ethics.',
-        order: 4,
         isVisible: true
       },
       {
         pageKey: 'home',
         sectionKey: 'about-mission',
         title: 'Our Mission',
-        content: 'To rid Zimbabwe of corruption through lawful enforcement and robust prevention.',
-        order: 5,
+        content: 'To combat all forms of corruption in Zimbabwe through prevention, investigation and asset recovery.',
+        order: 3,
         isVisible: true
       },
       {
         pageKey: 'home',
         sectionKey: 'about-vision',
         title: 'Our Vision',
-        content: 'A Zimbabwe free from all forms of corruption.',
-        order: 6,
+        content: 'A citizenry and institutions that uphold integrity and good governance for a corruption free Zimbabwe by 2030',
+        order: 4,
         isVisible: true
       },
       // Statistics Section Content
@@ -561,24 +569,83 @@ async function main() {
         pageKey: 'home',
         sectionKey: 'contact-head-office',
         title: 'Head Office',
-        content: 'ZACC Headquarters • Harare, Zimbabwe',
+        content: '872 Betterment Close, Mt. Pleasant Business Park, Mt. Pleasant, Harare',
         order: 3,
         isVisible: true,
         metadata: {
-          phone: ['(024) 2369605', '0719 529 483'],
-          email: 'info@zacc.org.zw'
+          address: '872 Betterment Close, Mt. Pleasant Business Park, Mt. Pleasant, Harare',
+          phone: ['+263 242369603', '+263 242369605', '+263 242369608', '+263 242369614'],
+          cell: ['+263719529483'],
+          email: 'reports@zacc.co.zw',
+          whatsapp: '+263719529483',
+          website: 'www.zacc.co.zw',
+          tollFree: {
+            netone: '08010101',
+            telone: '08004367'
+          },
+          social: {
+            facebook: 'Zimbabwe Anti-Corruption Commission',
+            twitter: '@ZACConline_',
+            tiktok: '@zacc.online'
+          }
         }
       },
       {
-        pageKey: 'home',
-        sectionKey: 'contact-report-centre',
-        title: 'Report Centre',
-        content: 'Submit tips by phone, email, or in person.',
-        order: 4,
+        pageKey: 'contact',
+        sectionKey: 'reporting-offices',
+        title: 'Reporting Offices',
+        content: 'Regional Reporting Offices',
+        order: 1,
         isVisible: true,
         metadata: {
-          phone: ['(024) 2369605', '0719 529 483'],
-          email: 'report@zacc.org.zw'
+          offices: [
+            {
+              name: 'Harare Region & Reporting Office',
+              address: '172 Herbert Chitepo Avenue, Harare',
+              phone: ['+263 242 254912', '+263 242 254913', '+263 242 254914', '+263 242 254915']
+            },
+            {
+              name: 'Bulawayo Reporting Office',
+              address: 'Third floor Entrance 4, Mhlahlandlela Government Complex, Corner Basch Street and 10th Avenue, Bulawayo',
+              phone: ['+263 292263910']
+            },
+            {
+              name: 'Midlands Reporting Office',
+              address: 'Government Complex, 10th Street and Robert Mugabe, Gweru',
+              phone: ['+263 542224040'],
+              cell: ['+263719529482']
+            },
+            {
+              name: 'Masvingo Reporting Office',
+              address: 'Chiefs Hall Mucheke, Masvingo',
+              cell: ['+263719567228'],
+              address2: 'No 5 Baden Crescent, Rhodene, Masvingo',
+              phone: ['+263 392260941']
+            },
+            {
+              name: 'Mashonaland West Reporting Office',
+              address: 'Chinese Complex, opposite Chinhoyi Provincial Hospital, Chikonohono Township, Chinhoyi',
+              phone: ['+263 672125354'],
+              address2: 'Orange Grove Hotel, Chinhoyi',
+              cell: ['+263712899770']
+            },
+            {
+              name: 'Manicaland Reporting Office',
+              address: '133 Upper third street, Mutare',
+              phone: ['+263 202061212'],
+              cell: ['+263719840714']
+            },
+            {
+              name: 'Mashonaland Central Reporting Office',
+              address: 'Ground Floor, Ndoda Hondo Government Complex, Bindura',
+              cell: ['+263719241747', '+263719567250']
+            },
+            {
+              name: 'Mashonaland East Reporting Office',
+              address: 'No 1 Marondera Crescent, Winston Park, Marondera',
+              cell: ['0712841435', '0719277708']
+            }
+          ]
         }
       },
       // About Page Content
@@ -610,7 +677,7 @@ async function main() {
         pageKey: 'about',
         sectionKey: 'introduction-paragraph-1',
         title: null,
-        content: 'The Zimbabwe Anti-Corruption Commission (ZACC) is an independent constitutional commission established in terms of the Constitution of Zimbabwe and the Anti-Corruption Commission Act [Chapter 9:22]. The Commission is mandated to prevent, investigate, and combat corruption in both the public and private sectors, thereby promoting integrity, transparency, and accountability in the management of public and private affairs.',
+        content: 'The Zimbabwe Anti-Corruption Commission (ZACC) was established in terms of Section 254 of the Constitution (Amendment 20, 2013) and the Anti-Corruption Commission Act [Chapter 9:22]. The ZACC is one of the two Chapter 13 institutions established to Combat Corruption and Crime.',
         order: 2,
         isVisible: true
       },
@@ -676,7 +743,7 @@ async function main() {
         pageKey: 'about',
         sectionKey: 'vision-title',
         title: 'Our Vision',
-        content: 'A corruption-free Zimbabwe founded on integrity, transparency, and accountability.',
+        content: 'A citizenry and institutions that uphold integrity and good governance for a corruption free Zimbabwe by 2030',
         order: 1,
         isVisible: true
       },
@@ -684,7 +751,7 @@ async function main() {
         pageKey: 'about',
         sectionKey: 'mission-title',
         title: 'Our Mission',
-        content: 'To effectively prevent and combat corruption through investigation, prevention, public education, and strategic partnerships in order to promote good governance and sustainable development.',
+        content: 'To combat all forms of corruption in Zimbabwe through prevention, investigation and asset recovery.',
         order: 2,
         isVisible: true
       },
@@ -724,13 +791,12 @@ async function main() {
         isVisible: true,
         metadata: {
           values: [
-            { letter: 'I', title: 'Integrity', description: 'Upholding the highest ethical standards in all our operations' },
-            { letter: 'I', title: 'Independence', description: 'Operating without undue influence or interference' },
-            { letter: 'P', title: 'Professionalism', description: 'Delivering services competently and impartially' },
-            { letter: 'T', title: 'Transparency', description: 'Conducting our work openly and accountably' },
-            { letter: 'A', title: 'Accountability', description: 'Being answerable to the public and the law' },
-            { letter: 'F', title: 'Fairness', description: 'Ensuring justice, objectivity, and respect for human rights' },
-            { letter: 'C', title: 'Confidentiality', description: 'Protecting information and whistleblowers' }
+            { letter: 'I', title: 'Integrity', description: 'Honest, respectful and humane in the delivery of our mandate.' },
+            { letter: 'T', title: 'Transparency', description: 'Upholding openness and fairness in the disclosure of information and operations.' },
+            { letter: 'A', title: 'Accountability', description: 'Being responsible and answerable for all our activities and outcomes.' },
+            { letter: 'T', title: 'Teamwork', description: 'Collaborative effort within all departments and with stakeholders to achieve a common goal.' },
+            { letter: 'I', title: 'Independence', description: 'Executing our mandate without fear, favour or prejudice.' },
+            { letter: 'P', title: 'Professionalism', description: 'Competence, diligence, commitment and innovativeness in the discharge of our mandate.' }
           ]
         }
       },
@@ -759,14 +825,14 @@ async function main() {
         isVisible: true,
         metadata: {
           items: [
-            'Receives and assesses reports and complaints of corruption',
-            'Conducts investigations into alleged acts of corruption and abuse of power',
-            'Carries out systems reviews to identify corruption risks in institutions',
-            'Monitors trends and patterns of corruption',
-            'Recommends corrective measures and institutional reforms',
-            'Refers cases for prosecution to the appropriate authorities',
-            'Undertakes public education and awareness programmes',
-            'Collaborates with local, regional, and international partners in the fight against corruption'
+            'Investigate and expose cases of corruption in the public and private sectors',
+            'Combat corruption, theft, misappropriation, abuse of power and improper conduct in the public and private sectors',
+            'Promote honesty, financial discipline, and transparency in the public and private sectors',
+            'Receive and consider complaints from the public and to take such action in regard to the complaints as it considers appropriate',
+            'Direct the Commissioner-General of the Police to investigate cases of suspected corruption and to report to the Commission on the results of any such investigations',
+            'Refer matters to the National Prosecution Authority for prosecution',
+            'Require assistance from members of the police service and other investigative agencies of the State',
+            'Make recommendations to the Government and other persons on measures to enhance integrity, accountability and prevent improper conduct in the public and private sectors'
           ]
         }
       },
@@ -875,6 +941,262 @@ async function main() {
         content: 'ZACC has a nationwide mandate and operates across Zimbabwe to ensure accessibility and responsiveness to corruption-related concerns wherever they arise.',
         order: 2,
         isVisible: true
+      },
+      // Departments Page Content
+      {
+        pageKey: 'departments',
+        sectionKey: 'hero-title',
+        title: null,
+        content: 'Departments',
+        order: 1,
+        isVisible: true
+      },
+      {
+        pageKey: 'departments',
+        sectionKey: 'hero-subtitle',
+        title: null,
+        content: 'ZACC Departments and Their Functions',
+        order: 2,
+        isVisible: true
+      },
+      {
+        pageKey: 'departments',
+        sectionKey: 'introduction-description',
+        title: null,
+        content: 'The Commission has, in terms of the Constitution and the Act, a Secretariat which is headed by the Executive Secretary.',
+        order: 1,
+        isVisible: true
+      },
+      {
+        pageKey: 'departments',
+        sectionKey: 'departments-list',
+        title: null,
+        content: 'Departments',
+        order: 1,
+        isVisible: true,
+        metadata: {
+          departments: [
+            {
+              name: 'Office of the Executive Secretary',
+              description: 'The core functions of the Office are to:',
+              functions: [
+                'Provide overall leadership and coordination of ZACC policies, strategies and programmes',
+                'Supervise departments within ZACC',
+                'Manage relationships with stakeholders',
+                'Ensure compliance with statutes, regulations, policies, Treasury Instructions and Commission resolutions',
+                'Manage resources for the implementation of the Agency\'s plan',
+                'Ensure good corporate governance practices',
+                'Oversee all procurement of works, goods and services',
+                'Develop and maintain appropriate linkages between the Commission and the Secretariat'
+              ]
+            },
+            {
+              name: 'Legal and Asset Recovery Department',
+              description: 'The Department has two units namely Legal Services and Prosecution Liaison Unit and Asset Forfeiture & Recovery Unit whose core functions are to:',
+              units: [
+                {
+                  name: 'Legal Services and Prosecution Liaison Unit',
+                  functions: [
+                    'Provide corporate secretarial duties',
+                    'Manage legal contracts',
+                    'Manage external legal service providers',
+                    'Provide legal advice to departments, management and Commission',
+                    'Draft policy recommendations for Government approval'
+                  ]
+                },
+                {
+                  name: 'Asset Forfeiture and Recovery Unit',
+                  functions: [
+                    'Profile and investigate unexplained wealth and proceeds of crime',
+                    'Draft case files for confiscation and unexplained wealth orders',
+                    'Refer case files to National Prosecuting Authority for recovery of proceeds of crime',
+                    'Execute confiscation and unexplained wealth orders',
+                    'Draft Mutual Legal Assistance (MLA) requests and refer to NPA',
+                    'Manage seized assets on behalf of the Commission'
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Investigations Department',
+              description: 'The core functions of the Department are to:',
+              functions: [
+                'Conduct investigations on complaints alleging any form of corruption and mandate offences',
+                'Refer criminal dockets to Legal and Prosecution Liaison Unit',
+                'Create and manage database for criminals under ZACC investigations',
+                'Referral of cases to the Zimbabwe Republic Police for investigations',
+                'Liaison with stakeholders in the investigation of corruption cases',
+                'Provide intelligence on corruption and corruption related offences in public and private sector'
+              ]
+            },
+            {
+              name: 'Prevention and Corporate Governance Department',
+              description: 'The Prevention and corporate governance department has three Units within it namely: Public Education; Compliance and Systems Review; and Research & Knowledge Management whose core functions are:',
+              units: [
+                {
+                  name: 'Public Education Unit',
+                  functions: [
+                    'Mobilisation of anti-corruption awareness materials',
+                    'Developing anti-corruption education curricula',
+                    'Raising anti-corruption awareness among the public and institutions'
+                  ]
+                },
+                {
+                  name: 'Compliance and Systems Review Unit',
+                  functions: [
+                    'Conducting compliance, systems and processes review assessments in public and private institutions',
+                    'Monitoring compliance and systems of institutions',
+                    'Promoting internal anti-corruption and anti-fraud policies and strategies in public and private institutions',
+                    'Make recommendations to public and private institutions and other persons on measures to enhance integrity, accountability and prevent improper conduct in the public and private sectors'
+                  ]
+                },
+                {
+                  name: 'Research & Knowledge Management Unit',
+                  functions: [
+                    'Undertaking anti-corruption research studies',
+                    'Creating knowledge, for relevant internal departments and stakeholders',
+                    'Disseminating research findings'
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Finance and Administration Department',
+              description: 'The Department has two units namely Finance and Administration whose core functions are:',
+              units: [
+                {
+                  name: 'Finance Unit',
+                  functions: [
+                    'Mobilize financial resources',
+                    'Provide financial reporting',
+                    'Ensure budgeting, budgetary controls and management of accounts',
+                    'Optimize returns from investments'
+                  ]
+                },
+                {
+                  name: 'Administration Unit',
+                  functions: [
+                    'Manage Commission assets and inventory',
+                    'Manage goods and services contracts',
+                    'Provide logistics for all ZACC events',
+                    'Provide records maintenance archiving and retrieval',
+                    'Provide security services for ZACC personnel and assets',
+                    'Investigate all forms of security breaches',
+                    'Conduct security education, training and awareness programmes',
+                    'Carry out security surveys, Inspection and Security checks'
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Human Resources, Learning and Development Department',
+              description: 'The Department has two units namely Human Resources and Learning & Development whose core functions are to:',
+              units: [
+                {
+                  name: 'Human Resources Unit',
+                  functions: [
+                    'Developing and implement human resources policies and procedures',
+                    'Institutionalizing performance management',
+                    'Attracting and retaining staff',
+                    'Institute Organizational harmony',
+                    'Coordinating disciplinary procedures'
+                  ]
+                },
+                {
+                  name: 'Learning & Development Unit',
+                  functions: [
+                    'Design and implement training programmes for ZACC staff',
+                    'Co-ordinate and conduct continuous development'
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      // Units Page Content
+      {
+        pageKey: 'units',
+        sectionKey: 'hero-title',
+        title: null,
+        content: 'Executive Units',
+        order: 1,
+        isVisible: true
+      },
+      {
+        pageKey: 'units',
+        sectionKey: 'hero-subtitle',
+        title: null,
+        content: 'ZACC Executive Units and Their Functions',
+        order: 2,
+        isVisible: true
+      },
+      {
+        pageKey: 'units',
+        sectionKey: 'units-list',
+        title: null,
+        content: 'Executive Units',
+        order: 1,
+        isVisible: true,
+        metadata: {
+          units: [
+            {
+              name: 'Communication and Media Liaison Unit',
+              description: 'The core functions of the Unit are to:',
+              functions: [
+                'Executing internal and external communication strategies',
+                'Enhancing corporate image',
+                'Coordinating corporate events'
+              ]
+            },
+            {
+              name: 'External Relations and International Conventions Unit',
+              description: 'The core functions of the Unit are to:',
+              functions: [
+                'Facilitating the participation of the Commission in all local, regional and international fora on anti-corruption',
+                'Coordinating the engagement of local, regional and international stakeholders'
+              ]
+            },
+            {
+              name: 'Information Communication Technology (ICT) Unit',
+              description: 'The core functions of the Unit are to:',
+              functions: [
+                'Implementation of the e-Government strategy for the Commission',
+                'Maintain ICT infrastructure',
+                'Provide end-user support'
+              ]
+            },
+            {
+              name: 'Internal Audit Unit',
+              description: 'The core functions of the Unit are to:',
+              functions: [
+                'Provide assurance of the Commission\'s systems control and governance processes',
+                'Ensure compliance with policies and procedures'
+              ]
+            },
+            {
+              name: 'Procurement and Management Unit',
+              description: 'The core functions of the Unit are to:',
+              functions: [
+                'Plan the procurement activities',
+                'Manage the procurement process and contracts',
+                'Ensure Compliance with Public Procurement and Disposal of Public Assets'
+              ]
+            },
+            {
+              name: 'Monitoring and Evaluation Unit',
+              description: 'The core functions of the unit are to:',
+              functions: [
+                'Design and develop an appropriate monitoring and evaluation plan',
+                'Coordinate the strategic planning and review processes of the Commission',
+                'Assess, track and evaluate organisational performance',
+                'Coordinate the risk management processes of the Commission',
+                'Coordinate the monitoring and evaluation of the Commission\'s programs and projects',
+                'Coordinate the conduct of market research into factors likely to impact on the Commission\'s achievement of strategic goals'
+              ]
+            }
+          ]
+        }
       },
       // Legislation Page Content
       {
@@ -1261,6 +1583,38 @@ async function main() {
       },
       {
         pageKey: 'legislation',
+        sectionKey: 'legislative-framework-title',
+        title: null,
+        content: 'Legislative Framework',
+        order: 1,
+        isVisible: true
+      },
+      {
+        pageKey: 'legislation',
+        sectionKey: 'legislative-framework-list',
+        title: null,
+        content: 'Legislative Framework',
+        order: 2,
+        isVisible: true,
+        metadata: {
+          acts: [
+            'Constitution of Zimbabwe, Amendment No. 20',
+            'Anti-Corruption Commission Act [Chapter 9:22]',
+            'Prevention of Corruption Act [Chapter 9:16]',
+            'Money Laundering and Proceeds of Crime Act [Chapter 9:24]',
+            'Exchange Control Act',
+            'Criminal Procedure and Evidence Act [Chapter 9:07]',
+            'Criminal Law (Codification and Reform) Act [Chapter 9:23]',
+            'Public Entities & Corporate Governance Act (Chapter 10:31)',
+            'Public Finance Management Act Chapter (22:19)',
+            'Public Procurement And Disposal Of Public Assets Act Chapter (22:23)',
+            'S.I. 141/2017 ZACC Regulations',
+            'SI 143/2019 Criminal Procedure and Evidence (Designation of Peace Officers) (Amendment) Notice, 2019 (No.3)'
+          ]
+        }
+      },
+      {
+        pageKey: 'legislation',
         sectionKey: 'inquiries-title',
         title: null,
         content: 'Legal Inquiries',
@@ -1303,6 +1657,7 @@ async function main() {
     ]
 
     let pageContentsCreated = 0
+    let pageContentsUpdated = 0
     for (const contentData of pageContents) {
       const existing = await prisma.pageContent.findUnique({
         where: {
@@ -1320,10 +1675,28 @@ async function main() {
         pageContentsCreated++
         console.log(`  ✅ Created page content: ${contentData.pageKey}/${contentData.sectionKey}`)
       } else {
-        console.log(`  ⏭️  Page content already exists: ${contentData.pageKey}/${contentData.sectionKey}`)
+        // Update existing record
+        await prisma.pageContent.update({
+          where: {
+            pageKey_sectionKey: {
+              pageKey: contentData.pageKey,
+              sectionKey: contentData.sectionKey
+            }
+          },
+          data: {
+            title: contentData.title,
+            content: contentData.content,
+            imageUrl: (contentData as any).imageUrl || null,
+            order: contentData.order,
+            isVisible: contentData.isVisible,
+            metadata: (contentData as any).metadata || null
+          }
+        })
+        pageContentsUpdated++
+        console.log(`  🔄 Updated page content: ${contentData.pageKey}/${contentData.sectionKey}`)
       }
     }
-    console.log(`✅ Page content seeding complete! Created ${pageContentsCreated} new content item(s).`)
+    console.log(`✅ Page content seeding complete! Created ${pageContentsCreated} new content item(s), updated ${pageContentsUpdated} existing item(s).`)
 
     console.log('\n🎉 All homepage content seeding complete!')
   } finally {

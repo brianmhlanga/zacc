@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-40 hidden md:block bg-zaccGreen text-white">
+  <div class="relative z-40 hidden md:block bg-zaccBlack text-white">
     <div class="mx-auto max-w-7xl px-6">
       <div class="flex items-center justify-between py-2 text-sm">
         <div class="flex items-center gap-3">
@@ -102,7 +102,7 @@
     </div>
     <!-- Zimbabwe flag accent stripes on the right -->
     <div
-      class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-[repeating-linear-gradient(90deg,#209341_0_8px,#d4af37_8px_16px,#e11d2d_16px_24px,#111111_24px_32px,#e11d2d_32px_40px,#d4af37_40px_48px,#209341_48px_56px)]"
+      class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-[repeating-linear-gradient(90deg,#209341_0_8px,#d4af37_8px_16px,#e11d2d_16px_24px,#111111_24px_32px,#e11d2d_32px_40px,#d4af37_40px_48px)]"
     ></div>
   </div>
 </template>

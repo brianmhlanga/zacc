@@ -3,7 +3,7 @@
     <div class="w-full max-w-md">
       <!-- Logo Section -->
       <div class="text-center mb-8">
-        <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-zaccGreen mb-4 shadow-lg">
+        <div class="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-zaccBlack mb-4 shadow-lg">
           <i class="pi pi-shield text-white text-3xl"></i>
         </div>
         <h1 class="text-3xl font-extrabold text-zaccBlack">Reset Password</h1>

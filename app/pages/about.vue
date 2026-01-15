@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section for About Page -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/flag.jpg" alt="Zimbabwe flag" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -62,7 +62,7 @@
               class="rounded-xl bg-white p-6 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] border border-zaccGreen/10"
             >
               <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zaccGreen/10 flex items-center justify-center">
+                <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-zaccBlack/10 flex items-center justify-center">
                   <svg class="h-6 w-6 text-zaccGreen" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -101,7 +101,7 @@
               </p>
             </div>
             <div class="rounded-xl bg-gradient-to-br from-zaccGreen/10 to-zaccGold/10 p-8 border border-zaccGreen/20">
-              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-zaccGreen/20 text-zaccGreen">
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-zaccBlack/20 text-zaccGreen">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-6 w-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2M12 4.5a7.5 7.5 0 100 15 7.5 7.5 0 000-15z" />
                 </svg>
@@ -192,10 +192,10 @@
               :key="index"
               class="group relative overflow-hidden rounded-xl bg-white p-6 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] border border-zaccGreen/10 hover:border-zaccGreen/30 transition"
             >
-              <div class="absolute top-0 right-0 w-20 h-20 bg-zaccGreen/5 rounded-bl-full"></div>
+              <div class="absolute top-0 right-0 w-20 h-20 bg-zaccBlack/5 rounded-bl-full"></div>
               <div class="relative">
                 <div class="flex items-center gap-3 mb-3">
-                  <div class="w-2 h-2 rounded-full bg-zaccGreen"></div>
+                  <div class="w-2 h-2 rounded-full bg-zaccBlack"></div>
                   <span class="font-semibold text-zaccBlack">{{ area.title }}</span>
                 </div>
                 <p class="text-sm text-zaccBlack/70">{{ area.description }}</p>
@@ -268,7 +268,7 @@
         <div class="text-center pt-8">
           <NuxtLink
             to="/"
-            class="inline-flex items-center gap-2 rounded-md bg-zaccGreen px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
+            class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />

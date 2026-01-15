@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/gavel.jpg" alt="Legal framework" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -218,7 +218,7 @@
               <div class="flex items-start gap-4 mb-4">
                 <div :class="[
                   'flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center',
-                  index === 0 ? 'bg-zaccGreen/10' : 'bg-zaccGold/10'
+                  index === 0 ? 'bg-zaccBlack/10' : 'bg-zaccGold/10'
                 ]">
                   <svg :class="[
                     'h-6 w-6',
@@ -264,6 +264,34 @@
           </div>
         </div>
 
+        <!-- Legislative Framework -->
+        <div class="mb-20">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-extrabold mb-4">{{ getContent('legislative-framework-title', 'Legislative Framework') }}</h2>
+            <div class="h-1 w-20 rounded bg-zaccGold mx-auto mb-6"></div>
+          </div>
+          <div class="grid gap-8 lg:grid-cols-2 items-start">
+            <div class="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
+              <img src="/el1.jpg" alt="Legislative Framework" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-br from-zaccBlack/70 to-zaccBlack/50"></div>
+            </div>
+            <div class="rounded-xl bg-white p-8 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]">
+              <p class="text-zaccBlack/70 leading-relaxed mb-6">
+                The following legislation forms the legal framework for ZACC's operations:
+              </p>
+              <ol v-if="getMetadata('legislative-framework-list')?.acts" class="space-y-2 text-sm text-zaccBlack/80 list-decimal list-inside">
+                <li
+                  v-for="(act, index) in getMetadata('legislative-framework-list').acts"
+                  :key="index"
+                  class="mb-2"
+                >
+                  {{ act }}
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
         <!-- Regulations and Statutory Instruments -->
         <div class="mb-20">
           <div class="text-center mb-12">
@@ -273,7 +301,7 @@
           <div class="grid gap-8 lg:grid-cols-2 items-center">
             <div class="relative h-[400px] rounded-2xl overflow-hidden shadow-lg">
               <img src="/el1.jpg" alt="Regulations" class="h-full w-full object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-br from-zaccGreen/70 to-zaccBlack/50"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-zaccBlack/70 to-zaccBlack/50"></div>
             </div>
             <div class="rounded-xl bg-white p-8 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]">
               <p class="text-zaccBlack/70 leading-relaxed">
@@ -306,7 +334,7 @@
                 @click="viewDocument(doc)"
               >
                 <div class="flex justify-center mb-3">
-                  <div class="flex h-12 w-12 items-center justify-center rounded-md bg-zaccGreen/10 text-zaccGreen group-hover:bg-zaccGreen group-hover:text-white transition-colors">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-md bg-zaccBlack/10 text-zaccGreen group-hover:bg-zaccBlack group-hover:text-white transition-colors">
                     <i :class="getFileIcon(doc.fileType)" class="text-2xl"></i>
                   </div>
                 </div>
@@ -321,7 +349,7 @@
             <div class="mt-8 text-center">
               <NuxtLink
                 to="/downloads"
-                class="inline-flex items-center gap-2 rounded-md bg-zaccGreen px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
+                class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
               >
                 {{ getContent('access-button-text', 'View All Legal Documents') }}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
@@ -333,7 +361,7 @@
         </div>
 
         <!-- Contact for Legal Inquiries -->
-        <div class="mb-12 rounded-2xl bg-zaccGreen p-12 text-white text-center relative overflow-hidden">
+        <div class="mb-12 rounded-2xl bg-zaccBlack p-12 text-white text-center relative overflow-hidden">
           <div class="absolute inset-0 opacity-10">
             <img src="/flag.jpg" alt="Background" class="h-full w-full object-cover" />
           </div>
@@ -359,7 +387,7 @@
         <div class="text-center pt-8">
           <NuxtLink
             to="/"
-            class="inline-flex items-center gap-2 rounded-md bg-zaccGreen px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
+            class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />

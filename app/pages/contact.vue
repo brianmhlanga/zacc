@@ -40,7 +40,7 @@
               <template #content>
                 <div class="p-5">
                   <div class="flex items-start gap-3 mb-3">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccGreen/10 flex items-center justify-center">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccBlack/10 flex items-center justify-center">
                       <i class="pi pi-building text-zaccGreen text-xl"></i>
                     </div>
                     <div class="flex-1">
@@ -48,54 +48,61 @@
                       <div class="space-y-2 text-sm text-zaccBlack/70">
                         <div class="flex items-start gap-2">
                           <i class="pi pi-map-marker text-zaccGreen mt-0.5"></i>
-                          <div>
-                            <div>ZACC Headquarters</div>
-                            <div>Harare, Zimbabwe</div>
+                          <div>872 Betterment Close, Mt. Pleasant Business Park, Mt. Pleasant, Harare</div>
+                        </div>
+                        <div v-if="headOfficeMetadata?.phone" class="space-y-1">
+                          <div class="flex items-center gap-2">
+                            <i class="pi pi-phone text-zaccGreen"></i>
+                            <div class="flex flex-wrap gap-1">
+                              <a
+                                v-for="(phone, index) in headOfficeMetadata.phone"
+                                :key="index"
+                                :href="`tel:${phone.replace(/[^0-9+]/g, '')}`"
+                                class="hover:text-zaccGreen"
+                              >
+                                {{ phone }}<span v-if="index < headOfficeMetadata.phone.length - 1"> / </span>
+                              </a>
+                            </div>
                           </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                          <i class="pi pi-phone text-zaccGreen"></i>
-                          <a href="tel:+263242369605" class="hover:text-zaccGreen">(024) 2369605</a>
+                        <div v-if="headOfficeMetadata?.cell" class="flex items-center gap-2">
+                          <i class="pi pi-mobile text-zaccGreen"></i>
+                          <a
+                            v-for="(cell, index) in headOfficeMetadata.cell"
+                            :key="index"
+                            :href="`tel:${cell.replace(/[^0-9+]/g, '')}`"
+                            class="hover:text-zaccGreen"
+                          >
+                            {{ cell }}<span v-if="index < headOfficeMetadata.cell.length - 1"> / </span>
+                          </a>
                         </div>
-                        <div class="flex items-center gap-2">
-                          <i class="pi pi-phone text-zaccGreen"></i>
-                          <a href="tel:+263719529483" class="hover:text-zaccGreen">0719 529 483</a>
-                        </div>
-                        <div class="flex items-center gap-2">
+                        <div v-if="headOfficeMetadata?.email" class="flex items-center gap-2">
                           <i class="pi pi-envelope text-zaccGreen"></i>
-                          <a href="mailto:info@zacc.org.zw" class="hover:text-zaccGreen">info@zacc.org.zw</a>
+                          <a :href="`mailto:${headOfficeMetadata.email}`" class="hover:text-zaccGreen">{{ headOfficeMetadata.email }}</a>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </template>
-            </Card>
-
-            <!-- Report Centre -->
-            <Card class="border-l-4 border-l-zaccGold">
-              <template #content>
-                <div class="p-5">
-                  <div class="flex items-start gap-3 mb-3">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccGold/10 flex items-center justify-center">
-                      <i class="pi pi-shield text-zaccGold text-xl"></i>
-                    </div>
-                    <div class="flex-1">
-                      <h3 class="font-extrabold text-lg mb-2">Report Centre</h3>
-                      <div class="space-y-2 text-sm text-zaccBlack/70">
-                        <div class="flex items-center gap-2">
-                          <i class="pi pi-phone text-zaccGold"></i>
-                          <a href="tel:+263242369605" class="hover:text-zaccGold">(024) 2369605</a>
+                        <div v-if="headOfficeMetadata?.whatsapp" class="flex items-center gap-2">
+                          <i class="pi pi-whatsapp text-zaccGreen"></i>
+                          <a :href="`https://wa.me/${headOfficeMetadata.whatsapp.replace(/[^0-9]/g, '')}`" target="_blank" class="hover:text-zaccGreen">{{ headOfficeMetadata.whatsapp }}</a>
                         </div>
-                        <div class="flex items-center gap-2">
-                          <i class="pi pi-phone text-zaccGold"></i>
-                          <a href="tel:+263719529483" class="hover:text-zaccGold">0719 529 483</a>
+                        <div v-if="headOfficeMetadata?.website" class="flex items-center gap-2">
+                          <i class="pi pi-globe text-zaccGreen"></i>
+                          <a :href="`https://${headOfficeMetadata.website}`" target="_blank" class="hover:text-zaccGreen">{{ headOfficeMetadata.website }}</a>
                         </div>
-                        <div class="flex items-center gap-2">
-                          <i class="pi pi-envelope text-zaccGold"></i>
-                          <a href="mailto:report@zacc.org.zw" class="hover:text-zaccGold">report@zacc.org.zw</a>
+                        <div v-if="headOfficeMetadata?.tollFree" class="mt-3 pt-3 border-t border-zaccBlack/10">
+                          <div class="font-semibold text-xs mb-1">Toll Free:</div>
+                          <div class="text-xs">
+                            <div>Netone: <a :href="`tel:${headOfficeMetadata.tollFree.netone}`" class="hover:text-zaccGreen">{{ headOfficeMetadata.tollFree.netone }}</a></div>
+                            <div>Telone: <a :href="`tel:${headOfficeMetadata.tollFree.telone}`" class="hover:text-zaccGreen">{{ headOfficeMetadata.tollFree.telone }}</a></div>
+                          </div>
                         </div>
-                        <p class="text-xs mt-2">Submit tips by phone, email, or in person.</p>
+                        <div v-if="headOfficeMetadata?.social" class="mt-3 pt-3 border-t border-zaccBlack/10">
+                          <div class="font-semibold text-xs mb-2">Social Media:</div>
+                          <div class="flex flex-wrap gap-2 text-xs">
+                            <span v-if="headOfficeMetadata.social.facebook">{{ headOfficeMetadata.social.facebook }}</span>
+                            <span v-if="headOfficeMetadata.social.twitter">{{ headOfficeMetadata.social.twitter }}</span>
+                            <span v-if="headOfficeMetadata.social.tiktok">{{ headOfficeMetadata.social.tiktok }}</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -108,7 +115,7 @@
               <template #content>
                 <div class="p-5">
                   <div class="flex items-start gap-3">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccGreen/10 flex items-center justify-center">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccBlack/10 flex items-center justify-center">
                       <i class="pi pi-clock text-zaccGreen text-xl"></i>
                     </div>
                     <div class="flex-1">
@@ -137,44 +144,6 @@
               </template>
             </Card>
 
-            <!-- Social Media -->
-            <Card>
-              <template #content>
-                <div class="p-5">
-                  <h3 class="font-extrabold text-lg mb-4">Follow Us</h3>
-                  <div class="flex gap-3">
-                    <a
-                      href="#"
-                      class="w-10 h-10 rounded-full bg-zaccGreen/10 flex items-center justify-center text-zaccGreen hover:bg-zaccGreen hover:text-white transition"
-                      aria-label="Facebook"
-                    >
-                      <i class="pi pi-facebook"></i>
-                    </a>
-                    <a
-                      href="#"
-                      class="w-10 h-10 rounded-full bg-zaccGreen/10 flex items-center justify-center text-zaccGreen hover:bg-zaccGreen hover:text-white transition"
-                      aria-label="Twitter"
-                    >
-                      <i class="pi pi-twitter"></i>
-                    </a>
-                    <a
-                      href="#"
-                      class="w-10 h-10 rounded-full bg-zaccGreen/10 flex items-center justify-center text-zaccGreen hover:bg-zaccGreen hover:text-white transition"
-                      aria-label="LinkedIn"
-                    >
-                      <i class="pi pi-linkedin"></i>
-                    </a>
-                    <a
-                      href="#"
-                      class="w-10 h-10 rounded-full bg-zaccGreen/10 flex items-center justify-center text-zaccGreen hover:bg-zaccGreen hover:text-white transition"
-                      aria-label="YouTube"
-                    >
-                      <i class="pi pi-youtube"></i>
-                    </a>
-                  </div>
-                </div>
-              </template>
-            </Card>
           </div>
 
           <!-- Contact Form -->
@@ -267,7 +236,7 @@
                     <small v-if="!form.message && submitted" class="p-error">Message is required.</small>
                   </div>
 
-                  <div class="rounded-xl bg-zaccGreen/5 p-4 border border-zaccGreen/20">
+                  <div class="rounded-xl bg-zaccBlack/5 p-4 border border-zaccGreen/20">
                     <div class="flex items-start gap-3">
                       <Checkbox
                         v-model="form.anonymous"
@@ -321,7 +290,7 @@
                       class="w-full h-full"
                     ></iframe>
                   </div>
-                  <p class="text-sm text-zaccBlack/60 mt-4 text-center">ZACC Headquarters, Harare, Zimbabwe</p>
+                  <p class="text-sm text-zaccBlack/60 mt-4 text-center">872 Betterment Close, Mt. Pleasant Business Park, Mt. Pleasant, Harare</p>
                 </div>
               </template>
             </Card>
@@ -346,7 +315,7 @@
               <template #content>
                 <div class="p-5">
                   <div class="flex items-start gap-3 mb-4">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccGreen/10 flex items-center justify-center">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-zaccBlack/10 flex items-center justify-center">
                       <i class="pi pi-map-marker text-zaccGreen text-xl"></i>
                     </div>
                     <div class="flex-1">
@@ -354,15 +323,36 @@
                       <div class="space-y-2 text-sm text-zaccBlack/70">
                         <div class="flex items-start gap-2">
                           <i class="pi pi-building text-zaccGreen mt-0.5"></i>
-                          <div>{{ office.address }}</div>
+                          <div>
+                            <div>{{ office.address }}</div>
+                            <div v-if="office.address2" class="mt-1">{{ office.address2 }}</div>
+                          </div>
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div v-if="office.phone && office.phone.length > 0" class="flex items-center gap-2">
                           <i class="pi pi-phone text-zaccGreen"></i>
-                          <a :href="`tel:${office.phone}`" class="hover:text-zaccGreen">{{ office.phone }}</a>
+                          <div class="flex flex-wrap gap-1">
+                            <a
+                              v-for="(phone, index) in office.phone"
+                              :key="index"
+                              :href="`tel:${phone.replace(/[^0-9+]/g, '')}`"
+                              class="hover:text-zaccGreen"
+                            >
+                              {{ phone }}<span v-if="index < office.phone.length - 1"> / </span>
+                            </a>
+                          </div>
                         </div>
-                        <div class="flex items-center gap-2">
-                          <i class="pi pi-envelope text-zaccGreen"></i>
-                          <a :href="`mailto:${office.email}`" class="hover:text-zaccGreen">{{ office.email }}</a>
+                        <div v-if="office.cell && office.cell.length > 0" class="flex items-center gap-2">
+                          <i class="pi pi-mobile text-zaccGreen"></i>
+                          <div class="flex flex-wrap gap-1">
+                            <a
+                              v-for="(cell, index) in office.cell"
+                              :key="index"
+                              :href="`tel:${cell.replace(/[^0-9+]/g, '')}`"
+                              class="hover:text-zaccGreen"
+                            >
+                              {{ cell }}<span v-if="index < office.cell.length - 1"> / </span>
+                            </a>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -397,50 +387,41 @@ useHead({
   ]
 })
 
-const regionalOffices = [
-  {
-    id: 1,
-    name: 'Bulawayo Office',
-    address: 'Bulawayo City Centre, Bulawayo',
-    phone: '+263 29 200 0000',
-    email: 'bulawayo@zacc.org.zw'
-  },
-  {
-    id: 2,
-    name: 'Mutare Office',
-    address: 'Mutare City Centre, Manicaland',
-    phone: '+263 20 200 0000',
-    email: 'mutare@zacc.org.zw'
-  },
-  {
-    id: 3,
-    name: 'Gweru Office',
-    address: 'Gweru City Centre, Midlands',
-    phone: '+263 54 200 0000',
-    email: 'gweru@zacc.org.zw'
-  },
-  {
-    id: 4,
-    name: 'Masvingo Office',
-    address: 'Masvingo City Centre, Masvingo',
-    phone: '+263 39 200 0000',
-    email: 'masvingo@zacc.org.zw'
-  },
-  {
-    id: 5,
-    name: 'Chinhoyi Office',
-    address: 'Chinhoyi City Centre, Mashonaland West',
-    phone: '+263 67 200 0000',
-    email: 'chinhoyi@zacc.org.zw'
-  },
-  {
-    id: 6,
-    name: 'Bindura Office',
-    address: 'Bindura City Centre, Mashonaland Central',
-    phone: '+263 71 200 0000',
-    email: 'bindura@zacc.org.zw'
+const headOfficeMetadata = ref<any>(null)
+const regionalOffices = ref<any[]>([])
+
+// Fetch contact information
+const fetchContactInfo = async () => {
+  try {
+    const content = await $fetch('/api/public/page-content', {
+      params: { pageKey: 'home' }
+    })
+    
+    const headOffice = content.find((item: any) => item.sectionKey === 'contact-head-office')
+    if (headOffice?.metadata) {
+      headOfficeMetadata.value = headOffice.metadata
+    }
+    
+    // Fetch reporting offices
+    const contactContent = await $fetch('/api/public/page-content', {
+      params: { pageKey: 'contact' }
+    })
+    
+    const reportingOffices = contactContent.find((item: any) => item.sectionKey === 'reporting-offices')
+    if (reportingOffices?.metadata?.offices) {
+      regionalOffices.value = reportingOffices.metadata.offices.map((office: any, index: number) => ({
+        id: index + 1,
+        ...office
+      }))
+    }
+  } catch (error) {
+    console.error('Error fetching contact info:', error)
   }
-]
+}
+
+onMounted(() => {
+  fetchContactInfo()
+})
 
 const form = reactive({
   name: '',

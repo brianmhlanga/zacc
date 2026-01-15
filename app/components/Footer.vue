@@ -1,9 +1,9 @@
 <template>
   <footer class="relative overflow-hidden border-t border-black/10">
-    <div class="absolute inset-0 bg-zaccGreen"></div>
+    <div class="absolute inset-0 bg-zaccBlack"></div>
     <!-- Zimbabwe flag accent stripes on the right -->
     <div
-      class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-[repeating-linear-gradient(90deg,#209341_0_8px,#d4af37_8px_16px,#e11d2d_16px_24px,#111111_24px_32px,#e11d2d_32px_40px,#d4af37_40px_48px,#209341_48px_56px)]"
+      class="pointer-events-none absolute inset-y-0 right-0 w-16 bg-[repeating-linear-gradient(90deg,#209341_0_8px,#d4af37_8px_16px,#e11d2d_16px_24px,#111111_24px_32px,#e11d2d_32px_40px,#d4af37_40px_48px)]"
     ></div>
     <div class="relative z-10 mx-auto max-w-7xl px-6 py-10 text-white">
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

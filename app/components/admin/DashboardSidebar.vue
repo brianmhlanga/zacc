@@ -47,7 +47,7 @@
           class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
           :class="[
             isActive(item.path)
-              ? 'bg-zaccGreen/10 text-zaccGreen border-l-4 border-zaccGreen'
+              ? 'bg-zaccBlack/10 text-zaccGreen border-l-4 border-zaccGreen'
               : 'text-gray-700 hover:bg-gray-100'
           ]"
         >
@@ -75,7 +75,7 @@
           class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
           :class="[
             isActive('/admin/settings')
-              ? 'bg-zaccGreen/10 text-zaccGreen border-l-4 border-zaccGreen'
+              ? 'bg-zaccBlack/10 text-zaccGreen border-l-4 border-zaccGreen'
               : 'text-gray-700 hover:bg-gray-100'
           ]"
         >
@@ -88,7 +88,7 @@
     <!-- User Section -->
     <div class="border-t border-gray-200 p-4">
       <div v-if="!collapsed" class="flex items-center gap-3">
-        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccGreen text-white font-semibold">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccBlack text-white font-semibold">
           {{ userInitials }}
         </div>
         <div class="flex-1 min-w-0">
@@ -108,7 +108,7 @@
         <Menu ref="userMenu" :model="userMenuItems" popup />
         <button
           @click="toggleUserMenu"
-          class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccGreen text-white font-semibold hover:opacity-90 transition-opacity"
+          class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccBlack text-white font-semibold hover:opacity-90 transition-opacity"
           aria-label="User menu"
         >
           {{ userInitials }}

@@ -23,7 +23,7 @@
                 :key="stat.id"
                 :class="[
                   'rounded-lg p-4 text-center text-white shadow-glow',
-                  stat.color === 'green' ? 'bg-zaccGreen/95' : stat.color === 'gold' ? 'bg-zaccGold/95' : 'bg-zaccBlack/95'
+                  stat.color === 'green' ? 'bg-zaccBlack/95' : stat.color === 'gold' ? 'bg-zaccGold/95' : 'bg-zaccBlack/95'
                 ]"
               >
                 <div class="text-2xl font-extrabold">
@@ -53,7 +53,7 @@
           </p>
           <div class="grid gap-4 sm:grid-cols-2">
             <div class="rounded-[5px] bg-white p-5 shadow-[0_5px_10px_0_rgba(41,61,102,0.2)]">
-              <div class="mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-zaccGreen/10 text-zaccGreen">
+              <div class="mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-zaccBlack/10 text-zaccGreen">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -98,7 +98,7 @@
           <div class="mt-4">
             <NuxtLink
               to="/about"
-              class="inline-flex items-center gap-2 rounded-md bg-zaccGreen px-4 py-2 font-semibold text-white shadow-glow hover:brightness-110"
+              class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-4 py-2 font-semibold text-white shadow-glow hover:brightness-110"
             >
               Read More
               <svg

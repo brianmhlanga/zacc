@@ -30,7 +30,7 @@
                 :key="menu.id"
                 @click="selectMenu(menu)"
                 class="p-3 rounded-lg cursor-pointer transition-colors"
-                :class="selectedMenu?.id === menu.id ? 'bg-zaccGreen/10 border-l-4 border-zaccGreen' : 'hover:bg-gray-50 border-l-4 border-transparent'"
+                :class="selectedMenu?.id === menu.id ? 'bg-zaccBlack/10 border-l-4 border-zaccGreen' : 'hover:bg-gray-50 border-l-4 border-transparent'"
               >
                 <div class="font-semibold text-zaccBlack">{{ menu.name }}</div>
                 <div class="text-xs text-gray-500 mt-1">{{ menu.location }}</div>

@@ -47,7 +47,7 @@
             <Column field="name" header="Name" sortable>
               <template #body="{ data }">
                 <div class="flex items-center gap-3">
-                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccGreen text-white font-semibold">
+                  <div class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccBlack text-white font-semibold">
                     {{ getUserInitials(data.name) }}
                   </div>
                   <div>

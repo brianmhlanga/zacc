@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/gavel.jpg" alt="Court rulings" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -179,7 +179,7 @@
           <Card class="text-center border-l-4 border-l-zaccGreen">
             <template #content>
               <div class="p-6">
-                <div class="w-16 h-16 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-4">
+                <div class="w-16 h-16 rounded-full bg-zaccBlack/10 flex items-center justify-center mx-auto mb-4">
                   <i class="pi pi-file text-zaccGreen text-3xl"></i>
                 </div>
                 <div class="text-3xl font-extrabold text-zaccBlack mb-2">{{ totalRulings }}</div>
@@ -201,7 +201,7 @@
           <Card class="text-center border-l-4 border-l-zaccGreen">
             <template #content>
               <div class="p-6">
-                <div class="w-16 h-16 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-4">
+                <div class="w-16 h-16 rounded-full bg-zaccBlack/10 flex items-center justify-center mx-auto mb-4">
                   <i class="pi pi-dollar text-zaccGreen text-3xl"></i>
                 </div>
                 <div class="text-3xl font-extrabold text-zaccBlack mb-2">${{ assetRecoveryTotal }}</div>
@@ -261,7 +261,7 @@
           <p class="text-zaccBlack/80 leading-relaxed mb-6">{{ selectedRuling.summary }}</p>
           <h4 class="font-extrabold text-lg mb-3">Details</h4>
           <p class="text-zaccBlack/80 leading-relaxed mb-6">{{ selectedRuling.details }}</p>
-          <div v-if="selectedRuling.assetsRecovered" class="rounded-lg bg-zaccGreen/5 p-4 border border-zaccGreen/20 mb-6">
+          <div v-if="selectedRuling.assetsRecovered" class="rounded-lg bg-zaccBlack/5 p-4 border border-zaccGreen/20 mb-6">
             <div class="font-semibold text-zaccGreen mb-2">Assets Recovered</div>
             <div class="text-zaccBlack/70">{{ selectedRuling.assetsRecovered }}</div>
           </div>

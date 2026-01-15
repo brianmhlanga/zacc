@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/harare.JPG" alt="Gallery" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -66,7 +66,7 @@
             :severity="selectedCategory === null ? null : 'secondary'"
             :outlined="selectedCategory !== null"
             @click="selectedCategory = null"
-            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            class="!bg-zaccBlack !border-zaccGreen !text-white"
             :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === null }"
           />
           <Button
@@ -76,7 +76,7 @@
             :severity="selectedCategory === category.value ? null : 'secondary'"
             :outlined="selectedCategory !== category.value"
             @click="selectedCategory = selectedCategory === category.value ? null : category.value"
-            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            class="!bg-zaccBlack !border-zaccGreen !text-white"
             :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === category.value }"
           />
         </div>
@@ -86,7 +86,7 @@
           <div
             v-for="i in 12"
             :key="i"
-            class="aspect-square bg-zaccGreen/10 rounded-lg animate-pulse"
+            class="aspect-square bg-zaccBlack/10 rounded-lg animate-pulse"
           ></div>
         </div>
 
@@ -98,7 +98,7 @@
             class="group relative overflow-hidden rounded-lg cursor-pointer hover:shadow-xl transition-all"
             @click="openLightbox(image)"
           >
-            <div class="aspect-square overflow-hidden bg-zaccGreen/10">
+            <div class="aspect-square overflow-hidden bg-zaccBlack/10">
               <img
                 :src="image.src"
                 :alt="image.alt || image.title"
@@ -179,7 +179,7 @@
         </div>
       </template>
       <div v-if="selectedImage" class="relative">
-        <div class="aspect-video overflow-hidden rounded-lg bg-zaccGreen/10 mb-4">
+        <div class="aspect-video overflow-hidden rounded-lg bg-zaccBlack/10 mb-4">
           <img
             :src="getImageUrl(selectedImage.imageUrl || selectedImage.src)"
             :alt="selectedImage.alt || selectedImage.title"

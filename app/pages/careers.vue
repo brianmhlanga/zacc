@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/businessman.jpg" alt="Careers" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -37,7 +37,7 @@
             <Card class="text-center border-l-4 border-l-zaccGreen">
               <template #content>
                 <div class="p-6">
-                  <div class="w-16 h-16 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-4">
+                  <div class="w-16 h-16 rounded-full bg-zaccBlack/10 flex items-center justify-center mx-auto mb-4">
                     <i class="pi pi-heart text-zaccGreen text-3xl"></i>
                   </div>
                   <h3 class="font-extrabold text-lg mb-2">Purpose-Driven</h3>
@@ -59,7 +59,7 @@
             <Card class="text-center border-l-4 border-l-zaccGreen">
               <template #content>
                 <div class="p-6">
-                  <div class="w-16 h-16 rounded-full bg-zaccGreen/10 flex items-center justify-center mx-auto mb-4">
+                  <div class="w-16 h-16 rounded-full bg-zaccBlack/10 flex items-center justify-center mx-auto mb-4">
                     <i class="pi pi-users text-zaccGreen text-3xl"></i>
                   </div>
                   <h3 class="font-extrabold text-lg mb-2">Team Environment</h3>
@@ -121,9 +121,9 @@
           <Card v-for="i in 3" :key="i" class="animate-pulse">
             <template #content>
               <div class="p-6">
-                <div class="h-6 bg-zaccGreen/10 rounded w-3/4 mb-4"></div>
-                <div class="h-4 bg-zaccGreen/10 rounded w-1/2 mb-2"></div>
-                <div class="h-4 bg-zaccGreen/10 rounded w-2/3"></div>
+                <div class="h-6 bg-zaccBlack/10 rounded w-3/4 mb-4"></div>
+                <div class="h-4 bg-zaccBlack/10 rounded w-1/2 mb-2"></div>
+                <div class="h-4 bg-zaccBlack/10 rounded w-2/3"></div>
               </div>
             </template>
           </Card>
@@ -293,7 +293,7 @@
             </li>
           </ul>
 
-          <div v-if="selectedJob.benefits" class="rounded-lg bg-zaccGreen/5 p-4 border border-zaccGreen/20 mb-6">
+          <div v-if="selectedJob.benefits" class="rounded-lg bg-zaccBlack/5 p-4 border border-zaccGreen/20 mb-6">
             <h4 class="font-extrabold text-lg mb-3 text-zaccGreen">Benefits</h4>
             <p class="text-zaccBlack/70">{{ selectedJob.benefits }}</p>
           </div>

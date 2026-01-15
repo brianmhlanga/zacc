@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div class="overflow-x-hidden">
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/gavel.jpg" alt="News and updates" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -111,7 +111,7 @@
                 iconPos="right"
                 severity="secondary"
                 outlined
-                class="w-full group-hover:!bg-zaccGreen group-hover:!border-zaccGreen group-hover:!text-white transition-all duration-300"
+                class="w-full group-hover:!bg-zaccBlack group-hover:!border-zaccGreen group-hover:!text-white transition-all duration-300"
                 @click.stop
               />
             </div>

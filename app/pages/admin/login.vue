@@ -41,7 +41,7 @@
                   id="email"
                   v-model="form.email"
                   type="email"
-                  placeholder="admin@zacc.gov.zw"
+                  placeholder="Enter your email"
                   class="w-full"
                   :class="{ 'p-invalid': errors.email }"
                   required

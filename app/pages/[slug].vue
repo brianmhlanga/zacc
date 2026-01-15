@@ -27,16 +27,16 @@
       <!-- Article Content -->
       <div v-else-if="article" class="min-h-screen">
         <!-- Hero Section with Article Image -->
-        <section class="relative isolate overflow-hidden bg-zaccGreen text-white">
+        <section class="relative isolate overflow-hidden bg-zaccBlack text-white">
           <div v-if="article.imageUrl" class="absolute inset-0">
             <img
               :src="getImageUrl(article.imageUrl)"
               :alt="article.title"
               class="absolute inset-0 h-full w-full object-cover opacity-30"
             />
-            <div class="absolute inset-0 bg-zaccGreen/80"></div>
+            <div class="absolute inset-0 bg-zaccBlack/80"></div>
           </div>
-          <div v-else class="absolute inset-0 bg-zaccGreen"></div>
+          <div v-else class="absolute inset-0 bg-zaccBlack"></div>
           <div class="relative mx-auto max-w-4xl px-6 py-24">
             <div class="text-center">
               <div class="mb-4">

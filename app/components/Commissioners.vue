@@ -1,5 +1,5 @@
 <template>
-  <section id="commissioners" class="relative py-20 bg-zaccGreen">
+  <section id="commissioners" class="relative py-20 bg-zaccBlack">
     <div class="mx-auto max-w-7xl px-6">
       <div class="mb-8 flex items-end justify-between">
         <div>

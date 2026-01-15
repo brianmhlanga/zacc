@@ -2,10 +2,10 @@
   <NuxtLayout name="main">
     <div>
       <!-- Hero Section -->
-    <section class="relative isolate overflow-hidden bg-zaccGreen text-white py-24">
+    <section class="relative isolate overflow-hidden bg-zaccBlack text-white py-24">
       <div class="absolute inset-0">
         <img src="/gavel2.jpg" alt="Downloads" class="absolute inset-0 h-full w-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-zaccGreen/90"></div>
+        <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
       <div class="relative mx-auto max-w-7xl px-6">
         <div class="text-center">
@@ -47,7 +47,7 @@
             :severity="selectedCategory === null ? null : 'secondary'"
             :outlined="selectedCategory !== null"
             @click="selectedCategory = null"
-            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            class="!bg-zaccBlack !border-zaccGreen !text-white"
             :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === null }"
           />
           <Button
@@ -57,7 +57,7 @@
             :severity="selectedCategory === category.value ? null : 'secondary'"
             :outlined="selectedCategory !== category.value"
             @click="selectedCategory = selectedCategory === category.value ? null : category.value"
-            class="!bg-zaccGreen !border-zaccGreen !text-white"
+            class="!bg-zaccBlack !border-zaccGreen !text-white"
             :class="{ '!bg-zaccGold !border-zaccGold': selectedCategory === category.value }"
           />
         </div>
@@ -110,7 +110,7 @@
               <NuxtLink
                 :to="getFileUrl(download.fileUrl)"
                 target="_blank"
-                class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-md bg-zaccGreen px-3 py-2 text-xs font-semibold text-white hover:brightness-110 transition"
+                class="flex-1 inline-flex items-center justify-center gap-1.5 rounded-md bg-zaccBlack px-3 py-2 text-xs font-semibold text-white hover:brightness-110 transition"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

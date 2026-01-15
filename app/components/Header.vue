@@ -11,7 +11,59 @@
         </NuxtLink>
 
         <nav class="hidden lg:flex items-center gap-7 text-sm">
-          <NuxtLink to="/about" class="text-zaccBlack/80 hover:text-zaccGreen">About</NuxtLink>
+          <!-- About Us Dropdown -->
+          <div
+            class="relative"
+            @mouseenter="showAboutDropdown = true"
+            @mouseleave="showAboutDropdown = false"
+          >
+            <button class="text-zaccBlack/80 hover:text-zaccGreen flex items-center gap-1 py-2">
+              About Us
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-4 w-4"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <div
+              v-show="showAboutDropdown"
+              class="absolute top-full left-0 w-56 z-50"
+            >
+              <!-- Invisible padding area to bridge gap -->
+              <div class="h-2"></div>
+              <div class="bg-white rounded-lg shadow-xl border border-zaccGreen/20 overflow-hidden">
+                <NuxtLink
+                  to="/about"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showAboutDropdown = false"
+                >
+                  About Us
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/departments"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showAboutDropdown = false"
+                >
+                  Departments
+                </NuxtLink>
+                <NuxtLink
+                  to="/units"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showAboutDropdown = false"
+                >
+                  Units
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
           <NuxtLink to="/statistics" class="text-zaccBlack/80 hover:text-zaccGreen">Statistics</NuxtLink>
           <NuxtLink to="/legislation" class="text-zaccBlack/80 hover:text-zaccGreen">Legislation</NuxtLink>
           <NuxtLink to="/report" class="text-zaccBlack/80 hover:text-zaccGreen">Report</NuxtLink>
@@ -60,13 +112,13 @@
                   >
                     <NuxtLink
                       :to="`/${article.slug}`"
-                      class="block p-4 hover:bg-zaccGreen/5 transition-colors"
+                      class="block p-4 hover:bg-zaccBlack/5 transition-colors"
                       @click="showNewsDropdown = false"
                     >
                       <div class="flex items-start gap-3">
                         <div
                           v-if="article.imageUrl"
-                          class="flex-shrink-0 w-16 h-16 rounded overflow-hidden bg-zaccGreen/10"
+                          class="flex-shrink-0 w-16 h-16 rounded overflow-hidden bg-zaccBlack/10"
                         >
                           <img
                             :src="getImageUrl(article.imageUrl)"
@@ -90,10 +142,10 @@
                   </div>
                   
                   <!-- View All Link -->
-                  <div class="border-t border-zaccGreen/20 bg-zaccGreen/5">
+                  <div class="border-t border-zaccGreen/20 bg-zaccBlack/5">
                     <NuxtLink
                       to="/news"
-                      class="block p-4 text-center text-sm font-semibold text-zaccGreen hover:bg-zaccGreen/10 transition-colors"
+                      class="block p-4 text-center text-sm font-semibold text-zaccGreen hover:bg-zaccBlack/10 transition-colors"
                       @click="showNewsDropdown = false"
                     >
                       View All News
@@ -135,7 +187,7 @@
         <div class="hidden lg:flex items-center gap-3">
           <NuxtLink
             to="/report"
-            class="inline-flex items-center gap-2 rounded-md bg-zaccGreen px-4 py-2 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+            class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-4 py-2 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +239,7 @@
         <NuxtLink to="/contact" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Contact</NuxtLink>
         <NuxtLink
           to="/report"
-          class="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-zaccGreen px-4 py-2 font-semibold text-white"
+          class="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-zaccBlack px-4 py-2 font-semibold text-white"
           @click="closeMenu"
         >
           Report Now
@@ -200,6 +252,7 @@
 <script setup lang="ts">
 const isMenuOpen = ref(false)
 const showNewsDropdown = ref(false)
+const showAboutDropdown = ref(false)
 const newsItems = ref<any[]>([])
 const loadingNews = ref(false)
 

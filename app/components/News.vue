@@ -33,7 +33,7 @@
           </div>
           <NuxtLink
             to="/news"
-            class="inline-flex items-center justify-center gap-2 rounded-md bg-zaccGreen px-4 py-2 text-sm font-semibold text-white shadow-glow hover:brightness-110"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-zaccBlack px-4 py-2 text-sm font-semibold text-white shadow-glow hover:brightness-110"
           >
             View All
             <svg
@@ -57,11 +57,11 @@
           class="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] animate-pulse"
         >
           <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] bg-zaccGreen/10"></div>
+          <div class="aspect-[16/9] bg-zaccBlack/10"></div>
           <div class="p-5">
-            <div class="h-3 bg-zaccGreen/10 rounded w-24 mb-2"></div>
-            <div class="h-5 bg-zaccGreen/10 rounded w-3/4 mb-2"></div>
-            <div class="h-4 bg-zaccGreen/10 rounded w-full"></div>
+            <div class="h-3 bg-zaccBlack/10 rounded w-24 mb-2"></div>
+            <div class="h-5 bg-zaccBlack/10 rounded w-3/4 mb-2"></div>
+            <div class="h-4 bg-zaccBlack/10 rounded w-full"></div>
           </div>
         </article>
       </div>
@@ -77,7 +77,7 @@
           :data-body="article.excerpt"
         >
           <div class="h-1 bg-zaccGold"></div>
-          <div class="aspect-[16/9] overflow-hidden bg-zaccGreen/10">
+          <div class="aspect-[16/9] overflow-hidden bg-zaccBlack/10">
             <img
               v-if="article.imageUrl"
               :src="getImageUrl(article.imageUrl)"
@@ -85,7 +85,7 @@
               class="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
               loading="lazy"
             />
-            <div v-else class="h-full w-full flex items-center justify-center bg-zaccGreen/10">
+            <div v-else class="h-full w-full flex items-center justify-center bg-zaccBlack/10">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-12 w-12 text-zaccGreen/30"
