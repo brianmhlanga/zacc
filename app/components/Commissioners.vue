@@ -32,7 +32,7 @@
             :src="getImageUrl(commissioner.imageUrl)" 
             :alt="commissioner.name" 
             class="h-48 w-full object-cover"
-            @error="(e) => { (e.target as HTMLImageElement).src = '/placeholder-avatar.png' }"
+            @error="handleImageError"
           />
           <div class="p-5">
             <div class="font-semibold">{{ commissioner.name }}</div>
@@ -40,7 +40,7 @@
             <p class="mt-2 text-sm text-zaccBlack/70">{{ commissioner.description }}</p>
             <button
               @click="openCommissionerDialog(commissioner)"
-              class="mt-3 inline-flex items-center gap-2 rounded-md bg-zaccBlack px-3 py-1.5 text-xs font-semibold text-white hover:opacity-90 transition-opacity w-full justify-center"
+              class="mt-3 inline-flex items-center gap-2 rounded-md bg-zaccGold px-3 py-1.5 text-xs font-semibold text-white hover:bg-zaccGold/90 transition-opacity w-full justify-center"
             >
               View More
               <svg
@@ -79,7 +79,7 @@
               :src="getImageUrl(selectedCommissioner.imageUrl)"
               :alt="selectedCommissioner.name"
               class="w-48 h-48 rounded-lg object-cover shadow-lg"
-              @error="(e) => { (e.target as HTMLImageElement).src = '/placeholder-avatar.png' }"
+              @error="handleImageError"
             />
           </div>
           <div class="flex-1">
@@ -129,9 +129,12 @@ const loading = ref(true)
 const showDialog = ref(false)
 const selectedCommissioner = ref<any>(null)
 
+// Data URI for placeholder avatar (simple gray square)
+const placeholderAvatar = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2U1ZTdlYiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiM5Y2EzYWYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5ObyBJbWFnZTwvdGV4dD48L3N2Zz4='
+
 // Helper function to get image URL
 const getImageUrl = (imageUrl: string | null | undefined) => {
-  if (!imageUrl) return '/placeholder-avatar.png'
+  if (!imageUrl) return placeholderAvatar
   // If it already starts with /api/, use as is
   if (imageUrl.startsWith('/api/')) {
     return imageUrl
@@ -146,6 +149,16 @@ const getImageUrl = (imageUrl: string | null | undefined) => {
   }
   // Otherwise, prepend /api
   return `/api${imageUrl}`
+}
+
+// Handle image errors - prevent infinite loop
+const handleImageError = (e: Event) => {
+  const img = e.target as HTMLImageElement
+  // Only set placeholder if not already set to prevent infinite loop
+  if (img.src !== placeholderAvatar && !img.src.includes('data:image')) {
+    img.src = placeholderAvatar
+    img.onerror = null // Remove error handler to prevent loop
+  }
 }
 
 // Fetch commissioners from API

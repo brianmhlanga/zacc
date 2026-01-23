@@ -34,7 +34,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@primevue/nuxt-module": "^4.5.4",
-    "@prisma/client": "^7.2.0",
+    "@prisma/client": "^7.3.0",
     "@prisma/config": "^7.2.0",
     "dotenv": "^17.2.3",
     "tsx": "^4.21.0",

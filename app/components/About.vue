@@ -98,7 +98,7 @@
           <div class="mt-4">
             <NuxtLink
               to="/about"
-              class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-4 py-2 font-semibold text-white shadow-glow hover:brightness-110"
+              class="inline-flex items-center gap-2 rounded-md bg-zaccGold px-4 py-2 font-semibold text-white shadow-glow hover:bg-zaccGold/90"
             >
               Read More
               <svg

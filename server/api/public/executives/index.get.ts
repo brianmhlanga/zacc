@@ -5,8 +5,8 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const includeInactive = query.all === 'true'
     
-    // Fetch commissioners - active only by default, or all if requested
-    const commissioners = await prisma.commissioner.findMany({
+    // Fetch team members (executives/management)
+    const executives = await prisma.team.findMany({
       where: includeInactive ? {} : { isActive: true },
       orderBy: [
         { order: 'asc' },
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
       ]
     })
 
-    return commissioners
+    return executives
   } catch (error: any) {
     if (error.statusCode) {
       throw error
@@ -22,8 +22,7 @@ export default defineEventHandler(async (event) => {
 
     throw createError({
       statusCode: 500,
-      statusMessage: 'Failed to fetch commissioners'
+      statusMessage: 'Failed to fetch executives'
     })
   }
 })
-

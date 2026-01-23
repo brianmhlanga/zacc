@@ -2,13 +2,7 @@
   <NuxtLayout name="main">
     <div>
       <Hero />
-    <About />
-    <Statistics />
-    <WhatWeDo />
-    <News />
-    <Commissioners />
-    <Downloads />
-    <Contact />
+      <Statistics />
     </div>
   </NuxtLayout>
 </template>

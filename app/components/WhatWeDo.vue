@@ -110,7 +110,7 @@
           </p>
           <button
             @click="openServiceDialog(service)"
-            class="mt-3 inline-flex items-center gap-2 rounded-md bg-zaccBlack px-3 py-1.5 text-xs font-semibold text-white hover:brightness-110 transition-all w-full justify-center"
+            class="mt-3 inline-flex items-center gap-2 rounded-md bg-zaccGold px-3 py-1.5 text-xs font-semibold text-white hover:bg-zaccGold/90 transition-all w-full justify-center"
           >
             Read More
             <svg

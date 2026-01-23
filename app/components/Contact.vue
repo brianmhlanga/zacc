@@ -89,7 +89,7 @@
             <button
               type="submit"
               :disabled="isSubmitting"
-              class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-5 py-2.5 font-semibold text-white shadow-glow hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+              class="inline-flex items-center gap-2 rounded-md bg-zaccGold px-5 py-2.5 font-semibold text-white shadow-glow hover:bg-zaccGold/90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span v-if="isSubmitting" class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></span>
               <span v-else>Send</span>

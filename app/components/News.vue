@@ -33,7 +33,7 @@
           </div>
           <NuxtLink
             to="/news"
-            class="inline-flex items-center justify-center gap-2 rounded-md bg-zaccBlack px-4 py-2 text-sm font-semibold text-white shadow-glow hover:brightness-110"
+            class="inline-flex items-center justify-center gap-2 rounded-md bg-zaccGold px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-zaccGold/90"
           >
             View All
             <svg

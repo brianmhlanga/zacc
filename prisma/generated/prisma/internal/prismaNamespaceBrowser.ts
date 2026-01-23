@@ -60,6 +60,7 @@ export const ModelName = {
   Statistic: 'Statistic',
   Service: 'Service',
   Commissioner: 'Commissioner',
+  Team: 'Team',
   News: 'News',
   NewsTag: 'NewsTag',
   Download: 'Download',
@@ -87,12 +88,12 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  * Enums
  */
 
-export const TransactionIsolationLevel = {
+export const TransactionIsolationLevel = runtime.makeStrictEnum({
   ReadUncommitted: 'ReadUncommitted',
   ReadCommitted: 'ReadCommitted',
   RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
-} as const
+} as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
@@ -243,6 +244,25 @@ export const CommissionerScalarFieldEnum = {
 } as const
 
 export type CommissionerScalarFieldEnum = (typeof CommissionerScalarFieldEnum)[keyof typeof CommissionerScalarFieldEnum]
+
+
+export const TeamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  role: 'role',
+  title: 'title',
+  description: 'description',
+  bio: 'bio',
+  imageUrl: 'imageUrl',
+  email: 'email',
+  phone: 'phone',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
 
 
 export const NewsScalarFieldEnum = {
@@ -597,15 +617,15 @@ export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
 export const NullableJsonNullValueInput = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull'
+  DbNull: DbNull,
+  JsonNull: JsonNull
 } as const
 
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const JsonNullValueInput = {
-  JsonNull: 'JsonNull'
+  JsonNull: JsonNull
 } as const
 
 export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
@@ -664,9 +684,9 @@ export type ValueOrderByRelevanceFieldEnum = (typeof ValueOrderByRelevanceFieldE
 
 
 export const JsonNullValueFilter = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull',
-  AnyNull: 'AnyNull'
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
@@ -746,6 +766,21 @@ export const CommissionerOrderByRelevanceFieldEnum = {
 } as const
 
 export type CommissionerOrderByRelevanceFieldEnum = (typeof CommissionerOrderByRelevanceFieldEnum)[keyof typeof CommissionerOrderByRelevanceFieldEnum]
+
+
+export const TeamOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  role: 'role',
+  title: 'title',
+  description: 'description',
+  bio: 'bio',
+  imageUrl: 'imageUrl',
+  email: 'email',
+  phone: 'phone'
+} as const
+
+export type TeamOrderByRelevanceFieldEnum = (typeof TeamOrderByRelevanceFieldEnum)[keyof typeof TeamOrderByRelevanceFieldEnum]
 
 
 export const NewsOrderByRelevanceFieldEnum = {

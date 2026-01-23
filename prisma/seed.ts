@@ -1698,6 +1698,646 @@ async function main() {
     }
     console.log(`✅ Page content seeding complete! Created ${pageContentsCreated} new content item(s), updated ${pageContentsUpdated} existing item(s).`)
 
+    // ============================================
+    // SEED COMMISSIONERS
+    // ============================================
+    console.log('\n📋 Seeding Commissioners...')
+    
+    const commissioners = [
+      // Current Commission - 2024 to Present
+      {
+        name: 'Honourable Michael Reza',
+        role: 'Chairperson',
+        title: 'Chairperson',
+        description: 'Michael Reza was appointed Chairperson of the Zimbabwe Anti-Corruption Commission in March 2024. He has experience spanning more than three decades in the public service. The Chairperson is a renowned legal practitioner. He served in the National Prosecuting Authority as Law Officer from 2009 where he rose through the ranks to the position of Acting Deputy Prosecutor General in 2020, until his appointment as the ZACC Chairperson.',
+        bio: 'Hon Reza has a track record of successful prosecution of high-profile criminal and corruption cases. He holds a Master of Law Degree (LLM) with the Midlands State University (MSU) and a Bachelor of law Degree (LLB) with the University of South Africa.',
+        imageUrl: '/uploads/commissioners/michael-reza.jpg',
+        email: null,
+        phone: null,
+        order: 1,
+        isActive: true
+      },
+      {
+        name: 'Betty Wenjere',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Betty Wenjere chairs the Finance, Administration, and Investments Committee. She is a Registered Public Accountant and Associate of the Chartered Governance and Accountancy Institute.',
+        bio: 'Commissioner Wenjere has held senior positions in various government ministries including Ministry of Primary and Secondary Education, Ministry of Lands, Agriculture, Fisheries, Water and Rural Development and the Ministry of Information, Publicity and Broadcasting Services.',
+        imageUrl: '/uploads/commissioners/betty-wenjere.jpg',
+        email: null,
+        phone: null,
+        order: 2,
+        isActive: true
+      },
+      {
+        name: 'Dr Obson Matunja',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Dr. Obson Matunja chairs the Audit and Risk Committee and as well as the Risk Committee (ERM).',
+        bio: 'Dr. Matunja has wealth of experience in forensic accounting, auditing, and risk management spanning over 30 years. He has served in both the public and private sectors, and held key roles at strategic institutions that include ZIMRA, RBZ, and ZESA Holdings.',
+        imageUrl: '/uploads/commissioners/obson-matunja.jpg',
+        email: null,
+        phone: null,
+        order: 3,
+        isActive: true
+      },
+      {
+        name: 'Meme Rumbidzai Zvimba',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Meme Rumbidzai Zvimba is a registered Legal practitioner. She chairs the Legal Services committee.',
+        bio: 'Commissioner Zvimba has extensive experience in constitutional, criminal, and corporate law and spent over 15 years in private practice where she represented high-profile clients.',
+        imageUrl: '/uploads/commissioners/meme-zvimba.jpg',
+        email: null,
+        phone: null,
+        order: 4,
+        isActive: true
+      },
+      {
+        name: 'Shelton Dube',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Shelton Dube chairs the Investigations Committee.',
+        bio: 'He is a retired officer of the Zimbabwe Republic Police where he retired at the rank of Commissioner after 36 years in service. He has worked with the United Nations and International Criminal Police Organization (INTERPOL).',
+        imageUrl: '/uploads/commissioners/shelton-dube.jpg',
+        email: null,
+        phone: null,
+        order: 5,
+        isActive: true
+      },
+      {
+        name: 'Kindness Paradza',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Kindness Paradza chairs the Communications and External Relations Committee.',
+        bio: 'He is a journalist by profession, a three-term Member of Parliament and a former Deputy Minister of Information, Publicity and Broadcasting Services.',
+        imageUrl: '/uploads/commissioners/kindness-paradza.jpg',
+        email: null,
+        phone: null,
+        order: 6,
+        isActive: true
+      },
+      {
+        name: 'Zalerah Makari',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Zalerah H. Makari chairs the Human Resources, Learning and Development Committee.',
+        bio: 'She is a former Parliamentarian who has a strong background in telecommunications, finance, and international relations.',
+        imageUrl: '/uploads/commissioners/zalerah-makari.jpg',
+        email: null,
+        phone: null,
+        order: 7,
+        isActive: true
+      },
+      {
+        name: 'Patrick Tendai Mukorera',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Patrick Tendai Mukorera chairs the Asset Recovery Committee.',
+        bio: 'He is a retired member of the Central Intelligence Organisation where he served for more than 30 years.',
+        imageUrl: '/uploads/commissioners/patrick-mukorera.jpg',
+        email: null,
+        phone: null,
+        order: 8,
+        isActive: true
+      },
+      {
+        name: 'Chido Madiwa',
+        role: 'Commissioner',
+        title: 'Commissioner',
+        description: 'Commissioner Chido Madiwa chairs the Prevention of Corruption Committee and is a gender expert with over 24 years in public service.',
+        bio: 'She is a former Director in the Ministry of Women Affairs, Community, Small and Medium Enterprises Development, and a former Parliamentarian who chaired the Parliamentary Portfolio Committee on Women\'s Affairs, Community, SME\'s Development.',
+        imageUrl: '/uploads/commissioners/chido-madiwa.jpg',
+        email: null,
+        phone: null,
+        order: 9,
+        isActive: true
+      },
+      // 4th Commission - 2019 to 2024 (Historical - marked as inactive)
+      {
+        name: 'Justice Loyce Matanda-Moyo',
+        role: 'Chairperson',
+        title: 'Chairperson (4th Commission)',
+        description: 'Justice Loyce Matanda-Moyo chaired the Zimbabwe Anti-Corruption Commission from April 2019 – October 2023. She became the first female Chairperson of ZACC.',
+        bio: 'Justice Matanda-Moyo is a High Court Judge and has also served as Labour Court Judge.',
+        imageUrl: '/uploads/commissioners/loyce-matanda-moyo.jpg',
+        email: null,
+        phone: null,
+        order: 10,
+        isActive: false
+      },
+      {
+        name: 'Thandiwe Mlobane',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/thandiwe-mlobane.jpg',
+        email: null,
+        phone: null,
+        order: 11,
+        isActive: false
+      },
+      {
+        name: 'Dr. Ndakaripa Hungwe',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/ndakaripa-hungwe.jpg',
+        email: null,
+        phone: null,
+        order: 12,
+        isActive: false
+      },
+      {
+        name: 'Kuziwa Phineas Murapa',
+        role: 'Deputy Chairperson',
+        title: 'Deputy Chairperson (4th Commission)',
+        description: 'Deputy Chairperson of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/kuziwa-murapa.jpg',
+        email: null,
+        phone: null,
+        order: 13,
+        isActive: false
+      },
+      {
+        name: 'Michael Dennis Santu',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/michael-santu.jpg',
+        email: null,
+        phone: null,
+        order: 14,
+        isActive: false
+      },
+      {
+        name: 'Gabriel Chaibva',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/gabriel-chaibva.jpg',
+        email: null,
+        phone: null,
+        order: 15,
+        isActive: false
+      },
+      {
+        name: 'Jessie Fungai Majome',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/jessie-majome.jpg',
+        email: null,
+        phone: null,
+        order: 16,
+        isActive: false
+      },
+      {
+        name: 'Frank Muchengwa',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/frank-muchengwa.jpg',
+        email: null,
+        phone: null,
+        order: 17,
+        isActive: false
+      },
+      {
+        name: 'John Makamure',
+        role: 'Commissioner',
+        title: 'Commissioner (4th Commission)',
+        description: 'Commissioner of the 4th Commission (2019-2024).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/john-makamure.jpg',
+        email: null,
+        phone: null,
+        order: 18,
+        isActive: false
+      },
+      // 3rd Commission - 2016 to 2019 (Historical - marked as inactive)
+      {
+        name: 'Dr Job Whabira',
+        role: 'Chairperson',
+        title: 'Chairperson (3rd Commission)',
+        description: 'Dr Whabira (now late) was a retired senior civil servant and former Permanent Secretary in the Ministry of Defence, and Commissioner of the Public Service Commission. He chaired the 3rd Commission from 2016 until January 2019.',
+        bio: null,
+        imageUrl: '/uploads/commissioners/job-whabira.jpg',
+        email: null,
+        phone: null,
+        order: 19,
+        isActive: false
+      },
+      {
+        name: 'Dr. Nanette Silukhuni',
+        role: 'Deputy Chairperson',
+        title: 'Deputy Chairperson (3rd Commission)',
+        description: 'Deputy Chairperson of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/nanette-silukhuni.jpg',
+        email: null,
+        phone: null,
+        order: 20,
+        isActive: false
+      },
+      {
+        name: 'Goodson Nguni',
+        role: 'Commissioner',
+        title: 'Commissioner (3rd Commission)',
+        description: 'Commissioner of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/goodson-nguni.jpg',
+        email: null,
+        phone: null,
+        order: 21,
+        isActive: false
+      },
+      {
+        name: 'Christine Fundira',
+        role: 'Commissioner',
+        title: 'Commissioner (3rd Commission)',
+        description: 'Commissioner of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/christine-fundira.jpg',
+        email: null,
+        phone: null,
+        order: 22,
+        isActive: false
+      },
+      {
+        name: 'Denford Chirindo',
+        role: 'Commissioner',
+        title: 'Commissioner (3rd Commission)',
+        description: 'Commissioner of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/denford-chirindo.jpg',
+        email: null,
+        phone: null,
+        order: 23,
+        isActive: false
+      },
+      {
+        name: 'Dr. Cathy Muchechetere',
+        role: 'Commissioner',
+        title: 'Commissioner (3rd Commission)',
+        description: 'Commissioner of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/cathy-muchechetere.jpg',
+        email: null,
+        phone: null,
+        order: 24,
+        isActive: false
+      },
+      {
+        name: 'Farai Mashonganyika- Chinyani',
+        role: 'Commissioner',
+        title: 'Commissioner (3rd Commission)',
+        description: 'Commissioner of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/farai-mashonganyika.jpg',
+        email: null,
+        phone: null,
+        order: 25,
+        isActive: false
+      },
+      {
+        name: 'Boyana Ndou',
+        role: 'Commissioner',
+        title: 'Commissioner (3rd Commission)',
+        description: 'Commissioner of the 3rd Commission (2016-2019).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/boyana-ndou.jpg',
+        email: null,
+        phone: null,
+        order: 26,
+        isActive: false
+      },
+      // 2nd Commission - 2011 to 2015 (Historical - marked as inactive)
+      {
+        name: 'Rtd Brigadier Denford Chirindo',
+        role: 'Chairperson',
+        title: 'Chairperson (2nd Commission)',
+        description: 'Rtd Brigadier Denford Chirindo is a Lawyer and a retired soldier. Rtd Brig Chirindo chaired the Commission during the transitional period to the new constitutional framework that resulted in the Commission being renamed from ZACC from the Anti-Corruption Commission.',
+        bio: null,
+        imageUrl: '/uploads/commissioners/denford-chirindo-2nd.jpg',
+        email: null,
+        phone: null,
+        order: 27,
+        isActive: false
+      },
+      {
+        name: 'Teresa Pearl Mugadza',
+        role: 'Deputy Chairperson',
+        title: 'Deputy Chairperson (2nd Commission)',
+        description: 'Deputy Chairperson of the 2nd Commission (2011-2015).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/teresa-mugadza.jpg',
+        email: null,
+        phone: null,
+        order: 28,
+        isActive: false
+      },
+      {
+        name: 'Goodwill Shana',
+        role: 'Commissioner',
+        title: 'Commissioner (2nd Commission)',
+        description: 'Commissioner of the 2nd Commission (2011-2015).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/goodwill-shana.jpg',
+        email: null,
+        phone: null,
+        order: 29,
+        isActive: false
+      },
+      {
+        name: 'Emmanuel Chimwanda',
+        role: 'Commissioner',
+        title: 'Commissioner (2nd Commission)',
+        description: 'Commissioner of the 2nd Commission (2011-2015).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/emmanuel-chimwanda.jpg',
+        email: null,
+        phone: null,
+        order: 30,
+        isActive: false
+      },
+      {
+        name: 'Shepherd Gwasira',
+        role: 'Commissioner',
+        title: 'Commissioner (2nd Commission)',
+        description: 'Commissioner of the 2nd Commission (2011-2015).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/shepherd-gwasira.jpg',
+        email: null,
+        phone: null,
+        order: 31,
+        isActive: false
+      },
+      {
+        name: 'Dr Elita Sakupwanya',
+        role: 'Commissioner',
+        title: 'Commissioner (2nd Commission)',
+        description: 'Commissioner of the 2nd Commission (2011-2015).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/elita-sakupwanya.jpg',
+        email: null,
+        phone: null,
+        order: 32,
+        isActive: false
+      },
+      {
+        name: 'Lakayana Dube',
+        role: 'Commissioner',
+        title: 'Commissioner (2nd Commission)',
+        description: 'Commissioner of the 2nd Commission (2011-2015).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/lakayana-dube.jpg',
+        email: null,
+        phone: null,
+        order: 33,
+        isActive: false
+      },
+      // 1st Commission - 2005 to 2010 (Historical - marked as inactive)
+      {
+        name: 'Abdulman Eric Harid',
+        role: 'Chairperson',
+        title: 'Chairperson (1st Commission)',
+        description: 'Mr Harid (Late) was the first Chairperson of Anti-Corruption Commission (ACC). He was appointed following the enactment of the Anti-Corruption Commission Act of 2005. Mr Harid was a distinguished public servant who had previously served as Zimbabwe\'s first black Comptroller and Auditor-General.',
+        bio: 'During the tenure, he laid the foundation for the institutionalisation of the ACC.',
+        imageUrl: '/uploads/commissioners/abdulman-harid.jpg',
+        email: null,
+        phone: null,
+        order: 34,
+        isActive: false
+      },
+      {
+        name: 'Dr. Rutendo Faith Wutawunashe',
+        role: 'Deputy Chairperson',
+        title: 'Deputy Chairperson (1st Commission)',
+        description: 'Deputy Chairperson of the 1st Commission (2005-2010).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/rutendo-wutawunashe.jpg',
+        email: null,
+        phone: null,
+        order: 35,
+        isActive: false
+      },
+      {
+        name: 'Johannes Tomana',
+        role: 'Commissioner',
+        title: 'Commissioner (1st Commission)',
+        description: 'Commissioner of the 1st Commission (2005-2010).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/johannes-tomana.jpg',
+        email: null,
+        phone: null,
+        order: 36,
+        isActive: false
+      },
+      {
+        name: 'Bessie Nhandara',
+        role: 'Commissioner',
+        title: 'Commissioner (1st Commission)',
+        description: 'Commissioner of the 1st Commission (2005-2010).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/bessie-nhandara.jpg',
+        email: null,
+        phone: null,
+        order: 37,
+        isActive: false
+      },
+      {
+        name: 'Alice Nkomo',
+        role: 'Commissioner',
+        title: 'Commissioner (1st Commission)',
+        description: 'Commissioner of the 1st Commission (2005-2010).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/alice-nkomo.jpg',
+        email: null,
+        phone: null,
+        order: 38,
+        isActive: false
+      },
+      {
+        name: 'Kuziwa Nyamwanza',
+        role: 'Commissioner',
+        title: 'Commissioner (1st Commission)',
+        description: 'Commissioner of the 1st Commission (2005-2010).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/kuziwa-nyamwanza.jpg',
+        email: null,
+        phone: null,
+        order: 39,
+        isActive: false
+      },
+      {
+        name: 'Retired Brigadier Elasto Madzingira',
+        role: 'Commissioner',
+        title: 'Commissioner (1st Commission)',
+        description: 'Commissioner of the 1st Commission (2005-2010).',
+        bio: null,
+        imageUrl: '/uploads/commissioners/elasto-madzingira.jpg',
+        email: null,
+        phone: null,
+        order: 40,
+        isActive: false
+      }
+    ]
+
+    let commissionersCreated = 0
+    let commissionersUpdated = 0
+    
+    for (const commissionerData of commissioners) {
+      // Try to find existing commissioner by name and role
+      const existing = await prisma.commissioner.findFirst({
+        where: {
+          name: commissionerData.name,
+          role: commissionerData.role
+        }
+      })
+
+      if (!existing) {
+        await prisma.commissioner.create({
+          data: commissionerData
+        })
+        commissionersCreated++
+        console.log(`  ✅ Created commissioner: ${commissionerData.name}`)
+      } else {
+        // Update existing record
+        await prisma.commissioner.update({
+          where: { id: existing.id },
+          data: {
+            title: commissionerData.title,
+            description: commissionerData.description,
+            bio: commissionerData.bio,
+            imageUrl: commissionerData.imageUrl,
+            email: commissionerData.email,
+            phone: commissionerData.phone,
+            order: commissionerData.order,
+            isActive: commissionerData.isActive
+          }
+        })
+        commissionersUpdated++
+        console.log(`  🔄 Updated commissioner: ${commissionerData.name}`)
+      }
+    }
+    
+    console.log(`✅ Commissioners seeding complete! Created ${commissionersCreated} new commissioner(s), updated ${commissionersUpdated} existing commissioner(s).`)
+
+    // ============================================
+    // SEED TEAM (Executives/Management)
+    // ============================================
+    console.log('\n📋 Seeding Team (Executives)...')
+    
+    const teamData = [
+      {
+        name: 'Advocate Shepherd Manhivi',
+        role: 'Executive Secretary',
+        title: 'ZACC Executive Secretary',
+        description: 'Advocate Shepherd Manhivi holds a Bachelor of Laws Honours; Bachelor of Science, Honours in Public Administration, and a Master of Science in International Relations, all from the University of Zimbabwe. He is a governance expert and has served as a Commissioner of the Zimbabwe Electoral Commission.',
+        bio: '<p>Adv. Manhivi has worked for the Parliament of Zimbabwe where he served as Senior Advisor to several Parliamentary Portfolio Committees that include Mines and Energy; Human Rights; Foreign Affairs; Budget and Finance; and Justice, Legal and Parliamentary Affairs. Adv. Manhivi also worked for the National Peace and Reconciliation Commission as Regional Coordinator, overseeing devolution of its structures, and was the focal person for the Presidential Matrix in Matabeleland, ensuring the implementation and monitoring of peacebuilding initiatives.</p>',
+        imageUrl: '/uploads/executives/shepherd-manhivi.jpg',
+        email: null,
+        phone: null,
+        order: 1,
+        isActive: true
+      },
+      {
+        name: 'Mrs. Clara Nyakotyo',
+        role: 'General Manager Prevention of Corruption',
+        title: 'General Manager Prevention of Corruption',
+        description: 'Mrs. Clara Nyakotyo is an economist with over two decades of experience in the public service. She joined the Zimbabwe Anti-Corruption Commission (ZACC) at its formation in 2006 as part of the management team.',
+        bio: '<p>Mrs. Nyakotyo holds a Master of Science degree in Economics, a Master of Business Administration (MBA), and a Masters in International Business (MIB). She is a member of the Zimbabwe Economics Society (ZES) and the Association of Certified Fraud Examiners (ACFE).</p>',
+        imageUrl: '/uploads/executives/clara-nyakotyo.jpg',
+        email: null,
+        phone: null,
+        order: 2,
+        isActive: true
+      },
+      {
+        name: 'Mr Wellington Mugweni',
+        role: 'General Manager Finance and Administration',
+        title: 'General Manager Finance and Administration',
+        description: 'Mr Wellington Mugweni is a Chartered Accountant with the Zambia Institute of Chartered Accountants and a Public Sector Professional Accountant with ICAZ (PSPA-Z). He holds a Master of Commerce in Applied Accounting and Bachelor of Commerce, Honours in Accounting among others.',
+        bio: '<p>Mr Mugweni joined ZACC in 2016 from the Ministry of Information, Communication and Technology (ICT) as an Officer and was promoted to Finance Manager in 2017. He later moved to the National Peace and Reconciliation Commission and the Zimbabwe Gender Commission where he served as a General Manager. He rejoined ZACC again in 2022 as General Manager Finance and Administration.</p>',
+        imageUrl: '/uploads/executives/wellington-mugweni.jpg',
+        email: null,
+        phone: null,
+        order: 3,
+        isActive: true
+      },
+      {
+        name: 'Mrs Charity Matumbi',
+        role: 'General Manager Legal and Asset Recovery',
+        title: 'General Manager Legal and Asset Recovery',
+        description: 'Mrs Charity Matumbi is a registered legal practitioner with an LLBS degree from the University of Zimbabwe and a Master of Corporate Laws from UNISA. She is also a member of the Law Society of Zimbabwe.',
+        bio: '<p>Mrs Matumbi joined ZACC in 2008 as a Law Officer from the National Prosecuting Authority and rose through the ranks to become a General Manager in 2021.</p>',
+        imageUrl: '/uploads/executives/charity-matumbi.jpg',
+        email: null,
+        phone: null,
+        order: 4,
+        isActive: true
+      },
+      {
+        name: 'Mr Humphrey Magorimbo',
+        role: 'General Manager Human Resources, Learning and Development',
+        title: 'General Manager Human Resources, Learning and Development',
+        description: 'Mr Humphrey Magorimbo holds a Master of Commerce in Strategic Management and a Bachelor\'s Degree in Human Resources Management, complemented by professional certifications in Labour Law, Labour Relations, and Chartered Governance.',
+        bio: '<p>He has previously served as the Deputy General Manager at the Health Service Board and Acting Deputy Director in the Ministry of Primary and Secondary Education.</p>',
+        imageUrl: '/uploads/executives/humphrey-magorimbo.jpg',
+        email: null,
+        phone: null,
+        order: 5,
+        isActive: true
+      }
+    ]
+
+    let teamCreated = 0
+    let teamUpdated = 0
+
+    for (const teamMemberData of teamData) {
+      const existing = await prisma.team.findFirst({
+        where: {
+          name: teamMemberData.name,
+          role: teamMemberData.role
+        }
+      })
+
+      if (!existing) {
+        await prisma.team.create({
+          data: teamMemberData
+        })
+        teamCreated++
+        console.log(`  ✅ Created team member: ${teamMemberData.name}`)
+      } else {
+        // Update existing record
+        await prisma.team.update({
+          where: { id: existing.id },
+          data: {
+            title: teamMemberData.title,
+            description: teamMemberData.description,
+            bio: teamMemberData.bio,
+            imageUrl: teamMemberData.imageUrl,
+            email: teamMemberData.email,
+            phone: teamMemberData.phone,
+            order: teamMemberData.order,
+            isActive: teamMemberData.isActive
+          }
+        })
+        teamUpdated++
+        console.log(`  🔄 Updated team member: ${teamMemberData.name}`)
+      }
+    }
+    
+    console.log(`✅ Team seeding complete! Created ${teamCreated} new team member(s), updated ${teamUpdated} existing team member(s).`)
+
     console.log('\n🎉 All homepage content seeding complete!')
   } finally {
     await prisma.$disconnect()

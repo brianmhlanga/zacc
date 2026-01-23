@@ -31,7 +31,7 @@
           <div class="mt-8 flex flex-col gap-3 sm:flex-row">
             <NuxtLink
               :to="heroContent.primaryButton?.link === '#report' ? '/report' : (heroContent.primaryButton?.link || '/report')"
-              class="inline-flex items-center justify-center gap-2 rounded-md bg-zaccBlack px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
+              class="inline-flex items-center justify-center gap-2 rounded-md bg-zaccGold px-6 py-3 font-semibold text-white shadow-glow hover:bg-zaccGold/90"
             >
               {{ heroContent.primaryButton?.text || 'Report Corruption' }}
               <svg

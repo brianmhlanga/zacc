@@ -156,16 +156,28 @@ const article = ref(null);
 const loading = ref(true);
 const error = ref(null);
 
+// List of file extensions that should not be handled as articles
+const imageExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.ico', '.pdf', '.doc', '.docx', '.xls', '.xlsx']
+
 // Early check: if no slug, show error immediately
 // This will run during setup, so we need to check the route path
 if (process.client) {
   const currentPath = route.path;
-  console.log('Current route path:', currentPath);
-  console.log('Route params:', route.params);
+  const slugValue = slug.value?.toLowerCase() || ''
   
-  // If we're on /news without a slug, this shouldn't happen but let's check
-  if (currentPath === '/news' || !route.params.slug) {
-    console.error('Route mismatch: Expected /[slug] but got:', currentPath);
+  // Check if this is an image or file path - if so, show 404 immediately
+  const isFile = imageExtensions.some(ext => slugValue.endsWith(ext))
+  if (isFile) {
+    error.value = 'File not found'
+    loading.value = false
+  } else {
+    console.log('Current route path:', currentPath);
+    console.log('Route params:', route.params);
+    
+    // If we're on /news without a slug, this shouldn't happen but let's check
+    if (currentPath === '/news' || !route.params.slug) {
+      console.error('Route mismatch: Expected /[slug] but got:', currentPath);
+    }
   }
 }
 
@@ -293,6 +305,15 @@ onMounted(() => {
   if (!slug.value) {
     console.error('No slug found in route params:', route.params);
     error.value = 'Invalid article URL - no slug provided';
+    loading.value = false;
+    return;
+  }
+  
+  // Check if this is a file path (image, PDF, etc.) - don't try to fetch as article
+  const slugLower = slug.value.toLowerCase()
+  const isFile = imageExtensions.some(ext => slugLower.endsWith(ext))
+  if (isFile) {
+    error.value = 'File not found';
     loading.value = false;
     return;
   }

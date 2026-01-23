@@ -233,6 +233,29 @@ model Commissioner {
 }
 
 // ============================================
+// TEAM (Executives/Management)
+// ============================================
+
+model Team {
+  id          String   @id @default(cuid())
+  name        String
+  role        String
+  title       String?  // Full title/position
+  description String   @db.Text
+  bio         String?  @db.Text
+  imageUrl    String
+  email       String?
+  phone       String?
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("team")
+  @@index([order])
+}
+
+// ============================================
 // NEWS & ARTICLES
 // ============================================
 

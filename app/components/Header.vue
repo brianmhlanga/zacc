@@ -5,8 +5,8 @@
         <NuxtLink to="/" class="flex items-center gap-3">
           <img src="/logo.png" alt="ZACC logo" class="h-12 sm:h-14 w-auto" />
           <div class="leading-tight">
-            <div class="font-extrabold tracking-tight text-zaccBlack">ZACC</div>
-            <div class="text-xs text-zaccBlack/70">Zimbabwe Anti-Corruption Commission</div>
+            <div class="text-[2.25rem] font-black tracking-[3px] text-zaccGold">ZACC</div>
+            <div class="text-xs font-semibold text-zaccBlack/80">Refuse, Resist, Report Corruption</div>
           </div>
         </NuxtLink>
 
@@ -40,11 +40,27 @@
               <div class="h-2"></div>
               <div class="bg-white rounded-lg shadow-xl border border-zaccGreen/20 overflow-hidden">
                 <NuxtLink
-                  to="/about"
+                  to="/mandate"
                   class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
                   @click="showAboutDropdown = false"
                 >
-                  About Us
+                  Our Mandate
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/commissioners"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showAboutDropdown = false"
+                >
+                  Commissioners
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/executives"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showAboutDropdown = false"
+                >
+                  Executives
                 </NuxtLink>
                 <div class="border-t border-zaccBlack/5"></div>
                 <NuxtLink
@@ -54,6 +70,7 @@
                 >
                   Departments
                 </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
                 <NuxtLink
                   to="/units"
                   class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
@@ -64,9 +81,77 @@
               </div>
             </div>
           </div>
-          <NuxtLink to="/statistics" class="text-zaccBlack/80 hover:text-zaccGreen">Statistics</NuxtLink>
-          <NuxtLink to="/legislation" class="text-zaccBlack/80 hover:text-zaccGreen">Legislation</NuxtLink>
-          <NuxtLink to="/report" class="text-zaccBlack/80 hover:text-zaccGreen">Report</NuxtLink>
+          
+          <!-- Resources Dropdown -->
+          <div
+            class="relative"
+            @mouseenter="showResourcesDropdown = true"
+            @mouseleave="showResourcesDropdown = false"
+          >
+            <button class="text-zaccBlack/80 hover:text-zaccGreen flex items-center gap-1 py-2">
+              Resources
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-4 w-4"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+              </svg>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <div
+              v-show="showResourcesDropdown"
+              class="absolute top-full left-0 w-56 z-50"
+            >
+              <!-- Invisible padding area to bridge gap -->
+              <div class="h-2"></div>
+              <div class="bg-white rounded-lg shadow-xl border border-zaccGreen/20 overflow-hidden">
+                <NuxtLink
+                  to="/legislation"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showResourcesDropdown = false"
+                >
+                  Legislation
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/rulings"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showResourcesDropdown = false"
+                >
+                  Rulings
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/statistics"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showResourcesDropdown = false"
+                >
+                  Statistics
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/careers"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showResourcesDropdown = false"
+                >
+                  Vacancies
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/downloads"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showResourcesDropdown = false"
+                >
+                  Downloads
+                </NuxtLink>
+              </div>
+            </div>
+          </div>
           
           <!-- News Dropdown -->
           <div
@@ -179,28 +264,39 @@
             </div>
           </div>
           
-          <NuxtLink to="/downloads" class="text-zaccBlack/80 hover:text-zaccGreen">Downloads</NuxtLink>
-          <NuxtLink to="/rulings" class="text-zaccBlack/80 hover:text-zaccGreen">Rulings</NuxtLink>
+          <NuxtLink to="/gallery" class="text-zaccBlack/80 hover:text-zaccGreen">Gallery</NuxtLink>
           <NuxtLink to="/contact" class="text-zaccBlack/80 hover:text-zaccGreen">Contact</NuxtLink>
         </nav>
 
         <div class="hidden lg:flex items-center gap-3">
           <NuxtLink
             to="/report"
-            class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-4 py-2 text-sm font-semibold text-white shadow-glow hover:brightness-110 transition"
+            class="report-now-button inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-red-600 to-red-700 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:shadow-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 relative overflow-hidden"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="h-4 w-4"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5l6 6-6 6M3 12h16.5" />
-            </svg>
-            Report Now
+            <span class="relative z-10 flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="h-5 w-5"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+              Report Now
+            </span>
+            <span class="absolute inset-0 bg-white/20 animate-pulse"></span>
           </NuxtLink>
+          <!-- Miniature Flying Flag -->
+          <div class="relative flex items-center ml-2">
+            <img 
+              src="/flag.gif" 
+              alt="Zimbabwe Flag" 
+              class="h-8 w-auto object-contain"
+              style="max-width: 50px;"
+            />
+          </div>
         </div>
 
         <button
@@ -229,17 +325,25 @@
       :class="['lg:hidden border-t border-black/10 bg-white', isMenuOpen ? '' : 'hidden']"
     >
       <div class="mx-auto max-w-7xl px-6 py-4 grid grid-cols-1 gap-2 text-sm">
-        <NuxtLink to="/about" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">About</NuxtLink>
-        <NuxtLink to="/statistics" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Statistics</NuxtLink>
-        <NuxtLink to="/legislation" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Legislation</NuxtLink>
+        <NuxtLink to="/about" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">About Us</NuxtLink>
+        <NuxtLink to="/mandate" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Our Mandate</NuxtLink>
+        <NuxtLink to="/commissioners" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Commissioners</NuxtLink>
+        <NuxtLink to="/executives" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Executives</NuxtLink>
+        <NuxtLink to="/departments" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Departments</NuxtLink>
+        <NuxtLink to="/units" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Units</NuxtLink>
+        <div class="py-2 text-zaccBlack/70 font-semibold">Resources</div>
+        <NuxtLink to="/legislation" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Legislation</NuxtLink>
+        <NuxtLink to="/rulings" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Rulings</NuxtLink>
+        <NuxtLink to="/statistics" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Statistics</NuxtLink>
+        <NuxtLink to="/careers" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Vacancies</NuxtLink>
+        <NuxtLink to="/downloads" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Downloads</NuxtLink>
         <NuxtLink to="/report" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Report Corruption</NuxtLink>
         <NuxtLink to="/news" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">News & Updates</NuxtLink>
-        <NuxtLink to="/downloads" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Downloads</NuxtLink>
-        <NuxtLink to="/rulings" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Court Rulings</NuxtLink>
+        <NuxtLink to="/gallery" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Gallery</NuxtLink>
         <NuxtLink to="/contact" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Contact</NuxtLink>
         <NuxtLink
           to="/report"
-          class="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-zaccBlack px-4 py-2 font-semibold text-white"
+          class="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-zaccGold px-4 py-2 font-semibold text-white hover:bg-zaccGold/90"
           @click="closeMenu"
         >
           Report Now
@@ -253,6 +357,7 @@
 const isMenuOpen = ref(false)
 const showNewsDropdown = ref(false)
 const showAboutDropdown = ref(false)
+const showResourcesDropdown = ref(false)
 const newsItems = ref<any[]>([])
 const loadingNews = ref(false)
 

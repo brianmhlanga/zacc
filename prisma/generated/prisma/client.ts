@@ -85,6 +85,11 @@ export type Service = Prisma.ServiceModel
  */
 export type Commissioner = Prisma.CommissionerModel
 /**
+ * Model Team
+ * 
+ */
+export type Team = Prisma.TeamModel
+/**
  * Model News
  * 
  */

@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.2.0
- * Query Engine version: 0c8ef2ce45c83248ab3df073180d5eda9e8be7a3
+ * Prisma Client JS version: 7.3.0
+ * Query Engine version: 9d6ad21cbbceab97458517b147a6a09ff43aa735
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.2.0",
-  engine: "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3"
+  client: "7.3.0",
+  engine: "9d6ad21cbbceab97458517b147a6a09ff43aa735"
 }
 
 /**
@@ -393,6 +393,7 @@ export const ModelName = {
   Statistic: 'Statistic',
   Service: 'Service',
   Commissioner: 'Commissioner',
+  Team: 'Team',
   News: 'News',
   NewsTag: 'NewsTag',
   Download: 'Download',
@@ -427,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "siteSetting" | "socialMedia" | "value" | "pageContent" | "heroSlide" | "statistic" | "service" | "commissioner" | "news" | "newsTag" | "download" | "ruling" | "rulingTag" | "galleryImage" | "job" | "jobApplication" | "corruptionReport" | "reportFile" | "reportUpdate" | "contactSubmission" | "media" | "contactInfo" | "legislation" | "newsletterSubscription" | "pageView" | "menu" | "menuItem"
+    modelProps: "user" | "siteSetting" | "socialMedia" | "value" | "pageContent" | "heroSlide" | "statistic" | "service" | "commissioner" | "team" | "news" | "newsTag" | "download" | "ruling" | "rulingTag" | "galleryImage" | "job" | "jobApplication" | "corruptionReport" | "reportFile" | "reportUpdate" | "contactSubmission" | "media" | "contactInfo" | "legislation" | "newsletterSubscription" | "pageView" | "menu" | "menuItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1022,6 +1023,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.CommissionerCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.CommissionerCountAggregateOutputType> | number
+        }
+      }
+    }
+    Team: {
+      payload: Prisma.$TeamPayload<ExtArgs>
+      fields: Prisma.TeamFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TeamFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TeamFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>
+        }
+        findFirst: {
+          args: Prisma.TeamFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TeamFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>
+        }
+        findMany: {
+          args: Prisma.TeamFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>[]
+        }
+        create: {
+          args: Prisma.TeamCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>
+        }
+        createMany: {
+          args: Prisma.TeamCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.TeamDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>
+        }
+        update: {
+          args: Prisma.TeamUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>
+        }
+        deleteMany: {
+          args: Prisma.TeamDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TeamUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.TeamUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TeamPayload>
+        }
+        aggregate: {
+          args: Prisma.TeamAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTeam>
+        }
+        groupBy: {
+          args: Prisma.TeamGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TeamGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TeamCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TeamCountAggregateOutputType> | number
         }
       }
     }
@@ -2466,6 +2533,25 @@ export const CommissionerScalarFieldEnum = {
 export type CommissionerScalarFieldEnum = (typeof CommissionerScalarFieldEnum)[keyof typeof CommissionerScalarFieldEnum]
 
 
+export const TeamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  role: 'role',
+  title: 'title',
+  description: 'description',
+  bio: 'bio',
+  imageUrl: 'imageUrl',
+  email: 'email',
+  phone: 'phone',
+  order: 'order',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
+
+
 export const NewsScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -2969,6 +3055,21 @@ export const CommissionerOrderByRelevanceFieldEnum = {
 export type CommissionerOrderByRelevanceFieldEnum = (typeof CommissionerOrderByRelevanceFieldEnum)[keyof typeof CommissionerOrderByRelevanceFieldEnum]
 
 
+export const TeamOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  role: 'role',
+  title: 'title',
+  description: 'description',
+  bio: 'bio',
+  imageUrl: 'imageUrl',
+  email: 'email',
+  phone: 'phone'
+} as const
+
+export type TeamOrderByRelevanceFieldEnum = (typeof TeamOrderByRelevanceFieldEnum)[keyof typeof TeamOrderByRelevanceFieldEnum]
+
+
 export const NewsOrderByRelevanceFieldEnum = {
   id: 'id',
   title: 'title',
@@ -3430,6 +3531,7 @@ export type GlobalOmitConfig = {
   statistic?: Prisma.StatisticOmit
   service?: Prisma.ServiceOmit
   commissioner?: Prisma.CommissionerOmit
+  team?: Prisma.TeamOmit
   news?: Prisma.NewsOmit
   newsTag?: Prisma.NewsTagOmit
   download?: Prisma.DownloadOmit

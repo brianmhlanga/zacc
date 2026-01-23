@@ -8,3 +8,43 @@
 html, body {
   height: 100%;
 }
+
+/* Flag wave animation */
+@keyframes flagWave {
+  0%, 100% {
+    transform: perspective(80px) rotateY(-12deg) rotateX(2deg) translateX(0);
+  }
+  50% {
+    transform: perspective(80px) rotateY(-10deg) rotateX(3deg) translateX(1px);
+  }
+}
+
+.flag-container {
+  animation: flagWave 4s ease-in-out infinite;
+}
+
+.flag-wrapper {
+  transform-style: preserve-3d;
+}
+
+.flag-fabric {
+  position: absolute;
+  inset: 0;
+  transform: perspective(80px) rotateY(-12deg) rotateX(2deg);
+  animation: flagWave 4s ease-in-out infinite;
+  border-radius: 0 2px 2px 0;
+}
+
+/* Report Now Button Animation */
+@keyframes reportPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7), 0 10px 25px -5px rgba(220, 38, 38, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(220, 38, 38, 0), 0 10px 25px -5px rgba(220, 38, 38, 0.5);
+  }
+}
+
+.report-now-button {
+  animation: reportPulse 2s ease-in-out infinite;
+}

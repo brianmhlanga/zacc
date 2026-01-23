@@ -349,7 +349,7 @@
             <div class="mt-8 text-center">
               <NuxtLink
                 to="/downloads"
-                class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
+                class="inline-flex items-center gap-2 rounded-md bg-zaccGold px-6 py-3 font-semibold text-white shadow-glow hover:bg-zaccGold/90"
               >
                 {{ getContent('access-button-text', 'View All Legal Documents') }}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
@@ -387,7 +387,7 @@
         <div class="text-center pt-8">
           <NuxtLink
             to="/"
-            class="inline-flex items-center gap-2 rounded-md bg-zaccBlack px-6 py-3 font-semibold text-white shadow-glow hover:brightness-110"
+            class="inline-flex items-center gap-2 rounded-md bg-zaccGold px-6 py-3 font-semibold text-zaccBlack shadow-glow hover:bg-zaccGold/90"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
