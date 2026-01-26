@@ -246,6 +246,7 @@ model Team {
   imageUrl    String
   email       String?
   phone       String?
+  gender      String?
   order       Int      @default(0)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())

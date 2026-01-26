@@ -2543,6 +2543,7 @@ export const TeamScalarFieldEnum = {
   imageUrl: 'imageUrl',
   email: 'email',
   phone: 'phone',
+  gender: 'gender',
   order: 'order',
   isActive: 'isActive',
   createdAt: 'createdAt',
@@ -3064,7 +3065,8 @@ export const TeamOrderByRelevanceFieldEnum = {
   bio: 'bio',
   imageUrl: 'imageUrl',
   email: 'email',
-  phone: 'phone'
+  phone: 'phone',
+  gender: 'gender'
 } as const
 
 export type TeamOrderByRelevanceFieldEnum = (typeof TeamOrderByRelevanceFieldEnum)[keyof typeof TeamOrderByRelevanceFieldEnum]

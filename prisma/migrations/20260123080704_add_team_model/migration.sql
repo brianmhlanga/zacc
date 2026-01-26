@@ -1,5 +1,5 @@
 -- CreateTable
-CREATE TABLE `Team` (
+CREATE TABLE `team` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `role` VARCHAR(191) NOT NULL,
