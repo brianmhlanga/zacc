@@ -172,7 +172,8 @@ const menuItems = computed(() => [
   { label: 'Reports', path: '/admin/reports', icon: 'pi-flag', badge: badges.value.reports > 0 ? badges.value.reports.toString() : undefined },
   { label: 'Contact Submissions', path: '/admin/contact', icon: 'pi-inbox' },
   { label: 'Statistics', path: '/admin/statistics', icon: 'pi-chart-bar' },
-  { label: 'Our Team', path: '/admin/commissioners', icon: 'pi-users' },
+  { label: 'Commissioners', path: '/admin/commissioners', icon: 'pi-users' },
+  { label: 'Executives', path: '/admin/executives', icon: 'pi-briefcase' },
   { label: 'Menu Settings', path: '/admin/menus', icon: 'pi-list' },
   { label: 'Users', path: '/admin/users', icon: 'pi-user-edit' },
 ])

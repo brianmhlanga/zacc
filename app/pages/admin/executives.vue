@@ -4,11 +4,11 @@
       <!-- Page Header -->
       <div class="mb-6 flex items-center justify-between">
         <div>
-          <h1 class="text-3xl font-extrabold text-zaccBlack">Commissioners Management</h1>
-          <p class="mt-2 text-gray-600">Manage commissioners</p>
+          <h1 class="text-3xl font-extrabold text-zaccBlack">Executives Management</h1>
+          <p class="mt-2 text-gray-600">Manage executive team members</p>
         </div>
         <Button
-          label="Add Commissioner"
+          label="Add Executive"
           icon="pi pi-plus"
           @click="openCreateDialog"
           style="background: #209341; border-color: #209341;"
@@ -31,7 +31,7 @@
                 optionValue="value"
                 placeholder="All Status"
                 class="w-48"
-                @change="fetchCommissioners"
+                @change="fetchExecutives"
               />
             </div>
             <Button
@@ -46,12 +46,12 @@
         </template>
       </Card>
 
-      <!-- Commissioners Table -->
+      <!-- Executives Table -->
       <Card class="border-0 shadow-md">
         <template #content>
           <DataTable
             v-model:filters="filters"
-            :value="commissioners"
+            :value="executives"
             :loading="loading"
             :paginator="true"
             :rows="10"
@@ -63,12 +63,12 @@
           >
             <template #header>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xl font-semibold text-zaccBlack">All Commissioners</span>
+                <span class="text-xl font-semibold text-zaccBlack">All Executives</span>
                 <span class="p-input-icon-left">
                   <i class="pi pi-search" />
                   <InputText
                     v-model="filters.global.value"
-                    placeholder="Search commissioners..."
+                    placeholder="Search executives..."
                     class="w-64"
                   />
                 </span>
@@ -93,7 +93,7 @@
               </template>
             </Column>
 
-            <Column field="role" header="Position Type" sortable>
+            <Column field="role" header="Role" sortable>
               <template #body="{ data }">
                 <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs font-semibold">
                   {{ data.role }}
@@ -101,7 +101,7 @@
               </template>
             </Column>
 
-            <Column field="title" header="Custom Position" sortable>
+            <Column field="title" header="Title" sortable>
               <template #body="{ data }">
                 <span v-if="data.title" class="text-zaccBlack">{{ data.title }}</span>
                 <span v-else class="text-gray-400">-</span>
@@ -152,10 +152,10 @@
         </template>
       </Card>
 
-      <!-- Create/Edit Commissioner Dialog -->
+      <!-- Create/Edit Executive Dialog -->
       <Dialog
         v-model:visible="dialogVisible"
-        :header="isEditMode ? 'Edit Commissioner' : 'Create New Commissioner'"
+        :header="isEditMode ? 'Edit Executive' : 'Create New Executive'"
         :modal="true"
         :style="{ width: '90vw', maxWidth: '800px' }"
         :closable="true"
@@ -168,7 +168,7 @@
               </label>
               <InputText
                 id="name"
-                v-model="commissionerForm.name"
+                v-model="executiveForm.name"
                 placeholder="Full name"
                 class="w-full"
                 :class="{ 'p-invalid': errors.name }"
@@ -178,31 +178,31 @@
 
             <div>
               <label for="role" class="block text-sm font-semibold text-zaccBlack mb-2">
-                Position Type <span class="text-red-500">*</span>
+                Role <span class="text-red-500">*</span>
               </label>
               <AutoComplete
                 id="role"
-                v-model="commissionerForm.role"
-                :suggestions="positionTypeSuggestions"
-                @complete="searchPositionType"
-                placeholder="Type or select position type"
+                v-model="executiveForm.role"
+                :suggestions="roleSuggestions"
+                @complete="searchRole"
+                placeholder="Type or select role"
                 class="w-full"
                 :class="{ 'p-invalid': errors.role }"
                 dropdown
               />
               <small v-if="errors.role" class="p-error">{{ errors.role }}</small>
-              <small class="text-gray-500">Common: Commissioner, Executive, Staff, etc.</small>
+              <small class="text-gray-500">Common: Executive Secretary, General Manager, etc.</small>
             </div>
           </div>
 
           <div>
             <label for="title" class="block text-sm font-semibold text-zaccBlack mb-2">
-              Custom Position
+              Title
             </label>
             <InputText
               id="title"
-              v-model="commissionerForm.title"
-              placeholder="e.g., Chairperson, Vice Chairperson, Director"
+              v-model="executiveForm.title"
+              placeholder="e.g., Executive Secretary, General Manager Finance"
               class="w-full"
             />
             <small class="text-gray-500">Optional: Specific title or position</small>
@@ -214,8 +214,8 @@
             </label>
             <Textarea
               id="description"
-              v-model="commissionerForm.description"
-              placeholder="Brief description of the team member"
+              v-model="executiveForm.description"
+              placeholder="Brief description of the executive"
               :rows="3"
               class="w-full"
               :class="{ 'p-invalid': errors.description }"
@@ -228,7 +228,7 @@
               Bio
             </label>
             <Editor
-              v-model="commissionerForm.bio"
+              v-model="executiveForm.bio"
               editorStyle="height: 150px"
             />
             <small class="text-gray-500">Optional: Detailed biography</small>
@@ -241,7 +241,7 @@
               </label>
               <InputText
                 id="email"
-                v-model="commissionerForm.email"
+                v-model="executiveForm.email"
                 type="email"
                 placeholder="email@example.com"
                 class="w-full"
@@ -254,7 +254,7 @@
               </label>
               <InputText
                 id="phone"
-                v-model="commissionerForm.phone"
+                v-model="executiveForm.phone"
                 placeholder="+263 XXX XXX XXX"
                 class="w-full"
               />
@@ -277,8 +277,8 @@
               class="w-full"
             />
             <small class="text-gray-500">JPG, PNG, GIF. Maximum 5MB.</small>
-            <div v-if="uploadedImage || commissionerForm.imageUrl" class="mt-4">
-              <div v-if="isEditMode && commissionerForm.imageUrl && !uploadedImage" class="mb-2">
+            <div v-if="uploadedImage || executiveForm.imageUrl" class="mt-4">
+              <div v-if="isEditMode && executiveForm.imageUrl && !uploadedImage" class="mb-2">
                 <small class="text-gray-600 font-semibold">Current Photo:</small>
               </div>
               <div v-else-if="uploadedImage" class="mb-2">
@@ -286,13 +286,13 @@
               </div>
               <div class="flex items-center gap-4">
                 <img
-                  :src="uploadedImage || getImageUrl(commissionerForm.imageUrl)"
+                  :src="uploadedImage || getImageUrl(executiveForm.imageUrl)"
                   alt="Photo preview"
                   class="w-32 h-32 rounded-lg border border-gray-200 object-cover"
                   @error="handleImageError"
                 />
                 <Button
-                  v-if="uploadedImage || commissionerForm.imageUrl"
+                  v-if="uploadedImage || executiveForm.imageUrl"
                   icon="pi pi-times"
                   severity="danger"
                   outlined
@@ -311,7 +311,7 @@
               </label>
               <InputNumber
                 id="order"
-                v-model="commissionerForm.order"
+                v-model="executiveForm.order"
                 :min="0"
                 class="w-full"
               />
@@ -321,7 +321,7 @@
             <div class="flex items-center gap-2 pt-6">
               <Checkbox
                 id="isActive"
-                v-model="commissionerForm.isActive"
+                v-model="executiveForm.isActive"
                 :binary="true"
               />
               <label for="isActive" class="text-sm font-semibold text-zaccBlack">
@@ -358,11 +358,11 @@ import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
 
 useHead({
-  title: 'Commissioners Management - ZACC CMS',
+  title: 'Executives Management - ZACC CMS',
   meta: [
     {
       name: 'description',
-      content: 'Manage commissioners'
+      content: 'Manage executive team members'
     }
   ]
 })
@@ -375,7 +375,7 @@ const confirm = useConfirm()
 const toast = useToast()
 
 // State
-const commissioners = ref([])
+const executives = ref([])
 const loading = ref(false)
 const dialogVisible = ref(false)
 const isEditMode = ref(false)
@@ -387,7 +387,7 @@ const filters = ref({
   global: { value: null, matchMode: 'contains' }
 })
 
-const commissionerForm = reactive({
+const executiveForm = reactive({
   id: '',
   name: '',
   role: '',
@@ -414,20 +414,20 @@ const statusOptions = [
   { label: 'Inactive', value: 'false' }
 ]
 
-const positionTypeSuggestions = ref<string[]>([])
-const commonPositionTypes = ['Commissioner', 'Executive', 'Staff', 'Director', 'Manager', 'Coordinator', 'Officer', 'Assistant']
+const roleSuggestions = ref<string[]>([])
+const commonRoles = ['Executive Secretary', 'General Manager', 'Manager', 'Director', 'Deputy Director', 'Coordinator', 'Officer', 'Assistant']
 
-const searchPositionType = (event: any) => {
+const searchRole = (event: any) => {
   const query = event.query.toLowerCase()
   if (!query) {
-    positionTypeSuggestions.value = commonPositionTypes
+    roleSuggestions.value = commonRoles
   } else {
-    positionTypeSuggestions.value = commonPositionTypes.filter(type => 
-      type.toLowerCase().includes(query)
+    roleSuggestions.value = commonRoles.filter(role => 
+      role.toLowerCase().includes(query)
     )
-    // If the query doesn't match any common type, add it as a suggestion
-    if (!commonPositionTypes.some(t => t.toLowerCase() === query)) {
-      positionTypeSuggestions.value.push(query)
+    // If the query doesn't match any common role, add it as a suggestion
+    if (!commonRoles.some(r => r.toLowerCase() === query)) {
+      roleSuggestions.value.push(query)
     }
   }
 }
@@ -448,8 +448,8 @@ const handleImageError = (event: any) => {
   event.target.src = '/placeholder-avatar.png'
 }
 
-// Fetch commissioners
-const fetchCommissioners = async () => {
+// Fetch executives
+const fetchExecutives = async () => {
   loading.value = true
   try {
     const params: any = {}
@@ -457,13 +457,13 @@ const fetchCommissioners = async () => {
       params.isActive = selectedStatus.value
     }
 
-    const data = await $fetch('/api/commissioners', { params })
-    commissioners.value = data
+    const data = await $fetch('/api/team', { params })
+    executives.value = data
   } catch (error: any) {
     toast.add({
       severity: 'error',
       summary: 'Error',
-      detail: error.data?.message || 'Failed to load commissioners',
+      detail: error.data?.message || 'Failed to load executives',
       life: 3000
     })
   } finally {
@@ -495,7 +495,7 @@ const onImageSelect = async (event: any) => {
       body: formData
     })
 
-    commissionerForm.imageUrl = response.path
+    executiveForm.imageUrl = response.path
     errors.imageUrl = ''
   } catch (error: any) {
     toast.add({
@@ -511,7 +511,7 @@ const onImageSelect = async (event: any) => {
 const clearImage = () => {
   uploadedImage.value = null
   uploadedImageFile.value = null
-  commissionerForm.imageUrl = ''
+  executiveForm.imageUrl = ''
 }
 
 // Dialog handlers
@@ -521,19 +521,19 @@ const openCreateDialog = () => {
   dialogVisible.value = true
 }
 
-const openEditDialog = (commissioner: any) => {
+const openEditDialog = (executive: any) => {
   isEditMode.value = true
-  commissionerForm.id = commissioner.id
-  commissionerForm.name = commissioner.name
-  commissionerForm.role = commissioner.role
-  commissionerForm.title = commissioner.title || ''
-  commissionerForm.description = commissioner.description
-  commissionerForm.bio = commissioner.bio || ''
-  commissionerForm.imageUrl = commissioner.imageUrl
-  commissionerForm.email = commissioner.email || ''
-  commissionerForm.phone = commissioner.phone || ''
-  commissionerForm.order = commissioner.order
-  commissionerForm.isActive = commissioner.isActive
+  executiveForm.id = executive.id
+  executiveForm.name = executive.name
+  executiveForm.role = executive.role
+  executiveForm.title = executive.title || ''
+  executiveForm.description = executive.description
+  executiveForm.bio = executive.bio || ''
+  executiveForm.imageUrl = executive.imageUrl
+  executiveForm.email = executive.email || ''
+  executiveForm.phone = executive.phone || ''
+  executiveForm.order = executive.order
+  executiveForm.isActive = executive.isActive
   uploadedImage.value = null
   uploadedImageFile.value = null
   dialogVisible.value = true
@@ -546,17 +546,17 @@ const closeDialog = () => {
 }
 
 const resetForm = () => {
-  commissionerForm.id = ''
-  commissionerForm.name = ''
-  commissionerForm.role = ''
-  commissionerForm.title = ''
-  commissionerForm.description = ''
-  commissionerForm.bio = ''
-  commissionerForm.imageUrl = ''
-  commissionerForm.email = ''
-  commissionerForm.phone = ''
-  commissionerForm.order = 0
-  commissionerForm.isActive = true
+  executiveForm.id = ''
+  executiveForm.name = ''
+  executiveForm.role = ''
+  executiveForm.title = ''
+  executiveForm.description = ''
+  executiveForm.bio = ''
+  executiveForm.imageUrl = ''
+  executiveForm.email = ''
+  executiveForm.phone = ''
+  executiveForm.order = 0
+  executiveForm.isActive = true
   uploadedImage.value = null
   uploadedImageFile.value = null
 }
@@ -571,22 +571,22 @@ const validateForm = () => {
   clearErrors()
   let isValid = true
 
-  if (!commissionerForm.name.trim()) {
+  if (!executiveForm.name.trim()) {
     errors.name = 'Name is required'
     isValid = false
   }
 
-  if (!commissionerForm.role.trim()) {
-    errors.role = 'Position type is required'
+  if (!executiveForm.role.trim()) {
+    errors.role = 'Role is required'
     isValid = false
   }
 
-  if (!commissionerForm.description.trim()) {
+  if (!executiveForm.description.trim()) {
     errors.description = 'Description is required'
     isValid = false
   }
 
-  if (!commissionerForm.imageUrl) {
+  if (!executiveForm.imageUrl) {
     errors.imageUrl = 'Photo is required'
     isValid = false
   }
@@ -603,49 +603,49 @@ const handleSubmit = async () => {
   submitting.value = true
   try {
     const payload: any = {
-      name: commissionerForm.name,
-      role: commissionerForm.role,
-      title: commissionerForm.title || undefined,
-      description: commissionerForm.description,
-      bio: commissionerForm.bio || undefined,
-      imageUrl: commissionerForm.imageUrl,
-      email: commissionerForm.email || undefined,
-      phone: commissionerForm.phone || undefined,
-      order: commissionerForm.order,
-      isActive: commissionerForm.isActive
+      name: executiveForm.name,
+      role: executiveForm.role,
+      title: executiveForm.title || undefined,
+      description: executiveForm.description,
+      bio: executiveForm.bio || undefined,
+      imageUrl: executiveForm.imageUrl,
+      email: executiveForm.email || undefined,
+      phone: executiveForm.phone || undefined,
+      order: executiveForm.order,
+      isActive: executiveForm.isActive
     }
 
     if (isEditMode.value) {
-      await $fetch(`/api/commissioners/${commissionerForm.id}`, {
+      await $fetch(`/api/team/${executiveForm.id}`, {
         method: 'PUT',
         body: payload
       })
       toast.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'Commissioner updated successfully',
+        detail: 'Executive updated successfully',
         life: 3000
       })
     } else {
-      await $fetch('/api/commissioners', {
+      await $fetch('/api/team', {
         method: 'POST',
         body: payload
       })
       toast.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'Commissioner created successfully',
+        detail: 'Executive created successfully',
         life: 3000
       })
     }
 
-    await fetchCommissioners()
+    await fetchExecutives()
     closeDialog()
   } catch (error: any) {
     toast.add({
       severity: 'error',
       summary: 'Error',
-      detail: error.data?.message || 'Failed to save commissioner',
+      detail: error.data?.message || 'Failed to save executive',
       life: 3000
     })
   } finally {
@@ -654,9 +654,9 @@ const handleSubmit = async () => {
 }
 
 // Delete handler
-const handleDelete = (commissioner: any) => {
+const handleDelete = (executive: any) => {
   confirm.require({
-    message: `Are you sure you want to delete "${commissioner.name}"? This action cannot be undone.`,
+    message: `Are you sure you want to delete "${executive.name}"? This action cannot be undone.`,
     header: 'Confirm Delete',
     icon: 'pi pi-exclamation-triangle',
     rejectProps: {
@@ -670,21 +670,21 @@ const handleDelete = (commissioner: any) => {
     },
     accept: async () => {
       try {
-        await $fetch(`/api/commissioners/${commissioner.id}`, {
+        await $fetch(`/api/team/${executive.id}`, {
           method: 'DELETE'
         })
         toast.add({
           severity: 'success',
           summary: 'Success',
-          detail: 'Commissioner deleted successfully',
+          detail: 'Executive deleted successfully',
           life: 3000
         })
-        await fetchCommissioners()
+        await fetchExecutives()
       } catch (error: any) {
         toast.add({
           severity: 'error',
           summary: 'Error',
-          detail: error.data?.message || 'Failed to delete commissioner',
+          detail: error.data?.message || 'Failed to delete executive',
           life: 3000
         })
       }
@@ -694,12 +694,11 @@ const handleDelete = (commissioner: any) => {
 
 const clearFilters = () => {
   selectedStatus.value = null
-  fetchCommissioners()
+  fetchExecutives()
 }
 
 // Lifecycle
 onMounted(() => {
-  fetchCommissioners()
+  fetchExecutives()
 })
 </script>
-

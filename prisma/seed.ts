@@ -55,34 +55,31 @@ async function main() {
   })
 
   try {
-    // Check if admin user already exists
-    const existingAdmin = await prisma.user.findUnique({
-      where: { email: 'admin@zacc.gov.zw' }
+    // Hash the default admin password (strong password)
+    const hashedPassword = await bcrypt.hash('Zacc@Admin2024!Secure', 10)
+
+    // Upsert admin user - always update password when seed runs
+    const admin = await prisma.user.upsert({
+      where: { email: 'admin@zacc.gov.zw' },
+      update: {
+        name: 'Administrator',
+        passwordHash: hashedPassword,
+        role: 'SUPER_ADMIN',
+        isActive: true
+      },
+      create: {
+        email: 'admin@zacc.gov.zw',
+        name: 'Administrator',
+        passwordHash: hashedPassword,
+        role: 'SUPER_ADMIN',
+        isActive: true
+      }
     })
 
-    // Create admin user if it doesn't exist
-    if (!existingAdmin) {
-      // Hash the default admin password (strong password)
-      const hashedPassword = await bcrypt.hash('Zacc@Admin2024!Secure', 10)
-
-      // Create admin user
-      const admin = await prisma.user.create({
-        data: {
-          email: 'admin@zacc.gov.zw',
-          name: 'Administrator',
-          passwordHash: hashedPassword,
-          role: 'SUPER_ADMIN',
-          isActive: true
-        }
-      })
-
-      console.log('✅ Admin user created successfully!')
-      console.log('📧 Email: admin@zacc.gov.zw')
-      console.log('🔑 Password: Zacc@Admin2024!Secure')
-      console.log('⚠️  Please change the password after first login!')
-    } else {
-      console.log('✅ Admin user already exists, skipping admin creation...')
-    }
+    console.log('✅ Admin user updated successfully!')
+    console.log('📧 Email: admin@zacc.gov.zw')
+    console.log('🔑 Password: Zacc@Admin2024!Secure')
+    console.log('⚠️  Password has been reset to the seed value!')
 
     // Seed Services (What We Do)
     console.log('\n🌱 Seeding services...')
