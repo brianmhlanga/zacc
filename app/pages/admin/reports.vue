@@ -154,7 +154,7 @@
               </template>
             </Column>
 
-            <Column header="Actions" :exportable="false" style="min-width: 80px">
+            <Column header="Actions" :exportable="false" style="min-width: 150px">
               <template #body="{ data }">
                 <div class="flex items-center gap-2">
                   <Button
@@ -164,6 +164,14 @@
                     text
                     @click="openViewDialog(data)"
                     v-tooltip.top="'View Details'"
+                  />
+                  <Button
+                    icon="pi pi-pencil"
+                    severity="warning"
+                    rounded
+                    text
+                    @click="openEditDialog(data)"
+                    v-tooltip.top="'Update Status'"
                   />
                 </div>
               </template>
@@ -195,6 +203,16 @@
               <Tag
                 :value="viewingReport.priority"
                 :severity="getPrioritySeverity(viewingReport.priority)"
+              />
+              <Button
+                icon="pi pi-pencil"
+                severity="warning"
+                rounded
+                outlined
+                size="small"
+                label="Update Status"
+                @click="openEditDialogFromView(viewingReport)"
+                v-tooltip.top="'Update Status'"
               />
             </div>
           </div>
@@ -327,7 +345,7 @@
             <Dropdown
               id="status"
               v-model="updateForm.status"
-              :options="statusOptions"
+              :options="editStatusOptions"
               optionLabel="label"
               optionValue="value"
               placeholder="Select status"
@@ -454,6 +472,16 @@ const errors = reactive({
 
 const statusOptions = [
   { label: 'All', value: null },
+  { label: 'New', value: 'NEW' },
+  { label: 'Acknowledged', value: 'ACKNOWLEDGED' },
+  { label: 'Under Investigation', value: 'UNDER_INVESTIGATION' },
+  { label: 'Referred to Prosecution', value: 'REFERRED_TO_PROSECUTION' },
+  { label: 'Closed', value: 'CLOSED' },
+  { label: 'Archived', value: 'ARCHIVED' }
+]
+
+// Status options for editing (without "All")
+const editStatusOptions = [
   { label: 'New', value: 'NEW' },
   { label: 'Acknowledged', value: 'ACKNOWLEDGED' },
   { label: 'Under Investigation', value: 'UNDER_INVESTIGATION' },
@@ -635,6 +663,11 @@ const openEditDialog = (report: any) => {
   editDialogVisible.value = true
 }
 
+const openEditDialogFromView = (report: any) => {
+  openEditDialog(report)
+  viewDialogVisible.value = false
+}
+
 const closeEditDialog = () => {
   editDialogVisible.value = false
   updateForm.id = ''
@@ -675,6 +708,16 @@ const handleUpdate = async () => {
 
     await fetchReports()
     closeEditDialog()
+    
+    // If we were viewing a report, refresh it
+    if (viewingReport.value && viewingReport.value.id === updateForm.id) {
+      try {
+        const data = await $fetch(`/api/reports/${updateForm.id}`)
+        viewingReport.value = data
+      } catch (error: any) {
+        console.error('Failed to refresh report:', error)
+      }
+    }
   } catch (error: any) {
     toast.add({
       severity: 'error',
