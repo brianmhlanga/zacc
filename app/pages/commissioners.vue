@@ -82,7 +82,7 @@
 
                 <!-- Chairperson Row (Centered, Single Card) -->
                 <div v-if="commission.chairperson" class="flex justify-center mb-8">
-                  <div class="w-full max-w-md">
+                  <div class="w-full sm:w-1/2 lg:w-1/4">
                     <div class="rounded-[5px] bg-white overflow-hidden shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] hover:shadow-xl transition-shadow">
                       <img 
                         :src="getImageUrl(commission.chairperson.imageUrl)" 
