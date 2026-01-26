@@ -473,8 +473,11 @@ const fetchCommissioners = async () => {
 
 // Image upload handler
 const onImageSelect = async (event: any) => {
-  const file = event.files[0]
-  if (!file) return
+  const file = event.files?.[0] || event.files?.[0]?.file || event.files?.[0]
+  if (!file) {
+    console.error('No file selected')
+    return
+  }
 
   uploadedImageFile.value = file
 
@@ -495,16 +498,29 @@ const onImageSelect = async (event: any) => {
       body: formData
     })
 
-    commissionerForm.imageUrl = response.path
-    errors.imageUrl = ''
+    if (response && response.path) {
+      commissionerForm.imageUrl = response.path
+      errors.imageUrl = ''
+      toast.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Image uploaded successfully',
+        life: 2000
+      })
+    } else {
+      throw new Error('Invalid response from server')
+    }
   } catch (error: any) {
+    console.error('Upload error:', error)
     toast.add({
       severity: 'error',
       summary: 'Error',
-      detail: error.data?.message || 'Failed to upload image',
+      detail: error.data?.message || error.message || 'Failed to upload image',
       life: 3000
     })
     errors.imageUrl = 'Image upload failed'
+    uploadedImage.value = null
+    uploadedImageFile.value = null
   }
 }
 

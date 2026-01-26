@@ -14,13 +14,30 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const isActive = query.isActive !== undefined ? query.isActive === 'true' : undefined
 
+    // Executive roles that should be excluded from commissioners
+    // These are management/executive positions, not commissioners
+    const executiveRolePatterns = [
+      'Executive Secretary',
+      'General Manager',
+      'Manager',
+      'Director',
+      'Deputy Director',
+      'Coordinator',
+      'Officer',
+      'Assistant'
+    ]
+    
     // Build where clause
-    const where: any = {}
+    const where: any = {
+      role: {
+        notIn: executiveRolePatterns
+      }
+    }
     if (isActive !== undefined) {
       where.isActive = isActive
     }
 
-    // Fetch commissioners
+    // Fetch commissioners (excluding executives)
     const commissioners = await prisma.commissioner.findMany({
       where,
       orderBy: [
