@@ -4,7 +4,13 @@ import Aura from '@primeuix/themes/aura'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@primevue/nuxt-module', 'nuxt-auth-utils'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@primevue/nuxt-module',
+    'nuxt-auth-utils',
+    'nuxt-gtag',
+    '@nuxtjs/seo'
+  ],
   runtimeConfig: {
     session: {
       maxAge: 60 * 60 * 24 * 7 // 1 week
@@ -24,6 +30,22 @@ export default defineNuxtConfig({
     components: {
       exclude: [] // Include Editor and Chart components
     }
+  },
+  // Google Analytics configuration
+  gtag: {
+    id: 'G-H395XP5RHV',
+    config: {
+      page_title: 'Zimbabwe Anti-Corruption Commission (ZACC)',
+      page_location: 'https://zacc.co.zw'
+    }
+  },
+  // SEO configuration - @nuxtjs/seo uses this site config
+  // All SEO modules (sitemap, robots, meta tags, schema.org) share this config
+  site: {
+    url: 'https://zacc.co.zw',
+    name: 'Zimbabwe Anti-Corruption Commission',
+    description: 'Zimbabwe Anti-Corruption Commission (ZACC) – Preventing and combating corruption through enforcement, education, and collaboration.',
+    defaultLocale: 'en'
   },
   app: {
     head: {
@@ -49,11 +71,35 @@ export default defineNuxtConfig({
         },
         {
           property: 'og:url',
-          content: '/'
+          content: 'https://zacc.co.zw'
         },
         {
           property: 'og:image',
-          content: '/og-image.png'
+          content: 'https://zacc.co.zw/og-image.png'
+        },
+        {
+          property: 'og:site_name',
+          content: 'Zimbabwe Anti-Corruption Commission'
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        {
+          name: 'twitter:site',
+          content: '@ZACC_Zimbabwe'
+        },
+        {
+          name: 'twitter:title',
+          content: 'Zimbabwe Anti-Corruption Commission (ZACC)'
+        },
+        {
+          name: 'twitter:description',
+          content: 'Preventing and combating corruption through enforcement, education, and collaboration.'
+        },
+        {
+          name: 'twitter:image',
+          content: 'https://zacc.co.zw/og-image.png'
         }
       ],
       link: [
