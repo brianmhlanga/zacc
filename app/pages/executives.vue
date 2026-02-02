@@ -31,7 +31,7 @@
               :key="i"
               class="rounded-[5px] bg-white overflow-hidden shadow-[0_5px_10px_0_rgba(41,61,102,0.2)] animate-pulse"
             >
-              <div class="w-full bg-gray-200" style="height: 19rem;"></div>
+              <div class="h-52 w-full bg-gray-200"></div>
               <div class="p-5">
                 <div class="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
                 <div class="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
@@ -49,8 +49,8 @@
                   <img 
                     :src="getImageUrl(executiveSecretary.imageUrl)" 
                     :alt="executiveSecretary.name" 
-                    class="w-full object-cover"
-                    style="height: 19rem; object-position: top center;"
+                    class="h-52 w-full object-cover"
+                    style="object-position: top center;"
                     @error="handleImageError"
                   />
                   <div class="p-5">
@@ -88,8 +88,8 @@
                 <img 
                   :src="getImageUrl(executive.imageUrl)" 
                   :alt="executive.name" 
-                  class="w-full object-cover"
-                  style="height: 19rem; object-position: top center;"
+                  class="h-52 w-full object-cover"
+                  style="object-position: top center;"
                   @error="handleImageError"
                 />
                 <div class="p-5">
@@ -155,7 +155,7 @@
               <img
                 :src="getImageUrl(selectedExecutive.imageUrl)"
                 :alt="selectedExecutive.name"
-                class="w-48 h-48 rounded-lg object-cover shadow-lg"
+                class="w-48 h-52 rounded-lg object-cover shadow-lg"
                 @error="handleImageError"
               />
             </div>
