@@ -44,6 +44,7 @@ export type GalleryImageMinAggregateOutputType = {
   alt: string | null
   order: number | null
   isPublished: boolean | null
+  showTitle: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   createdBy: string | null
@@ -60,6 +61,7 @@ export type GalleryImageMaxAggregateOutputType = {
   alt: string | null
   order: number | null
   isPublished: boolean | null
+  showTitle: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   createdBy: string | null
@@ -76,6 +78,7 @@ export type GalleryImageCountAggregateOutputType = {
   alt: number
   order: number
   isPublished: number
+  showTitle: number
   createdAt: number
   updatedAt: number
   createdBy: number
@@ -102,6 +105,7 @@ export type GalleryImageMinAggregateInputType = {
   alt?: true
   order?: true
   isPublished?: true
+  showTitle?: true
   createdAt?: true
   updatedAt?: true
   createdBy?: true
@@ -118,6 +122,7 @@ export type GalleryImageMaxAggregateInputType = {
   alt?: true
   order?: true
   isPublished?: true
+  showTitle?: true
   createdAt?: true
   updatedAt?: true
   createdBy?: true
@@ -134,6 +139,7 @@ export type GalleryImageCountAggregateInputType = {
   alt?: true
   order?: true
   isPublished?: true
+  showTitle?: true
   createdAt?: true
   updatedAt?: true
   createdBy?: true
@@ -237,6 +243,7 @@ export type GalleryImageGroupByOutputType = {
   alt: string | null
   order: number
   isPublished: boolean
+  showTitle: boolean
   createdAt: Date
   updatedAt: Date
   createdBy: string | null
@@ -248,7 +255,7 @@ export type GalleryImageGroupByOutputType = {
   _max: GalleryImageMaxAggregateOutputType | null
 }
 
-type GetGalleryImageGroupByPayload<T extends GalleryImageGroupByArgs> = Prisma.PrismaPromise<
+export type GetGalleryImageGroupByPayload<T extends GalleryImageGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<GalleryImageGroupByOutputType, T['by']> &
       {
@@ -276,6 +283,7 @@ export type GalleryImageWhereInput = {
   alt?: Prisma.StringNullableFilter<"GalleryImage"> | string | null
   order?: Prisma.IntFilter<"GalleryImage"> | number
   isPublished?: Prisma.BoolFilter<"GalleryImage"> | boolean
+  showTitle?: Prisma.BoolFilter<"GalleryImage"> | boolean
   createdAt?: Prisma.DateTimeFilter<"GalleryImage"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GalleryImage"> | Date | string
   createdBy?: Prisma.StringNullableFilter<"GalleryImage"> | string | null
@@ -294,6 +302,7 @@ export type GalleryImageOrderByWithRelationInput = {
   alt?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  showTitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -316,6 +325,7 @@ export type GalleryImageWhereUniqueInput = Prisma.AtLeast<{
   alt?: Prisma.StringNullableFilter<"GalleryImage"> | string | null
   order?: Prisma.IntFilter<"GalleryImage"> | number
   isPublished?: Prisma.BoolFilter<"GalleryImage"> | boolean
+  showTitle?: Prisma.BoolFilter<"GalleryImage"> | boolean
   createdAt?: Prisma.DateTimeFilter<"GalleryImage"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GalleryImage"> | Date | string
   createdBy?: Prisma.StringNullableFilter<"GalleryImage"> | string | null
@@ -334,6 +344,7 @@ export type GalleryImageOrderByWithAggregationInput = {
   alt?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  showTitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -358,6 +369,7 @@ export type GalleryImageScalarWhereWithAggregatesInput = {
   alt?: Prisma.StringNullableWithAggregatesFilter<"GalleryImage"> | string | null
   order?: Prisma.IntWithAggregatesFilter<"GalleryImage"> | number
   isPublished?: Prisma.BoolWithAggregatesFilter<"GalleryImage"> | boolean
+  showTitle?: Prisma.BoolWithAggregatesFilter<"GalleryImage"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"GalleryImage"> | Date | string
   createdBy?: Prisma.StringNullableWithAggregatesFilter<"GalleryImage"> | string | null
@@ -374,6 +386,7 @@ export type GalleryImageCreateInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   creator?: Prisma.UserCreateNestedOneWithoutCreatedGalleryImagesInput
@@ -390,6 +403,7 @@ export type GalleryImageUncheckedCreateInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: string | null
@@ -406,6 +420,7 @@ export type GalleryImageUpdateInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creator?: Prisma.UserUpdateOneWithoutCreatedGalleryImagesNestedInput
@@ -422,6 +437,7 @@ export type GalleryImageUncheckedUpdateInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -438,6 +454,7 @@ export type GalleryImageCreateManyInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: string | null
@@ -454,6 +471,7 @@ export type GalleryImageUpdateManyMutationInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -468,6 +486,7 @@ export type GalleryImageUncheckedUpdateManyInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -500,6 +519,7 @@ export type GalleryImageCountOrderByAggregateInput = {
   alt?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  showTitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -520,6 +540,7 @@ export type GalleryImageMaxOrderByAggregateInput = {
   alt?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  showTitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -536,6 +557,7 @@ export type GalleryImageMinOrderByAggregateInput = {
   alt?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  showTitle?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -640,6 +662,7 @@ export type GalleryImageCreateWithoutCreatorInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   updater?: Prisma.UserCreateNestedOneWithoutUpdatedGalleryImagesInput
@@ -655,6 +678,7 @@ export type GalleryImageUncheckedCreateWithoutCreatorInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   updatedBy?: string | null
@@ -680,6 +704,7 @@ export type GalleryImageCreateWithoutUpdaterInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   creator?: Prisma.UserCreateNestedOneWithoutCreatedGalleryImagesInput
@@ -695,6 +720,7 @@ export type GalleryImageUncheckedCreateWithoutUpdaterInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: string | null
@@ -739,6 +765,7 @@ export type GalleryImageScalarWhereInput = {
   alt?: Prisma.StringNullableFilter<"GalleryImage"> | string | null
   order?: Prisma.IntFilter<"GalleryImage"> | number
   isPublished?: Prisma.BoolFilter<"GalleryImage"> | boolean
+  showTitle?: Prisma.BoolFilter<"GalleryImage"> | boolean
   createdAt?: Prisma.DateTimeFilter<"GalleryImage"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"GalleryImage"> | Date | string
   createdBy?: Prisma.StringNullableFilter<"GalleryImage"> | string | null
@@ -771,6 +798,7 @@ export type GalleryImageCreateManyCreatorInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   updatedBy?: string | null
@@ -786,6 +814,7 @@ export type GalleryImageCreateManyUpdaterInput = {
   alt?: string | null
   order?: number
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   createdBy?: string | null
@@ -801,6 +830,7 @@ export type GalleryImageUpdateWithoutCreatorInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updater?: Prisma.UserUpdateOneWithoutUpdatedGalleryImagesNestedInput
@@ -816,6 +846,7 @@ export type GalleryImageUncheckedUpdateWithoutCreatorInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -831,6 +862,7 @@ export type GalleryImageUncheckedUpdateManyWithoutCreatorInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -846,6 +878,7 @@ export type GalleryImageUpdateWithoutUpdaterInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   creator?: Prisma.UserUpdateOneWithoutCreatedGalleryImagesNestedInput
@@ -861,6 +894,7 @@ export type GalleryImageUncheckedUpdateWithoutUpdaterInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -876,6 +910,7 @@ export type GalleryImageUncheckedUpdateManyWithoutUpdaterInput = {
   alt?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  showTitle?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -893,6 +928,7 @@ export type GalleryImageSelect<ExtArgs extends runtime.Types.Extensions.Internal
   alt?: boolean
   order?: boolean
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   createdBy?: boolean
@@ -913,13 +949,14 @@ export type GalleryImageSelectScalar = {
   alt?: boolean
   order?: boolean
   isPublished?: boolean
+  showTitle?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   createdBy?: boolean
   updatedBy?: boolean
 }
 
-export type GalleryImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "category" | "imageUrl" | "thumbnailUrl" | "alt" | "order" | "isPublished" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy", ExtArgs["result"]["galleryImage"]>
+export type GalleryImageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "category" | "imageUrl" | "thumbnailUrl" | "alt" | "order" | "isPublished" | "showTitle" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy", ExtArgs["result"]["galleryImage"]>
 export type GalleryImageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.GalleryImage$creatorArgs<ExtArgs>
   updater?: boolean | Prisma.GalleryImage$updaterArgs<ExtArgs>
@@ -941,6 +978,7 @@ export type $GalleryImagePayload<ExtArgs extends runtime.Types.Extensions.Intern
     alt: string | null
     order: number
     isPublished: boolean
+    showTitle: boolean
     createdAt: Date
     updatedAt: Date
     createdBy: string | null
@@ -1325,6 +1363,7 @@ export interface GalleryImageFieldRefs {
   readonly alt: Prisma.FieldRef<"GalleryImage", 'String'>
   readonly order: Prisma.FieldRef<"GalleryImage", 'Int'>
   readonly isPublished: Prisma.FieldRef<"GalleryImage", 'Boolean'>
+  readonly showTitle: Prisma.FieldRef<"GalleryImage", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"GalleryImage", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"GalleryImage", 'DateTime'>
   readonly createdBy: Prisma.FieldRef<"GalleryImage", 'String'>
@@ -1525,6 +1564,11 @@ export type GalleryImageFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Skip the first `n` GalleryImages.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of GalleryImages.
+   */
   distinct?: Prisma.GalleryImageScalarFieldEnum | Prisma.GalleryImageScalarFieldEnum[]
 }
 

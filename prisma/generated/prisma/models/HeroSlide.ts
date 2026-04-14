@@ -234,7 +234,7 @@ export type HeroSlideGroupByOutputType = {
   _max: HeroSlideMaxAggregateOutputType | null
 }
 
-type GetHeroSlideGroupByPayload<T extends HeroSlideGroupByArgs> = Prisma.PrismaPromise<
+export type GetHeroSlideGroupByPayload<T extends HeroSlideGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<HeroSlideGroupByOutputType, T['by']> &
       {
@@ -1093,6 +1093,11 @@ export type HeroSlideFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Skip the first `n` HeroSlides.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of HeroSlides.
+   */
   distinct?: Prisma.HeroSlideScalarFieldEnum | Prisma.HeroSlideScalarFieldEnum[]
 }
 

@@ -25,6 +25,7 @@
     "@types/bcrypt": "^6.0.0",
     "bcrypt": "^6.0.0",
     "mariadb": "^3.4.5",
+    "nodemailer": "^8.0.5",
     "nuxt": "^4.2.2",
     "nuxt-auth-utils": "^0.5.26",
     "nuxt-gtag": "^4.1.0",
@@ -38,6 +39,7 @@
     "@primevue/nuxt-module": "^4.5.4",
     "@prisma/client": "^7.3.0",
     "@prisma/config": "^7.2.0",
+    "@types/nodemailer": "^8.0.0",
     "dotenv": "^17.2.3",
     "tsx": "^4.21.0",
     "zod": "^4.2.1"

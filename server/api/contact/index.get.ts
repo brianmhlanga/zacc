@@ -13,11 +13,15 @@ export default defineEventHandler(async (event) => {
 
     const query = getQuery(event)
     const status = query.status as string | undefined
+    const category = query.category as string | undefined
 
     // Build where clause
     const where: any = {}
     if (status) {
       where.status = status
+    }
+    if (category) {
+      where.category = category
     }
 
     // Fetch contact submissions

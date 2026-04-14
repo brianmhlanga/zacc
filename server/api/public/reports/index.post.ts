@@ -1,7 +1,43 @@
+import { getRequestURL } from 'h3'
 import { prisma } from '../../../utils/prisma'
+import { notifyReportsInbox } from '../../../utils/mail'
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { existsSync } from 'fs'
+
+const REPORT_NUMBER_REGEX = /^ZACC-(\d{4})-(\d{8})$/
+
+function isUniqueConstraintError(error: any) {
+  return error?.code === 'P2002' || String(error?.message || '').toLowerCase().includes('unique')
+}
+
+async function createReportWithCaseNumber(reportData: Record<string, any>) {
+  const year = new Date().getFullYear()
+  const prefix = `ZACC-${year}-`
+
+  // Retry in case randomly generated number already exists.
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const randomPart = String(Math.floor(Math.random() * 100000000)).padStart(8, '0')
+    const reportNumber = `${prefix}${randomPart}`
+    if (!REPORT_NUMBER_REGEX.test(reportNumber)) continue
+    try {
+      return await prisma.corruptionReport.create({
+        data: {
+          ...reportData,
+          reportNumber
+        }
+      })
+    } catch (error: any) {
+      if (isUniqueConstraintError(error)) continue
+      throw error
+    }
+  }
+
+  throw createError({
+    statusCode: 500,
+    statusMessage: 'Unable to generate unique case number. Please try again.'
+  })
+}
 
 export default defineEventHandler(async (event) => {
   try {
@@ -61,10 +97,8 @@ export default defineEventHandler(async (event) => {
       reportData.organization = fields.organization || null
     }
 
-    // Create the report
-    const report = await prisma.corruptionReport.create({
-      data: reportData
-    })
+    // Create the report with custom sequential case number.
+    const report = await createReportWithCaseNumber(reportData)
 
     // Handle file uploads if any
     if (files.length > 0) {
@@ -116,6 +150,13 @@ export default defineEventHandler(async (event) => {
       response.name = report.name
       response.email = report.email
     }
+
+    const origin = getRequestURL(event).origin
+    const adminReportsUrl = `${origin}/admin/reports`
+    void notifyReportsInbox({
+      reportNumber: report.reportNumber,
+      adminReportsUrl
+    }).catch((err) => console.error('[reports] notify inbox failed', err))
 
     return response
   } catch (error: any) {

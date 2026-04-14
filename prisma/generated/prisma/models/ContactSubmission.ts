@@ -31,6 +31,7 @@ export type ContactSubmissionMinAggregateOutputType = {
   phone: string | null
   subject: string | null
   message: string | null
+  category: $Enums.ContactCategory | null
   isAnonymous: boolean | null
   status: $Enums.ContactStatus | null
   respondedAt: Date | null
@@ -46,6 +47,7 @@ export type ContactSubmissionMaxAggregateOutputType = {
   phone: string | null
   subject: string | null
   message: string | null
+  category: $Enums.ContactCategory | null
   isAnonymous: boolean | null
   status: $Enums.ContactStatus | null
   respondedAt: Date | null
@@ -61,6 +63,7 @@ export type ContactSubmissionCountAggregateOutputType = {
   phone: number
   subject: number
   message: number
+  category: number
   isAnonymous: number
   status: number
   respondedAt: number
@@ -78,6 +81,7 @@ export type ContactSubmissionMinAggregateInputType = {
   phone?: true
   subject?: true
   message?: true
+  category?: true
   isAnonymous?: true
   status?: true
   respondedAt?: true
@@ -93,6 +97,7 @@ export type ContactSubmissionMaxAggregateInputType = {
   phone?: true
   subject?: true
   message?: true
+  category?: true
   isAnonymous?: true
   status?: true
   respondedAt?: true
@@ -108,6 +113,7 @@ export type ContactSubmissionCountAggregateInputType = {
   phone?: true
   subject?: true
   message?: true
+  category?: true
   isAnonymous?: true
   status?: true
   respondedAt?: true
@@ -196,6 +202,7 @@ export type ContactSubmissionGroupByOutputType = {
   phone: string | null
   subject: string
   message: string
+  category: $Enums.ContactCategory
   isAnonymous: boolean
   status: $Enums.ContactStatus
   respondedAt: Date | null
@@ -207,7 +214,7 @@ export type ContactSubmissionGroupByOutputType = {
   _max: ContactSubmissionMaxAggregateOutputType | null
 }
 
-type GetContactSubmissionGroupByPayload<T extends ContactSubmissionGroupByArgs> = Prisma.PrismaPromise<
+export type GetContactSubmissionGroupByPayload<T extends ContactSubmissionGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ContactSubmissionGroupByOutputType, T['by']> &
       {
@@ -232,6 +239,7 @@ export type ContactSubmissionWhereInput = {
   phone?: Prisma.StringNullableFilter<"ContactSubmission"> | string | null
   subject?: Prisma.StringFilter<"ContactSubmission"> | string
   message?: Prisma.StringFilter<"ContactSubmission"> | string
+  category?: Prisma.EnumContactCategoryFilter<"ContactSubmission"> | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolFilter<"ContactSubmission"> | boolean
   status?: Prisma.EnumContactStatusFilter<"ContactSubmission"> | $Enums.ContactStatus
   respondedAt?: Prisma.DateTimeNullableFilter<"ContactSubmission"> | Date | string | null
@@ -247,6 +255,7 @@ export type ContactSubmissionOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   subject?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   isAnonymous?: Prisma.SortOrder
   status?: Prisma.SortOrder
   respondedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -266,6 +275,7 @@ export type ContactSubmissionWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringNullableFilter<"ContactSubmission"> | string | null
   subject?: Prisma.StringFilter<"ContactSubmission"> | string
   message?: Prisma.StringFilter<"ContactSubmission"> | string
+  category?: Prisma.EnumContactCategoryFilter<"ContactSubmission"> | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolFilter<"ContactSubmission"> | boolean
   status?: Prisma.EnumContactStatusFilter<"ContactSubmission"> | $Enums.ContactStatus
   respondedAt?: Prisma.DateTimeNullableFilter<"ContactSubmission"> | Date | string | null
@@ -281,6 +291,7 @@ export type ContactSubmissionOrderByWithAggregationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   subject?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   isAnonymous?: Prisma.SortOrder
   status?: Prisma.SortOrder
   respondedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -302,6 +313,7 @@ export type ContactSubmissionScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringNullableWithAggregatesFilter<"ContactSubmission"> | string | null
   subject?: Prisma.StringWithAggregatesFilter<"ContactSubmission"> | string
   message?: Prisma.StringWithAggregatesFilter<"ContactSubmission"> | string
+  category?: Prisma.EnumContactCategoryWithAggregatesFilter<"ContactSubmission"> | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolWithAggregatesFilter<"ContactSubmission"> | boolean
   status?: Prisma.EnumContactStatusWithAggregatesFilter<"ContactSubmission"> | $Enums.ContactStatus
   respondedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ContactSubmission"> | Date | string | null
@@ -317,6 +329,7 @@ export type ContactSubmissionCreateInput = {
   phone?: string | null
   subject: string
   message: string
+  category?: $Enums.ContactCategory
   isAnonymous?: boolean
   status?: $Enums.ContactStatus
   respondedAt?: Date | string | null
@@ -332,6 +345,7 @@ export type ContactSubmissionUncheckedCreateInput = {
   phone?: string | null
   subject: string
   message: string
+  category?: $Enums.ContactCategory
   isAnonymous?: boolean
   status?: $Enums.ContactStatus
   respondedAt?: Date | string | null
@@ -347,6 +361,7 @@ export type ContactSubmissionUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
   respondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -362,6 +377,7 @@ export type ContactSubmissionUncheckedUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
   respondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -377,6 +393,7 @@ export type ContactSubmissionCreateManyInput = {
   phone?: string | null
   subject: string
   message: string
+  category?: $Enums.ContactCategory
   isAnonymous?: boolean
   status?: $Enums.ContactStatus
   respondedAt?: Date | string | null
@@ -392,6 +409,7 @@ export type ContactSubmissionUpdateManyMutationInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
   respondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -407,6 +425,7 @@ export type ContactSubmissionUncheckedUpdateManyInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subject?: Prisma.StringFieldUpdateOperationsInput | string
   message?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumContactCategoryFieldUpdateOperationsInput | $Enums.ContactCategory
   isAnonymous?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumContactStatusFieldUpdateOperationsInput | $Enums.ContactStatus
   respondedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -428,6 +447,7 @@ export type ContactSubmissionCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   subject?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   isAnonymous?: Prisma.SortOrder
   status?: Prisma.SortOrder
   respondedAt?: Prisma.SortOrder
@@ -443,6 +463,7 @@ export type ContactSubmissionMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   subject?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   isAnonymous?: Prisma.SortOrder
   status?: Prisma.SortOrder
   respondedAt?: Prisma.SortOrder
@@ -458,12 +479,17 @@ export type ContactSubmissionMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   subject?: Prisma.SortOrder
   message?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   isAnonymous?: Prisma.SortOrder
   status?: Prisma.SortOrder
   respondedAt?: Prisma.SortOrder
   response?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type EnumContactCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.ContactCategory
 }
 
 export type EnumContactStatusFieldUpdateOperationsInput = {
@@ -479,6 +505,7 @@ export type ContactSubmissionSelect<ExtArgs extends runtime.Types.Extensions.Int
   phone?: boolean
   subject?: boolean
   message?: boolean
+  category?: boolean
   isAnonymous?: boolean
   status?: boolean
   respondedAt?: boolean
@@ -496,6 +523,7 @@ export type ContactSubmissionSelectScalar = {
   phone?: boolean
   subject?: boolean
   message?: boolean
+  category?: boolean
   isAnonymous?: boolean
   status?: boolean
   respondedAt?: boolean
@@ -504,7 +532,7 @@ export type ContactSubmissionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ContactSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "subject" | "message" | "isAnonymous" | "status" | "respondedAt" | "response" | "createdAt" | "updatedAt", ExtArgs["result"]["contactSubmission"]>
+export type ContactSubmissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "phone" | "subject" | "message" | "category" | "isAnonymous" | "status" | "respondedAt" | "response" | "createdAt" | "updatedAt", ExtArgs["result"]["contactSubmission"]>
 
 export type $ContactSubmissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ContactSubmission"
@@ -516,6 +544,7 @@ export type $ContactSubmissionPayload<ExtArgs extends runtime.Types.Extensions.I
     phone: string | null
     subject: string
     message: string
+    category: $Enums.ContactCategory
     isAnonymous: boolean
     status: $Enums.ContactStatus
     respondedAt: Date | null
@@ -897,6 +926,7 @@ export interface ContactSubmissionFieldRefs {
   readonly phone: Prisma.FieldRef<"ContactSubmission", 'String'>
   readonly subject: Prisma.FieldRef<"ContactSubmission", 'String'>
   readonly message: Prisma.FieldRef<"ContactSubmission", 'String'>
+  readonly category: Prisma.FieldRef<"ContactSubmission", 'ContactCategory'>
   readonly isAnonymous: Prisma.FieldRef<"ContactSubmission", 'Boolean'>
   readonly status: Prisma.FieldRef<"ContactSubmission", 'ContactStatus'>
   readonly respondedAt: Prisma.FieldRef<"ContactSubmission", 'DateTime'>
@@ -1079,6 +1109,11 @@ export type ContactSubmissionFindManyArgs<ExtArgs extends runtime.Types.Extensio
    * Skip the first `n` ContactSubmissions.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ContactSubmissions.
+   */
   distinct?: Prisma.ContactSubmissionScalarFieldEnum | Prisma.ContactSubmissionScalarFieldEnum[]
 }
 

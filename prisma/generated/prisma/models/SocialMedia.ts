@@ -213,7 +213,7 @@ export type SocialMediaGroupByOutputType = {
   _max: SocialMediaMaxAggregateOutputType | null
 }
 
-type GetSocialMediaGroupByPayload<T extends SocialMediaGroupByArgs> = Prisma.PrismaPromise<
+export type GetSocialMediaGroupByPayload<T extends SocialMediaGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<SocialMediaGroupByOutputType, T['by']> &
       {
@@ -1023,6 +1023,11 @@ export type SocialMediaFindManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Skip the first `n` SocialMedias.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of SocialMedias.
+   */
   distinct?: Prisma.SocialMediaScalarFieldEnum | Prisma.SocialMediaScalarFieldEnum[]
 }
 

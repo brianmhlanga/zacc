@@ -62,27 +62,6 @@
         </NuxtLink>
       </div>
 
-      <!-- Divider -->
-      <div class="my-4 border-t border-gray-200"></div>
-
-      <!-- Settings Section -->
-      <div class="space-y-1">
-        <div v-if="!collapsed" class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-          Settings
-        </div>
-        <NuxtLink
-          to="/admin/settings"
-          class="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
-          :class="[
-            isActive('/admin/settings')
-              ? 'bg-zaccBlack/10 text-zaccGreen border-l-4 border-zaccGreen'
-              : 'text-gray-700 hover:bg-gray-100'
-          ]"
-        >
-          <i class="pi pi-cog text-lg"></i>
-          <span v-if="!collapsed">Settings</span>
-        </NuxtLink>
-      </div>
     </nav>
 
     <!-- User Section -->
@@ -130,6 +109,9 @@ defineEmits<{
 const route = useRoute()
 const userMenu = ref()
 const { user, fetch: fetchUser } = useUserSession()
+const { loadPermissions, canViewPath, clear: clearPermissions } = useAdminPermissions()
+
+const isReportsAdmin = computed(() => user.value?.role === 'REPORTS_ADMIN')
 
 const badges = ref({
   reports: 0,
@@ -161,57 +143,99 @@ const userInitials = computed(() => {
   return 'AU'
 })
 
-const menuItems = computed(() => [
+const allMenuItems = [
   { label: 'Dashboard', path: '/admin', icon: 'pi-home' },
   { label: 'Content', path: '/admin/content', icon: 'pi-file-edit' },
-  { label: 'News', path: '/admin/news', icon: 'pi-file', badge: badges.value.news > 0 ? badges.value.news.toString() : undefined },
+  { label: 'News', path: '/admin/news', icon: 'pi-file', badgeKey: 'news' as const },
   { label: 'Downloads', path: '/admin/downloads', icon: 'pi-download' },
+  { label: 'Tenders', path: '/admin/tenders', icon: 'pi-file' },
+  { label: 'Suppliers', path: '/admin/suppliers', icon: 'pi-building' },
   { label: 'Rulings', path: '/admin/rulings', icon: 'pi-book' },
   { label: 'Media Library', path: '/admin/gallery', icon: 'pi-images' },
   { label: 'Jobs', path: '/admin/jobs', icon: 'pi-briefcase' },
-  { label: 'Reports', path: '/admin/reports', icon: 'pi-flag', badge: badges.value.reports > 0 ? badges.value.reports.toString() : undefined },
+  { label: 'Reports', path: '/admin/reports', icon: 'pi-flag', badgeKey: 'reports' as const },
   { label: 'Contact Submissions', path: '/admin/contact', icon: 'pi-inbox' },
   { label: 'Statistics', path: '/admin/statistics', icon: 'pi-chart-bar' },
   { label: 'Commissioners', path: '/admin/commissioners', icon: 'pi-users' },
   { label: 'Executives', path: '/admin/executives', icon: 'pi-briefcase' },
   { label: 'Menu Settings', path: '/admin/menus', icon: 'pi-list' },
   { label: 'Users', path: '/admin/users', icon: 'pi-user-edit' },
-])
+  { label: 'Permissions', path: '/admin/permissions', icon: 'pi-key' },
+]
+
+const menuItems = computed(() => {
+  const mapBadge = (key?: 'reports' | 'news') => {
+    if (key === 'reports' && badges.value.reports > 0) return badges.value.reports.toString()
+    if (key === 'news' && badges.value.news > 0) return badges.value.news.toString()
+    return undefined
+  }
+
+  if (isReportsAdmin.value) {
+    return [
+      {
+        label: 'Reports',
+        path: '/admin/reports',
+        icon: 'pi-flag',
+        badge: mapBadge('reports')
+      }
+    ]
+  }
+
+  return allMenuItems
+    .filter((item) => {
+      if (user.value?.role === 'SUPER_ADMIN') return true
+      return canViewPath(item.path)
+    })
+    .map((item) => ({
+      label: item.label,
+      path: item.path,
+      icon: item.icon,
+      badge: 'badgeKey' in item ? mapBadge(item.badgeKey) : undefined
+    }))
+})
 
 // Fetch user session and badges on mount
 onMounted(async () => {
   await fetchUser()
+  await loadPermissions()
   await fetchBadges()
   // Refresh badges every 5 minutes
   setInterval(fetchBadges, 5 * 60 * 1000)
 })
 
-const userMenuItems = [
-  {
-    label: 'Profile',
-    icon: 'pi pi-user',
-    command: () => {
-      navigateTo('/admin/profile')
-    }
-  },
-  {
-    label: 'Settings',
-    icon: 'pi pi-cog',
-    command: () => {
-      navigateTo('/admin/settings')
-    }
-  },
-  { separator: true },
-  {
+const userMenuItems = computed(() => {
+  const logout = {
     label: 'Logout',
     icon: 'pi pi-sign-out',
     command: async () => {
       const { clear } = useUserSession()
       await clear()
+      clearPermissions()
       navigateTo('/admin/login')
     }
   }
-]
+  if (isReportsAdmin.value) {
+    return [logout]
+  }
+  return [
+    {
+      label: 'Profile',
+      icon: 'pi pi-user',
+      command: () => {
+        navigateTo('/admin/profile')
+      }
+    },
+    {
+      label: 'Settings',
+      icon: 'pi pi-cog',
+      command: () => {
+        navigateTo('/admin/settings')
+      }
+    },
+    { separator: true },
+    logout
+  ]
+})
 
 const isActive = (path: string) => {
   if (path === '/admin') {

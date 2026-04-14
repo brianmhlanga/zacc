@@ -29,11 +29,13 @@ export type AggregateStatistic = {
 export type StatisticAvgAggregateOutputType = {
   value: number | null
   order: number | null
+  year: number | null
 }
 
 export type StatisticSumAggregateOutputType = {
   value: number | null
   order: number | null
+  year: number | null
 }
 
 export type StatisticMinAggregateOutputType = {
@@ -47,6 +49,7 @@ export type StatisticMinAggregateOutputType = {
   order: number | null
   isVisible: boolean | null
   section: string | null
+  year: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,6 +65,7 @@ export type StatisticMaxAggregateOutputType = {
   order: number | null
   isVisible: boolean | null
   section: string | null
+  year: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -77,6 +81,7 @@ export type StatisticCountAggregateOutputType = {
   order: number
   isVisible: number
   section: number
+  year: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -86,11 +91,13 @@ export type StatisticCountAggregateOutputType = {
 export type StatisticAvgAggregateInputType = {
   value?: true
   order?: true
+  year?: true
 }
 
 export type StatisticSumAggregateInputType = {
   value?: true
   order?: true
+  year?: true
 }
 
 export type StatisticMinAggregateInputType = {
@@ -104,6 +111,7 @@ export type StatisticMinAggregateInputType = {
   order?: true
   isVisible?: true
   section?: true
+  year?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -119,6 +127,7 @@ export type StatisticMaxAggregateInputType = {
   order?: true
   isVisible?: true
   section?: true
+  year?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -134,6 +143,7 @@ export type StatisticCountAggregateInputType = {
   order?: true
   isVisible?: true
   section?: true
+  year?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -236,6 +246,7 @@ export type StatisticGroupByOutputType = {
   order: number
   isVisible: boolean
   section: string
+  year: number
   createdAt: Date
   updatedAt: Date
   _count: StatisticCountAggregateOutputType | null
@@ -245,7 +256,7 @@ export type StatisticGroupByOutputType = {
   _max: StatisticMaxAggregateOutputType | null
 }
 
-type GetStatisticGroupByPayload<T extends StatisticGroupByArgs> = Prisma.PrismaPromise<
+export type GetStatisticGroupByPayload<T extends StatisticGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<StatisticGroupByOutputType, T['by']> &
       {
@@ -274,6 +285,7 @@ export type StatisticWhereInput = {
   order?: Prisma.IntFilter<"Statistic"> | number
   isVisible?: Prisma.BoolFilter<"Statistic"> | boolean
   section?: Prisma.StringFilter<"Statistic"> | string
+  year?: Prisma.IntFilter<"Statistic"> | number
   createdAt?: Prisma.DateTimeFilter<"Statistic"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Statistic"> | Date | string
 }
@@ -289,6 +301,7 @@ export type StatisticOrderByWithRelationInput = {
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
   section?: Prisma.SortOrder
+  year?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _relevance?: Prisma.StatisticOrderByRelevanceInput
@@ -308,6 +321,7 @@ export type StatisticWhereUniqueInput = Prisma.AtLeast<{
   order?: Prisma.IntFilter<"Statistic"> | number
   isVisible?: Prisma.BoolFilter<"Statistic"> | boolean
   section?: Prisma.StringFilter<"Statistic"> | string
+  year?: Prisma.IntFilter<"Statistic"> | number
   createdAt?: Prisma.DateTimeFilter<"Statistic"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Statistic"> | Date | string
 }, "id">
@@ -323,6 +337,7 @@ export type StatisticOrderByWithAggregationInput = {
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
   section?: Prisma.SortOrder
+  year?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StatisticCountOrderByAggregateInput
@@ -346,6 +361,7 @@ export type StatisticScalarWhereWithAggregatesInput = {
   order?: Prisma.IntWithAggregatesFilter<"Statistic"> | number
   isVisible?: Prisma.BoolWithAggregatesFilter<"Statistic"> | boolean
   section?: Prisma.StringWithAggregatesFilter<"Statistic"> | string
+  year?: Prisma.IntWithAggregatesFilter<"Statistic"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Statistic"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Statistic"> | Date | string
 }
@@ -361,6 +377,7 @@ export type StatisticCreateInput = {
   order?: number
   isVisible?: boolean
   section?: string
+  year?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -376,6 +393,7 @@ export type StatisticUncheckedCreateInput = {
   order?: number
   isVisible?: boolean
   section?: string
+  year?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -391,6 +409,7 @@ export type StatisticUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   section?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -406,6 +425,7 @@ export type StatisticUncheckedUpdateInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   section?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -421,6 +441,7 @@ export type StatisticCreateManyInput = {
   order?: number
   isVisible?: boolean
   section?: string
+  year?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -436,6 +457,7 @@ export type StatisticUpdateManyMutationInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   section?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -451,6 +473,7 @@ export type StatisticUncheckedUpdateManyInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
   section?: Prisma.StringFieldUpdateOperationsInput | string
+  year?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -472,6 +495,7 @@ export type StatisticCountOrderByAggregateInput = {
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
   section?: Prisma.SortOrder
+  year?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -479,6 +503,7 @@ export type StatisticCountOrderByAggregateInput = {
 export type StatisticAvgOrderByAggregateInput = {
   value?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  year?: Prisma.SortOrder
 }
 
 export type StatisticMaxOrderByAggregateInput = {
@@ -492,6 +517,7 @@ export type StatisticMaxOrderByAggregateInput = {
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
   section?: Prisma.SortOrder
+  year?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -507,6 +533,7 @@ export type StatisticMinOrderByAggregateInput = {
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
   section?: Prisma.SortOrder
+  year?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -514,6 +541,7 @@ export type StatisticMinOrderByAggregateInput = {
 export type StatisticSumOrderByAggregateInput = {
   value?: Prisma.SortOrder
   order?: Prisma.SortOrder
+  year?: Prisma.SortOrder
 }
 
 
@@ -529,6 +557,7 @@ export type StatisticSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   order?: boolean
   isVisible?: boolean
   section?: boolean
+  year?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["statistic"]>
@@ -546,11 +575,12 @@ export type StatisticSelectScalar = {
   order?: boolean
   isVisible?: boolean
   section?: boolean
+  year?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StatisticOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "value" | "prefix" | "suffix" | "icon" | "color" | "order" | "isVisible" | "section" | "createdAt" | "updatedAt", ExtArgs["result"]["statistic"]>
+export type StatisticOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "label" | "value" | "prefix" | "suffix" | "icon" | "color" | "order" | "isVisible" | "section" | "year" | "createdAt" | "updatedAt", ExtArgs["result"]["statistic"]>
 
 export type $StatisticPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Statistic"
@@ -566,6 +596,7 @@ export type $StatisticPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     order: number
     isVisible: boolean
     section: string
+    year: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["statistic"]>
@@ -947,6 +978,7 @@ export interface StatisticFieldRefs {
   readonly order: Prisma.FieldRef<"Statistic", 'Int'>
   readonly isVisible: Prisma.FieldRef<"Statistic", 'Boolean'>
   readonly section: Prisma.FieldRef<"Statistic", 'String'>
+  readonly year: Prisma.FieldRef<"Statistic", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Statistic", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Statistic", 'DateTime'>
 }
@@ -1125,6 +1157,11 @@ export type StatisticFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Skip the first `n` Statistics.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Statistics.
+   */
   distinct?: Prisma.StatisticScalarFieldEnum | Prisma.StatisticScalarFieldEnum[]
 }
 

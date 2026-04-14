@@ -1,23 +1,19 @@
 import { writeFile, mkdir } from 'fs/promises'
 import { join } from 'path'
 import { existsSync } from 'fs'
+import { getSupplierFromRequest } from '../../utils/supplierAuth'
 
 export default defineEventHandler(async (event) => {
   try {
-    // Check authentication
+    // Allow authenticated admin/editor users OR authenticated suppliers.
     const session = await getUserSession(event)
-    if (!session.user) {
+    const supplier = await getSupplierFromRequest(event)
+    const hasBackofficeAccess = Boolean(session.user && ['SUPER_ADMIN', 'ADMIN', 'EDITOR'].includes(session.user.role))
+    const hasSupplierAccess = Boolean(supplier)
+    if (!hasBackofficeAccess && !hasSupplierAccess) {
       throw createError({
         statusCode: 401,
         statusMessage: 'Unauthorized'
-      })
-    }
-
-    // Only ADMIN, SUPER_ADMIN, and EDITOR can upload files
-    if (!['SUPER_ADMIN', 'ADMIN', 'EDITOR'].includes(session.user.role)) {
-      throw createError({
-        statusCode: 403,
-        statusMessage: 'Forbidden: Only administrators and editors can upload files'
       })
     }
 

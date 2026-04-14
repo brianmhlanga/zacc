@@ -186,7 +186,7 @@ export type UserGroupByOutputType = {
   _max: UserMaxAggregateOutputType | null
 }
 
-type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+export type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<UserGroupByOutputType, T['by']> &
       {
@@ -226,6 +226,8 @@ export type UserWhereInput = {
   updatedDownloads?: Prisma.DownloadListRelationFilter
   createdGalleryImages?: Prisma.GalleryImageListRelationFilter
   updatedGalleryImages?: Prisma.GalleryImageListRelationFilter
+  createdTenders?: Prisma.TenderListRelationFilter
+  updatedTenders?: Prisma.TenderListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -250,6 +252,8 @@ export type UserOrderByWithRelationInput = {
   updatedDownloads?: Prisma.DownloadOrderByRelationAggregateInput
   createdGalleryImages?: Prisma.GalleryImageOrderByRelationAggregateInput
   updatedGalleryImages?: Prisma.GalleryImageOrderByRelationAggregateInput
+  createdTenders?: Prisma.TenderOrderByRelationAggregateInput
+  updatedTenders?: Prisma.TenderOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -278,6 +282,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedDownloads?: Prisma.DownloadListRelationFilter
   createdGalleryImages?: Prisma.GalleryImageListRelationFilter
   updatedGalleryImages?: Prisma.GalleryImageListRelationFilter
+  createdTenders?: Prisma.TenderListRelationFilter
+  updatedTenders?: Prisma.TenderListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -332,6 +338,8 @@ export type UserCreateInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -356,6 +364,8 @@ export type UserUncheckedCreateInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUpdateInput = {
@@ -380,6 +390,8 @@ export type UserUpdateInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -404,6 +416,8 @@ export type UserUncheckedUpdateInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -673,6 +687,38 @@ export type UserUpdateOneWithoutUpdatedGalleryImagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUpdatedGalleryImagesInput, Prisma.UserUpdateWithoutUpdatedGalleryImagesInput>, Prisma.UserUncheckedUpdateWithoutUpdatedGalleryImagesInput>
 }
 
+export type UserCreateNestedOneWithoutCreatedTendersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedTendersInput, Prisma.UserUncheckedCreateWithoutCreatedTendersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedTendersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutUpdatedTendersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedTendersInput, Prisma.UserUncheckedCreateWithoutUpdatedTendersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedTendersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedTendersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedTendersInput, Prisma.UserUncheckedCreateWithoutCreatedTendersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedTendersInput
+  upsert?: Prisma.UserUpsertWithoutCreatedTendersInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedTendersInput, Prisma.UserUpdateWithoutCreatedTendersInput>, Prisma.UserUncheckedUpdateWithoutCreatedTendersInput>
+}
+
+export type UserUpdateOneWithoutUpdatedTendersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedTendersInput, Prisma.UserUncheckedCreateWithoutUpdatedTendersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedTendersInput
+  upsert?: Prisma.UserUpsertWithoutUpdatedTendersInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUpdatedTendersInput, Prisma.UserUpdateWithoutUpdatedTendersInput>, Prisma.UserUncheckedUpdateWithoutUpdatedTendersInput>
+}
+
 export type UserCreateNestedOneWithoutCreatedJobsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedJobsInput, Prisma.UserUncheckedCreateWithoutCreatedJobsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedJobsInput
@@ -726,6 +772,8 @@ export type UserCreateWithoutCreatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPageContentInput = {
@@ -749,6 +797,8 @@ export type UserUncheckedCreateWithoutCreatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPageContentInput = {
@@ -777,6 +827,8 @@ export type UserCreateWithoutUpdatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedPageContentInput = {
@@ -800,6 +852,8 @@ export type UserUncheckedCreateWithoutUpdatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedPageContentInput = {
@@ -839,6 +893,8 @@ export type UserUpdateWithoutCreatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPageContentInput = {
@@ -862,6 +918,8 @@ export type UserUncheckedUpdateWithoutCreatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedPageContentInput = {
@@ -896,6 +954,8 @@ export type UserUpdateWithoutUpdatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedPageContentInput = {
@@ -919,6 +979,8 @@ export type UserUncheckedUpdateWithoutUpdatedPageContentInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedNewsInput = {
@@ -942,6 +1004,8 @@ export type UserCreateWithoutCreatedNewsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedNewsInput = {
@@ -965,6 +1029,8 @@ export type UserUncheckedCreateWithoutCreatedNewsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedNewsInput = {
@@ -993,6 +1059,8 @@ export type UserCreateWithoutUpdatedNewsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedNewsInput = {
@@ -1016,6 +1084,8 @@ export type UserUncheckedCreateWithoutUpdatedNewsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedNewsInput = {
@@ -1055,6 +1125,8 @@ export type UserUpdateWithoutCreatedNewsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedNewsInput = {
@@ -1078,6 +1150,8 @@ export type UserUncheckedUpdateWithoutCreatedNewsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedNewsInput = {
@@ -1112,6 +1186,8 @@ export type UserUpdateWithoutUpdatedNewsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedNewsInput = {
@@ -1135,6 +1211,8 @@ export type UserUncheckedUpdateWithoutUpdatedNewsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedDownloadsInput = {
@@ -1158,6 +1236,8 @@ export type UserCreateWithoutCreatedDownloadsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedDownloadsInput = {
@@ -1181,6 +1261,8 @@ export type UserUncheckedCreateWithoutCreatedDownloadsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedDownloadsInput = {
@@ -1209,6 +1291,8 @@ export type UserCreateWithoutUpdatedDownloadsInput = {
   createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedDownloadsInput = {
@@ -1232,6 +1316,8 @@ export type UserUncheckedCreateWithoutUpdatedDownloadsInput = {
   createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedDownloadsInput = {
@@ -1271,6 +1357,8 @@ export type UserUpdateWithoutCreatedDownloadsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedDownloadsInput = {
@@ -1294,6 +1382,8 @@ export type UserUncheckedUpdateWithoutCreatedDownloadsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedDownloadsInput = {
@@ -1328,6 +1418,8 @@ export type UserUpdateWithoutUpdatedDownloadsInput = {
   createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedDownloadsInput = {
@@ -1351,6 +1443,8 @@ export type UserUncheckedUpdateWithoutUpdatedDownloadsInput = {
   createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedRulingsInput = {
@@ -1374,6 +1468,8 @@ export type UserCreateWithoutCreatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedRulingsInput = {
@@ -1397,6 +1493,8 @@ export type UserUncheckedCreateWithoutCreatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedRulingsInput = {
@@ -1425,6 +1523,8 @@ export type UserCreateWithoutUpdatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedRulingsInput = {
@@ -1448,6 +1548,8 @@ export type UserUncheckedCreateWithoutUpdatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedRulingsInput = {
@@ -1487,6 +1589,8 @@ export type UserUpdateWithoutCreatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedRulingsInput = {
@@ -1510,6 +1614,8 @@ export type UserUncheckedUpdateWithoutCreatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedRulingsInput = {
@@ -1544,6 +1650,8 @@ export type UserUpdateWithoutUpdatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedRulingsInput = {
@@ -1567,6 +1675,8 @@ export type UserUncheckedUpdateWithoutUpdatedRulingsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedGalleryImagesInput = {
@@ -1590,6 +1700,8 @@ export type UserCreateWithoutCreatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedGalleryImagesInput = {
@@ -1613,6 +1725,8 @@ export type UserUncheckedCreateWithoutCreatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedGalleryImagesInput = {
@@ -1641,6 +1755,8 @@ export type UserCreateWithoutUpdatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedGalleryImagesInput = {
@@ -1664,6 +1780,8 @@ export type UserUncheckedCreateWithoutUpdatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedGalleryImagesInput = {
@@ -1703,6 +1821,8 @@ export type UserUpdateWithoutCreatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedGalleryImagesInput = {
@@ -1726,6 +1846,8 @@ export type UserUncheckedUpdateWithoutCreatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedGalleryImagesInput = {
@@ -1760,6 +1882,8 @@ export type UserUpdateWithoutUpdatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedGalleryImagesInput = {
@@ -1783,6 +1907,240 @@ export type UserUncheckedUpdateWithoutUpdatedGalleryImagesInput = {
   createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserCreateWithoutCreatedTendersInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserUncheckedCreateWithoutCreatedTendersInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserCreateOrConnectWithoutCreatedTendersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedTendersInput, Prisma.UserUncheckedCreateWithoutCreatedTendersInput>
+}
+
+export type UserCreateWithoutUpdatedTendersInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutUpdatedTendersInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutUpdatedTendersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUpdatedTendersInput, Prisma.UserUncheckedCreateWithoutUpdatedTendersInput>
+}
+
+export type UserUpsertWithoutCreatedTendersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedTendersInput, Prisma.UserUncheckedUpdateWithoutCreatedTendersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedTendersInput, Prisma.UserUncheckedCreateWithoutCreatedTendersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedTendersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedTendersInput, Prisma.UserUncheckedUpdateWithoutCreatedTendersInput>
+}
+
+export type UserUpdateWithoutCreatedTendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedTendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUpsertWithoutUpdatedTendersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUpdatedTendersInput, Prisma.UserUncheckedUpdateWithoutUpdatedTendersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUpdatedTendersInput, Prisma.UserUncheckedCreateWithoutUpdatedTendersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUpdatedTendersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUpdatedTendersInput, Prisma.UserUncheckedUpdateWithoutUpdatedTendersInput>
+}
+
+export type UserUpdateWithoutUpdatedTendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUpdatedTendersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserCreateWithoutCreatedJobsInput = {
@@ -1806,6 +2164,8 @@ export type UserCreateWithoutCreatedJobsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedJobsInput = {
@@ -1829,6 +2189,8 @@ export type UserUncheckedCreateWithoutCreatedJobsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedJobsInput = {
@@ -1857,6 +2219,8 @@ export type UserCreateWithoutUpdatedJobsInput = {
   updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedJobsInput = {
@@ -1880,6 +2244,8 @@ export type UserUncheckedCreateWithoutUpdatedJobsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedJobsInput = {
@@ -1919,6 +2285,8 @@ export type UserUpdateWithoutCreatedJobsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedJobsInput = {
@@ -1942,6 +2310,8 @@ export type UserUncheckedUpdateWithoutCreatedJobsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedJobsInput = {
@@ -1976,6 +2346,8 @@ export type UserUpdateWithoutUpdatedJobsInput = {
   updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedJobsInput = {
@@ -1999,6 +2371,8 @@ export type UserUncheckedUpdateWithoutUpdatedJobsInput = {
   updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 
@@ -2019,6 +2393,8 @@ export type UserCountOutputType = {
   updatedDownloads: number
   createdGalleryImages: number
   updatedGalleryImages: number
+  createdTenders: number
+  updatedTenders: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2034,6 +2410,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   updatedDownloads?: boolean | UserCountOutputTypeCountUpdatedDownloadsArgs
   createdGalleryImages?: boolean | UserCountOutputTypeCountCreatedGalleryImagesArgs
   updatedGalleryImages?: boolean | UserCountOutputTypeCountUpdatedGalleryImagesArgs
+  createdTenders?: boolean | UserCountOutputTypeCountCreatedTendersArgs
+  updatedTenders?: boolean | UserCountOutputTypeCountUpdatedTendersArgs
 }
 
 /**
@@ -2130,6 +2508,20 @@ export type UserCountOutputTypeCountUpdatedGalleryImagesArgs<ExtArgs extends run
   where?: Prisma.GalleryImageWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedTendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TenderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUpdatedTendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TenderWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2153,6 +2545,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedDownloads?: boolean | Prisma.User$updatedDownloadsArgs<ExtArgs>
   createdGalleryImages?: boolean | Prisma.User$createdGalleryImagesArgs<ExtArgs>
   updatedGalleryImages?: boolean | Prisma.User$updatedGalleryImagesArgs<ExtArgs>
+  createdTenders?: boolean | Prisma.User$createdTendersArgs<ExtArgs>
+  updatedTenders?: boolean | Prisma.User$updatedTendersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2184,6 +2578,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedDownloads?: boolean | Prisma.User$updatedDownloadsArgs<ExtArgs>
   createdGalleryImages?: boolean | Prisma.User$createdGalleryImagesArgs<ExtArgs>
   updatedGalleryImages?: boolean | Prisma.User$updatedGalleryImagesArgs<ExtArgs>
+  createdTenders?: boolean | Prisma.User$createdTendersArgs<ExtArgs>
+  updatedTenders?: boolean | Prisma.User$updatedTendersArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2202,6 +2598,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedDownloads: Prisma.$DownloadPayload<ExtArgs>[]
     createdGalleryImages: Prisma.$GalleryImagePayload<ExtArgs>[]
     updatedGalleryImages: Prisma.$GalleryImagePayload<ExtArgs>[]
+    createdTenders: Prisma.$TenderPayload<ExtArgs>[]
+    updatedTenders: Prisma.$TenderPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2565,6 +2963,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   updatedDownloads<T extends Prisma.User$updatedDownloadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedDownloadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DownloadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdGalleryImages<T extends Prisma.User$createdGalleryImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdGalleryImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GalleryImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   updatedGalleryImages<T extends Prisma.User$updatedGalleryImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedGalleryImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GalleryImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdTenders<T extends Prisma.User$createdTendersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTendersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  updatedTenders<T extends Prisma.User$updatedTendersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedTendersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2799,6 +3199,11 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Skip the first `n` Users.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Users.
+   */
   distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
@@ -3231,6 +3636,54 @@ export type User$updatedGalleryImagesArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.GalleryImageScalarFieldEnum | Prisma.GalleryImageScalarFieldEnum[]
+}
+
+/**
+ * User.createdTenders
+ */
+export type User$createdTendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Tender
+   */
+  select?: Prisma.TenderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Tender
+   */
+  omit?: Prisma.TenderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenderInclude<ExtArgs> | null
+  where?: Prisma.TenderWhereInput
+  orderBy?: Prisma.TenderOrderByWithRelationInput | Prisma.TenderOrderByWithRelationInput[]
+  cursor?: Prisma.TenderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TenderScalarFieldEnum | Prisma.TenderScalarFieldEnum[]
+}
+
+/**
+ * User.updatedTenders
+ */
+export type User$updatedTendersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Tender
+   */
+  select?: Prisma.TenderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Tender
+   */
+  omit?: Prisma.TenderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TenderInclude<ExtArgs> | null
+  where?: Prisma.TenderWhereInput
+  orderBy?: Prisma.TenderOrderByWithRelationInput | Prisma.TenderOrderByWithRelationInput[]
+  cursor?: Prisma.TenderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TenderScalarFieldEnum | Prisma.TenderScalarFieldEnum[]
 }
 
 /**

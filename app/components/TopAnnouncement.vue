@@ -3,21 +3,21 @@
     <div class="mx-auto max-w-7xl px-6">
       <div class="flex items-center justify-between py-2 text-sm">
         <div class="flex items-center gap-3">
-          <span class="inline-flex items-center gap-2 text-white/90">
-            <span class="h-2 w-2 rounded-full bg-white animate-pulse"></span>
+          <span class="inline-flex items-center gap-2 text-zaccGold">
+            <span class="h-2 w-2 rounded-full bg-zaccGold animate-pulse"></span>
             <NuxtLink
               v-if="currentNewsItem"
               :to="`/${currentNewsItem.slug}`"
-              class="hover:text-white transition-colors cursor-pointer"
+              class="hover:text-zaccGold/90 transition-colors cursor-pointer font-medium"
             >
               <span id="newsFlashText">{{ currentNewsItem.title }}</span>
             </NuxtLink>
-            <span v-else id="newsFlashText">News Flash</span>
+            <span v-else id="newsFlashText" class="font-medium">News Flash</span>
           </span>
           <NuxtLink
             v-if="currentNewsItem"
             :to="`/${currentNewsItem.slug}`"
-            class="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] font-semibold text-white hover:bg-white/20"
+            class="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] font-semibold text-zaccGold hover:bg-white/20"
           >
             Read More
             <svg
@@ -38,7 +38,7 @@
           <NuxtLink
             v-else
             to="/news"
-            class="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] font-semibold text-white hover:bg-white/20"
+            class="inline-flex items-center gap-1 rounded-md bg-white/10 px-2 py-1 text-[11px] font-semibold text-zaccGold hover:bg-white/20"
           >
             Read More
             <svg

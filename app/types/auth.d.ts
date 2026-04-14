@@ -3,7 +3,7 @@ declare module '#auth-utils' {
     id: string
     email: string
     name: string | null
-    role: 'SUPER_ADMIN' | 'ADMIN' | 'EDITOR' | 'VIEWER'
+    role: 'SUPER_ADMIN' | 'ADMIN' | 'EDITOR' | 'VIEWER' | 'REPORTS_ADMIN'
   }
 
   interface UserSession {

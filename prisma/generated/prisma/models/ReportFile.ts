@@ -206,7 +206,7 @@ export type ReportFileGroupByOutputType = {
   _max: ReportFileMaxAggregateOutputType | null
 }
 
-type GetReportFileGroupByPayload<T extends ReportFileGroupByArgs> = Prisma.PrismaPromise<
+export type GetReportFileGroupByPayload<T extends ReportFileGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ReportFileGroupByOutputType, T['by']> &
       {
@@ -1163,6 +1163,11 @@ export type ReportFileFindManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Skip the first `n` ReportFiles.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ReportFiles.
+   */
   distinct?: Prisma.ReportFileScalarFieldEnum | Prisma.ReportFileScalarFieldEnum[]
 }
 

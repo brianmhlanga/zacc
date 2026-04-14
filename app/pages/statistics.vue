@@ -24,6 +24,17 @@
           style="background: radial-gradient(40% 40% at 50% 0%, rgba(212,175,55,0.15), transparent)"
         ></div>
         <div class="mx-auto max-w-7xl px-6">
+          <div class="mb-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <p class="text-sm font-semibold text-zaccBlack">View data for year</p>
+            <select
+              v-model.number="selectedYear"
+              class="w-full sm:w-48 rounded-lg border border-zaccGreen/30 bg-white px-4 py-2.5 text-zaccBlack font-medium shadow-sm focus:border-zaccGreen focus:outline-none focus:ring-2 focus:ring-zaccGreen/20"
+              @change="onYearChange"
+            >
+              <option v-for="y in yearOptions" :key="y" :value="y">{{ y }}</option>
+            </select>
+          </div>
+
           <!-- Loading State -->
           <div v-if="loading" class="text-center py-20">
             <div class="inline-block h-12 w-12 animate-spin rounded-full border-4 border-zaccGreen border-t-transparent"></div>
@@ -78,18 +89,34 @@
 const { observeStats } = useCountUp()
 
 const statistics = ref<any[]>([])
+const yearOptions = ref<number[]>([])
+const selectedYear = ref(new Date().getFullYear())
 const pageContent = ref<any>({
   title: '',
   description: ''
 })
 const loading = ref(true)
 
+const loadYearOptions = async () => {
+  try {
+    const res = await $fetch<{ years: number[] }>('/api/public/statistics/years', {
+      params: { section: 'statistics' }
+    })
+    yearOptions.value = res.years || [new Date().getFullYear()]
+    if (!yearOptions.value.includes(selectedYear.value)) {
+      selectedYear.value = yearOptions.value[0]
+    }
+  } catch {
+    yearOptions.value = [new Date().getFullYear()]
+  }
+}
+
 // Fetch statistics for the statistics page
 const fetchStatistics = async () => {
   loading.value = true
   try {
     const stats = await $fetch('/api/public/statistics', {
-      params: { section: 'statistics' }
+      params: { section: 'statistics', year: selectedYear.value }
     })
     statistics.value = stats || []
   } catch (error) {
@@ -98,6 +125,12 @@ const fetchStatistics = async () => {
   } finally {
     loading.value = false
   }
+}
+
+const onYearChange = async () => {
+  await fetchStatistics()
+  await nextTick()
+  observeStats()
 }
 
 // Fetch page content
@@ -120,6 +153,7 @@ const fetchPageContent = async () => {
 }
 
 onMounted(async () => {
+  await loadYearOptions()
   await Promise.all([fetchStatistics(), fetchPageContent()])
   await nextTick()
   observeStats()

@@ -36,6 +36,8 @@ model User {
   updatedDownloads    Download[]       @relation("DownloadUpdater")
   createdGalleryImages GalleryImage[]  @relation("GalleryCreator")
   updatedGalleryImages GalleryImage[]  @relation("GalleryUpdater")
+  createdTenders       Tender[]        @relation("TenderCreator")
+  updatedTenders       Tender[]        @relation("TenderUpdater")
 
   @@map("users")
 }
@@ -45,6 +47,23 @@ enum UserRole {
   ADMIN
   EDITOR
   VIEWER
+  REPORTS_ADMIN
+}
+
+enum TenderType {
+  NORMAL
+  RFQ
+}
+
+enum SupplierApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum BidStatus {
+  SUBMITTED
+  WITHDRAWN
 }
 
 // ============================================
@@ -127,6 +146,7 @@ model PageContent {
   imageUrl    String?
   order       Int      @default(0)
   isVisible   Boolean  @default(true)
+  isLocked    Boolean  @default(false)
   metadata    Json?    // Flexible JSON for additional data (e.g., list items, cards data)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -179,11 +199,13 @@ model Statistic {
   order       Int      @default(0)
   isVisible   Boolean  @default(true)
   section     String   @default("homepage") // 'homepage', 'about', etc.
+  year        Int      @default(2026)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   @@map("statistics")
   @@index([section, order])
+  @@index([section, year])
 }
 
 // ============================================
@@ -394,6 +416,7 @@ model GalleryImage {
   alt         String?
   order       Int      @default(0)
   isPublished Boolean  @default(true)
+  showTitle   Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   createdBy   String?
@@ -404,6 +427,192 @@ model GalleryImage {
   @@map("gallery_images")
   @@index([category])
   @@index([isPublished])
+}
+
+// ============================================
+// TENDERS (Procurement notices)
+// ============================================
+
+model Tender {
+  id           String    @id @default(cuid())
+  title        String
+  reference    String?
+  details      String    @db.Text
+  closingDate  DateTime
+  type         TenderType @default(NORMAL)
+  categoryId   String
+  isPublished  Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  createdBy    String?
+  updatedBy    String?
+  category     TenderCategory @relation(fields: [categoryId], references: [id])
+  documents    TenderDocument[]
+  lineItems    TenderLineItem[]
+  bids         TenderBid[]
+  creator      User?     @relation("TenderCreator", fields: [createdBy], references: [id])
+  updater      User?     @relation("TenderUpdater", fields: [updatedBy], references: [id])
+
+  @@map("tenders")
+  @@index([isPublished, closingDate])
+  @@index([categoryId])
+}
+
+model TenderCategory {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?  @db.Text
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tenders     Tender[]
+  approvals   SupplierCategoryApproval[]
+
+  @@map("tender_categories")
+}
+
+model TenderDocument {
+  id          String   @id @default(cuid())
+  tenderId    String
+  tender      Tender   @relation(fields: [tenderId], references: [id], onDelete: Cascade)
+  fileName    String
+  fileUrl     String
+  fileType    String
+  fileSize    Int
+  createdAt   DateTime @default(now())
+
+  @@map("tender_documents")
+  @@index([tenderId])
+}
+
+model TenderLineItem {
+  id          String   @id @default(cuid())
+  tenderId    String
+  tender      Tender   @relation(fields: [tenderId], references: [id], onDelete: Cascade)
+  itemNo      Int
+  description String   @db.Text
+  quantity    Float?
+  unit        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bidItems    TenderBidLineItem[]
+
+  @@map("tender_line_items")
+  @@index([tenderId])
+}
+
+model Supplier {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  passwordHash   String
+  companyName    String
+  contactPerson  String?
+  phone          String?
+  address        String?  @db.Text
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  approvals      SupplierCategoryApproval[]
+  documents      SupplierDocument[]
+  bids           TenderBid[]
+  sessions       SupplierSession[]
+
+  @@map("suppliers")
+}
+
+model SupplierSession {
+  id          String   @id @default(cuid())
+  supplierId  String
+  supplier    Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  tokenHash   String   @unique
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  @@map("supplier_sessions")
+  @@index([supplierId])
+}
+
+model SupplierCategoryApproval {
+  id          String   @id @default(cuid())
+  supplierId  String
+  supplier    Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  categoryId  String
+  category    TenderCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  status      SupplierApprovalStatus @default(PENDING)
+  notes       String?  @db.Text
+  updatedAt   DateTime @updatedAt
+  createdAt   DateTime @default(now())
+
+  @@map("supplier_category_approvals")
+  @@unique([supplierId, categoryId])
+  @@index([supplierId])
+  @@index([categoryId])
+}
+
+model SupplierDocument {
+  id          String   @id @default(cuid())
+  supplierId  String
+  supplier    Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  fileName    String
+  fileUrl     String
+  fileType    String
+  fileSize    Int
+  createdAt   DateTime @default(now())
+
+  @@map("supplier_documents")
+  @@index([supplierId])
+}
+
+model TenderBid {
+  id            String   @id @default(cuid())
+  tenderId       String
+  tender         Tender   @relation(fields: [tenderId], references: [id], onDelete: Cascade)
+  supplierId     String
+  supplier       Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  notes          String?  @db.Text
+  totalAmount    Float?
+  status         BidStatus @default(SUBMITTED)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  documents      TenderBidDocument[]
+  lineItems      TenderBidLineItem[]
+
+  @@map("tender_bids")
+  @@index([tenderId])
+  @@index([supplierId])
+  @@unique([tenderId, supplierId])
+}
+
+model TenderBidDocument {
+  id          String   @id @default(cuid())
+  bidId        String
+  bid          TenderBid @relation(fields: [bidId], references: [id], onDelete: Cascade)
+  fileName     String
+  fileUrl      String
+  fileType     String
+  fileSize     Int
+  createdAt    DateTime @default(now())
+
+  @@map("tender_bid_documents")
+  @@index([bidId])
+}
+
+model TenderBidLineItem {
+  id            String   @id @default(cuid())
+  bidId          String
+  bid            TenderBid @relation(fields: [bidId], references: [id], onDelete: Cascade)
+  tenderItemId   String
+  tenderItem     TenderLineItem @relation(fields: [tenderItemId], references: [id], onDelete: Cascade)
+  unitPrice      Float
+  quantity       Float?
+  totalPrice     Float?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("tender_bid_line_items")
+  @@index([bidId])
+  @@index([tenderItemId])
+  @@unique([bidId, tenderItemId])
 }
 
 // ============================================
@@ -566,6 +775,21 @@ enum ReportPriority {
 // CONTACT SUBMISSIONS
 // ============================================
 
+enum ContactStatus {
+  NEW
+  IN_PROGRESS
+  RESPONDED
+  CLOSED
+}
+
+enum ContactCategory {
+  GENERAL
+  COMPLAINT
+  COMPLIMENT
+  INQUIRY
+  OTHER
+}
+
 model ContactSubmission {
   id          String   @id @default(cuid())
   name        String
@@ -573,6 +797,7 @@ model ContactSubmission {
   phone       String?
   subject     String
   message     String   @db.Text
+  category    ContactCategory @default(GENERAL)
   isAnonymous Boolean  @default(false)
   status      ContactStatus @default(NEW)
   respondedAt DateTime?
@@ -583,13 +808,7 @@ model ContactSubmission {
   @@map("contact_submissions")
   @@index([status])
   @@index([createdAt])
-}
-
-enum ContactStatus {
-  NEW
-  IN_PROGRESS
-  RESPONDED
-  CLOSED
+  @@index([category])
 }
 
 // ============================================

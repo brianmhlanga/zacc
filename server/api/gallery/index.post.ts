@@ -9,7 +9,8 @@ const createGalleryImageSchema = z.object({
   thumbnailUrl: z.string().optional().nullable(),
   alt: z.string().optional().nullable(),
   order: z.number().int().default(0),
-  isPublished: z.boolean().default(true)
+  isPublished: z.boolean().default(true),
+  showTitle: z.boolean().default(true)
 })
 
 export default defineEventHandler(async (event) => {
@@ -45,6 +46,7 @@ export default defineEventHandler(async (event) => {
         alt: data.alt || null,
         order: data.order,
         isPublished: data.isPublished,
+        showTitle: data.showTitle,
         createdBy: session.user.id,
         updatedBy: session.user.id
       },

@@ -28,7 +28,9 @@ export * from "./enums.ts"
  * Type-safe database client for TypeScript
  * @example
  * ```
- * const prisma = new PrismaClient()
+ * const prisma = new PrismaClient({
+ *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
+ * })
  * // Fetch zero or more Users
  * const users = await prisma.user.findMany()
  * ```
@@ -119,6 +121,61 @@ export type RulingTag = Prisma.RulingTagModel
  * 
  */
 export type GalleryImage = Prisma.GalleryImageModel
+/**
+ * Model Tender
+ * 
+ */
+export type Tender = Prisma.TenderModel
+/**
+ * Model TenderCategory
+ * 
+ */
+export type TenderCategory = Prisma.TenderCategoryModel
+/**
+ * Model TenderDocument
+ * 
+ */
+export type TenderDocument = Prisma.TenderDocumentModel
+/**
+ * Model TenderLineItem
+ * 
+ */
+export type TenderLineItem = Prisma.TenderLineItemModel
+/**
+ * Model Supplier
+ * 
+ */
+export type Supplier = Prisma.SupplierModel
+/**
+ * Model SupplierSession
+ * 
+ */
+export type SupplierSession = Prisma.SupplierSessionModel
+/**
+ * Model SupplierCategoryApproval
+ * 
+ */
+export type SupplierCategoryApproval = Prisma.SupplierCategoryApprovalModel
+/**
+ * Model SupplierDocument
+ * 
+ */
+export type SupplierDocument = Prisma.SupplierDocumentModel
+/**
+ * Model TenderBid
+ * 
+ */
+export type TenderBid = Prisma.TenderBidModel
+/**
+ * Model TenderBidDocument
+ * 
+ */
+export type TenderBidDocument = Prisma.TenderBidDocumentModel
+/**
+ * Model TenderBidLineItem
+ * 
+ */
+export type TenderBidLineItem = Prisma.TenderBidLineItemModel
 /**
  * Model Job
  * 

@@ -19,8 +19,8 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Only ADMIN, SUPER_ADMIN, and EDITOR can update reports
-    if (!['SUPER_ADMIN', 'ADMIN', 'EDITOR'].includes(session.user.role)) {
+    // ADMIN, SUPER_ADMIN, EDITOR, and REPORTS_ADMIN can update reports
+    if (!['SUPER_ADMIN', 'ADMIN', 'EDITOR', 'REPORTS_ADMIN'].includes(session.user.role)) {
       throw createError({
         statusCode: 403,
         statusMessage: 'Forbidden: Only administrators and editors can update reports'

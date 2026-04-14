@@ -14,6 +14,11 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const section = query.section as string | undefined
     const isVisible = query.isVisible !== undefined ? query.isVisible === 'true' : undefined
+    const yearRaw = query.year as string | undefined
+    const year =
+      yearRaw !== undefined && yearRaw !== ''
+        ? parseInt(String(yearRaw), 10)
+        : undefined
 
     // Build where clause
     const where: any = {}
@@ -22,6 +27,9 @@ export default defineEventHandler(async (event) => {
     }
     if (isVisible !== undefined) {
       where.isVisible = isVisible
+    }
+    if (year !== undefined && !Number.isNaN(year)) {
+      where.year = year
     }
 
     // Fetch statistics

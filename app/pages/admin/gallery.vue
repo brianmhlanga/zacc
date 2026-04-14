@@ -582,15 +582,27 @@
             <small class="text-gray-500">Optional alt text for screen readers</small>
           </div>
 
-          <div class="flex items-center gap-2 pt-2">
-            <Checkbox
-              id="isPublished"
-              v-model="galleryForm.isPublished"
-              :binary="true"
-            />
-            <label for="isPublished" class="text-sm font-semibold text-zaccBlack">
-              Published
-            </label>
+          <div class="flex flex-col gap-3 pt-2">
+            <div class="flex items-center gap-2">
+              <Checkbox
+                id="showTitle"
+                v-model="galleryForm.showTitle"
+                :binary="true"
+              />
+              <label for="showTitle" class="text-sm font-semibold text-zaccBlack">
+                Show title on public gallery
+              </label>
+            </div>
+            <div class="flex items-center gap-2">
+              <Checkbox
+                id="isPublished"
+                v-model="galleryForm.isPublished"
+                :binary="true"
+              />
+              <label for="isPublished" class="text-sm font-semibold text-zaccBlack">
+                Published
+              </label>
+            </div>
           </div>
 
           <div class="flex justify-end gap-2 pt-4">
@@ -701,7 +713,8 @@ const galleryForm = reactive({
   thumbnailUrl: '',
   alt: '',
   order: 0,
-  isPublished: true
+  isPublished: true,
+  showTitle: true
 })
 
 const errors = reactive({
@@ -1203,6 +1216,7 @@ const openEditDialog = (item: any) => {
   galleryForm.alt = item.alt || ''
   galleryForm.order = item.order
   galleryForm.isPublished = item.isPublished
+  galleryForm.showTitle = item.showTitle !== false
   uploadedImage.value = null
   uploadedImageFile.value = null
   dialogVisible.value = true
@@ -1225,6 +1239,7 @@ const resetForm = () => {
   galleryForm.alt = ''
   galleryForm.order = 0
   galleryForm.isPublished = true
+  galleryForm.showTitle = true
   uploadedImage.value = null
   uploadedImageFile.value = null
   errors.title = ''
@@ -1273,7 +1288,8 @@ const handleSubmit = async () => {
       thumbnailUrl: galleryForm.thumbnailUrl || undefined,
       alt: galleryForm.alt || undefined,
       order: galleryForm.order,
-      isPublished: galleryForm.isPublished
+      isPublished: galleryForm.isPublished,
+      showTitle: galleryForm.showTitle
     }
 
     if (isEditMode.value) {

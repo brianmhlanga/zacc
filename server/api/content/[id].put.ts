@@ -7,7 +7,8 @@ const updateContentSchema = z.object({
   imageUrl: z.string().optional(),
   order: z.number().int().optional(),
   isVisible: z.boolean().optional(),
-  metadata: z.any().optional()
+  metadata: z.any().optional(),
+  isLocked: z.boolean().optional()
 })
 
 export default defineEventHandler(async (event) => {
@@ -52,6 +53,20 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    if (existing.isLocked && session.user.role !== 'SUPER_ADMIN') {
+      throw createError({
+        statusCode: 403,
+        statusMessage: 'This content section is locked. Only a super administrator can change it.'
+      })
+    }
+
+    if (data.isLocked !== undefined && session.user.role !== 'SUPER_ADMIN') {
+      throw createError({
+        statusCode: 403,
+        statusMessage: 'Only a super administrator can change the lock setting.'
+      })
+    }
+
     // Prepare update data
     const updateData: any = {
       updatedBy: session.user.id
@@ -62,6 +77,7 @@ export default defineEventHandler(async (event) => {
     if (data.order !== undefined) updateData.order = data.order
     if (data.isVisible !== undefined) updateData.isVisible = data.isVisible
     if (data.metadata !== undefined) updateData.metadata = data.metadata
+    if (data.isLocked !== undefined) updateData.isLocked = data.isLocked
 
     // Update content
     const content = await prisma.pageContent.update({

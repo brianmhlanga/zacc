@@ -30,8 +30,12 @@
             <div>
               <h2 class="text-2xl font-extrabold mb-4">Get in Touch</h2>
               <div class="h-1 w-20 rounded bg-zaccGold mb-6"></div>
-              <p class="text-zaccBlack/70 mb-6">
-                Share information or request assistance. You can also report anonymously.
+              <p class="text-zaccBlack/70 mb-3">
+                Share information or request assistance.
+              </p>
+              <p class="text-zaccBlack/70">
+                To report corruption, please use the
+                <NuxtLink to="/report" class="font-semibold text-zaccGreen hover:underline">Report Corruption page</NuxtLink>.
               </p>
             </div>
 
@@ -151,10 +155,19 @@
             <Card class="shadow-lg">
               <template #header>
                 <div class="bg-gradient-to-r from-zaccGreen/10 to-zaccGold/10 px-6 py-4 border-b border-zaccGreen/20">
-                  <h2 class="text-2xl font-extrabold mb-2">Send us a Message</h2>
+                  <h2 class="text-2xl font-extrabold mb-2">Send us a message / complaint</h2>
                   <p class="text-sm text-zaccBlack/70">
-                    Fill out the form below and we'll get back to you as soon as possible.
+                    Compliments, general enquiries, or feedback—use the form below. To report suspected corruption with evidence, use the dedicated reporting channel.
                   </p>
+                  <div class="mt-4 flex flex-wrap gap-3">
+                    <NuxtLink
+                      to="/report"
+                      class="inline-flex items-center justify-center gap-2 rounded-lg bg-zaccBlack px-4 py-2.5 text-sm font-semibold text-zaccGold hover:bg-zaccBlack/90"
+                    >
+                      <i class="pi pi-flag"></i>
+                      Report corruption
+                    </NuxtLink>
+                  </div>
                 </div>
               </template>
               <template #content>
@@ -191,6 +204,21 @@
                     </div>
                   </div>
 
+                  <div>
+                    <label for="category" class="block text-sm font-semibold text-zaccBlack mb-2">
+                      Type of message <span class="text-red-500">*</span>
+                    </label>
+                    <Dropdown
+                      id="category"
+                      v-model="form.category"
+                      :options="categoryOptions"
+                      optionLabel="label"
+                      optionValue="value"
+                      placeholder="Select"
+                      class="w-full sm:max-w-md"
+                    />
+                  </div>
+
                   <div class="grid gap-6 sm:grid-cols-2">
                     <div>
                       <label for="phone" class="block text-sm font-semibold text-zaccBlack mb-2">
@@ -224,33 +252,29 @@
                     <label for="message" class="block text-sm font-semibold text-zaccBlack mb-2">
                       Message <span class="text-red-500">*</span>
                     </label>
-                    <Textarea
+                    <Editor
                       id="message"
                       v-model="form.message"
-                      rows="6"
-                      placeholder="Write your message..."
+                      editorStyle="height: 220px"
                       class="w-full"
                       :class="{ 'p-invalid': !form.message && submitted }"
-                      required
-                    />
+                    >
+                      <template #toolbar>
+                        <span class="ql-formats">
+                          <button class="ql-bold"></button>
+                          <button class="ql-italic"></button>
+                          <button class="ql-underline"></button>
+                        </span>
+                        <span class="ql-formats">
+                          <button class="ql-list" value="ordered"></button>
+                          <button class="ql-list" value="bullet"></button>
+                        </span>
+                        <span class="ql-formats">
+                          <button class="ql-link"></button>
+                        </span>
+                      </template>
+                    </Editor>
                     <small v-if="!form.message && submitted" class="p-error">Message is required.</small>
-                  </div>
-
-                  <div class="rounded-xl bg-zaccBlack/5 p-4 border border-zaccGreen/20">
-                    <div class="flex items-start gap-3">
-                      <Checkbox
-                        v-model="form.anonymous"
-                        inputId="anonymous"
-                        :binary="true"
-                        class="mt-1"
-                      />
-                      <label for="anonymous" class="flex-1 cursor-pointer">
-                        <div class="font-semibold text-zaccBlack mb-1">Report Anonymously</div>
-                        <div class="text-sm text-zaccBlack/70">
-                          Check this box if you prefer to remain anonymous. We'll still respond to your inquiry.
-                        </div>
-                      </label>
-                    </div>
                   </div>
 
                   <div class="flex items-center justify-between pt-4 border-t border-zaccBlack/10">
@@ -423,13 +447,21 @@ onMounted(() => {
   fetchContactInfo()
 })
 
+const categoryOptions = [
+  { label: 'General enquiry', value: 'GENERAL' },
+  { label: 'Complaint', value: 'COMPLAINT' },
+  { label: 'Compliment', value: 'COMPLIMENT' },
+  { label: 'Inquiry', value: 'INQUIRY' },
+  { label: 'Other', value: 'OTHER' }
+]
+
 const form = reactive({
   name: '',
   email: '',
   phone: '',
+  category: 'GENERAL',
   subject: '',
-  message: '',
-  anonymous: false
+  message: ''
 })
 
 const isSubmitting = ref(false)
@@ -452,9 +484,9 @@ const handleSubmit = async () => {
         name: form.name,
         email: form.email,
         phone: form.phone || null,
+        category: form.category,
         subject: form.subject,
-        message: form.message,
-        anonymous: form.anonymous
+        message: form.message
       }
     })
 
@@ -471,9 +503,9 @@ const handleSubmit = async () => {
     form.name = ''
     form.email = ''
     form.phone = ''
+    form.category = 'GENERAL'
     form.subject = ''
     form.message = ''
-    form.anonymous = false
     submitted.value = false
 
     // Scroll to top

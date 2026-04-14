@@ -67,6 +67,17 @@ export const ModelName = {
   Ruling: 'Ruling',
   RulingTag: 'RulingTag',
   GalleryImage: 'GalleryImage',
+  Tender: 'Tender',
+  TenderCategory: 'TenderCategory',
+  TenderDocument: 'TenderDocument',
+  TenderLineItem: 'TenderLineItem',
+  Supplier: 'Supplier',
+  SupplierSession: 'SupplierSession',
+  SupplierCategoryApproval: 'SupplierCategoryApproval',
+  SupplierDocument: 'SupplierDocument',
+  TenderBid: 'TenderBid',
+  TenderBidDocument: 'TenderBidDocument',
+  TenderBidLineItem: 'TenderBidLineItem',
   Job: 'Job',
   JobApplication: 'JobApplication',
   CorruptionReport: 'CorruptionReport',
@@ -165,6 +176,7 @@ export const PageContentScalarFieldEnum = {
   imageUrl: 'imageUrl',
   order: 'order',
   isVisible: 'isVisible',
+  isLocked: 'isLocked',
   metadata: 'metadata',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
@@ -203,6 +215,7 @@ export const StatisticScalarFieldEnum = {
   order: 'order',
   isVisible: 'isVisible',
   section: 'section',
+  year: 'year',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -365,6 +378,7 @@ export const GalleryImageScalarFieldEnum = {
   alt: 'alt',
   order: 'order',
   isPublished: 'isPublished',
+  showTitle: 'showTitle',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   createdBy: 'createdBy',
@@ -372,6 +386,157 @@ export const GalleryImageScalarFieldEnum = {
 } as const
 
 export type GalleryImageScalarFieldEnum = (typeof GalleryImageScalarFieldEnum)[keyof typeof GalleryImageScalarFieldEnum]
+
+
+export const TenderScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  reference: 'reference',
+  details: 'details',
+  closingDate: 'closingDate',
+  type: 'type',
+  categoryId: 'categoryId',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
+} as const
+
+export type TenderScalarFieldEnum = (typeof TenderScalarFieldEnum)[keyof typeof TenderScalarFieldEnum]
+
+
+export const TenderCategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenderCategoryScalarFieldEnum = (typeof TenderCategoryScalarFieldEnum)[keyof typeof TenderCategoryScalarFieldEnum]
+
+
+export const TenderDocumentScalarFieldEnum = {
+  id: 'id',
+  tenderId: 'tenderId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+} as const
+
+export type TenderDocumentScalarFieldEnum = (typeof TenderDocumentScalarFieldEnum)[keyof typeof TenderDocumentScalarFieldEnum]
+
+
+export const TenderLineItemScalarFieldEnum = {
+  id: 'id',
+  tenderId: 'tenderId',
+  itemNo: 'itemNo',
+  description: 'description',
+  quantity: 'quantity',
+  unit: 'unit',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenderLineItemScalarFieldEnum = (typeof TenderLineItemScalarFieldEnum)[keyof typeof TenderLineItemScalarFieldEnum]
+
+
+export const SupplierScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  companyName: 'companyName',
+  contactPerson: 'contactPerson',
+  phone: 'phone',
+  address: 'address',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SupplierScalarFieldEnum = (typeof SupplierScalarFieldEnum)[keyof typeof SupplierScalarFieldEnum]
+
+
+export const SupplierSessionScalarFieldEnum = {
+  id: 'id',
+  supplierId: 'supplierId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type SupplierSessionScalarFieldEnum = (typeof SupplierSessionScalarFieldEnum)[keyof typeof SupplierSessionScalarFieldEnum]
+
+
+export const SupplierCategoryApprovalScalarFieldEnum = {
+  id: 'id',
+  supplierId: 'supplierId',
+  categoryId: 'categoryId',
+  status: 'status',
+  notes: 'notes',
+  updatedAt: 'updatedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type SupplierCategoryApprovalScalarFieldEnum = (typeof SupplierCategoryApprovalScalarFieldEnum)[keyof typeof SupplierCategoryApprovalScalarFieldEnum]
+
+
+export const SupplierDocumentScalarFieldEnum = {
+  id: 'id',
+  supplierId: 'supplierId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+} as const
+
+export type SupplierDocumentScalarFieldEnum = (typeof SupplierDocumentScalarFieldEnum)[keyof typeof SupplierDocumentScalarFieldEnum]
+
+
+export const TenderBidScalarFieldEnum = {
+  id: 'id',
+  tenderId: 'tenderId',
+  supplierId: 'supplierId',
+  notes: 'notes',
+  totalAmount: 'totalAmount',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenderBidScalarFieldEnum = (typeof TenderBidScalarFieldEnum)[keyof typeof TenderBidScalarFieldEnum]
+
+
+export const TenderBidDocumentScalarFieldEnum = {
+  id: 'id',
+  bidId: 'bidId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+} as const
+
+export type TenderBidDocumentScalarFieldEnum = (typeof TenderBidDocumentScalarFieldEnum)[keyof typeof TenderBidDocumentScalarFieldEnum]
+
+
+export const TenderBidLineItemScalarFieldEnum = {
+  id: 'id',
+  bidId: 'bidId',
+  tenderItemId: 'tenderItemId',
+  unitPrice: 'unitPrice',
+  quantity: 'quantity',
+  totalPrice: 'totalPrice',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TenderBidLineItemScalarFieldEnum = (typeof TenderBidLineItemScalarFieldEnum)[keyof typeof TenderBidLineItemScalarFieldEnum]
 
 
 export const JobScalarFieldEnum = {
@@ -480,6 +645,7 @@ export const ContactSubmissionScalarFieldEnum = {
   phone: 'phone',
   subject: 'subject',
   message: 'message',
+  category: 'category',
   isAnonymous: 'isAnonymous',
   status: 'status',
   respondedAt: 'respondedAt',
@@ -869,6 +1035,122 @@ export const GalleryImageOrderByRelevanceFieldEnum = {
 } as const
 
 export type GalleryImageOrderByRelevanceFieldEnum = (typeof GalleryImageOrderByRelevanceFieldEnum)[keyof typeof GalleryImageOrderByRelevanceFieldEnum]
+
+
+export const TenderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  reference: 'reference',
+  details: 'details',
+  categoryId: 'categoryId',
+  createdBy: 'createdBy',
+  updatedBy: 'updatedBy'
+} as const
+
+export type TenderOrderByRelevanceFieldEnum = (typeof TenderOrderByRelevanceFieldEnum)[keyof typeof TenderOrderByRelevanceFieldEnum]
+
+
+export const TenderCategoryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type TenderCategoryOrderByRelevanceFieldEnum = (typeof TenderCategoryOrderByRelevanceFieldEnum)[keyof typeof TenderCategoryOrderByRelevanceFieldEnum]
+
+
+export const TenderDocumentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenderId: 'tenderId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType'
+} as const
+
+export type TenderDocumentOrderByRelevanceFieldEnum = (typeof TenderDocumentOrderByRelevanceFieldEnum)[keyof typeof TenderDocumentOrderByRelevanceFieldEnum]
+
+
+export const TenderLineItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenderId: 'tenderId',
+  description: 'description',
+  unit: 'unit'
+} as const
+
+export type TenderLineItemOrderByRelevanceFieldEnum = (typeof TenderLineItemOrderByRelevanceFieldEnum)[keyof typeof TenderLineItemOrderByRelevanceFieldEnum]
+
+
+export const SupplierOrderByRelevanceFieldEnum = {
+  id: 'id',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  companyName: 'companyName',
+  contactPerson: 'contactPerson',
+  phone: 'phone',
+  address: 'address'
+} as const
+
+export type SupplierOrderByRelevanceFieldEnum = (typeof SupplierOrderByRelevanceFieldEnum)[keyof typeof SupplierOrderByRelevanceFieldEnum]
+
+
+export const SupplierSessionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  supplierId: 'supplierId',
+  tokenHash: 'tokenHash'
+} as const
+
+export type SupplierSessionOrderByRelevanceFieldEnum = (typeof SupplierSessionOrderByRelevanceFieldEnum)[keyof typeof SupplierSessionOrderByRelevanceFieldEnum]
+
+
+export const SupplierCategoryApprovalOrderByRelevanceFieldEnum = {
+  id: 'id',
+  supplierId: 'supplierId',
+  categoryId: 'categoryId',
+  notes: 'notes'
+} as const
+
+export type SupplierCategoryApprovalOrderByRelevanceFieldEnum = (typeof SupplierCategoryApprovalOrderByRelevanceFieldEnum)[keyof typeof SupplierCategoryApprovalOrderByRelevanceFieldEnum]
+
+
+export const SupplierDocumentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  supplierId: 'supplierId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType'
+} as const
+
+export type SupplierDocumentOrderByRelevanceFieldEnum = (typeof SupplierDocumentOrderByRelevanceFieldEnum)[keyof typeof SupplierDocumentOrderByRelevanceFieldEnum]
+
+
+export const TenderBidOrderByRelevanceFieldEnum = {
+  id: 'id',
+  tenderId: 'tenderId',
+  supplierId: 'supplierId',
+  notes: 'notes'
+} as const
+
+export type TenderBidOrderByRelevanceFieldEnum = (typeof TenderBidOrderByRelevanceFieldEnum)[keyof typeof TenderBidOrderByRelevanceFieldEnum]
+
+
+export const TenderBidDocumentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  bidId: 'bidId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType'
+} as const
+
+export type TenderBidDocumentOrderByRelevanceFieldEnum = (typeof TenderBidDocumentOrderByRelevanceFieldEnum)[keyof typeof TenderBidDocumentOrderByRelevanceFieldEnum]
+
+
+export const TenderBidLineItemOrderByRelevanceFieldEnum = {
+  id: 'id',
+  bidId: 'bidId',
+  tenderItemId: 'tenderItemId'
+} as const
+
+export type TenderBidLineItemOrderByRelevanceFieldEnum = (typeof TenderBidLineItemOrderByRelevanceFieldEnum)[keyof typeof TenderBidLineItemOrderByRelevanceFieldEnum]
 
 
 export const JobOrderByRelevanceFieldEnum = {

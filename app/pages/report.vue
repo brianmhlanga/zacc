@@ -13,6 +13,15 @@
           <p class="mt-6 text-xl text-white/90 max-w-3xl mx-auto">
             Your report helps us build a corruption-free Zimbabwe. All reports are treated with strict confidentiality.
           </p>
+          <p class="mt-4">
+            <NuxtLink
+              to="/track"
+              class="inline-flex items-center gap-2 text-zaccGold font-semibold hover:underline"
+            >
+              Already submitted? Track your report status
+              <i class="pi pi-arrow-right text-sm"></i>
+            </NuxtLink>
+          </p>
         </div>
       </div>
     </section>
@@ -25,6 +34,30 @@
       ></div>
       <div class="mx-auto max-w-4xl px-6">
         <!-- Information Cards -->
+        <Card
+          v-if="lastSuccessReportNumber"
+          class="mb-10 border-2 border-zaccGold shadow-lg"
+        >
+          <template #content>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <p class="text-sm font-semibold text-zaccGreen uppercase tracking-wide">Submission received</p>
+                <p class="mt-1 text-zaccBlack">
+                  Save your reference:
+                  <span class="font-mono font-bold text-lg">{{ lastSuccessReportNumber }}</span>
+                </p>
+              </div>
+              <NuxtLink
+                :to="{ path: '/track', query: { ref: lastSuccessReportNumber } }"
+                class="inline-flex items-center justify-center gap-2 rounded-lg bg-zaccBlack px-5 py-2.5 text-sm font-semibold text-white hover:bg-zaccBlack/90"
+              >
+                Track status
+                <i class="pi pi-external-link text-xs"></i>
+              </NuxtLink>
+            </div>
+          </template>
+        </Card>
+
         <div class="grid gap-6 mb-12 sm:grid-cols-3">
           <Card class="border-l-4 border-l-zaccGreen">
             <template #content>
@@ -259,28 +292,60 @@
                 </div>
               </div>
 
-              <!-- People Involved - Using Editor -->
+              <!-- People Involved -->
               <div>
-                <label for="peopleInvolved" class="block text-sm font-semibold text-zaccBlack mb-2">
-                  People Involved <span class="text-zaccBlack/50 font-normal">(Names, positions, organizations - if known)</span>
+                <label class="block text-sm font-semibold text-zaccBlack mb-2">
+                  People Involved <span class="text-zaccBlack/50 font-normal">(If known)</span>
                 </label>
-                <Editor
-                  id="peopleInvolved"
-                  ref="peopleInvolvedEditor"
-                  v-model="form.peopleInvolved"
-                  editorStyle="height: 200px"
-                >
-                  <template #toolbar>
-                    <span class="ql-formats">
-                      <button class="ql-bold"></button>
-                      <button class="ql-italic"></button>
-                    </span>
-                    <span class="ql-formats">
-                      <button class="ql-list" value="ordered"></button>
-                      <button class="ql-list" value="bullet"></button>
-                    </span>
-                  </template>
-                </Editor>
+                <div class="space-y-3">
+                  <div
+                    v-for="(person, idx) in form.peopleList"
+                    :key="idx"
+                    class="rounded-lg border border-zaccBlack/10 p-3 bg-zaccBlack/[0.02]"
+                  >
+                    <div class="mb-2 flex items-center justify-between">
+                      <div class="text-xs font-semibold text-zaccBlack/70 uppercase">Person {{ idx + 1 }}</div>
+                      <Button
+                        v-if="form.peopleList.length > 1"
+                        type="button"
+                        icon="pi pi-trash"
+                        text
+                        rounded
+                        severity="danger"
+                        @click="removePerson(idx)"
+                      />
+                    </div>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                      <div>
+                        <label class="block text-xs font-semibold text-zaccBlack/70 mb-1">Name</label>
+                        <InputText v-model="person.name" class="w-full" placeholder="First name" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-semibold text-zaccBlack/70 mb-1">Surname</label>
+                        <InputText v-model="person.surname" class="w-full" placeholder="Surname" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-semibold text-zaccBlack/70 mb-1">Position</label>
+                        <InputText v-model="person.position" class="w-full" placeholder="Position (if known)" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-semibold text-zaccBlack/70 mb-1">Organization</label>
+                        <InputText v-model="person.organization" class="w-full" placeholder="Organization (if known)" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <Button
+                    type="button"
+                    label="Add another person"
+                    icon="pi pi-plus"
+                    size="small"
+                    outlined
+                    @click="addPerson"
+                  />
+                </div>
+                <small class="text-zaccBlack/60">Add each person separately for clearer investigation records.</small>
               </div>
 
               <!-- Evidence Upload -->
@@ -378,6 +443,30 @@
                   style="background: #209341; border-color: #209341;"
                 />
               </div>
+
+              <Card
+                v-if="lastSuccessReportNumber"
+                class="border-2 border-zaccGold shadow-lg"
+              >
+                <template #content>
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                      <p class="text-sm font-semibold text-zaccGreen uppercase tracking-wide">Submission received</p>
+                      <p class="mt-1 text-zaccBlack">
+                        Save your reference:
+                        <span class="font-mono font-bold text-lg">{{ lastSuccessReportNumber }}</span>
+                      </p>
+                    </div>
+                    <NuxtLink
+                      :to="{ path: '/track', query: { ref: lastSuccessReportNumber } }"
+                      class="inline-flex items-center justify-center gap-2 rounded-lg bg-zaccBlack px-5 py-2.5 text-sm font-semibold text-white hover:bg-zaccBlack/90"
+                    >
+                      Track status
+                      <i class="pi pi-external-link text-xs"></i>
+                    </NuxtLink>
+                  </div>
+                </template>
+              </Card>
             </form>
           </template>
         </Card>
@@ -462,10 +551,15 @@ useHead({
 })
 
 const toast = useToast()
+const createEmptyPerson = () => ({
+  name: '',
+  surname: '',
+  position: '',
+  organization: ''
+})
 
 // Editor refs
 const incidentDescriptionEditor = ref()
-const peopleInvolvedEditor = ref()
 const additionalInfoEditor = ref()
 
 // Form reset helper
@@ -481,7 +575,7 @@ const resetForm = async () => {
   form.province = null
   form.incidentDate = null
   form.incidentTime = null
-  form.peopleInvolved = ''
+  form.peopleList = [createEmptyPerson()]
   form.files = []
   form.additionalInfo = ''
   submitted.value = false
@@ -490,9 +584,6 @@ const resetForm = async () => {
   await nextTick()
   if (incidentDescriptionEditor.value) {
     incidentDescriptionEditor.value.setContent('')
-  }
-  if (peopleInvolvedEditor.value) {
-    peopleInvolvedEditor.value.setContent('')
   }
   if (additionalInfoEditor.value) {
     additionalInfoEditor.value.setContent('')
@@ -537,13 +628,14 @@ const form = reactive({
   province: null,
   incidentDate: null,
   incidentTime: null,
-  peopleInvolved: '',
+  peopleList: [createEmptyPerson()],
   files: [],
   additionalInfo: ''
 })
 
 const isSubmitting = ref(false)
 const submitted = ref(false)
+const lastSuccessReportNumber = ref('')
 
 const onFileSelect = (event) => {
   const files = Array.from(event.files)
@@ -558,6 +650,12 @@ const onFileSelect = (event) => {
 
 const removeFile = (index) => {
   form.files.splice(index, 1)
+}
+const addPerson = () => {
+  form.peopleList.push(createEmptyPerson())
+}
+const removePerson = (index) => {
+  form.peopleList.splice(index, 1)
 }
 
 const formatFileSize = (bytes) => {
@@ -603,8 +701,24 @@ const handleSubmit = async () => {
         : form.incidentTime.toString())
     }
     
-    if (form.peopleInvolved) {
-      formData.append('peopleInvolved', form.peopleInvolved)
+    const peopleInvolvedText = form.peopleList
+      .map((p) => ({
+        name: p.name?.trim(),
+        surname: p.surname?.trim(),
+        position: p.position?.trim(),
+        organization: p.organization?.trim()
+      }))
+      .filter((p) => p.name || p.surname || p.position || p.organization)
+      .map((p, i) => {
+        const fullName = [p.name, p.surname].filter(Boolean).join(' ').trim()
+        const parts = [fullName || 'Unknown name']
+        if (p.position) parts.push(`Position: ${p.position}`)
+        if (p.organization) parts.push(`Organization: ${p.organization}`)
+        return `${i + 1}. ${parts.join(' | ')}`
+      })
+      .join('\n')
+    if (peopleInvolvedText) {
+      formData.append('peopleInvolved', peopleInvolvedText)
     }
     
     if (form.additionalInfo) {
@@ -633,12 +747,13 @@ const handleSubmit = async () => {
     // Reset form first
     resetForm()
     
+    lastSuccessReportNumber.value = response.reportNumber
     // Show success message with report number
     await nextTick()
     toast.add({
       severity: 'success',
       summary: 'Report Submitted Successfully',
-      detail: `Your report has been received. Report Number: ${response.reportNumber}. We will review it and get back to you.`,
+      detail: `Your report has been received. Reference: ${response.reportNumber}. You can track status anytime from this page.`,
       life: 10000
     })
     

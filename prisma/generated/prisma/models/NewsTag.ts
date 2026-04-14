@@ -144,7 +144,7 @@ export type NewsTagGroupByOutputType = {
   _max: NewsTagMaxAggregateOutputType | null
 }
 
-type GetNewsTagGroupByPayload<T extends NewsTagGroupByArgs> = Prisma.PrismaPromise<
+export type GetNewsTagGroupByPayload<T extends NewsTagGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<NewsTagGroupByOutputType, T['by']> &
       {
@@ -987,6 +987,11 @@ export type NewsTagFindManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Skip the first `n` NewsTags.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of NewsTags.
+   */
   distinct?: Prisma.NewsTagScalarFieldEnum | Prisma.NewsTagScalarFieldEnum[]
 }
 

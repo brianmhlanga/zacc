@@ -43,6 +43,7 @@ export type PageContentMinAggregateOutputType = {
   imageUrl: string | null
   order: number | null
   isVisible: boolean | null
+  isLocked: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   createdBy: string | null
@@ -58,6 +59,7 @@ export type PageContentMaxAggregateOutputType = {
   imageUrl: string | null
   order: number | null
   isVisible: boolean | null
+  isLocked: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   createdBy: string | null
@@ -73,6 +75,7 @@ export type PageContentCountAggregateOutputType = {
   imageUrl: number
   order: number
   isVisible: number
+  isLocked: number
   metadata: number
   createdAt: number
   updatedAt: number
@@ -99,6 +102,7 @@ export type PageContentMinAggregateInputType = {
   imageUrl?: true
   order?: true
   isVisible?: true
+  isLocked?: true
   createdAt?: true
   updatedAt?: true
   createdBy?: true
@@ -114,6 +118,7 @@ export type PageContentMaxAggregateInputType = {
   imageUrl?: true
   order?: true
   isVisible?: true
+  isLocked?: true
   createdAt?: true
   updatedAt?: true
   createdBy?: true
@@ -129,6 +134,7 @@ export type PageContentCountAggregateInputType = {
   imageUrl?: true
   order?: true
   isVisible?: true
+  isLocked?: true
   metadata?: true
   createdAt?: true
   updatedAt?: true
@@ -232,6 +238,7 @@ export type PageContentGroupByOutputType = {
   imageUrl: string | null
   order: number
   isVisible: boolean
+  isLocked: boolean
   metadata: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
@@ -244,7 +251,7 @@ export type PageContentGroupByOutputType = {
   _max: PageContentMaxAggregateOutputType | null
 }
 
-type GetPageContentGroupByPayload<T extends PageContentGroupByArgs> = Prisma.PrismaPromise<
+export type GetPageContentGroupByPayload<T extends PageContentGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<PageContentGroupByOutputType, T['by']> &
       {
@@ -271,6 +278,7 @@ export type PageContentWhereInput = {
   imageUrl?: Prisma.StringNullableFilter<"PageContent"> | string | null
   order?: Prisma.IntFilter<"PageContent"> | number
   isVisible?: Prisma.BoolFilter<"PageContent"> | boolean
+  isLocked?: Prisma.BoolFilter<"PageContent"> | boolean
   metadata?: Prisma.JsonNullableFilter<"PageContent">
   createdAt?: Prisma.DateTimeFilter<"PageContent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PageContent"> | Date | string
@@ -289,6 +297,7 @@ export type PageContentOrderByWithRelationInput = {
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
+  isLocked?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -312,6 +321,7 @@ export type PageContentWhereUniqueInput = Prisma.AtLeast<{
   imageUrl?: Prisma.StringNullableFilter<"PageContent"> | string | null
   order?: Prisma.IntFilter<"PageContent"> | number
   isVisible?: Prisma.BoolFilter<"PageContent"> | boolean
+  isLocked?: Prisma.BoolFilter<"PageContent"> | boolean
   metadata?: Prisma.JsonNullableFilter<"PageContent">
   createdAt?: Prisma.DateTimeFilter<"PageContent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PageContent"> | Date | string
@@ -330,6 +340,7 @@ export type PageContentOrderByWithAggregationInput = {
   imageUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
+  isLocked?: Prisma.SortOrder
   metadata?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -354,6 +365,7 @@ export type PageContentScalarWhereWithAggregatesInput = {
   imageUrl?: Prisma.StringNullableWithAggregatesFilter<"PageContent"> | string | null
   order?: Prisma.IntWithAggregatesFilter<"PageContent"> | number
   isVisible?: Prisma.BoolWithAggregatesFilter<"PageContent"> | boolean
+  isLocked?: Prisma.BoolWithAggregatesFilter<"PageContent"> | boolean
   metadata?: Prisma.JsonNullableWithAggregatesFilter<"PageContent">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PageContent"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PageContent"> | Date | string
@@ -370,6 +382,7 @@ export type PageContentCreateInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -386,6 +399,7 @@ export type PageContentUncheckedCreateInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -402,6 +416,7 @@ export type PageContentUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -418,6 +433,7 @@ export type PageContentUncheckedUpdateInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -434,6 +450,7 @@ export type PageContentCreateManyInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -450,6 +467,7 @@ export type PageContentUpdateManyMutationInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -464,6 +482,7 @@ export type PageContentUncheckedUpdateManyInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -501,6 +520,7 @@ export type PageContentCountOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
+  isLocked?: Prisma.SortOrder
   metadata?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -521,6 +541,7 @@ export type PageContentMaxOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
+  isLocked?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -536,6 +557,7 @@ export type PageContentMinOrderByAggregateInput = {
   imageUrl?: Prisma.SortOrder
   order?: Prisma.SortOrder
   isVisible?: Prisma.SortOrder
+  isLocked?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   createdBy?: Prisma.SortOrder
@@ -639,6 +661,7 @@ export type PageContentCreateWithoutCreatorInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -654,6 +677,7 @@ export type PageContentUncheckedCreateWithoutCreatorInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -679,6 +703,7 @@ export type PageContentCreateWithoutUpdaterInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -694,6 +719,7 @@ export type PageContentUncheckedCreateWithoutUpdaterInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -738,6 +764,7 @@ export type PageContentScalarWhereInput = {
   imageUrl?: Prisma.StringNullableFilter<"PageContent"> | string | null
   order?: Prisma.IntFilter<"PageContent"> | number
   isVisible?: Prisma.BoolFilter<"PageContent"> | boolean
+  isLocked?: Prisma.BoolFilter<"PageContent"> | boolean
   metadata?: Prisma.JsonNullableFilter<"PageContent">
   createdAt?: Prisma.DateTimeFilter<"PageContent"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PageContent"> | Date | string
@@ -770,6 +797,7 @@ export type PageContentCreateManyCreatorInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -785,6 +813,7 @@ export type PageContentCreateManyUpdaterInput = {
   imageUrl?: string | null
   order?: number
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -800,6 +829,7 @@ export type PageContentUpdateWithoutCreatorInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -815,6 +845,7 @@ export type PageContentUncheckedUpdateWithoutCreatorInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -830,6 +861,7 @@ export type PageContentUncheckedUpdateManyWithoutCreatorInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -845,6 +877,7 @@ export type PageContentUpdateWithoutUpdaterInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -860,6 +893,7 @@ export type PageContentUncheckedUpdateWithoutUpdaterInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -875,6 +909,7 @@ export type PageContentUncheckedUpdateManyWithoutUpdaterInput = {
   imageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   isVisible?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isLocked?: Prisma.BoolFieldUpdateOperationsInput | boolean
   metadata?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -892,6 +927,7 @@ export type PageContentSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   imageUrl?: boolean
   order?: boolean
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -912,6 +948,7 @@ export type PageContentSelectScalar = {
   imageUrl?: boolean
   order?: boolean
   isVisible?: boolean
+  isLocked?: boolean
   metadata?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -919,7 +956,7 @@ export type PageContentSelectScalar = {
   updatedBy?: boolean
 }
 
-export type PageContentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pageKey" | "sectionKey" | "title" | "content" | "imageUrl" | "order" | "isVisible" | "metadata" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy", ExtArgs["result"]["pageContent"]>
+export type PageContentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "pageKey" | "sectionKey" | "title" | "content" | "imageUrl" | "order" | "isVisible" | "isLocked" | "metadata" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy", ExtArgs["result"]["pageContent"]>
 export type PageContentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.PageContent$creatorArgs<ExtArgs>
   updater?: boolean | Prisma.PageContent$updaterArgs<ExtArgs>
@@ -940,6 +977,7 @@ export type $PageContentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     imageUrl: string | null
     order: number
     isVisible: boolean
+    isLocked: boolean
     metadata: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
@@ -1324,6 +1362,7 @@ export interface PageContentFieldRefs {
   readonly imageUrl: Prisma.FieldRef<"PageContent", 'String'>
   readonly order: Prisma.FieldRef<"PageContent", 'Int'>
   readonly isVisible: Prisma.FieldRef<"PageContent", 'Boolean'>
+  readonly isLocked: Prisma.FieldRef<"PageContent", 'Boolean'>
   readonly metadata: Prisma.FieldRef<"PageContent", 'Json'>
   readonly createdAt: Prisma.FieldRef<"PageContent", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PageContent", 'DateTime'>
@@ -1525,6 +1564,11 @@ export type PageContentFindManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Skip the first `n` PageContents.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of PageContents.
+   */
   distinct?: Prisma.PageContentScalarFieldEnum | Prisma.PageContentScalarFieldEnum[]
 }
 

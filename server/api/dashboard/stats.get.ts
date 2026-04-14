@@ -11,6 +11,8 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    const isReportsOnly = session.user.role === 'REPORTS_ADMIN'
+
     // Get current date and last month date for comparison
     const now = new Date()
     const lastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)
@@ -145,7 +147,7 @@ export default defineEventHandler(async (event) => {
       })
     ])
 
-    return {
+    const payload = {
       stats: {
         reports: {
           total: totalReports,
@@ -193,6 +195,23 @@ export default defineEventHandler(async (event) => {
         date: news.createdAt
       }))
     }
+
+    if (isReportsOnly) {
+      return {
+        stats: {
+          reports: payload.stats.reports
+        },
+        badges: {
+          reports: payload.badges.reports,
+          news: 0
+        },
+        recentReports: payload.recentReports,
+        recentContacts: [],
+        recentNews: []
+      }
+    }
+
+    return payload
   } catch (error: any) {
     if (error.statusCode) {
       throw error

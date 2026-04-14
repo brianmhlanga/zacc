@@ -6,7 +6,7 @@
           <img src="/logo.png" alt="ZACC logo" class="h-12 sm:h-14 w-auto" />
           <div class="leading-tight">
             <div class="text-[2.25rem] font-black tracking-[3px] text-zaccGold">ZACC</div>
-            <div class="text-xs font-semibold text-zaccBlack/80">Refuse, Resist, Report Corruption</div>
+            <div class="text-xs font-semibold text-zaccGold/95">Refuse, Resist, Report Corruption</div>
           </div>
         </NuxtLink>
 
@@ -148,6 +148,14 @@
                   @click="showResourcesDropdown = false"
                 >
                   Downloads
+                </NuxtLink>
+                <div class="border-t border-zaccBlack/5"></div>
+                <NuxtLink
+                  to="/tenders"
+                  class="block px-4 py-3 text-sm text-zaccBlack hover:bg-zaccBlack/5 hover:text-zaccGreen transition-colors"
+                  @click="showResourcesDropdown = false"
+                >
+                  Tenders
                 </NuxtLink>
               </div>
             </div>
@@ -337,6 +345,7 @@
         <NuxtLink to="/statistics" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Statistics</NuxtLink>
         <NuxtLink to="/careers" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Vacancies</NuxtLink>
         <NuxtLink to="/downloads" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Downloads</NuxtLink>
+        <NuxtLink to="/tenders" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Tenders</NuxtLink>
         <NuxtLink to="/report" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Report Corruption</NuxtLink>
         <NuxtLink to="/news" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">News & Updates</NuxtLink>
         <NuxtLink to="/gallery" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Gallery</NuxtLink>

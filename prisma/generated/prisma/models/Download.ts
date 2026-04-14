@@ -270,7 +270,7 @@ export type DownloadGroupByOutputType = {
   _max: DownloadMaxAggregateOutputType | null
 }
 
-type GetDownloadGroupByPayload<T extends DownloadGroupByArgs> = Prisma.PrismaPromise<
+export type GetDownloadGroupByPayload<T extends DownloadGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<DownloadGroupByOutputType, T['by']> &
       {
@@ -1615,6 +1615,11 @@ export type DownloadFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Skip the first `n` Downloads.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Downloads.
+   */
   distinct?: Prisma.DownloadScalarFieldEnum | Prisma.DownloadScalarFieldEnum[]
 }
 

@@ -304,7 +304,7 @@ export type RulingGroupByOutputType = {
   _max: RulingMaxAggregateOutputType | null
 }
 
-type GetRulingGroupByPayload<T extends RulingGroupByArgs> = Prisma.PrismaPromise<
+export type GetRulingGroupByPayload<T extends RulingGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<RulingGroupByOutputType, T['by']> &
       {
@@ -2018,6 +2018,11 @@ export type RulingFindManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Skip the first `n` Rulings.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Rulings.
+   */
   distinct?: Prisma.RulingScalarFieldEnum | Prisma.RulingScalarFieldEnum[]
 }
 

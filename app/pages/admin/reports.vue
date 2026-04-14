@@ -217,6 +217,20 @@
             </div>
           </div>
 
+          <div class="flex flex-wrap items-center gap-2 pb-4 border-b border-gray-200">
+            <span class="text-sm font-semibold text-zaccBlack w-full sm:w-auto">Quick status</span>
+            <Button
+              v-for="opt in editStatusOptions"
+              :key="opt.value"
+              :label="opt.label"
+              size="small"
+              severity="secondary"
+              outlined
+              :disabled="viewingReport.status === opt.value || quickUpdating"
+              @click="applyQuickStatus(viewingReport, opt.value)"
+            />
+          </div>
+
           <!-- Contact Information -->
           <div>
             <h4 class="font-semibold text-zaccBlack mb-2">Contact Information</h4>
@@ -268,7 +282,21 @@
               </div>
               <div v-if="viewingReport.peopleInvolved">
                 <span class="text-sm text-gray-600 font-semibold">People Involved:</span>
-                <div class="mt-2 text-zaccBlack prose prose-sm max-w-none" v-html="viewingReport.peopleInvolved"></div>
+                <div class="mt-2 space-y-2">
+                  <div
+                    v-for="(person, idx) in parsedPeopleInvolved"
+                    :key="idx"
+                    class="rounded-lg border border-zaccBlack/10 bg-white p-3"
+                  >
+                    <div class="font-semibold text-zaccBlack">
+                      {{ person.name || `Person ${idx + 1}` }}
+                    </div>
+                    <div class="mt-1 text-sm text-zaccBlack/70 space-y-1">
+                      <div v-if="person.position"><span class="font-semibold">Position:</span> {{ person.position }}</div>
+                      <div v-if="person.organization"><span class="font-semibold">Organization:</span> {{ person.organization }}</div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div v-if="viewingReport.additionalInfo">
                 <span class="text-sm text-gray-600 font-semibold">Additional Information:</span>
@@ -375,6 +403,7 @@
               Assign To
             </label>
             <Dropdown
+              v-if="canAssignUsers"
               id="assignedTo"
               v-model="updateForm.assignedTo"
               :options="userOptions"
@@ -384,6 +413,7 @@
               class="w-full"
               showClear
             />
+            <p v-else class="text-sm text-gray-500">Assignment is managed by full administrators.</p>
           </div>
 
           <div>
@@ -442,6 +472,10 @@ definePageMeta({
 
 const confirm = useConfirm()
 const toast = useToast()
+const { user, fetch: fetchSession } = useUserSession()
+
+const canAssignUsers = computed(() => user.value?.role !== 'REPORTS_ADMIN')
+const quickUpdating = ref(false)
 
 // State
 const reports = ref([])
@@ -597,6 +631,51 @@ const formatFileSize = (bytes: number) => {
 const downloadFile = (url: string) => {
   window.open(url, '_blank')
 }
+
+const parsePeopleInvolved = (raw: string) => {
+  if (!raw) return []
+  const cleaned = raw
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (!cleaned) return []
+
+  const normalized = cleaned.replace(/(\d+\.)/g, '\n$1').trim()
+  const chunks = normalized
+    .split('\n')
+    .map((line) => line.replace(/^\d+\.\s*/, '').trim())
+    .filter(Boolean)
+
+  const source = chunks.length ? chunks : [cleaned]
+  return source.map((line) => {
+    const parts = line.split('|').map((p) => p.trim()).filter(Boolean)
+    const item: { name: string; position: string; organization: string } = {
+      name: '',
+      position: '',
+      organization: ''
+    }
+
+    parts.forEach((part, idx) => {
+      const lower = part.toLowerCase()
+      if (lower.startsWith('position:')) {
+        item.position = part.slice(part.indexOf(':') + 1).trim()
+      } else if (lower.startsWith('organization:')) {
+        item.organization = part.slice(part.indexOf(':') + 1).trim()
+      } else if (idx === 0) {
+        item.name = part
+      } else {
+        item.name = item.name ? `${item.name} ${part}`.trim() : part
+      }
+    })
+
+    return item
+  })
+}
+
+const parsedPeopleInvolved = computed(() => {
+  return parsePeopleInvolved(viewingReport.value?.peopleInvolved || '')
+})
 
 // Fetch reports
 const fetchReports = async () => {
@@ -776,10 +855,45 @@ const clearFilters = () => {
   fetchReports()
 }
 
+const applyQuickStatus = async (report: any, status: string) => {
+  if (!report?.id || report.status === status) return
+  quickUpdating.value = true
+  try {
+    await $fetch(`/api/reports/${report.id}`, {
+      method: 'PUT',
+      body: {
+        status,
+        notes: `Status set to ${formatStatus(status)}`
+      }
+    })
+    toast.add({
+      severity: 'success',
+      summary: 'Updated',
+      detail: 'Report status updated',
+      life: 3000
+    })
+    await fetchReports()
+    const data = await $fetch(`/api/reports/${report.id}`)
+    viewingReport.value = data
+  } catch (error: any) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: error.data?.message || 'Failed to update status',
+      life: 3000
+    })
+  } finally {
+    quickUpdating.value = false
+  }
+}
+
 // Lifecycle
-onMounted(() => {
-  fetchReports()
-  fetchUsers()
+onMounted(async () => {
+  await fetchSession()
+  await fetchReports()
+  if (canAssignUsers.value) {
+    await fetchUsers()
+  }
 })
 </script>
 

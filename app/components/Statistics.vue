@@ -62,7 +62,7 @@ const fetchStatistics = async () => {
   loading.value = true
   try {
     const stats = await $fetch('/api/public/statistics', {
-      params: { section: 'homepage' }
+      params: { section: 'homepage', year: new Date().getFullYear() }
     })
     statistics.value = stats || []
   } catch (error) {

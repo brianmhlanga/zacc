@@ -10,7 +10,8 @@ const createStatisticSchema = z.object({
   color: z.enum(['green', 'gold', 'black', 'blue', 'red', 'purple', 'orange']).optional().nullable(),
   order: z.number().int().default(0),
   isVisible: z.boolean().default(true),
-  section: z.string().default('homepage')
+  section: z.string().default('homepage'),
+  year: z.number().int().min(2000).max(2100).optional()
 })
 
 export default defineEventHandler(async (event) => {
@@ -36,6 +37,8 @@ export default defineEventHandler(async (event) => {
     const data = createStatisticSchema.parse(body)
 
     // Create statistic
+    const y = data.year ?? new Date().getFullYear()
+
     const statistic = await prisma.statistic.create({
       data: {
         label: data.label,
@@ -46,7 +49,8 @@ export default defineEventHandler(async (event) => {
         color: data.color || null,
         order: data.order,
         isVisible: data.isVisible,
-        section: data.section
+        section: data.section,
+        year: y
       }
     })
 

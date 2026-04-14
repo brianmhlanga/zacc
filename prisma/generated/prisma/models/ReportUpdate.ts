@@ -165,7 +165,7 @@ export type ReportUpdateGroupByOutputType = {
   _max: ReportUpdateMaxAggregateOutputType | null
 }
 
-type GetReportUpdateGroupByPayload<T extends ReportUpdateGroupByArgs> = Prisma.PrismaPromise<
+export type GetReportUpdateGroupByPayload<T extends ReportUpdateGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ReportUpdateGroupByOutputType, T['by']> &
       {
@@ -1086,6 +1086,11 @@ export type ReportUpdateFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Skip the first `n` ReportUpdates.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of ReportUpdates.
+   */
   distinct?: Prisma.ReportUpdateScalarFieldEnum | Prisma.ReportUpdateScalarFieldEnum[]
 }
 

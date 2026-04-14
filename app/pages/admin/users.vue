@@ -290,7 +290,8 @@ const roleOptions = [
   { label: 'Super Admin', value: 'SUPER_ADMIN' },
   { label: 'Admin', value: 'ADMIN' },
   { label: 'Editor', value: 'EDITOR' },
-  { label: 'Viewer', value: 'VIEWER' }
+  { label: 'Viewer', value: 'VIEWER' },
+  { label: 'Reports admin', value: 'REPORTS_ADMIN' }
 ]
 
 // Fetch users
@@ -494,6 +495,8 @@ const getRoleSeverity = (role: string) => {
       return 'info'
     case 'VIEWER':
       return 'secondary'
+    case 'REPORTS_ADMIN':
+      return 'warning'
     default:
       return 'secondary'
   }

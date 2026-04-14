@@ -45,7 +45,7 @@
               </div>
             </div>
             <div class="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
-              <i class="pi pi-newspaper text-blue-600 text-2xl"></i>
+              <i class="pi pi-file text-blue-600 text-2xl"></i>
             </div>
           </div>
         </template>

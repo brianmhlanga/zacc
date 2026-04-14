@@ -179,7 +179,7 @@ export type PageViewGroupByOutputType = {
   _max: PageViewMaxAggregateOutputType | null
 }
 
-type GetPageViewGroupByPayload<T extends PageViewGroupByArgs> = Prisma.PrismaPromise<
+export type GetPageViewGroupByPayload<T extends PageViewGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<PageViewGroupByOutputType, T['by']> &
       {
@@ -971,6 +971,11 @@ export type PageViewFindManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Skip the first `n` PageViews.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of PageViews.
+   */
   distinct?: Prisma.PageViewScalarFieldEnum | Prisma.PageViewScalarFieldEnum[]
 }
 

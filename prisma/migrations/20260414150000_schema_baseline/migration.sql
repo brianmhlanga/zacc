@@ -1,0 +1,2 @@
+-- Baseline marker migration.
+-- Intentionally no-op to align local migration history with existing database state.

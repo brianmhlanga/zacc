@@ -270,7 +270,7 @@ export type CorruptionReportGroupByOutputType = {
   _max: CorruptionReportMaxAggregateOutputType | null
 }
 
-type GetCorruptionReportGroupByPayload<T extends CorruptionReportGroupByArgs> = Prisma.PrismaPromise<
+export type GetCorruptionReportGroupByPayload<T extends CorruptionReportGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<CorruptionReportGroupByOutputType, T['by']> &
       {
@@ -1667,6 +1667,11 @@ export type CorruptionReportFindManyArgs<ExtArgs extends runtime.Types.Extension
    * Skip the first `n` CorruptionReports.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of CorruptionReports.
+   */
   distinct?: Prisma.CorruptionReportScalarFieldEnum | Prisma.CorruptionReportScalarFieldEnum[]
 }
 

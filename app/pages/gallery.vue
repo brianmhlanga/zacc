@@ -7,13 +7,8 @@
         <img src="/harare.JPG" alt="Gallery" class="absolute inset-0 h-full w-full object-cover opacity-20" />
         <div class="absolute inset-0 bg-zaccBlack/90"></div>
       </div>
-      <div class="relative mx-auto max-w-7xl px-6">
-        <div class="text-center">
-          <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Gallery</h1>
-          <p class="mt-6 text-xl text-white/90 max-w-3xl mx-auto">
-            Explore our photo gallery showcasing ZACC's activities, events, and achievements.
-          </p>
-        </div>
+      <div class="relative mx-auto max-w-7xl px-6 py-6">
+        <!-- Page title disabled per site requirements; hero background only -->
       </div>
     </section>
 
@@ -108,7 +103,7 @@
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
               <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
-                <div class="font-semibold text-sm mb-1">{{ image.title }}</div>
+                <div v-if="image.showTitle !== false" class="font-semibold text-sm mb-1">{{ image.title }}</div>
                 <div class="text-xs text-white/80">{{ image.category }}</div>
               </div>
             </div>
@@ -150,7 +145,7 @@
       <template #header>
         <div class="flex items-center justify-between w-full">
           <div>
-            <h3 class="text-xl font-extrabold">{{ selectedImage?.title }}</h3>
+            <h3 v-if="selectedImage?.showTitle !== false" class="text-xl font-extrabold">{{ selectedImage?.title }}</h3>
             <p class="text-sm text-zaccBlack/60 mt-1">{{ selectedImage?.category }} • {{ selectedImage?.date }}</p>
           </div>
           <div class="flex items-center gap-2">

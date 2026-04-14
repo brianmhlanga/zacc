@@ -10,7 +10,8 @@ const updateStatisticSchema = z.object({
   color: z.enum(['green', 'gold', 'black', 'blue', 'red', 'purple', 'orange']).optional().nullable(),
   order: z.number().int().optional(),
   isVisible: z.boolean().optional(),
-  section: z.string().optional()
+  section: z.string().optional(),
+  year: z.number().int().min(2000).max(2100).optional()
 })
 
 export default defineEventHandler(async (event) => {
@@ -66,6 +67,7 @@ export default defineEventHandler(async (event) => {
     if (data.order !== undefined) updateData.order = data.order
     if (data.isVisible !== undefined) updateData.isVisible = data.isVisible
     if (data.section !== undefined) updateData.section = data.section
+    if (data.year !== undefined) updateData.year = data.year
 
     // Update statistic
     const statistic = await prisma.statistic.update({

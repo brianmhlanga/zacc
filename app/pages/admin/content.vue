@@ -111,6 +111,13 @@
               </template>
             </Column>
 
+            <Column field="isLocked" header="Lock" sortable>
+              <template #body="{ data }">
+                <Tag v-if="data.isLocked" value="Locked" severity="danger" />
+                <span v-else class="text-gray-400">—</span>
+              </template>
+            </Column>
+
             <Column field="updatedAt" header="Last Updated" sortable>
               <template #body="{ data }">
                 <div class="text-xs text-gray-600">
@@ -130,6 +137,7 @@
                     severity="info"
                     outlined
                     rounded
+                    :disabled="data.isLocked && !isSuperAdmin"
                     @click="openEditDialog(data)"
                     v-tooltip.top="'Edit Section'"
                   />
@@ -138,6 +146,7 @@
                     severity="danger"
                     outlined
                     rounded
+                    :disabled="data.isLocked && !isSuperAdmin"
                     @click="confirmDelete(data)"
                     v-tooltip.top="'Delete Section'"
                   />
@@ -267,6 +276,19 @@
             </div>
           </div>
 
+          <div v-if="isSuperAdmin && isEditMode" class="rounded-lg border border-amber-200 bg-amber-50 p-4">
+            <div class="flex items-center gap-2">
+              <Checkbox
+                id="isLocked"
+                v-model="contentForm.isLocked"
+                :binary="true"
+              />
+              <label for="isLocked" class="text-sm font-semibold text-zaccBlack">
+                Lock section (only super administrators can edit or delete while locked)
+              </label>
+            </div>
+          </div>
+
           <div class="flex justify-end gap-2 pt-4">
             <Button
               label="Cancel"
@@ -310,6 +332,8 @@ definePageMeta({
 
 const confirm = useConfirm()
 const toast = useToast()
+const { user } = useUserSession()
+const isSuperAdmin = computed(() => user.value?.role === 'SUPER_ADMIN')
 
 // State
 const content = ref([])
@@ -330,7 +354,8 @@ const contentForm = reactive({
   content: '',
   imageUrl: '',
   order: 0,
-  isVisible: true
+  isVisible: true,
+  isLocked: false
 })
 
 const errors = reactive({
@@ -419,6 +444,15 @@ const openCreateDialog = () => {
 
 // Open edit dialog
 const openEditDialog = (item: any) => {
+  if (item.isLocked && !isSuperAdmin.value) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Section locked',
+      detail: 'Only a super administrator can edit this locked section.',
+      life: 4000
+    })
+    return
+  }
   isEditMode.value = true
   contentForm.id = item.id
   contentForm.pageKey = item.pageKey
@@ -428,6 +462,7 @@ const openEditDialog = (item: any) => {
   contentForm.imageUrl = item.imageUrl || ''
   contentForm.order = item.order
   contentForm.isVisible = item.isVisible
+  contentForm.isLocked = !!item.isLocked
   dialogVisible.value = true
 }
 
@@ -447,6 +482,7 @@ const resetForm = () => {
   contentForm.imageUrl = ''
   contentForm.order = 0
   contentForm.isVisible = true
+  contentForm.isLocked = false
   errors.pageKey = ''
   errors.sectionKey = ''
   errors.content = ''
@@ -486,15 +522,19 @@ const handleSubmit = async () => {
   submitting.value = true
   try {
     if (isEditMode.value) {
+      const body: Record<string, unknown> = {
+        title: contentForm.title,
+        content: contentForm.content,
+        imageUrl: contentForm.imageUrl,
+        order: contentForm.order,
+        isVisible: contentForm.isVisible
+      }
+      if (isSuperAdmin.value) {
+        body.isLocked = contentForm.isLocked
+      }
       await $fetch(`/api/content/${contentForm.id}`, {
         method: 'PUT',
-        body: {
-          title: contentForm.title,
-          content: contentForm.content,
-          imageUrl: contentForm.imageUrl,
-          order: contentForm.order,
-          isVisible: contentForm.isVisible
-        }
+        body
       })
       toast.add({
         severity: 'success',
@@ -538,6 +578,15 @@ const handleSubmit = async () => {
 
 // Delete content
 const confirmDelete = (item: any) => {
+  if (item.isLocked && !isSuperAdmin.value) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Section locked',
+      detail: 'Only a super administrator can delete this locked section.',
+      life: 4000
+    })
+    return
+  }
   confirm.require({
     message: `Are you sure you want to delete the "${formatSectionKey(item.sectionKey)}" section from "${getPageLabel(item.pageKey)}"?`,
     header: 'Delete Confirmation',

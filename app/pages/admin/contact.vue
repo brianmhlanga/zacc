@@ -28,8 +28,23 @@
                 @change="fetchSubmissions"
               />
             </div>
+            <div class="flex items-center gap-2">
+              <label for="categoryFilter" class="text-sm font-semibold text-zaccBlack whitespace-nowrap">
+                Category:
+              </label>
+              <Dropdown
+                id="categoryFilter"
+                v-model="selectedCategory"
+                :options="categoryOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="All categories"
+                class="w-48"
+                @change="fetchSubmissions"
+              />
+            </div>
             <Button
-              v-if="selectedStatus"
+              v-if="selectedStatus || selectedCategory"
               label="Clear Filters"
               icon="pi pi-times"
               severity="secondary"
@@ -50,7 +65,7 @@
             :paginator="true"
             :rows="10"
             :rowsPerPageOptions="[10, 25, 50]"
-            :globalFilterFields="['name', 'email', 'subject', 'message']"
+            :globalFilterFields="['name', 'email', 'subject', 'message', 'category']"
             dataKey="id"
             stripedRows
             class="text-sm"
@@ -77,6 +92,12 @@
                     {{ data.email }}
                   </div>
                 </div>
+              </template>
+            </Column>
+
+            <Column field="category" header="Category" sortable>
+              <template #body="{ data }">
+                <Tag :value="formatCategory(data.category)" severity="secondary" />
               </template>
             </Column>
 
@@ -178,6 +199,10 @@
             <div>
               <h3 class="text-lg font-bold text-zaccBlack">Contact Submission</h3>
               <p class="text-sm text-gray-500">Submitted: {{ formatDateTime(viewingSubmission.createdAt) }}</p>
+              <p v-if="viewingSubmission.category" class="text-sm mt-1">
+                <span class="text-gray-600">Category:</span>
+                <Tag :value="formatCategory(viewingSubmission.category)" severity="info" class="ml-2" />
+              </p>
             </div>
             <Tag
               :value="formatStatus(viewingSubmission.status)"
@@ -218,7 +243,7 @@
               </div>
               <div>
                 <span class="text-sm text-gray-600 font-semibold">Message:</span>
-                <p class="mt-2 text-zaccBlack whitespace-pre-wrap">{{ viewingSubmission.message }}</p>
+                <div class="mt-2 text-zaccBlack prose prose-sm max-w-none" v-html="viewingSubmission.message"></div>
               </div>
             </div>
           </div>
@@ -231,7 +256,7 @@
                 <span class="text-sm text-gray-600">Responded:</span>
                 <span class="ml-2 font-semibold">{{ formatDateTime(viewingSubmission.respondedAt) }}</span>
               </div>
-              <p class="text-zaccBlack whitespace-pre-wrap">{{ viewingSubmission.response }}</p>
+              <div class="text-zaccBlack prose prose-sm max-w-none" v-html="viewingSubmission.response"></div>
             </div>
           </div>
         </div>
@@ -332,6 +357,7 @@ const responseDialogVisible = ref(false)
 const viewingSubmission = ref<any>(null)
 const responding = ref(false)
 const selectedStatus = ref<string | null>(null)
+const selectedCategory = ref<string | null>(null)
 const filters = ref({
   global: { value: null, matchMode: 'contains' }
 })
@@ -355,10 +381,20 @@ const statusOptions = [
   { label: 'Closed', value: 'CLOSED' }
 ]
 
+const categoryOptions = [
+  { label: 'All', value: null },
+  { label: 'General', value: 'GENERAL' },
+  { label: 'Complaint', value: 'COMPLAINT' },
+  { label: 'Compliment', value: 'COMPLIMENT' },
+  { label: 'Inquiry', value: 'INQUIRY' },
+  { label: 'Other', value: 'OTHER' }
+]
+
 // Helper functions
 const truncateText = (text: string, length: number) => {
   if (!text) return ''
-  return text.length > length ? text.substring(0, length) + '...' : text
+  const plain = text.replace(/<[^>]*>/g, '')
+  return plain.length > length ? plain.substring(0, length) + '...' : plain
 }
 
 const formatDate = (date: string | Date) => {
@@ -385,6 +421,17 @@ const formatStatus = (status: string) => {
   return status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
 
+const formatCategory = (cat: string) => {
+  const labels: Record<string, string> = {
+    GENERAL: 'General',
+    COMPLAINT: 'Complaint',
+    COMPLIMENT: 'Compliment',
+    INQUIRY: 'Inquiry',
+    OTHER: 'Other'
+  }
+  return labels[cat] || cat
+}
+
 const getStatusSeverity = (status: string) => {
   const severityMap: Record<string, string> = {
     NEW: 'info',
@@ -402,6 +449,9 @@ const fetchSubmissions = async () => {
     const params: any = {}
     if (selectedStatus.value) {
       params.status = selectedStatus.value
+    }
+    if (selectedCategory.value) {
+      params.category = selectedCategory.value
     }
 
     const data = await $fetch('/api/contact', { params })
@@ -572,6 +622,7 @@ const handleDelete = (submission: any) => {
 
 const clearFilters = () => {
   selectedStatus.value = null
+  selectedCategory.value = null
   fetchSubmissions()
 }
 

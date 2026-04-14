@@ -220,7 +220,7 @@ export type ValueGroupByOutputType = {
   _max: ValueMaxAggregateOutputType | null
 }
 
-type GetValueGroupByPayload<T extends ValueGroupByArgs> = Prisma.PrismaPromise<
+export type GetValueGroupByPayload<T extends ValueGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ValueGroupByOutputType, T['by']> &
       {
@@ -1041,6 +1041,11 @@ export type ValueFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Skip the first `n` Values.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Values.
+   */
   distinct?: Prisma.ValueScalarFieldEnum | Prisma.ValueScalarFieldEnum[]
 }
 

@@ -237,7 +237,7 @@ export type LegislationGroupByOutputType = {
   _max: LegislationMaxAggregateOutputType | null
 }
 
-type GetLegislationGroupByPayload<T extends LegislationGroupByArgs> = Prisma.PrismaPromise<
+export type GetLegislationGroupByPayload<T extends LegislationGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<LegislationGroupByOutputType, T['by']> &
       {
@@ -1113,6 +1113,11 @@ export type LegislationFindManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Skip the first `n` Legislations.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Legislations.
+   */
   distinct?: Prisma.LegislationScalarFieldEnum | Prisma.LegislationScalarFieldEnum[]
 }
 

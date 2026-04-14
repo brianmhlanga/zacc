@@ -39,6 +39,13 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    if (existing.isLocked && session.user.role !== 'SUPER_ADMIN') {
+      throw createError({
+        statusCode: 403,
+        statusMessage: 'This content section is locked. Only a super administrator can delete it.'
+      })
+    }
+
     // Delete content
     await prisma.pageContent.delete({
       where: { id }

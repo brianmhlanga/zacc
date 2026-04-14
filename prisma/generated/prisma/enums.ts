@@ -13,10 +13,36 @@ export const UserRole = {
   SUPER_ADMIN: 'SUPER_ADMIN',
   ADMIN: 'ADMIN',
   EDITOR: 'EDITOR',
-  VIEWER: 'VIEWER'
+  VIEWER: 'VIEWER',
+  REPORTS_ADMIN: 'REPORTS_ADMIN'
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const TenderType = {
+  NORMAL: 'NORMAL',
+  RFQ: 'RFQ'
+} as const
+
+export type TenderType = (typeof TenderType)[keyof typeof TenderType]
+
+
+export const SupplierApprovalStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type SupplierApprovalStatus = (typeof SupplierApprovalStatus)[keyof typeof SupplierApprovalStatus]
+
+
+export const BidStatus = {
+  SUBMITTED: 'SUBMITTED',
+  WITHDRAWN: 'WITHDRAWN'
+} as const
+
+export type BidStatus = (typeof BidStatus)[keyof typeof BidStatus]
 
 
 export const ApplicationStatus = {
@@ -61,3 +87,14 @@ export const ContactStatus = {
 } as const
 
 export type ContactStatus = (typeof ContactStatus)[keyof typeof ContactStatus]
+
+
+export const ContactCategory = {
+  GENERAL: 'GENERAL',
+  COMPLAINT: 'COMPLAINT',
+  COMPLIMENT: 'COMPLIMENT',
+  INQUIRY: 'INQUIRY',
+  OTHER: 'OTHER'
+} as const
+
+export type ContactCategory = (typeof ContactCategory)[keyof typeof ContactCategory]

@@ -9,7 +9,8 @@ const updateGalleryImageSchema = z.object({
   thumbnailUrl: z.string().optional().nullable(),
   alt: z.string().optional().nullable(),
   order: z.number().int().optional(),
-  isPublished: z.boolean().optional()
+  isPublished: z.boolean().optional(),
+  showTitle: z.boolean().optional()
 })
 
 export default defineEventHandler(async (event) => {
@@ -66,6 +67,7 @@ export default defineEventHandler(async (event) => {
     if (data.alt !== undefined) updateData.alt = data.alt
     if (data.order !== undefined) updateData.order = data.order
     if (data.isPublished !== undefined) updateData.isPublished = data.isPublished
+    if (data.showTitle !== undefined) updateData.showTitle = data.showTitle
 
     // Update gallery image
     const image = await prisma.galleryImage.update({

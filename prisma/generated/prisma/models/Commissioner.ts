@@ -248,7 +248,7 @@ export type CommissionerGroupByOutputType = {
   _max: CommissionerMaxAggregateOutputType | null
 }
 
-type GetCommissionerGroupByPayload<T extends CommissionerGroupByArgs> = Prisma.PrismaPromise<
+export type GetCommissionerGroupByPayload<T extends CommissionerGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<CommissionerGroupByOutputType, T['by']> &
       {
@@ -1145,6 +1145,11 @@ export type CommissionerFindManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Skip the first `n` Commissioners.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of Commissioners.
+   */
   distinct?: Prisma.CommissionerScalarFieldEnum | Prisma.CommissionerScalarFieldEnum[]
 }
 

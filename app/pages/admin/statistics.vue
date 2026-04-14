@@ -49,8 +49,23 @@
                 @change="fetchStatistics"
               />
             </div>
+            <div class="flex items-center gap-2">
+              <label for="yearFilter" class="text-sm font-semibold text-zaccBlack whitespace-nowrap">
+                Year:
+              </label>
+              <InputNumber
+                id="yearFilter"
+                v-model="selectedYear"
+                :min="2000"
+                :max="2100"
+                :use-grouping="false"
+                placeholder="All"
+                class="w-32"
+                @blur="fetchStatistics"
+              />
+            </div>
             <Button
-              v-if="selectedSection || selectedVisibility !== null"
+              v-if="selectedSection || selectedVisibility !== null || selectedYear !== null"
               label="Clear Filters"
               icon="pi pi-times"
               severity="secondary"
@@ -113,6 +128,8 @@
                 </span>
               </template>
             </Column>
+
+            <Column field="year" header="Year" sortable />
 
             <Column field="color" header="Color">
               <template #body="{ data }">
@@ -217,8 +234,23 @@
                 dropdown
               />
               <small v-if="errors.section" class="p-error">{{ errors.section }}</small>
-              <small class="text-gray-500">Common: homepage, about, other (or enter custom)</small>
+              <small class="text-gray-500">Common: homepage, about, statistics, other (or enter custom)</small>
             </div>
+          </div>
+
+          <div>
+            <label for="statYear" class="block text-sm font-semibold text-zaccBlack mb-2">
+              Year <span class="text-red-500">*</span>
+            </label>
+            <InputNumber
+              id="statYear"
+              v-model="statisticForm.year"
+              :min="2000"
+              :max="2100"
+              :use-grouping="false"
+              class="w-full max-w-xs"
+            />
+            <small class="text-gray-500">Statistics page filters by this year on the public site.</small>
           </div>
 
           <div class="grid grid-cols-2 gap-4">
@@ -358,6 +390,7 @@ const isEditMode = ref(false)
 const submitting = ref(false)
 const selectedSection = ref<string | null>(null)
 const selectedVisibility = ref<string | null>(null)
+const selectedYear = ref<number | null>(null)
 const filters = ref({
   global: { value: null, matchMode: 'contains' }
 })
@@ -372,7 +405,8 @@ const statisticForm = reactive({
   color: null as string | null,
   order: 0,
   isVisible: true,
-  section: 'homepage'
+  section: 'homepage',
+  year: new Date().getFullYear()
 })
 
 const errors = reactive({
@@ -385,11 +419,12 @@ const sectionOptions = [
   { label: 'All', value: null },
   { label: 'Homepage', value: 'homepage' },
   { label: 'About', value: 'about' },
+  { label: 'Statistics page', value: 'statistics' },
   { label: 'Other', value: 'other' }
 ]
 
 const sectionSuggestions = ref<string[]>([])
-const commonSections = ['homepage', 'about', 'other']
+const commonSections = ['homepage', 'about', 'statistics', 'other']
 
 const searchSection = (event: any) => {
   const query = event.query.toLowerCase()
@@ -469,6 +504,10 @@ const validateForm = () => {
     isValid = false
   }
 
+  if (!statisticForm.year || statisticForm.year < 2000 || statisticForm.year > 2100) {
+    isValid = false
+  }
+
   return isValid
 }
 
@@ -482,6 +521,9 @@ const fetchStatistics = async () => {
     }
     if (selectedVisibility.value !== null) {
       params.isVisible = selectedVisibility.value
+    }
+    if (selectedYear.value !== null && selectedYear.value !== undefined) {
+      params.year = selectedYear.value
     }
 
     const data = await $fetch('/api/statistics', { params })
@@ -517,6 +559,7 @@ const openEditDialog = (statistic: any) => {
   statisticForm.order = statistic.order
   statisticForm.isVisible = statistic.isVisible
   statisticForm.section = statistic.section
+  statisticForm.year = statistic.year ?? new Date().getFullYear()
   dialogVisible.value = true
 }
 
@@ -537,6 +580,7 @@ const resetForm = () => {
   statisticForm.order = 0
   statisticForm.isVisible = true
   statisticForm.section = 'homepage'
+  statisticForm.year = new Date().getFullYear()
 }
 
 // Submit handler
@@ -556,7 +600,8 @@ const handleSubmit = async () => {
       color: statisticForm.color || undefined,
       order: statisticForm.order,
       isVisible: statisticForm.isVisible,
-      section: statisticForm.section
+      section: statisticForm.section,
+      year: statisticForm.year
     }
 
     if (isEditMode.value) {
@@ -639,6 +684,7 @@ const handleDelete = (statistic: any) => {
 const clearFilters = () => {
   selectedSection.value = null
   selectedVisibility.value = null
+  selectedYear.value = null
   fetchStatistics()
 }
 
