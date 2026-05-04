@@ -228,32 +228,89 @@
                 <div class="mt-1 text-xs text-zaccBlack/60">Be as specific as possible. Include dates, amounts, and names if known.</div>
               </div>
 
-              <!-- Location -->
-              <div class="grid gap-6 sm:grid-cols-2">
-                <div>
-                  <label for="location" class="block text-sm font-semibold text-zaccBlack mb-2">
-                    Location <span class="text-red-500">*</span>
-                  </label>
-                  <InputText
-                    id="location"
-                    v-model="form.location"
-                    placeholder="City, Province, or specific address"
-                    class="w-full"
-                    :class="{ 'p-invalid': !form.location && submitted }"
-                  />
-                  <small v-if="!form.location && submitted" class="p-error">Location is required.</small>
-                </div>
+              <!-- Location: province → district → place -->
+              <div class="space-y-6">
                 <div>
                   <label for="province" class="block text-sm font-semibold text-zaccBlack mb-2">
-                    Province
+                    Province <span class="text-red-500">*</span>
                   </label>
                   <Dropdown
                     id="province"
                     v-model="form.province"
-                    :options="provinces"
+                    :options="provinceOptions"
                     optionLabel="label"
                     optionValue="value"
                     placeholder="Select province"
+                    class="w-full"
+                    :class="{ 'p-invalid': !form.province && submitted }"
+                  />
+                  <small v-if="!form.province && submitted" class="p-error">Province is required.</small>
+                </div>
+                <div class="grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <label for="district" class="block text-sm font-semibold text-zaccBlack mb-2">
+                      District <span class="text-red-500">*</span>
+                    </label>
+                    <Dropdown
+                      id="district"
+                      v-model="form.district"
+                      :options="districtOptions"
+                      optionLabel="label"
+                      optionValue="value"
+                      placeholder="Select district"
+                      class="w-full"
+                      :disabled="!form.province"
+                      :class="{ 'p-invalid': form.province && !form.district && submitted }"
+                    />
+                    <small v-if="form.province && !form.district && submitted" class="p-error">District is required.</small>
+                  </div>
+                  <div>
+                    <label for="settlement" class="block text-sm font-semibold text-zaccBlack mb-2">
+                      City / town / place <span class="text-red-500">*</span>
+                    </label>
+                    <Dropdown
+                      id="settlement"
+                      v-model="form.settlement"
+                      :options="settlementOptions"
+                      optionLabel="label"
+                      optionValue="value"
+                      placeholder="Select place within district"
+                      class="w-full"
+                      filter
+                      showClear
+                      :disabled="!form.district"
+                      :class="{ 'p-invalid': form.district && !form.settlement && submitted }"
+                    />
+                    <small v-if="form.district && !form.settlement && submitted" class="p-error">Please select a place.</small>
+                    <small v-else class="text-zaccBlack/60 text-xs mt-1 block">Use the filter box to search the list.</small>
+                  </div>
+                </div>
+                <div v-if="form.settlement === REPORT_LOCATION_OTHER">
+                  <label for="placeOther" class="block text-sm font-semibold text-zaccBlack mb-2">
+                    Specify place <span class="text-red-500">*</span>
+                  </label>
+                  <InputText
+                    id="placeOther"
+                    v-model="form.placeOther"
+                    placeholder="Village, township, farm, or other place name"
+                    class="w-full"
+                    :class="{ 'p-invalid': form.settlement === REPORT_LOCATION_OTHER && !form.placeOther?.trim() && submitted }"
+                  />
+                  <small
+                    v-if="form.settlement === REPORT_LOCATION_OTHER && !form.placeOther?.trim() && submitted"
+                    class="p-error"
+                  >
+                    Please name the place.
+                  </small>
+                </div>
+                <div>
+                  <label for="locationDetail" class="block text-sm font-semibold text-zaccBlack mb-2">
+                    Street, building, or landmark <span class="text-zaccBlack/50 font-normal">(Optional)</span>
+                  </label>
+                  <InputText
+                    id="locationDetail"
+                    v-model="form.locationDetail"
+                    placeholder="e.g. stand number, office block, school name"
                     class="w-full"
                   />
                 </div>
@@ -385,6 +442,91 @@
                   </div>
                 </div>
                 <small class="text-zaccBlack/60">PDF, DOC, DOCX, JPG, PNG, XLS, XLSX (Max 10MB per file)</small>
+              </div>
+
+              <!-- Voice note (optional) -->
+              <div class="rounded-xl border border-zaccBlack/10 p-4 bg-zaccBlack/[0.02]">
+                <label class="block text-sm font-semibold text-zaccBlack mb-2">
+                  Voice note <span class="text-zaccBlack/50 font-normal">(Optional, max 3 minutes)</span>
+                </label>
+                <p class="text-xs text-zaccBlack/60 mb-3">
+                  Only the masked file is attached to your report; the raw browser capture is not kept on the server. Record a short message about the incident. Requires microphone permission.
+                </p>
+                <div v-if="!canUseMic" class="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                  Recording is not available in this browser or context (try HTTPS / a modern browser).
+                </div>
+                <div v-else class="flex flex-wrap items-center gap-3">
+                  <Button
+                    v-if="!isRecording && !audioBlob"
+                    type="button"
+                    label="Start recording"
+                    icon="pi pi-microphone"
+                    severity="danger"
+                    outlined
+                    @click="startRecording"
+                  />
+                  <template v-if="isRecording">
+                    <span class="inline-flex items-center gap-2 text-sm font-semibold text-red-700">
+                      <span class="h-2 w-2 rounded-full bg-red-600 animate-pulse" aria-hidden="true" />
+                      Recording {{ formatRecordingClock(recordingElapsedMs) }} / 03:00
+                    </span>
+                    <Button
+                      type="button"
+                      label="Stop"
+                      icon="pi pi-stop"
+                      severity="danger"
+                      @click="stopRecordingClick"
+                    />
+                  </template>
+                  <template v-if="audioBlob && !isRecording">
+                    <div v-if="maskedPreviewLoading" class="flex w-full flex-wrap items-center gap-2 text-sm text-zaccBlack/70">
+                      <i class="pi pi-spin pi-spinner text-zaccGreen" aria-hidden="true" />
+                      <span>Building masked preview on the server…</span>
+                    </div>
+                    <template v-else-if="maskedPreviewUrl">
+                      <p class="w-full text-xs font-medium text-zaccBlack/70 mb-1">
+                        Masked preview (this is what will be saved)
+                      </p>
+                      <audio
+                        :src="maskedPreviewUrl"
+                        controls
+                        playsinline
+                        preload="auto"
+                        class="voice-preview-audio max-w-full flex-1 min-w-[220px]"
+                      />
+                    </template>
+                    <div v-else-if="maskedPreviewError" class="w-full space-y-2">
+                      <p class="text-sm text-amber-800">
+                        Masked preview failed. Check the server console for the error; this repo ships a bundled ffmpeg via npm when none is on PATH. You can also install ffmpeg on PATH or set FFMPEG_PATH. Retry or submit — masking runs again on submit.
+                      </p>
+                      <Button
+                        type="button"
+                        label="Retry masked preview"
+                        icon="pi pi-refresh"
+                        size="small"
+                        outlined
+                        @click="() => loadMaskedPreview({ silent: false })"
+                      />
+                      <p class="text-xs text-zaccBlack/55">Temporary raw preview (browser only):</p>
+                      <audio
+                        :src="audioPreviewUrl || undefined"
+                        controls
+                        playsinline
+                        preload="auto"
+                        class="voice-preview-audio max-w-full flex-1 min-w-[220px]"
+                      />
+                    </div>
+                    <Button
+                      type="button"
+                      label="Remove recording"
+                      icon="pi pi-trash"
+                      severity="secondary"
+                      text
+                      class="mt-1"
+                      @click="discardAudio"
+                    />
+                  </template>
+                </div>
               </div>
 
               <!-- Additional Information - Using Editor -->
@@ -538,7 +680,15 @@
 </template>
 
 <script setup lang="ts">
+import { watch, onBeforeUnmount } from 'vue'
 import { useToast } from 'primevue/usetoast'
+import {
+  zimbabweReportProvinces,
+  getDistrictsForProvince,
+  getPlacesForDistrict,
+  REPORT_LOCATION_OTHER,
+  type ZimbabweProvinceSlug
+} from '~/data/zimbabweReportLocations'
 
 useHead({
   title: 'Report Corruption - Zimbabwe Anti-Corruption Commission (ZACC)',
@@ -562,33 +712,25 @@ const createEmptyPerson = () => ({
 const incidentDescriptionEditor = ref()
 const additionalInfoEditor = ref()
 
-// Form reset helper
-const resetForm = async () => {
-  form.isAnonymous = true
-  form.name = ''
-  form.email = ''
-  form.phone = ''
-  form.organization = ''
-  form.corruptionType = null
-  form.incidentDescription = ''
-  form.location = ''
-  form.province = null
-  form.incidentDate = null
-  form.incidentTime = null
-  form.peopleList = [createEmptyPerson()]
-  form.files = []
-  form.additionalInfo = ''
-  submitted.value = false
-  
-  // Reset Editor components
-  await nextTick()
-  if (incidentDescriptionEditor.value) {
-    incidentDescriptionEditor.value.setContent('')
-  }
-  if (additionalInfoEditor.value) {
-    additionalInfoEditor.value.setContent('')
-  }
-}
+const form = reactive({
+  isAnonymous: true,
+  name: '',
+  email: '',
+  phone: '',
+  organization: '',
+  corruptionType: null,
+  incidentDescription: '',
+  province: null as ZimbabweProvinceSlug | null,
+  district: null as string | null,
+  settlement: null as string | null,
+  placeOther: '',
+  locationDetail: '',
+  incidentDate: null,
+  incidentTime: null,
+  peopleList: [createEmptyPerson()],
+  files: [],
+  additionalInfo: ''
+})
 
 const corruptionTypes = [
   { label: 'Bribery', value: 'bribery' },
@@ -603,49 +745,296 @@ const corruptionTypes = [
   { label: 'Other', value: 'other' }
 ]
 
-const provinces = [
-  { label: 'Bulawayo', value: 'bulawayo' },
-  { label: 'Harare', value: 'harare' },
-  { label: 'Manicaland', value: 'manicaland' },
-  { label: 'Mashonaland Central', value: 'mashonaland-central' },
-  { label: 'Mashonaland East', value: 'mashonaland-east' },
-  { label: 'Mashonaland West', value: 'mashonaland-west' },
-  { label: 'Masvingo', value: 'masvingo' },
-  { label: 'Matabeleland North', value: 'matabeleland-north' },
-  { label: 'Matabeleland South', value: 'matabeleland-south' },
-  { label: 'Midlands', value: 'midlands' }
-]
+const provinceOptions = zimbabweReportProvinces.map((p) => ({ label: p.label, value: p.value }))
 
-const form = reactive({
-  isAnonymous: true,
-  name: '',
-  email: '',
-  phone: '',
-  organization: '',
-  corruptionType: null,
-  incidentDescription: '',
-  location: '',
-  province: null,
-  incidentDate: null,
-  incidentTime: null,
-  peopleList: [createEmptyPerson()],
-  files: [],
-  additionalInfo: ''
+const districtOptions = computed(() =>
+  getDistrictsForProvince(form.province as ZimbabweProvinceSlug | null).map((d) => ({
+    label: d.name,
+    value: d.name
+  }))
+)
+
+const settlementOptions = computed(() => {
+  const raw = getPlacesForDistrict(form.province as ZimbabweProvinceSlug | null, form.district)
+  return raw.map((s) => ({ label: s, value: s }))
 })
+
+watch(
+  () => form.province,
+  () => {
+    form.district = null
+    form.settlement = null
+    form.placeOther = ''
+  }
+)
+
+watch(
+  () => form.district,
+  () => {
+    form.settlement = null
+    form.placeOther = ''
+  }
+)
 
 const isSubmitting = ref(false)
 const submitted = ref(false)
 const lastSuccessReportNumber = ref('')
 
-const onFileSelect = (event) => {
-  const files = Array.from(event.files)
-  files.forEach(file => {
-    if (file.size > 10 * 1024 * 1024) {
-      alert(`File ${file.name} is too large. Maximum size is 10MB.`)
-      return
+const MAX_AUDIO_MS = 3 * 60 * 1000
+const audioBlob = ref<Blob | null>(null)
+const audioPreviewUrl = ref<string | null>(null)
+const maskedPreviewBlob = ref<Blob | null>(null)
+const maskedPreviewUrl = ref<string | null>(null)
+const maskedPreviewLoading = ref(false)
+const maskedPreviewError = ref(false)
+const isRecording = ref(false)
+const recordingElapsedMs = ref(0)
+let mediaRecorder: MediaRecorder | null = null
+let mediaStream: MediaStream | null = null
+let recordChunks: Blob[] = []
+let recordInterval: ReturnType<typeof setInterval> | null = null
+let recordStartedAt = 0
+
+const canUseMic = computed(
+  () => import.meta.client && typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia
+)
+
+function clearMaskedPreviewState() {
+  if (maskedPreviewUrl.value) {
+    URL.revokeObjectURL(maskedPreviewUrl.value)
+    maskedPreviewUrl.value = null
+  }
+  maskedPreviewBlob.value = null
+  maskedPreviewError.value = false
+  maskedPreviewLoading.value = false
+}
+
+watch(audioBlob, (blob) => {
+  if (audioPreviewUrl.value) {
+    URL.revokeObjectURL(audioPreviewUrl.value)
+    audioPreviewUrl.value = null
+  }
+  if (blob) {
+    audioPreviewUrl.value = URL.createObjectURL(blob)
+  } else {
+    clearMaskedPreviewState()
+  }
+})
+
+async function loadMaskedPreview(opts?: { silent?: boolean }) {
+  if (!audioBlob.value) return
+  maskedPreviewLoading.value = true
+  maskedPreviewError.value = false
+  if (maskedPreviewUrl.value) {
+    URL.revokeObjectURL(maskedPreviewUrl.value)
+    maskedPreviewUrl.value = null
+  }
+  maskedPreviewBlob.value = null
+  try {
+    const fd = new FormData()
+    fd.append('audio', audioBlob.value, 'preview.webm')
+    const blob = await $fetch<Blob>('/api/public/reports/voice-preview', {
+      method: 'POST',
+      body: fd,
+      responseType: 'blob'
+    })
+    if (!blob || blob.size < 32) {
+      throw new Error('empty masked response')
     }
+    maskedPreviewBlob.value = blob
+    maskedPreviewUrl.value = URL.createObjectURL(blob)
+  } catch {
+    maskedPreviewError.value = true
+    if (!opts?.silent) {
+      toast.add({
+        severity: 'warn',
+        summary: 'Masked preview unavailable',
+        detail:
+          'The server could not mask audio (install ffmpeg on PATH, or set FFMPEG_PATH). Retry here or submit — masking runs again on submit.',
+        life: 8000
+      })
+    }
+  } finally {
+    maskedPreviewLoading.value = false
+  }
+}
+
+function formatRecordingClock(ms: number) {
+  const s = Math.min(Math.floor(ms / 1000), 3 * 60)
+  const m = Math.floor(s / 60)
+  const r = s % 60
+  return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`
+}
+
+function clearRecordInterval() {
+  if (recordInterval) {
+    clearInterval(recordInterval)
+    recordInterval = null
+  }
+}
+
+function stopMediaStream() {
+  mediaStream?.getTracks().forEach((t) => t.stop())
+  mediaStream = null
+}
+
+function discardAudio() {
+  if (isRecording.value && mediaRecorder && mediaRecorder.state !== 'inactive') {
+    mediaRecorder.onstop = () => {
+      clearRecordInterval()
+      stopMediaStream()
+      isRecording.value = false
+      mediaRecorder = null
+      recordChunks = []
+    }
+    mediaRecorder.stop()
+    return
+  }
+  audioBlob.value = null
+  recordChunks = []
+}
+
+async function startRecording() {
+  if (!canUseMic.value || isRecording.value) return
+  clearMaskedPreviewState()
+  try {
+    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
+  } catch {
+    toast.add({
+      severity: 'warn',
+      summary: 'Microphone blocked',
+      detail: 'Allow microphone access in your browser settings to record a voice note.',
+      life: 6000
+    })
+    return
+  }
+
+  recordChunks = []
+  const mimeType = MediaRecorder.isTypeSupported('audio/webm;codecs=opus')
+    ? 'audio/webm;codecs=opus'
+    : MediaRecorder.isTypeSupported('audio/webm')
+      ? 'audio/webm'
+      : ''
+  try {
+    mediaRecorder = mimeType
+      ? new MediaRecorder(mediaStream, { mimeType })
+      : new MediaRecorder(mediaStream)
+  } catch {
+    toast.add({
+      severity: 'error',
+      summary: 'Recording failed',
+      detail: 'This browser cannot record audio in a supported format.',
+      life: 6000
+    })
+    stopMediaStream()
+    return
+  }
+
+  recordingElapsedMs.value = 0
+  recordStartedAt = Date.now()
+
+  mediaRecorder.ondataavailable = (e) => {
+    if (e.data.size > 0) recordChunks.push(e.data)
+  }
+
+  mediaRecorder.onstop = () => {
+    clearRecordInterval()
+    stopMediaStream()
+    isRecording.value = false
+    const mime = mediaRecorder?.mimeType || 'audio/webm'
+    mediaRecorder = null
+    if (recordChunks.length) {
+      audioBlob.value = new Blob(recordChunks, { type: mime })
+      void loadMaskedPreview({ silent: true })
+    }
+  }
+
+  recordInterval = setInterval(() => {
+    recordingElapsedMs.value = Date.now() - recordStartedAt
+    if (recordingElapsedMs.value >= MAX_AUDIO_MS) {
+      stopRecordingClick()
+    }
+  }, 250)
+
+  mediaRecorder.start(500)
+  isRecording.value = true
+}
+
+function stopRecordingClick() {
+  if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+    clearRecordInterval()
+    return
+  }
+  mediaRecorder.stop()
+}
+
+onBeforeUnmount(() => {
+  clearRecordInterval()
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+    try {
+      mediaRecorder.stop()
+    } catch {
+      /* ignore */
+    }
+  }
+  stopMediaStream()
+  if (audioPreviewUrl.value) {
+    URL.revokeObjectURL(audioPreviewUrl.value)
+  }
+  if (maskedPreviewUrl.value) {
+    URL.revokeObjectURL(maskedPreviewUrl.value)
+  }
+})
+
+// Form reset helper (must run after `form` and `submitted` exist)
+const resetForm = async () => {
+  form.isAnonymous = true
+  form.name = ''
+  form.email = ''
+  form.phone = ''
+  form.organization = ''
+  form.corruptionType = null
+  form.incidentDescription = ''
+  form.province = null
+  form.district = null
+  form.settlement = null
+  form.placeOther = ''
+  form.locationDetail = ''
+  form.incidentDate = null
+  form.incidentTime = null
+  form.peopleList = [createEmptyPerson()]
+  form.files = []
+  form.additionalInfo = ''
+  submitted.value = false
+  discardAudio()
+
+  await nextTick()
+  if (incidentDescriptionEditor.value) {
+    incidentDescriptionEditor.value.setContent('')
+  }
+  if (additionalInfoEditor.value) {
+    additionalInfoEditor.value.setContent('')
+  }
+}
+
+const onFileSelect = (event: { files: File[] | FileList }) => {
+  const list = Array.from(event.files || [])
+  const seen = new Set(form.files.map((f: File) => `${f.name}|${f.size}|${f.lastModified}`))
+  for (const file of list) {
+    if (file.size > 10 * 1024 * 1024) {
+      toast.add({
+        severity: 'warn',
+        summary: 'File too large',
+        detail: `${file.name} exceeds 10MB and was skipped.`,
+        life: 5000
+      })
+      continue
+    }
+    const key = `${file.name}|${file.size}|${file.lastModified}`
+    if (seen.has(key)) continue
+    seen.add(key)
     form.files.push(file)
-  })
+  }
 }
 
 const removeFile = (index) => {
@@ -656,6 +1045,12 @@ const addPerson = () => {
 }
 const removePerson = (index) => {
   form.peopleList.splice(index, 1)
+}
+
+function isLocationComplete() {
+  if (!form.province || !form.district || !form.settlement) return false
+  if (form.settlement === REPORT_LOCATION_OTHER && !form.placeOther?.trim()) return false
+  return true
 }
 
 const formatFileSize = (bytes) => {
@@ -669,7 +1064,7 @@ const formatFileSize = (bytes) => {
 const handleSubmit = async () => {
   submitted.value = true
   
-  if (!form.corruptionType || !form.incidentDescription || !form.location) {
+  if (!form.corruptionType || !form.incidentDescription || !isLocationComplete()) {
     return
   }
 
@@ -683,11 +1078,18 @@ const handleSubmit = async () => {
     formData.append('isAnonymous', form.isAnonymous.toString())
     formData.append('corruptionType', form.corruptionType)
     formData.append('incidentDescription', form.incidentDescription)
-    formData.append('location', form.location)
-    
-    if (form.province) {
-      formData.append('province', form.province)
+    const provinceLabel =
+      provinceOptions.find((p) => p.value === form.province)?.label || String(form.province)
+    const placeLabel =
+      form.settlement === REPORT_LOCATION_OTHER
+        ? form.placeOther.trim()
+        : String(form.settlement)
+    let locationLine = `Place: ${placeLabel}; District: ${form.district}; Province: ${provinceLabel}`
+    if (form.locationDetail?.trim()) {
+      locationLine += `; Details: ${form.locationDetail.trim()}`
     }
+    formData.append('location', locationLine)
+    formData.append('province', form.province)
     
     if (form.incidentDate) {
       formData.append('incidentDate', form.incidentDate instanceof Date 
@@ -733,20 +1135,30 @@ const handleSubmit = async () => {
       if (form.organization) formData.append('organization', form.organization)
     }
     
-    // Add files
-    form.files.forEach((file) => {
-      formData.append('files', file)
+    form.files.forEach((file: File) => {
+      formData.append('files', file, file.name)
     })
-    
-    // Submit to API
-    const response = await $fetch('/api/public/reports', {
+
+    if (maskedPreviewBlob.value) {
+      formData.append('audio', maskedPreviewBlob.value, 'voice-masked.ogg')
+    } else if (audioBlob.value) {
+      const mime = audioBlob.value.type || 'audio/webm'
+      const ext = mime.includes('mp4') ? 'mp4' : mime.includes('ogg') ? 'ogg' : 'webm'
+      formData.append('audio', audioBlob.value, `report-voice-note.${ext}`)
+    }
+
+    const response = await $fetch<{
+      reportNumber: string
+      audioProcessingFailed?: boolean
+    }>('/api/public/reports', {
       method: 'POST',
-      body: formData
+      body: formData,
+      timeout: 120000
     })
-    
+
     // Reset form first
     resetForm()
-    
+
     lastSuccessReportNumber.value = response.reportNumber
     // Show success message with report number
     await nextTick()
@@ -756,6 +1168,15 @@ const handleSubmit = async () => {
       detail: `Your report has been received. Reference: ${response.reportNumber}. You can track status anytime from this page.`,
       life: 10000
     })
+    if (response.audioProcessingFailed) {
+      toast.add({
+        severity: 'warn',
+        summary: 'Voice note not saved',
+        detail:
+          'The report was saved, but your voice note could not be processed. The server needs ffmpeg (e.g. apt install ffmpeg). You can submit again with a new recording if needed.',
+        life: 14000
+      })
+    }
     
     // Scroll to top to show success message
     setTimeout(() => {
@@ -764,11 +1185,17 @@ const handleSubmit = async () => {
   } catch (error: any) {
     console.error('Error submitting form:', error)
     await nextTick()
+    const msg =
+      error?.data?.statusMessage ||
+      error?.data?.message ||
+      error?.statusMessage ||
+      error?.message ||
+      'There was an error submitting your report. Please try again or contact us directly.'
     toast.add({
       severity: 'error',
       summary: 'Submission Failed',
-      detail: error.data?.message || 'There was an error submitting your report. Please try again or contact us directly.',
-      life: 5000
+      detail: msg,
+      life: 8000
     })
   } finally {
     isSubmitting.value = false
@@ -813,5 +1240,11 @@ const handleSubmit = async () => {
 
 :deep(.p-message) {
   border-radius: 0.75rem;
+}
+
+/* Voice preview: avoid ultra-short control bar; helps perceived clarity on small layouts */
+.voice-preview-audio {
+  min-height: 2.75rem;
+  width: 100%;
 }
 </style>

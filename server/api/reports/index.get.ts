@@ -15,9 +15,11 @@ export default defineEventHandler(async (event) => {
     const status = query.status as string | undefined
     const priority = query.priority as string | undefined
     const corruptionType = query.corruptionType as string | undefined
+    const archivedOnly = String(query.archived || '') === 'true'
 
     // Build where clause
     const where: any = {}
+    where.isArchived = archivedOnly
     if (status) {
       where.status = status
     }

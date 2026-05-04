@@ -6,7 +6,10 @@ const trackSchema = z.object({
   email: z.union([z.string().email(), z.literal('')]).optional()
 })
 
-function formatStatusLabel(status: string) {
+function formatStatusLabel(status: string, customStatus?: string | null) {
+  if (status === 'CUSTOM' && customStatus?.trim()) {
+    return customStatus.trim()
+  }
   return status.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
@@ -24,6 +27,7 @@ export default defineEventHandler(async (event) => {
           orderBy: { createdAt: 'asc' },
           select: {
             status: true,
+            customStatus: true,
             createdAt: true
           }
         }
@@ -60,7 +64,7 @@ export default defineEventHandler(async (event) => {
       },
       ...report.updates.map((u) => ({
         status: u.status,
-        label: formatStatusLabel(u.status),
+        label: formatStatusLabel(u.status, u.customStatus),
         at: u.createdAt.toISOString()
       }))
     ]
@@ -68,7 +72,7 @@ export default defineEventHandler(async (event) => {
     return {
       reportNumber: report.reportNumber,
       status: report.status,
-      statusLabel: formatStatusLabel(report.status),
+      statusLabel: formatStatusLabel(report.status, report.customStatus),
       lastUpdated: report.updatedAt.toISOString(),
       submittedAt: report.createdAt.toISOString(),
       timeline

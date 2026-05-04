@@ -243,6 +243,23 @@ export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonNullableFilter<$PrismaModel>
 }
 
+export type EnumCitizenHeroActionStyleFilter<$PrismaModel = never> = {
+  equals?: $Enums.CitizenHeroActionStyle | Prisma.EnumCitizenHeroActionStyleFieldRefInput<$PrismaModel>
+  in?: $Enums.CitizenHeroActionStyle[]
+  notIn?: $Enums.CitizenHeroActionStyle[]
+  not?: Prisma.NestedEnumCitizenHeroActionStyleFilter<$PrismaModel> | $Enums.CitizenHeroActionStyle
+}
+
+export type EnumCitizenHeroActionStyleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CitizenHeroActionStyle | Prisma.EnumCitizenHeroActionStyleFieldRefInput<$PrismaModel>
+  in?: $Enums.CitizenHeroActionStyle[]
+  notIn?: $Enums.CitizenHeroActionStyle[]
+  not?: Prisma.NestedEnumCitizenHeroActionStyleWithAggregatesFilter<$PrismaModel> | $Enums.CitizenHeroActionStyle
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCitizenHeroActionStyleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCitizenHeroActionStyleFilter<$PrismaModel>
+}
+
 export type EnumTenderTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.TenderType | Prisma.EnumTenderTypeFieldRefInput<$PrismaModel>
   in?: $Enums.TenderType[]
@@ -728,6 +745,23 @@ export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
   gt?: runtime.InputJsonValue
   gte?: runtime.InputJsonValue
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type NestedEnumCitizenHeroActionStyleFilter<$PrismaModel = never> = {
+  equals?: $Enums.CitizenHeroActionStyle | Prisma.EnumCitizenHeroActionStyleFieldRefInput<$PrismaModel>
+  in?: $Enums.CitizenHeroActionStyle[]
+  notIn?: $Enums.CitizenHeroActionStyle[]
+  not?: Prisma.NestedEnumCitizenHeroActionStyleFilter<$PrismaModel> | $Enums.CitizenHeroActionStyle
+}
+
+export type NestedEnumCitizenHeroActionStyleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CitizenHeroActionStyle | Prisma.EnumCitizenHeroActionStyleFieldRefInput<$PrismaModel>
+  in?: $Enums.CitizenHeroActionStyle[]
+  notIn?: $Enums.CitizenHeroActionStyle[]
+  not?: Prisma.NestedEnumCitizenHeroActionStyleWithAggregatesFilter<$PrismaModel> | $Enums.CitizenHeroActionStyle
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCitizenHeroActionStyleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCitizenHeroActionStyleFilter<$PrismaModel>
 }
 
 export type NestedEnumTenderTypeFilter<$PrismaModel = never> = {

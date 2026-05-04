@@ -72,6 +72,16 @@ export type PageContent = Prisma.PageContentModel
  */
 export type HeroSlide = Prisma.HeroSlideModel
 /**
+ * Model CitizenHeroPanel
+ * 
+ */
+export type CitizenHeroPanel = Prisma.CitizenHeroPanelModel
+/**
+ * Model CitizenHeroAction
+ * 
+ */
+export type CitizenHeroAction = Prisma.CitizenHeroActionModel
+/**
  * Model Statistic
  * 
  */

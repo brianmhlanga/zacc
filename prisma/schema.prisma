@@ -183,6 +183,55 @@ model HeroSlide {
 }
 
 // ============================================
+// HOMEPAGE HERO — CITIZEN ACTIONS (right column)
+// ============================================
+// Managed from CMS: surveys, announcements, links, QR codes.
+
+model CitizenHeroPanel {
+  id             String              @id @default(cuid())
+  slug           String              @unique
+  title          String              @default("Citizen Actions")
+  subtitle       String?             @db.Text
+  footerText     String?             @db.Text
+  footerCtaLabel String?
+  footerCtaUrl   String?             @db.Text
+  isEnabled      Boolean             @default(true)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  actions        CitizenHeroAction[]
+
+  @@map("citizen_hero_panels")
+}
+
+enum CitizenHeroActionStyle {
+  BUTTON
+  LINK
+  QR
+  BUTTON_QR
+}
+
+model CitizenHeroAction {
+  id          String                 @id @default(cuid())
+  panelId     String
+  panel       CitizenHeroPanel       @relation(fields: [panelId], references: [id], onDelete: Cascade)
+  sortOrder   Int                    @default(0)
+  title       String
+  description String?                @db.Text
+  iconName    String                 @default("users")
+  iconTone    String                 @default("neutral")
+  actionStyle CitizenHeroActionStyle
+  ctaLabel    String?
+  ctaUrl      String?                @db.Text
+  qrImageUrl  String?                @db.Text
+  isPublished Boolean                @default(true)
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+
+  @@map("citizen_hero_actions")
+  @@index([panelId, sortOrder])
+}
+
+// ============================================
 // STATISTICS
 // ============================================
 // Store numerical statistics with labels (e.g., "8,641 Projects Tracked", "$25m Assets Recovered")
@@ -333,7 +382,7 @@ model Download {
   id          String   @id @default(cuid())
   title       String
   description String?  @db.Text
-  category    String   // 'forms', 'reports', 'policies', 'guidelines', 'publications', 'legal'
+  category    String   // 'forms', 'reports', 'policies', 'guidelines', 'publications', 'legal', 'press_releases'
   fileType    String   // 'pdf', 'doc', 'docx', 'xls', 'xlsx', etc.
   fileUrl     String
   fileSize    Int      // Size in bytes
@@ -708,9 +757,15 @@ model CorruptionReport {
   incidentTime        String?
   peopleInvolved      String?  @db.Text
   additionalInfo      String?  @db.Text
+  /** Optional voice note saved under public/uploads/reports */
+  audioUrl            String?
 
   // Status
   status              ReportStatus @default(NEW)
+  /** When status is CUSTOM, admin-defined label shown in UI and public track. */
+  customStatus        String?      @db.VarChar(200)
+  /** Admin list: hidden from default reports table until restored. */
+  isArchived          Boolean      @default(false)
   priority            ReportPriority @default(MEDIUM)
   assignedTo          String?
   notes               String?  @db.Text
@@ -723,6 +778,7 @@ model CorruptionReport {
   updatedAt           DateTime @updatedAt
 
   @@map("corruption_reports")
+  @@index([isArchived])
   @@index([status])
   @@index([corruptionType])
   @@index([createdAt])
@@ -747,6 +803,7 @@ model ReportUpdate {
   reportId    String
   report      CorruptionReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
   status      ReportStatus
+  customStatus String? @db.VarChar(200)
   notes       String?  @db.Text
   updatedBy   String?
   createdAt   DateTime @default(now())
@@ -762,6 +819,7 @@ enum ReportStatus {
   REFERRED_TO_PROSECUTION
   CLOSED
   ARCHIVED
+  CUSTOM
 }
 
 enum ReportPriority {

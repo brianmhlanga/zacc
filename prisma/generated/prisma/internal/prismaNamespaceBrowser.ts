@@ -57,6 +57,8 @@ export const ModelName = {
   Value: 'Value',
   PageContent: 'PageContent',
   HeroSlide: 'HeroSlide',
+  CitizenHeroPanel: 'CitizenHeroPanel',
+  CitizenHeroAction: 'CitizenHeroAction',
   Statistic: 'Statistic',
   Service: 'Service',
   Commissioner: 'Commissioner',
@@ -202,6 +204,42 @@ export const HeroSlideScalarFieldEnum = {
 } as const
 
 export type HeroSlideScalarFieldEnum = (typeof HeroSlideScalarFieldEnum)[keyof typeof HeroSlideScalarFieldEnum]
+
+
+export const CitizenHeroPanelScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  subtitle: 'subtitle',
+  footerText: 'footerText',
+  footerCtaLabel: 'footerCtaLabel',
+  footerCtaUrl: 'footerCtaUrl',
+  isEnabled: 'isEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CitizenHeroPanelScalarFieldEnum = (typeof CitizenHeroPanelScalarFieldEnum)[keyof typeof CitizenHeroPanelScalarFieldEnum]
+
+
+export const CitizenHeroActionScalarFieldEnum = {
+  id: 'id',
+  panelId: 'panelId',
+  sortOrder: 'sortOrder',
+  title: 'title',
+  description: 'description',
+  iconName: 'iconName',
+  iconTone: 'iconTone',
+  actionStyle: 'actionStyle',
+  ctaLabel: 'ctaLabel',
+  ctaUrl: 'ctaUrl',
+  qrImageUrl: 'qrImageUrl',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CitizenHeroActionScalarFieldEnum = (typeof CitizenHeroActionScalarFieldEnum)[keyof typeof CitizenHeroActionScalarFieldEnum]
 
 
 export const StatisticScalarFieldEnum = {
@@ -602,7 +640,10 @@ export const CorruptionReportScalarFieldEnum = {
   incidentTime: 'incidentTime',
   peopleInvolved: 'peopleInvolved',
   additionalInfo: 'additionalInfo',
+  audioUrl: 'audioUrl',
   status: 'status',
+  customStatus: 'customStatus',
+  isArchived: 'isArchived',
   priority: 'priority',
   assignedTo: 'assignedTo',
   notes: 'notes',
@@ -630,6 +671,7 @@ export const ReportUpdateScalarFieldEnum = {
   id: 'id',
   reportId: 'reportId',
   status: 'status',
+  customStatus: 'customStatus',
   notes: 'notes',
   updatedBy: 'updatedBy',
   createdAt: 'createdAt'
@@ -892,6 +934,34 @@ export const HeroSlideOrderByRelevanceFieldEnum = {
 } as const
 
 export type HeroSlideOrderByRelevanceFieldEnum = (typeof HeroSlideOrderByRelevanceFieldEnum)[keyof typeof HeroSlideOrderByRelevanceFieldEnum]
+
+
+export const CitizenHeroPanelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  subtitle: 'subtitle',
+  footerText: 'footerText',
+  footerCtaLabel: 'footerCtaLabel',
+  footerCtaUrl: 'footerCtaUrl'
+} as const
+
+export type CitizenHeroPanelOrderByRelevanceFieldEnum = (typeof CitizenHeroPanelOrderByRelevanceFieldEnum)[keyof typeof CitizenHeroPanelOrderByRelevanceFieldEnum]
+
+
+export const CitizenHeroActionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  panelId: 'panelId',
+  title: 'title',
+  description: 'description',
+  iconName: 'iconName',
+  iconTone: 'iconTone',
+  ctaLabel: 'ctaLabel',
+  ctaUrl: 'ctaUrl',
+  qrImageUrl: 'qrImageUrl'
+} as const
+
+export type CitizenHeroActionOrderByRelevanceFieldEnum = (typeof CitizenHeroActionOrderByRelevanceFieldEnum)[keyof typeof CitizenHeroActionOrderByRelevanceFieldEnum]
 
 
 export const StatisticOrderByRelevanceFieldEnum = {
@@ -1200,6 +1270,8 @@ export const CorruptionReportOrderByRelevanceFieldEnum = {
   incidentTime: 'incidentTime',
   peopleInvolved: 'peopleInvolved',
   additionalInfo: 'additionalInfo',
+  audioUrl: 'audioUrl',
+  customStatus: 'customStatus',
   assignedTo: 'assignedTo',
   notes: 'notes'
 } as const
@@ -1221,6 +1293,7 @@ export type ReportFileOrderByRelevanceFieldEnum = (typeof ReportFileOrderByRelev
 export const ReportUpdateOrderByRelevanceFieldEnum = {
   id: 'id',
   reportId: 'reportId',
+  customStatus: 'customStatus',
   notes: 'notes',
   updatedBy: 'updatedBy'
 } as const

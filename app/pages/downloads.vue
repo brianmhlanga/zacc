@@ -173,7 +173,8 @@ const categories = [
   { label: 'Policies', value: 'policies' },
   { label: 'Guidelines', value: 'guidelines' },
   { label: 'Publications', value: 'publications' },
-  { label: 'Legal Documents', value: 'legal' }
+  { label: 'Legal Documents', value: 'legal' },
+  { label: 'Press Releases', value: 'press_releases' }
 ]
 
 const downloads = ref<any[]>([])

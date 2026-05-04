@@ -19,6 +19,8 @@ export default defineEventHandler(async (event) => {
     const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1)
 
     // Fetch counts
+    const reportWhere = { isArchived: false as const }
+
     const [
       totalReports,
       lastMonthReports,
@@ -32,11 +34,12 @@ export default defineEventHandler(async (event) => {
       recentContacts,
       recentNews
     ] = await Promise.all([
-      // Total reports
-      prisma.corruptionReport.count(),
+      // Total reports (exclude admin-archived)
+      prisma.corruptionReport.count({ where: reportWhere }),
       // Reports from last month
       prisma.corruptionReport.count({
         where: {
+          ...reportWhere,
           createdAt: {
             gte: lastMonth,
             lt: thisMonth
@@ -78,6 +81,7 @@ export default defineEventHandler(async (event) => {
       }),
       // Recent reports (last 5)
       prisma.corruptionReport.findMany({
+        where: reportWhere,
         take: 5,
         orderBy: {
           createdAt: 'desc'
@@ -136,6 +140,7 @@ export default defineEventHandler(async (event) => {
       // New reports (status = NEW)
       prisma.corruptionReport.count({
         where: {
+          ...reportWhere,
           status: 'NEW'
         }
       }),

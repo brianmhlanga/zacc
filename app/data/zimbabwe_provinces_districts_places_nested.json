@@ -1,0 +1,3092 @@
+{
+  "country": "Zimbabwe",
+  "schema_version": "1.0",
+  "coordinate_system": "WGS84 decimal degrees",
+  "notes": [
+    "District latitude/longitude values are best-effort reference points, usually the main town or administrative centre, not official district boundary centroids.",
+    "Place latitude/longitude is included where reasonably identifiable; null means the place should be geocoded/verified before production use.",
+    "For official ward-level hierarchy, join this dataset to ZimSTATS/UNOCHA administrative boundaries. For additional localities, enrich with GeoNames/OpenStreetMap/RDC datasets."
+  ],
+  "provinces": [
+    {
+      "name": "Harare",
+      "capital": "Harare",
+      "latitude": -17.8252,
+      "longitude": 31.0335,
+      "districts": [
+        {
+          "name": "Harare",
+          "district_center_or_reference": "Harare",
+          "latitude": -17.8252,
+          "longitude": 31.0335,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Harare",
+              "type": "city",
+              "latitude": -17.8252,
+              "longitude": 31.0335
+            },
+            {
+              "name": "Mbare",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Highfield",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Glen View",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Budiriro",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kuwadzana",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dzivarasekwa",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mabvuku",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tafara",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Hatcliffe",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Borrowdale",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Avondale",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mount Pleasant",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Waterfalls",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Southerton",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Graniteside",
+              "type": "industrial_area",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Chitungwiza",
+          "district_center_or_reference": "Chitungwiza",
+          "latitude": -18.0127,
+          "longitude": 31.0756,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chitungwiza",
+              "type": "municipality",
+              "latitude": -18.0127,
+              "longitude": 31.0756
+            },
+            {
+              "name": "Zengeza",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "St Mary's",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Seke Unit A",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Seke Unit L",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Manyame Park",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Unit O",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Epworth",
+          "district_center_or_reference": "Epworth",
+          "latitude": -17.8897,
+          "longitude": 31.1475,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Epworth",
+              "type": "local_board",
+              "latitude": -17.8897,
+              "longitude": 31.1475
+            },
+            {
+              "name": "Overspill",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Munyuki",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Domboramwari",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bulawayo",
+      "capital": "Bulawayo",
+      "latitude": -20.1325,
+      "longitude": 28.6265,
+      "districts": [
+        {
+          "name": "Bulawayo",
+          "district_center_or_reference": "Bulawayo",
+          "latitude": -20.1325,
+          "longitude": 28.6265,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Bulawayo",
+              "type": "city",
+              "latitude": -20.1325,
+              "longitude": 28.6265
+            },
+            {
+              "name": "Luveve",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nkulumane",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Pumula",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mpopoma",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Entumbane",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Cowdray Park",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mahatshula",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nketa",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Emganwini",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Hillside",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Famona",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Manicaland",
+      "capital": "Mutare",
+      "latitude": -18.9707,
+      "longitude": 32.6709,
+      "districts": [
+        {
+          "name": "Buhera",
+          "district_center_or_reference": "Murambinda",
+          "latitude": -19.2667,
+          "longitude": 31.65,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Murambinda",
+              "type": "growth_point",
+              "latitude": -19.2667,
+              "longitude": 31.65
+            },
+            {
+              "name": "Buhera",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Birchenough Bridge",
+              "type": "locality",
+              "latitude": -19.9833,
+              "longitude": 32.35
+            },
+            {
+              "name": "Nyashanu",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Muzokomba",
+              "type": "business_centre",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dorowa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mutiusinazita",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Chimanimani",
+          "district_center_or_reference": "Chimanimani",
+          "latitude": -19.8,
+          "longitude": 32.8667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chimanimani",
+              "type": "town",
+              "latitude": -19.8,
+              "longitude": 32.8667
+            },
+            {
+              "name": "Biriri",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Cashel",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Ngangu",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rusitu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Skyline",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Hot Springs",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nhedziwa",
+              "type": "business_centre",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Chipinge",
+          "district_center_or_reference": "Chipinge",
+          "latitude": -20.1883,
+          "longitude": 32.6236,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chipinge",
+              "type": "town",
+              "latitude": -20.1883,
+              "longitude": 32.6236
+            },
+            {
+              "name": "Checheche",
+              "type": "growth_point",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chisumbanje",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tanganda",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rimbi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gaza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mount Selinda",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Middle Sabi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Makoni",
+          "district_center_or_reference": "Rusape",
+          "latitude": -18.5278,
+          "longitude": 32.1284,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Rusape",
+              "type": "town",
+              "latitude": -18.5278,
+              "longitude": 32.1284
+            },
+            {
+              "name": "Headlands",
+              "type": "town",
+              "latitude": -18.277,
+              "longitude": 32.051
+            },
+            {
+              "name": "Nyazura",
+              "type": "locality",
+              "latitude": -18.7,
+              "longitude": 32.1833
+            },
+            {
+              "name": "Mayo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Watsomba",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chiendambuya",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tanda",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mutare",
+          "district_center_or_reference": "Mutare",
+          "latitude": -18.9707,
+          "longitude": 32.6709,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mutare",
+              "type": "city",
+              "latitude": -18.9707,
+              "longitude": 32.6709
+            },
+            {
+              "name": "Dangamvura",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sakubva",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chikanga",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Hobhouse",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Fern Valley",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Penhalonga",
+              "type": "locality",
+              "latitude": -18.8911,
+              "longitude": 32.6978
+            },
+            {
+              "name": "Odzi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Forbes Border Post",
+              "type": "border_post",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mutasa",
+          "district_center_or_reference": "Mutasa",
+          "latitude": -18.6333,
+          "longitude": 32.75,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mutasa",
+              "type": "locality",
+              "latitude": -18.6333,
+              "longitude": 32.75
+            },
+            {
+              "name": "Hauna",
+              "type": "growth_point",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Honde Valley",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyanga Downs",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Selbourne",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Bonda",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Pungwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Aberfoyle",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Nyanga",
+          "district_center_or_reference": "Nyanga",
+          "latitude": -18.2167,
+          "longitude": 32.75,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Nyanga",
+              "type": "town",
+              "latitude": -18.2167,
+              "longitude": 32.75
+            },
+            {
+              "name": "Juliasdale",
+              "type": "locality",
+              "latitude": -18.35,
+              "longitude": 32.5833
+            },
+            {
+              "name": "Ruwangwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyamaropa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Troutbeck",
+              "type": "tourism_area",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Worlds View",
+              "type": "tourism_area",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyanga National Park",
+              "type": "national_park",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Masvingo",
+      "capital": "Masvingo",
+      "latitude": -20.0744,
+      "longitude": 30.8328,
+      "districts": [
+        {
+          "name": "Bikita",
+          "district_center_or_reference": "Nyika",
+          "latitude": -20.25,
+          "longitude": 31.5833,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Bikita",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyika",
+              "type": "growth_point",
+              "latitude": -20.25,
+              "longitude": 31.5833
+            },
+            {
+              "name": "Mashoko",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Duma",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gangare",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chikuku",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Devure",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Chiredzi",
+          "district_center_or_reference": "Chiredzi",
+          "latitude": -21.05,
+          "longitude": 31.6667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chiredzi",
+              "type": "town",
+              "latitude": -21.05,
+              "longitude": 31.6667
+            },
+            {
+              "name": "Triangle",
+              "type": "estate_town",
+              "latitude": -21.0333,
+              "longitude": 31.45
+            },
+            {
+              "name": "Hippo Valley Estate",
+              "type": "estate",
+              "latitude": -21.0333,
+              "longitude": 31.6167
+            },
+            {
+              "name": "Ngundu",
+              "type": "growth_point",
+              "latitude": -20.8167,
+              "longitude": 31.1667
+            },
+            {
+              "name": "Chikombedzi",
+              "type": "growth_point",
+              "latitude": -21.65,
+              "longitude": 31.3333
+            },
+            {
+              "name": "Malipati",
+              "type": "village_or_locality",
+              "latitude": -21.95,
+              "longitude": 31.9167
+            },
+            {
+              "name": "Chilonga",
+              "type": "locality",
+              "latitude": -21.55,
+              "longitude": 31.7167
+            },
+            {
+              "name": "Mkwasine Estate",
+              "type": "estate",
+              "latitude": -20.85,
+              "longitude": 31.45
+            },
+            {
+              "name": "Buffalo Range",
+              "type": "airport_or_locality",
+              "latitude": -21.0167,
+              "longitude": 31.5833
+            },
+            {
+              "name": "Chibwedziva",
+              "type": "business_centre",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sengwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dumisa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mahlaule",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gezani",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Makambe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tshovani",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chizvirizvi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Boli",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mahenye",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gonarezhou National Park",
+              "type": "national_park",
+              "latitude": -21.6667,
+              "longitude": 31.8333
+            },
+            {
+              "name": "Malilangwe Wildlife Reserve",
+              "type": "conservation_area",
+              "latitude": -21.0333,
+              "longitude": 31.8833
+            },
+            {
+              "name": "Save Valley Conservancy",
+              "type": "conservation_area",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Chivi",
+          "district_center_or_reference": "Chivi",
+          "latitude": -20.5,
+          "longitude": 30.5,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chivi",
+              "type": "growth_point",
+              "latitude": -20.5,
+              "longitude": 30.5
+            },
+            {
+              "name": "Ngundu",
+              "type": "growth_point",
+              "latitude": -20.8167,
+              "longitude": 31.1667
+            },
+            {
+              "name": "Mhandamabwe",
+              "type": "business_centre",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sese",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chasiyatende",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nemauzhe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Takavarasha",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Gutu",
+          "district_center_or_reference": "Mupandawana",
+          "latitude": -19.6833,
+          "longitude": 31.1667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Gutu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mupandawana",
+              "type": "growth_point",
+              "latitude": -19.6833,
+              "longitude": 31.1667
+            },
+            {
+              "name": "Chatsworth",
+              "type": "locality",
+              "latitude": -19.75,
+              "longitude": 30.95
+            },
+            {
+              "name": "Serima",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Makwiramiti",
+              "type": "business_centre",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chitsa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mpandawana",
+              "type": "variant",
+              "latitude": -19.6833,
+              "longitude": 31.1667
+            }
+          ]
+        },
+        {
+          "name": "Masvingo",
+          "district_center_or_reference": "Masvingo",
+          "latitude": -20.0744,
+          "longitude": 30.8328,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Masvingo",
+              "type": "city",
+              "latitude": -20.0744,
+              "longitude": 30.8328
+            },
+            {
+              "name": "Mucheke",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rujeko",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Victoria Ranch",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Great Zimbabwe",
+              "type": "heritage_site",
+              "latitude": -20.267,
+              "longitude": 30.933
+            },
+            {
+              "name": "Nemamwa",
+              "type": "growth_point",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Bondolfi",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Morgenster",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mwenezi",
+          "district_center_or_reference": "Rutenga",
+          "latitude": -21.2333,
+          "longitude": 30.0,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mwenezi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rutenga",
+              "type": "growth_point",
+              "latitude": -21.2333,
+              "longitude": 30.0
+            },
+            {
+              "name": "Neshuro",
+              "type": "business_centre",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sarahuru",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Maranda",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dinhe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Lundi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Zaka",
+          "district_center_or_reference": "Jerera",
+          "latitude": -20.3333,
+          "longitude": 31.4167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Zaka",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Jerera",
+              "type": "growth_point",
+              "latitude": -20.3333,
+              "longitude": 31.4167
+            },
+            {
+              "name": "Ndanga",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rupiri",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Bvukururu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Jichidza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Renco Mine",
+              "type": "mine_or_locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mashonaland Central",
+      "capital": "Bindura",
+      "latitude": -17.3019,
+      "longitude": 31.3306,
+      "districts": [
+        {
+          "name": "Bindura",
+          "district_center_or_reference": "Bindura",
+          "latitude": -17.3019,
+          "longitude": 31.3306,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Bindura",
+              "type": "town",
+              "latitude": -17.3019,
+              "longitude": 31.3306
+            },
+            {
+              "name": "Trojan Mine",
+              "type": "mine",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chipadze",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Shashi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Manhenga",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Guruve",
+          "district_center_or_reference": "Guruve",
+          "latitude": -16.6667,
+          "longitude": 30.7,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Guruve",
+              "type": "growth_point",
+              "latitude": -16.6667,
+              "longitude": 30.7
+            },
+            {
+              "name": "Mushumbi Pools",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dande",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Birkdale",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kachuta",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mazowe",
+          "district_center_or_reference": "Mazowe",
+          "latitude": -17.5167,
+          "longitude": 30.9667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mazowe",
+              "type": "locality",
+              "latitude": -17.5167,
+              "longitude": 30.9667
+            },
+            {
+              "name": "Concession",
+              "type": "town",
+              "latitude": -17.3833,
+              "longitude": 30.95
+            },
+            {
+              "name": "Glendale",
+              "type": "town",
+              "latitude": -17.355,
+              "longitude": 31.067
+            },
+            {
+              "name": "Mvurwi",
+              "type": "town",
+              "latitude": -17.0333,
+              "longitude": 30.85
+            },
+            {
+              "name": "Christon Bank",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rosa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mbire",
+          "district_center_or_reference": "Mahuwe",
+          "latitude": -16.2,
+          "longitude": 30.7,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mahuwe",
+              "type": "growth_point",
+              "latitude": -16.2,
+              "longitude": 30.7
+            },
+            {
+              "name": "Mbire",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kanyemba",
+              "type": "locality",
+              "latitude": -15.6167,
+              "longitude": 30.4167
+            },
+            {
+              "name": "Mushumbi Pools",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chitsungo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mount Darwin",
+          "district_center_or_reference": "Mount Darwin",
+          "latitude": -16.7833,
+          "longitude": 31.5833,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mount Darwin",
+              "type": "town",
+              "latitude": -16.7833,
+              "longitude": 31.5833
+            },
+            {
+              "name": "Dotito",
+              "type": "growth_point",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mukumbura",
+              "type": "border_locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kandeya",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Madziwa Mine",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Muzarabani",
+          "district_center_or_reference": "Centenary",
+          "latitude": -16.8,
+          "longitude": 31.1167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Muzarabani",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Centenary",
+              "type": "town",
+              "latitude": -16.8,
+              "longitude": 31.1167
+            },
+            {
+              "name": "Hoya",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "St Albert's",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chiweshe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Rushinga",
+          "district_center_or_reference": "Rushinga",
+          "latitude": -16.6167,
+          "longitude": 32.3167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Rushinga",
+              "type": "growth_point",
+              "latitude": -16.6167,
+              "longitude": 32.3167
+            },
+            {
+              "name": "Chimhanda",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyamatikiti",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Rusambo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Shamva",
+          "district_center_or_reference": "Shamva",
+          "latitude": -17.3167,
+          "longitude": 31.5667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Shamva",
+              "type": "town",
+              "latitude": -17.3167,
+              "longitude": 31.5667
+            },
+            {
+              "name": "Madziwa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Jiti",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tafuna",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mupfure",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mashonaland East",
+      "capital": "Marondera",
+      "latitude": -18.1853,
+      "longitude": 31.5519,
+      "districts": [
+        {
+          "name": "Chikomba",
+          "district_center_or_reference": "Chivhu",
+          "latitude": -19.0167,
+          "longitude": 30.8833,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chivhu",
+              "type": "town",
+              "latitude": -19.0167,
+              "longitude": 30.8833
+            },
+            {
+              "name": "Featherstone",
+              "type": "locality",
+              "latitude": -18.75,
+              "longitude": 30.8333
+            },
+            {
+              "name": "Sadza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nharira",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Charter",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Goromonzi",
+          "district_center_or_reference": "Goromonzi",
+          "latitude": -17.8061,
+          "longitude": 31.3636,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Goromonzi",
+              "type": "locality",
+              "latitude": -17.8061,
+              "longitude": 31.3636
+            },
+            {
+              "name": "Ruwa",
+              "type": "town",
+              "latitude": -17.8897,
+              "longitude": 31.2447
+            },
+            {
+              "name": "Arcturus",
+              "type": "locality",
+              "latitude": -17.7833,
+              "longitude": 31.3333
+            },
+            {
+              "name": "Juru",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Domboshava",
+              "type": "locality",
+              "latitude": -17.6,
+              "longitude": 31.15
+            },
+            {
+              "name": "Caledonia",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Marondera",
+          "district_center_or_reference": "Marondera",
+          "latitude": -18.1853,
+          "longitude": 31.5519,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Marondera",
+              "type": "town",
+              "latitude": -18.1853,
+              "longitude": 31.5519
+            },
+            {
+              "name": "Dombotombo",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Cherutombo",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Ruzawi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mahusekwa",
+              "type": "growth_point",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Ruwa",
+              "type": "town",
+              "latitude": -17.8897,
+              "longitude": 31.2447
+            }
+          ]
+        },
+        {
+          "name": "Mudzi",
+          "district_center_or_reference": "Kotwa",
+          "latitude": -17.1,
+          "longitude": 32.2,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Kotwa",
+              "type": "growth_point",
+              "latitude": -17.1,
+              "longitude": 32.2
+            },
+            {
+              "name": "Mudzi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyamapanda",
+              "type": "border_post",
+              "latitude": -16.8833,
+              "longitude": 32.6833
+            },
+            {
+              "name": "Makaha",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dendera",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Murehwa",
+          "district_center_or_reference": "Murehwa",
+          "latitude": -17.6333,
+          "longitude": 31.7833,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Murehwa",
+              "type": "growth_point",
+              "latitude": -17.6333,
+              "longitude": 31.7833
+            },
+            {
+              "name": "Macheke",
+              "type": "town",
+              "latitude": -18.15,
+              "longitude": 31.85
+            },
+            {
+              "name": "Nhowe",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mashayamombe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Musami",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mutoko",
+          "district_center_or_reference": "Mutoko",
+          "latitude": -17.397,
+          "longitude": 32.2268,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mutoko",
+              "type": "growth_point",
+              "latitude": -17.397,
+              "longitude": 32.2268
+            },
+            {
+              "name": "Nyamuzuwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Makosa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mutemwa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "All Souls",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Seke",
+          "district_center_or_reference": "Dema",
+          "latitude": -18.15,
+          "longitude": 31.15,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Seke",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dema",
+              "type": "growth_point",
+              "latitude": -18.15,
+              "longitude": 31.15
+            },
+            {
+              "name": "Manyame",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Beatrice",
+              "type": "locality",
+              "latitude": -18.25,
+              "longitude": 30.85
+            },
+            {
+              "name": "Jonasi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Uzumba-Maramba-Pfungwe",
+          "district_center_or_reference": "Mutawatawa",
+          "latitude": -17.0667,
+          "longitude": 31.9167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mutawatawa",
+              "type": "growth_point",
+              "latitude": -17.0667,
+              "longitude": 31.9167
+            },
+            {
+              "name": "Uzumba",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Maramba",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Pfumbudza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyadire",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Wedza",
+          "district_center_or_reference": "Wedza",
+          "latitude": -18.6167,
+          "longitude": 31.5667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Wedza",
+              "type": "growth_point",
+              "latitude": -18.6167,
+              "longitude": 31.5667
+            },
+            {
+              "name": "Hwedza",
+              "type": "variant",
+              "latitude": -18.6167,
+              "longitude": 31.5667
+            },
+            {
+              "name": "Mushandirapamwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Goneso",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chemhanza",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mashonaland West",
+      "capital": "Chinhoyi",
+      "latitude": -17.3667,
+      "longitude": 30.2,
+      "districts": [
+        {
+          "name": "Chegutu",
+          "district_center_or_reference": "Chegutu",
+          "latitude": -18.1302,
+          "longitude": 30.1407,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chegutu",
+              "type": "town",
+              "latitude": -18.1302,
+              "longitude": 30.1407
+            },
+            {
+              "name": "Chakari",
+              "type": "town",
+              "latitude": -18.0667,
+              "longitude": 29.85
+            },
+            {
+              "name": "Pfupajena",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Suri Suri",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gadzema",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Hurungwe",
+          "district_center_or_reference": "Karoi",
+          "latitude": -16.8167,
+          "longitude": 29.6833,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Karoi",
+              "type": "town",
+              "latitude": -16.8167,
+              "longitude": 29.6833
+            },
+            {
+              "name": "Magunje",
+              "type": "growth_point",
+              "latitude": -16.65,
+              "longitude": 29.6
+            },
+            {
+              "name": "Tengwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chirundu",
+              "type": "border_town",
+              "latitude": -16.0333,
+              "longitude": 28.85
+            },
+            {
+              "name": "Makuti",
+              "type": "locality",
+              "latitude": -16.3167,
+              "longitude": 29.2833
+            },
+            {
+              "name": "Kariba Heights",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Kadoma",
+          "district_center_or_reference": "Kadoma",
+          "latitude": -18.3333,
+          "longitude": 29.9167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Kadoma",
+              "type": "city",
+              "latitude": -18.3333,
+              "longitude": 29.9167
+            },
+            {
+              "name": "Rimuka",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Eiffel Flats",
+              "type": "locality",
+              "latitude": -18.3667,
+              "longitude": 29.85
+            },
+            {
+              "name": "Patchway",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Venice Mine",
+              "type": "mine",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Kariba",
+          "district_center_or_reference": "Kariba",
+          "latitude": -16.5167,
+          "longitude": 28.8,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Kariba",
+              "type": "town",
+              "latitude": -16.5167,
+              "longitude": 28.8
+            },
+            {
+              "name": "Nyamhunga",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mahombekombe",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Siakobvu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mola",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Charara",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Makonde",
+          "district_center_or_reference": "Chinhoyi",
+          "latitude": -17.3667,
+          "longitude": 30.2,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Chinhoyi",
+              "type": "town",
+              "latitude": -17.3667,
+              "longitude": 30.2
+            },
+            {
+              "name": "Alaska",
+              "type": "locality",
+              "latitude": -17.35,
+              "longitude": 30.0
+            },
+            {
+              "name": "Lions Den",
+              "type": "locality",
+              "latitude": -17.25,
+              "longitude": 30.1
+            },
+            {
+              "name": "Mhangura",
+              "type": "town",
+              "latitude": -16.9,
+              "longitude": 30.15
+            },
+            {
+              "name": "Banket",
+              "type": "town",
+              "latitude": -17.3833,
+              "longitude": 30.4
+            },
+            {
+              "name": "Doma",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Sanyati",
+          "district_center_or_reference": "Sanyati",
+          "latitude": -18.8833,
+          "longitude": 29.8167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Sanyati",
+              "type": "locality",
+              "latitude": -18.8833,
+              "longitude": 29.8167
+            },
+            {
+              "name": "Copper Queen",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kadoma Rural",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Ngezi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Battlefields",
+              "type": "locality",
+              "latitude": -18.4167,
+              "longitude": 29.8333
+            }
+          ]
+        },
+        {
+          "name": "Zvimba",
+          "district_center_or_reference": "Murombedzi",
+          "latitude": -17.75,
+          "longitude": 30.2167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Murombedzi",
+              "type": "growth_point",
+              "latitude": -17.75,
+              "longitude": 30.2167
+            },
+            {
+              "name": "Raffingora",
+              "type": "locality",
+              "latitude": -17.0333,
+              "longitude": 30.4333
+            },
+            {
+              "name": "Banket",
+              "type": "town",
+              "latitude": -17.3833,
+              "longitude": 30.4
+            },
+            {
+              "name": "Darwendale",
+              "type": "locality",
+              "latitude": -17.7667,
+              "longitude": 30.5333
+            },
+            {
+              "name": "Trelawney",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kutama",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Matabeleland North",
+      "capital": "Lupane",
+      "latitude": -18.9315,
+      "longitude": 27.806,
+      "districts": [
+        {
+          "name": "Binga",
+          "district_center_or_reference": "Binga",
+          "latitude": -17.6167,
+          "longitude": 27.3333,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Binga",
+              "type": "growth_point",
+              "latitude": -17.6167,
+              "longitude": 27.3333
+            },
+            {
+              "name": "Siabuwa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Simatelele",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Lusulu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Manjolo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Bubi",
+          "district_center_or_reference": "Inyathi",
+          "latitude": -19.6833,
+          "longitude": 28.85,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Inyathi",
+              "type": "locality",
+              "latitude": -19.6833,
+              "longitude": 28.85
+            },
+            {
+              "name": "Bubi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Figtree",
+              "type": "locality",
+              "latitude": -20.0,
+              "longitude": 28.35
+            },
+            {
+              "name": "Queens Mine",
+              "type": "mine_or_locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Battlefields",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Hwange",
+          "district_center_or_reference": "Hwange",
+          "latitude": -18.3667,
+          "longitude": 26.5,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Hwange",
+              "type": "town",
+              "latitude": -18.3667,
+              "longitude": 26.5
+            },
+            {
+              "name": "Victoria Falls",
+              "type": "city",
+              "latitude": -17.9333,
+              "longitude": 25.8333
+            },
+            {
+              "name": "Dete",
+              "type": "locality",
+              "latitude": -18.6167,
+              "longitude": 26.8667
+            },
+            {
+              "name": "Lukosi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Lupote",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Jambeizi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Hwange National Park",
+              "type": "national_park",
+              "latitude": -18.75,
+              "longitude": 26.5
+            }
+          ]
+        },
+        {
+          "name": "Lupane",
+          "district_center_or_reference": "Lupane",
+          "latitude": -18.9315,
+          "longitude": 27.806,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Lupane",
+              "type": "growth_point",
+              "latitude": -18.9315,
+              "longitude": 27.806
+            },
+            {
+              "name": "Jotsholo",
+              "type": "locality",
+              "latitude": -19.0833,
+              "longitude": 27.7833
+            },
+            {
+              "name": "Gwayi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "St Lukes",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Kana",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Nkayi",
+          "district_center_or_reference": "Nkayi",
+          "latitude": -18.9167,
+          "longitude": 28.7667,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Nkayi",
+              "type": "growth_point",
+              "latitude": -18.9167,
+              "longitude": 28.7667
+            },
+            {
+              "name": "Sivalo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dakamela",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gwelutshena",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sikhobokhobo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Tsholotsho",
+          "district_center_or_reference": "Tsholotsho",
+          "latitude": -19.7667,
+          "longitude": 27.75,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Tsholotsho",
+              "type": "growth_point",
+              "latitude": -19.7667,
+              "longitude": 27.75
+            },
+            {
+              "name": "Sipepa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Gariya",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Pumula Mission",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Dinyane",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Umguza",
+          "district_center_or_reference": "Ntabazinduna",
+          "latitude": -20.0333,
+          "longitude": 28.85,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Ntabazinduna",
+              "type": "locality",
+              "latitude": -20.0333,
+              "longitude": 28.85
+            },
+            {
+              "name": "Umguza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyamandlovu",
+              "type": "locality",
+              "latitude": -19.9333,
+              "longitude": 28.55
+            },
+            {
+              "name": "Sauerdale",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Pumula North",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Matabeleland South",
+      "capital": "Gwanda",
+      "latitude": -20.9333,
+      "longitude": 29.0,
+      "districts": [
+        {
+          "name": "Beitbridge",
+          "district_center_or_reference": "Beitbridge",
+          "latitude": -22.2167,
+          "longitude": 30.0,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Beitbridge",
+              "type": "border_town",
+              "latitude": -22.2167,
+              "longitude": 30.0
+            },
+            {
+              "name": "Dulivhadzimu",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Lutumba",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Zezi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tongwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Shashe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Bulilima",
+          "district_center_or_reference": "Plumtree",
+          "latitude": -20.4833,
+          "longitude": 27.8167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Plumtree",
+              "type": "town",
+              "latitude": -20.4833,
+              "longitude": 27.8167
+            },
+            {
+              "name": "Bulilima",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Madlambuzi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Tokwana",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nyele",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Gwanda",
+          "district_center_or_reference": "Gwanda",
+          "latitude": -20.9333,
+          "longitude": 29.0,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Gwanda",
+              "type": "town",
+              "latitude": -20.9333,
+              "longitude": 29.0
+            },
+            {
+              "name": "Phakama",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Jahunda",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Colleen Bawn",
+              "type": "locality",
+              "latitude": -21.0,
+              "longitude": 29.2
+            },
+            {
+              "name": "Manama",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Guyu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Insiza",
+          "district_center_or_reference": "Filabusi",
+          "latitude": -20.5333,
+          "longitude": 29.2833,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Filabusi",
+              "type": "growth_point",
+              "latitude": -20.5333,
+              "longitude": 29.2833
+            },
+            {
+              "name": "Insiza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Fort Rixon",
+              "type": "locality",
+              "latitude": -20.05,
+              "longitude": 29.3
+            },
+            {
+              "name": "West Nicholson",
+              "type": "locality",
+              "latitude": -21.05,
+              "longitude": 29.35
+            },
+            {
+              "name": "Avoca",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mangwe",
+          "district_center_or_reference": "Brunapeg",
+          "latitude": -20.9,
+          "longitude": 27.5,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Brunapeg",
+              "type": "growth_point",
+              "latitude": -20.9,
+              "longitude": 27.5
+            },
+            {
+              "name": "Mangwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mphoengs",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Marula",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mayobodo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Matobo",
+          "district_center_or_reference": "Maphisa",
+          "latitude": -20.5333,
+          "longitude": 28.7167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Maphisa",
+              "type": "growth_point",
+              "latitude": -20.5333,
+              "longitude": 28.7167
+            },
+            {
+              "name": "Kezi",
+              "type": "locality",
+              "latitude": -20.9,
+              "longitude": 28.45
+            },
+            {
+              "name": "Matobo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Matopos",
+              "type": "tourism_area",
+              "latitude": -20.55,
+              "longitude": 28.5
+            },
+            {
+              "name": "Whitewater",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Umzingwane",
+          "district_center_or_reference": "Esigodini",
+          "latitude": -20.2833,
+          "longitude": 28.9333,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Esigodini",
+              "type": "growth_point",
+              "latitude": -20.2833,
+              "longitude": 28.9333
+            },
+            {
+              "name": "Umzingwane",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Habane",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nswazi",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mbalabala",
+              "type": "locality",
+              "latitude": -20.4667,
+              "longitude": 29.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Midlands",
+      "capital": "Gweru",
+      "latitude": -19.45,
+      "longitude": 29.8167,
+      "districts": [
+        {
+          "name": "Chirumhanzu",
+          "district_center_or_reference": "Mvuma",
+          "latitude": -19.2833,
+          "longitude": 30.5333,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mvuma",
+              "type": "town",
+              "latitude": -19.2833,
+              "longitude": 30.5333
+            },
+            {
+              "name": "Chirumhanzu",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Charandura",
+              "type": "locality",
+              "latitude": -19.2167,
+              "longitude": 30.0667
+            },
+            {
+              "name": "Lalapanzi",
+              "type": "locality",
+              "latitude": -19.3333,
+              "longitude": 30.1833
+            },
+            {
+              "name": "Fairfields",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Gokwe North",
+          "district_center_or_reference": "Nembudziya",
+          "latitude": -17.6333,
+          "longitude": 28.9333,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Nembudziya",
+              "type": "growth_point",
+              "latitude": -17.6333,
+              "longitude": 28.9333
+            },
+            {
+              "name": "Gokwe North",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Chireya",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Simchembo",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Zumba",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Gokwe South",
+          "district_center_or_reference": "Gokwe",
+          "latitude": -18.2167,
+          "longitude": 28.9333,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Gokwe",
+              "type": "town",
+              "latitude": -18.2167,
+              "longitude": 28.9333
+            },
+            {
+              "name": "Mapfungautsi",
+              "type": "suburb_or_locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sengwa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Nemangwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Sanyati",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Gweru",
+          "district_center_or_reference": "Gweru",
+          "latitude": -19.45,
+          "longitude": 29.8167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Gweru",
+              "type": "city",
+              "latitude": -19.45,
+              "longitude": 29.8167
+            },
+            {
+              "name": "Mkoba",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Senga",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Ascot",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Daylesford",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mambo",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Shurugwi Road",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Kwekwe",
+          "district_center_or_reference": "Kwekwe",
+          "latitude": -18.9167,
+          "longitude": 29.8167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Kwekwe",
+              "type": "city",
+              "latitude": -18.9167,
+              "longitude": 29.8167
+            },
+            {
+              "name": "Redcliff",
+              "type": "town",
+              "latitude": -19.0333,
+              "longitude": 29.7833
+            },
+            {
+              "name": "Mbizo",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Amaveni",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Zhombe",
+              "type": "locality",
+              "latitude": -18.6,
+              "longitude": 29.5
+            },
+            {
+              "name": "Silobela",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Empress Mine",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Mberengwa",
+          "district_center_or_reference": "Mberengwa",
+          "latitude": -20.4833,
+          "longitude": 29.9167,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Mberengwa",
+              "type": "growth_point",
+              "latitude": -20.4833,
+              "longitude": 29.9167
+            },
+            {
+              "name": "Mataga",
+              "type": "growth_point",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Buchwa",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "C Masase",
+              "type": "mission_or_locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Vubwe",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mnene",
+              "type": "mission",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Shurugwi",
+          "district_center_or_reference": "Shurugwi",
+          "latitude": -19.6667,
+          "longitude": 30.0,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Shurugwi",
+              "type": "town",
+              "latitude": -19.6667,
+              "longitude": 30.0
+            },
+            {
+              "name": "Tongogara",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Peak Mine",
+              "type": "mine_or_locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Boterekwa",
+              "type": "tourism_area",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Donga",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        },
+        {
+          "name": "Zvishavane",
+          "district_center_or_reference": "Zvishavane",
+          "latitude": -20.3333,
+          "longitude": 30.0333,
+          "coordinate_level": "district_reference_point_not_boundary_centroid",
+          "places": [
+            {
+              "name": "Zvishavane",
+              "type": "town",
+              "latitude": -20.3333,
+              "longitude": 30.0333
+            },
+            {
+              "name": "Mandava",
+              "type": "suburb",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mimosa Mine",
+              "type": "mine",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Shabani Mine",
+              "type": "mine",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Siboza",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            },
+            {
+              "name": "Mapanzure",
+              "type": "locality",
+              "latitude": null,
+              "longitude": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -45,6 +45,16 @@ export const BidStatus = {
 export type BidStatus = (typeof BidStatus)[keyof typeof BidStatus]
 
 
+export const CitizenHeroActionStyle = {
+  BUTTON: 'BUTTON',
+  LINK: 'LINK',
+  QR: 'QR',
+  BUTTON_QR: 'BUTTON_QR'
+} as const
+
+export type CitizenHeroActionStyle = (typeof CitizenHeroActionStyle)[keyof typeof CitizenHeroActionStyle]
+
+
 export const ApplicationStatus = {
   PENDING: 'PENDING',
   REVIEWING: 'REVIEWING',
@@ -63,7 +73,8 @@ export const ReportStatus = {
   UNDER_INVESTIGATION: 'UNDER_INVESTIGATION',
   REFERRED_TO_PROSECUTION: 'REFERRED_TO_PROSECUTION',
   CLOSED: 'CLOSED',
-  ARCHIVED: 'ARCHIVED'
+  ARCHIVED: 'ARCHIVED',
+  CUSTOM: 'CUSTOM'
 } as const
 
 export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]

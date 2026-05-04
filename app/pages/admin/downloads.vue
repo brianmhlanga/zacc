@@ -415,7 +415,8 @@ const categoryOptions = [
   { label: 'Policies', value: 'policies' },
   { label: 'Guidelines', value: 'guidelines' },
   { label: 'Publications', value: 'publications' },
-  { label: 'Legal', value: 'legal' }
+  { label: 'Legal', value: 'legal' },
+  { label: 'Press Releases', value: 'press_releases' }
 ]
 
 const statusOptions = [
@@ -437,7 +438,8 @@ const getCategorySeverity = (category: string) => {
     'policies': 'success',
     'guidelines': 'primary',
     'publications': 'secondary',
-    'legal': 'danger'
+    'legal': 'danger',
+    'press_releases': 'warning'
   }
   return severityMap[category] || 'info'
 }

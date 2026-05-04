@@ -2,6 +2,7 @@ import { actionFromMethod, getPermissionsForUser, hasPermissionForUser, type Per
 
 const API_PREFIX_TO_MODULE: Array<[string, PermissionModuleKey]> = [
   ['/api/content', 'content'],
+  ['/api/citizen-hero', 'citizen_hero'],
   ['/api/news', 'news'],
   ['/api/downloads', 'downloads'],
   ['/api/tenders', 'tenders'],

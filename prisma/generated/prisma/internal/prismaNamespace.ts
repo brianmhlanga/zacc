@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.7.0
- * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
+ * Prisma Client JS version: 7.8.0
+ * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.7.0",
-  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
+  client: "7.8.0",
+  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
 }
 
 /**
@@ -390,6 +390,8 @@ export const ModelName = {
   Value: 'Value',
   PageContent: 'PageContent',
   HeroSlide: 'HeroSlide',
+  CitizenHeroPanel: 'CitizenHeroPanel',
+  CitizenHeroAction: 'CitizenHeroAction',
   Statistic: 'Statistic',
   Service: 'Service',
   Commissioner: 'Commissioner',
@@ -439,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "siteSetting" | "socialMedia" | "value" | "pageContent" | "heroSlide" | "statistic" | "service" | "commissioner" | "team" | "news" | "newsTag" | "download" | "ruling" | "rulingTag" | "galleryImage" | "tender" | "tenderCategory" | "tenderDocument" | "tenderLineItem" | "supplier" | "supplierSession" | "supplierCategoryApproval" | "supplierDocument" | "tenderBid" | "tenderBidDocument" | "tenderBidLineItem" | "job" | "jobApplication" | "corruptionReport" | "reportFile" | "reportUpdate" | "contactSubmission" | "media" | "contactInfo" | "legislation" | "newsletterSubscription" | "pageView" | "menu" | "menuItem"
+    modelProps: "user" | "siteSetting" | "socialMedia" | "value" | "pageContent" | "heroSlide" | "citizenHeroPanel" | "citizenHeroAction" | "statistic" | "service" | "commissioner" | "team" | "news" | "newsTag" | "download" | "ruling" | "rulingTag" | "galleryImage" | "tender" | "tenderCategory" | "tenderDocument" | "tenderLineItem" | "supplier" | "supplierSession" | "supplierCategoryApproval" | "supplierDocument" | "tenderBid" | "tenderBidDocument" | "tenderBidLineItem" | "job" | "jobApplication" | "corruptionReport" | "reportFile" | "reportUpdate" | "contactSubmission" | "media" | "contactInfo" | "legislation" | "newsletterSubscription" | "pageView" | "menu" | "menuItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -836,6 +838,138 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.HeroSlideCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.HeroSlideCountAggregateOutputType> | number
+        }
+      }
+    }
+    CitizenHeroPanel: {
+      payload: Prisma.$CitizenHeroPanelPayload<ExtArgs>
+      fields: Prisma.CitizenHeroPanelFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CitizenHeroPanelFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CitizenHeroPanelFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>
+        }
+        findFirst: {
+          args: Prisma.CitizenHeroPanelFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CitizenHeroPanelFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>
+        }
+        findMany: {
+          args: Prisma.CitizenHeroPanelFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>[]
+        }
+        create: {
+          args: Prisma.CitizenHeroPanelCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>
+        }
+        createMany: {
+          args: Prisma.CitizenHeroPanelCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CitizenHeroPanelDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>
+        }
+        update: {
+          args: Prisma.CitizenHeroPanelUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>
+        }
+        deleteMany: {
+          args: Prisma.CitizenHeroPanelDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CitizenHeroPanelUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CitizenHeroPanelUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroPanelPayload>
+        }
+        aggregate: {
+          args: Prisma.CitizenHeroPanelAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCitizenHeroPanel>
+        }
+        groupBy: {
+          args: Prisma.CitizenHeroPanelGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CitizenHeroPanelGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CitizenHeroPanelCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CitizenHeroPanelCountAggregateOutputType> | number
+        }
+      }
+    }
+    CitizenHeroAction: {
+      payload: Prisma.$CitizenHeroActionPayload<ExtArgs>
+      fields: Prisma.CitizenHeroActionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CitizenHeroActionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CitizenHeroActionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>
+        }
+        findFirst: {
+          args: Prisma.CitizenHeroActionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CitizenHeroActionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>
+        }
+        findMany: {
+          args: Prisma.CitizenHeroActionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>[]
+        }
+        create: {
+          args: Prisma.CitizenHeroActionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>
+        }
+        createMany: {
+          args: Prisma.CitizenHeroActionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.CitizenHeroActionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>
+        }
+        update: {
+          args: Prisma.CitizenHeroActionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>
+        }
+        deleteMany: {
+          args: Prisma.CitizenHeroActionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CitizenHeroActionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.CitizenHeroActionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CitizenHeroActionPayload>
+        }
+        aggregate: {
+          args: Prisma.CitizenHeroActionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCitizenHeroAction>
+        }
+        groupBy: {
+          args: Prisma.CitizenHeroActionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CitizenHeroActionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CitizenHeroActionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CitizenHeroActionCountAggregateOutputType> | number
         }
       }
     }
@@ -3217,6 +3351,42 @@ export const HeroSlideScalarFieldEnum = {
 export type HeroSlideScalarFieldEnum = (typeof HeroSlideScalarFieldEnum)[keyof typeof HeroSlideScalarFieldEnum]
 
 
+export const CitizenHeroPanelScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  subtitle: 'subtitle',
+  footerText: 'footerText',
+  footerCtaLabel: 'footerCtaLabel',
+  footerCtaUrl: 'footerCtaUrl',
+  isEnabled: 'isEnabled',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CitizenHeroPanelScalarFieldEnum = (typeof CitizenHeroPanelScalarFieldEnum)[keyof typeof CitizenHeroPanelScalarFieldEnum]
+
+
+export const CitizenHeroActionScalarFieldEnum = {
+  id: 'id',
+  panelId: 'panelId',
+  sortOrder: 'sortOrder',
+  title: 'title',
+  description: 'description',
+  iconName: 'iconName',
+  iconTone: 'iconTone',
+  actionStyle: 'actionStyle',
+  ctaLabel: 'ctaLabel',
+  ctaUrl: 'ctaUrl',
+  qrImageUrl: 'qrImageUrl',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CitizenHeroActionScalarFieldEnum = (typeof CitizenHeroActionScalarFieldEnum)[keyof typeof CitizenHeroActionScalarFieldEnum]
+
+
 export const StatisticScalarFieldEnum = {
   id: 'id',
   label: 'label',
@@ -3615,7 +3785,10 @@ export const CorruptionReportScalarFieldEnum = {
   incidentTime: 'incidentTime',
   peopleInvolved: 'peopleInvolved',
   additionalInfo: 'additionalInfo',
+  audioUrl: 'audioUrl',
   status: 'status',
+  customStatus: 'customStatus',
+  isArchived: 'isArchived',
   priority: 'priority',
   assignedTo: 'assignedTo',
   notes: 'notes',
@@ -3643,6 +3816,7 @@ export const ReportUpdateScalarFieldEnum = {
   id: 'id',
   reportId: 'reportId',
   status: 'status',
+  customStatus: 'customStatus',
   notes: 'notes',
   updatedBy: 'updatedBy',
   createdAt: 'createdAt'
@@ -3905,6 +4079,34 @@ export const HeroSlideOrderByRelevanceFieldEnum = {
 } as const
 
 export type HeroSlideOrderByRelevanceFieldEnum = (typeof HeroSlideOrderByRelevanceFieldEnum)[keyof typeof HeroSlideOrderByRelevanceFieldEnum]
+
+
+export const CitizenHeroPanelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  subtitle: 'subtitle',
+  footerText: 'footerText',
+  footerCtaLabel: 'footerCtaLabel',
+  footerCtaUrl: 'footerCtaUrl'
+} as const
+
+export type CitizenHeroPanelOrderByRelevanceFieldEnum = (typeof CitizenHeroPanelOrderByRelevanceFieldEnum)[keyof typeof CitizenHeroPanelOrderByRelevanceFieldEnum]
+
+
+export const CitizenHeroActionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  panelId: 'panelId',
+  title: 'title',
+  description: 'description',
+  iconName: 'iconName',
+  iconTone: 'iconTone',
+  ctaLabel: 'ctaLabel',
+  ctaUrl: 'ctaUrl',
+  qrImageUrl: 'qrImageUrl'
+} as const
+
+export type CitizenHeroActionOrderByRelevanceFieldEnum = (typeof CitizenHeroActionOrderByRelevanceFieldEnum)[keyof typeof CitizenHeroActionOrderByRelevanceFieldEnum]
 
 
 export const StatisticOrderByRelevanceFieldEnum = {
@@ -4213,6 +4415,8 @@ export const CorruptionReportOrderByRelevanceFieldEnum = {
   incidentTime: 'incidentTime',
   peopleInvolved: 'peopleInvolved',
   additionalInfo: 'additionalInfo',
+  audioUrl: 'audioUrl',
+  customStatus: 'customStatus',
   assignedTo: 'assignedTo',
   notes: 'notes'
 } as const
@@ -4234,6 +4438,7 @@ export type ReportFileOrderByRelevanceFieldEnum = (typeof ReportFileOrderByRelev
 export const ReportUpdateOrderByRelevanceFieldEnum = {
   id: 'id',
   reportId: 'reportId',
+  customStatus: 'customStatus',
   notes: 'notes',
   updatedBy: 'updatedBy'
 } as const
@@ -4404,6 +4609,13 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
+ * Reference to a field of type 'CitizenHeroActionStyle'
+ */
+export type EnumCitizenHeroActionStyleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CitizenHeroActionStyle'>
+    
+
+
+/**
  * Reference to a field of type 'TenderType'
  */
 export type EnumTenderTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TenderType'>
@@ -4558,6 +4770,21 @@ export type PrismaClientOptions = ({
    * ```
    */
   comments?: runtime.SqlCommenterPlugin[]
+  /**
+   * Optional maximum size for the query plan cache. If not provided, a default size will be used.
+   * A value of `0` can be used to disable the cache entirely. A higher cache size can improve
+   * performance for applications that execute a large number of unique queries, while a smaller
+   * cache size can reduce memory usage.
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   queryPlanCacheMaxSize: 100,
+   * })
+   * ```
+   */
+  queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
@@ -4566,6 +4793,8 @@ export type GlobalOmitConfig = {
   value?: Prisma.ValueOmit
   pageContent?: Prisma.PageContentOmit
   heroSlide?: Prisma.HeroSlideOmit
+  citizenHeroPanel?: Prisma.CitizenHeroPanelOmit
+  citizenHeroAction?: Prisma.CitizenHeroActionOmit
   statistic?: Prisma.StatisticOmit
   service?: Prisma.ServiceOmit
   commissioner?: Prisma.CommissionerOmit

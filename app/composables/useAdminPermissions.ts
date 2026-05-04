@@ -3,6 +3,7 @@ type PermissionMap = Record<string, PermissionAction[]>
 
 const routeToModule: Array<[string, string]> = [
   ['/admin/content', 'content'],
+  ['/admin/citizen-hero', 'citizen_hero'],
   ['/admin/news', 'news'],
   ['/admin/downloads', 'downloads'],
   ['/admin/tenders', 'tenders'],
@@ -11,6 +12,7 @@ const routeToModule: Array<[string, string]> = [
   ['/admin/rulings', 'rulings'],
   ['/admin/gallery', 'gallery'],
   ['/admin/jobs', 'jobs'],
+  ['/admin/analytics', 'reports'],
   ['/admin/reports', 'reports'],
   ['/admin/contact', 'contact'],
   ['/admin/statistics', 'statistics'],

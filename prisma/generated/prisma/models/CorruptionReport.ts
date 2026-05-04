@@ -40,7 +40,10 @@ export type CorruptionReportMinAggregateOutputType = {
   incidentTime: string | null
   peopleInvolved: string | null
   additionalInfo: string | null
+  audioUrl: string | null
   status: $Enums.ReportStatus | null
+  customStatus: string | null
+  isArchived: boolean | null
   priority: $Enums.ReportPriority | null
   assignedTo: string | null
   notes: string | null
@@ -64,7 +67,10 @@ export type CorruptionReportMaxAggregateOutputType = {
   incidentTime: string | null
   peopleInvolved: string | null
   additionalInfo: string | null
+  audioUrl: string | null
   status: $Enums.ReportStatus | null
+  customStatus: string | null
+  isArchived: boolean | null
   priority: $Enums.ReportPriority | null
   assignedTo: string | null
   notes: string | null
@@ -88,7 +94,10 @@ export type CorruptionReportCountAggregateOutputType = {
   incidentTime: number
   peopleInvolved: number
   additionalInfo: number
+  audioUrl: number
   status: number
+  customStatus: number
+  isArchived: number
   priority: number
   assignedTo: number
   notes: number
@@ -114,7 +123,10 @@ export type CorruptionReportMinAggregateInputType = {
   incidentTime?: true
   peopleInvolved?: true
   additionalInfo?: true
+  audioUrl?: true
   status?: true
+  customStatus?: true
+  isArchived?: true
   priority?: true
   assignedTo?: true
   notes?: true
@@ -138,7 +150,10 @@ export type CorruptionReportMaxAggregateInputType = {
   incidentTime?: true
   peopleInvolved?: true
   additionalInfo?: true
+  audioUrl?: true
   status?: true
+  customStatus?: true
+  isArchived?: true
   priority?: true
   assignedTo?: true
   notes?: true
@@ -162,7 +177,10 @@ export type CorruptionReportCountAggregateInputType = {
   incidentTime?: true
   peopleInvolved?: true
   additionalInfo?: true
+  audioUrl?: true
   status?: true
+  customStatus?: true
+  isArchived?: true
   priority?: true
   assignedTo?: true
   notes?: true
@@ -259,7 +277,10 @@ export type CorruptionReportGroupByOutputType = {
   incidentTime: string | null
   peopleInvolved: string | null
   additionalInfo: string | null
+  audioUrl: string | null
   status: $Enums.ReportStatus
+  customStatus: string | null
+  isArchived: boolean
   priority: $Enums.ReportPriority
   assignedTo: string | null
   notes: string | null
@@ -304,7 +325,10 @@ export type CorruptionReportWhereInput = {
   incidentTime?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   peopleInvolved?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   additionalInfo?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
+  audioUrl?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   status?: Prisma.EnumReportStatusFilter<"CorruptionReport"> | $Enums.ReportStatus
+  customStatus?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
+  isArchived?: Prisma.BoolFilter<"CorruptionReport"> | boolean
   priority?: Prisma.EnumReportPriorityFilter<"CorruptionReport"> | $Enums.ReportPriority
   assignedTo?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   notes?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
@@ -330,7 +354,10 @@ export type CorruptionReportOrderByWithRelationInput = {
   incidentTime?: Prisma.SortOrderInput | Prisma.SortOrder
   peopleInvolved?: Prisma.SortOrderInput | Prisma.SortOrder
   additionalInfo?: Prisma.SortOrderInput | Prisma.SortOrder
+  audioUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  customStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   assignedTo?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -360,7 +387,10 @@ export type CorruptionReportWhereUniqueInput = Prisma.AtLeast<{
   incidentTime?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   peopleInvolved?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   additionalInfo?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
+  audioUrl?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   status?: Prisma.EnumReportStatusFilter<"CorruptionReport"> | $Enums.ReportStatus
+  customStatus?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
+  isArchived?: Prisma.BoolFilter<"CorruptionReport"> | boolean
   priority?: Prisma.EnumReportPriorityFilter<"CorruptionReport"> | $Enums.ReportPriority
   assignedTo?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
   notes?: Prisma.StringNullableFilter<"CorruptionReport"> | string | null
@@ -386,7 +416,10 @@ export type CorruptionReportOrderByWithAggregationInput = {
   incidentTime?: Prisma.SortOrderInput | Prisma.SortOrder
   peopleInvolved?: Prisma.SortOrderInput | Prisma.SortOrder
   additionalInfo?: Prisma.SortOrderInput | Prisma.SortOrder
+  audioUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  customStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   assignedTo?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -416,7 +449,10 @@ export type CorruptionReportScalarWhereWithAggregatesInput = {
   incidentTime?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
   peopleInvolved?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
   additionalInfo?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
+  audioUrl?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
   status?: Prisma.EnumReportStatusWithAggregatesFilter<"CorruptionReport"> | $Enums.ReportStatus
+  customStatus?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
+  isArchived?: Prisma.BoolWithAggregatesFilter<"CorruptionReport"> | boolean
   priority?: Prisma.EnumReportPriorityWithAggregatesFilter<"CorruptionReport"> | $Enums.ReportPriority
   assignedTo?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
   notes?: Prisma.StringNullableWithAggregatesFilter<"CorruptionReport"> | string | null
@@ -440,7 +476,10 @@ export type CorruptionReportCreateInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -466,7 +505,10 @@ export type CorruptionReportUncheckedCreateInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -492,7 +534,10 @@ export type CorruptionReportUpdateInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -518,7 +563,10 @@ export type CorruptionReportUncheckedUpdateInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -544,7 +592,10 @@ export type CorruptionReportCreateManyInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -568,7 +619,10 @@ export type CorruptionReportUpdateManyMutationInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -592,7 +646,10 @@ export type CorruptionReportUncheckedUpdateManyInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -622,7 +679,10 @@ export type CorruptionReportCountOrderByAggregateInput = {
   incidentTime?: Prisma.SortOrder
   peopleInvolved?: Prisma.SortOrder
   additionalInfo?: Prisma.SortOrder
+  audioUrl?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  customStatus?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   assignedTo?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -646,7 +706,10 @@ export type CorruptionReportMaxOrderByAggregateInput = {
   incidentTime?: Prisma.SortOrder
   peopleInvolved?: Prisma.SortOrder
   additionalInfo?: Prisma.SortOrder
+  audioUrl?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  customStatus?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   assignedTo?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -670,7 +733,10 @@ export type CorruptionReportMinOrderByAggregateInput = {
   incidentTime?: Prisma.SortOrder
   peopleInvolved?: Prisma.SortOrder
   additionalInfo?: Prisma.SortOrder
+  audioUrl?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  customStatus?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   assignedTo?: Prisma.SortOrder
   notes?: Prisma.SortOrder
@@ -735,7 +801,10 @@ export type CorruptionReportCreateWithoutFilesInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -760,7 +829,10 @@ export type CorruptionReportUncheckedCreateWithoutFilesInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -801,7 +873,10 @@ export type CorruptionReportUpdateWithoutFilesInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -826,7 +901,10 @@ export type CorruptionReportUncheckedUpdateWithoutFilesInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -851,7 +929,10 @@ export type CorruptionReportCreateWithoutUpdatesInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -876,7 +957,10 @@ export type CorruptionReportUncheckedCreateWithoutUpdatesInput = {
   incidentTime?: string | null
   peopleInvolved?: string | null
   additionalInfo?: string | null
+  audioUrl?: string | null
   status?: $Enums.ReportStatus
+  customStatus?: string | null
+  isArchived?: boolean
   priority?: $Enums.ReportPriority
   assignedTo?: string | null
   notes?: string | null
@@ -917,7 +1001,10 @@ export type CorruptionReportUpdateWithoutUpdatesInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -942,7 +1029,10 @@ export type CorruptionReportUncheckedUpdateWithoutUpdatesInput = {
   incidentTime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   peopleInvolved?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   additionalInfo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  audioUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumReportStatusFieldUpdateOperationsInput | $Enums.ReportStatus
+  customStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   priority?: Prisma.EnumReportPriorityFieldUpdateOperationsInput | $Enums.ReportPriority
   assignedTo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1007,7 +1097,10 @@ export type CorruptionReportSelect<ExtArgs extends runtime.Types.Extensions.Inte
   incidentTime?: boolean
   peopleInvolved?: boolean
   additionalInfo?: boolean
+  audioUrl?: boolean
   status?: boolean
+  customStatus?: boolean
+  isArchived?: boolean
   priority?: boolean
   assignedTo?: boolean
   notes?: boolean
@@ -1036,7 +1129,10 @@ export type CorruptionReportSelectScalar = {
   incidentTime?: boolean
   peopleInvolved?: boolean
   additionalInfo?: boolean
+  audioUrl?: boolean
   status?: boolean
+  customStatus?: boolean
+  isArchived?: boolean
   priority?: boolean
   assignedTo?: boolean
   notes?: boolean
@@ -1044,7 +1140,7 @@ export type CorruptionReportSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CorruptionReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reportNumber" | "isAnonymous" | "name" | "email" | "phone" | "organization" | "corruptionType" | "incidentDescription" | "location" | "province" | "incidentDate" | "incidentTime" | "peopleInvolved" | "additionalInfo" | "status" | "priority" | "assignedTo" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["corruptionReport"]>
+export type CorruptionReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "reportNumber" | "isAnonymous" | "name" | "email" | "phone" | "organization" | "corruptionType" | "incidentDescription" | "location" | "province" | "incidentDate" | "incidentTime" | "peopleInvolved" | "additionalInfo" | "audioUrl" | "status" | "customStatus" | "isArchived" | "priority" | "assignedTo" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["corruptionReport"]>
 export type CorruptionReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   files?: boolean | Prisma.CorruptionReport$filesArgs<ExtArgs>
   updates?: boolean | Prisma.CorruptionReport$updatesArgs<ExtArgs>
@@ -1073,7 +1169,19 @@ export type $CorruptionReportPayload<ExtArgs extends runtime.Types.Extensions.In
     incidentTime: string | null
     peopleInvolved: string | null
     additionalInfo: string | null
+    /**
+     * * Optional voice note saved under public/uploads/reports
+     */
+    audioUrl: string | null
     status: $Enums.ReportStatus
+    /**
+     * * When status is CUSTOM, admin-defined label shown in UI and public track.
+     */
+    customStatus: string | null
+    /**
+     * * Admin list: hidden from default reports table until restored.
+     */
+    isArchived: boolean
     priority: $Enums.ReportPriority
     assignedTo: string | null
     notes: string | null
@@ -1465,7 +1573,10 @@ export interface CorruptionReportFieldRefs {
   readonly incidentTime: Prisma.FieldRef<"CorruptionReport", 'String'>
   readonly peopleInvolved: Prisma.FieldRef<"CorruptionReport", 'String'>
   readonly additionalInfo: Prisma.FieldRef<"CorruptionReport", 'String'>
+  readonly audioUrl: Prisma.FieldRef<"CorruptionReport", 'String'>
   readonly status: Prisma.FieldRef<"CorruptionReport", 'ReportStatus'>
+  readonly customStatus: Prisma.FieldRef<"CorruptionReport", 'String'>
+  readonly isArchived: Prisma.FieldRef<"CorruptionReport", 'Boolean'>
   readonly priority: Prisma.FieldRef<"CorruptionReport", 'ReportPriority'>
   readonly assignedTo: Prisma.FieldRef<"CorruptionReport", 'String'>
   readonly notes: Prisma.FieldRef<"CorruptionReport", 'String'>

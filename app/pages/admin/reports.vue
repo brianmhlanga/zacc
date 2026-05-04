@@ -2,11 +2,20 @@
   <NuxtLayout name="dashboard">
     <div>
       <!-- Page Header -->
-      <div class="mb-6 flex items-center justify-between">
+      <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 class="text-3xl font-extrabold text-zaccBlack">Corruption Reports</h1>
           <p class="mt-2 text-gray-600">Manage and track corruption reports</p>
         </div>
+        <NuxtLink to="/admin/analytics">
+          <Button
+            label="Report analytics"
+            icon="pi pi-chart-line"
+            outlined
+            severity="secondary"
+            class="w-full sm:w-auto"
+          />
+        </NuxtLink>
       </div>
 
       <!-- Filters -->
@@ -58,8 +67,22 @@
                 @change="fetchReports"
               />
             </div>
+            <div class="flex items-center gap-2">
+              <label for="archiveListFilter" class="text-sm font-semibold text-zaccBlack whitespace-nowrap">
+                List:
+              </label>
+              <Dropdown
+                id="archiveListFilter"
+                v-model="archiveListFilter"
+                :options="archiveListOptions"
+                option-label="label"
+                option-value="value"
+                class="w-52"
+                @change="fetchReports"
+              />
+            </div>
             <Button
-              v-if="selectedStatus || selectedPriority || selectedType"
+              v-if="selectedStatus || selectedPriority || selectedType || archiveListFilter !== 'active'"
               label="Clear Filters"
               icon="pi pi-times"
               severity="secondary"
@@ -87,7 +110,9 @@
           >
             <template #header>
               <div class="flex items-center justify-between mb-4">
-                <span class="text-xl font-semibold text-zaccBlack">All Reports</span>
+                <span class="text-xl font-semibold text-zaccBlack">
+                  {{ archiveListFilter === 'archived' ? 'Archived reports' : 'Active reports' }}
+                </span>
                 <span class="p-input-icon-left">
                   <i class="pi pi-search" />
                   <InputText
@@ -118,7 +143,7 @@
             <Column field="status" header="Status" sortable>
               <template #body="{ data }">
                 <Tag
-                  :value="formatStatus(data.status)"
+                  :value="formatReportStatus(data.status, data.customStatus)"
                   :severity="getStatusSeverity(data.status)"
                 />
               </template>
@@ -154,9 +179,9 @@
               </template>
             </Column>
 
-            <Column header="Actions" :exportable="false" style="min-width: 150px">
+            <Column header="Actions" :exportable="false" style="min-width: 240px">
               <template #body="{ data }">
-                <div class="flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-1">
                   <Button
                     icon="pi pi-eye"
                     severity="info"
@@ -164,6 +189,35 @@
                     text
                     @click="openViewDialog(data)"
                     v-tooltip.top="'View Details'"
+                  />
+                  <Button
+                    icon="pi pi-file-pdf"
+                    severity="secondary"
+                    rounded
+                    text
+                    :loading="pdfLoadingId === data.id"
+                    @click.stop="downloadReportPdf(data.id, data.reportNumber)"
+                    v-tooltip.top="'Download PDF'"
+                  />
+                  <Button
+                    v-if="archiveListFilter === 'active' && !data.isArchived"
+                    icon="pi pi-inbox"
+                    severity="secondary"
+                    rounded
+                    text
+                    :loading="archivingId === data.id"
+                    @click="confirmArchiveReport(data)"
+                    v-tooltip.top="'Archive (hide from main list)'"
+                  />
+                  <Button
+                    v-if="archiveListFilter === 'archived'"
+                    icon="pi pi-replay"
+                    severity="success"
+                    rounded
+                    text
+                    :loading="archivingId === data.id"
+                    @click="confirmRestoreReport(data)"
+                    v-tooltip.top="'Restore to active list'"
                   />
                   <Button
                     icon="pi pi-pencil"
@@ -195,14 +249,52 @@
               <h3 class="text-lg font-bold text-zaccBlack">Report #{{ viewingReport.reportNumber }}</h3>
               <p class="text-sm text-gray-500">Submitted: {{ formatDateTime(viewingReport.createdAt) }}</p>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-2">
               <Tag
-                :value="formatStatus(viewingReport.status)"
+                :value="formatReportStatus(viewingReport.status, viewingReport.customStatus)"
                 :severity="getStatusSeverity(viewingReport.status)"
+              />
+              <Tag
+                v-if="viewingReport.isArchived"
+                value="List archived"
+                severity="secondary"
               />
               <Tag
                 :value="viewingReport.priority"
                 :severity="getPrioritySeverity(viewingReport.priority)"
+              />
+              <Button
+                v-if="archiveListFilter === 'active' && !viewingReport.isArchived"
+                label="Archive"
+                icon="pi pi-inbox"
+                size="small"
+                severity="secondary"
+                outlined
+                :loading="archivingId === viewingReport.id"
+                @click="confirmArchiveReport(viewingReport)"
+                v-tooltip.top="'Hide from main list (still in Archived view)'"
+              />
+              <Button
+                v-if="viewingReport.isArchived"
+                label="Restore"
+                icon="pi pi-replay"
+                size="small"
+                severity="success"
+                outlined
+                :loading="archivingId === viewingReport.id"
+                @click="confirmRestoreReport(viewingReport)"
+                v-tooltip.top="'Return to active reports list'"
+              />
+              <Button
+                icon="pi pi-file-pdf"
+                severity="secondary"
+                rounded
+                outlined
+                size="small"
+                label="Download PDF"
+                :loading="pdfLoadingId === viewingReport.id"
+                @click="downloadReportPdf(viewingReport.id, viewingReport.reportNumber)"
+                v-tooltip.top="'Download report as PDF'"
               />
               <Button
                 icon="pi pi-pencil"
@@ -220,7 +312,7 @@
           <div class="flex flex-wrap items-center gap-2 pb-4 border-b border-gray-200">
             <span class="text-sm font-semibold text-zaccBlack w-full sm:w-auto">Quick status</span>
             <Button
-              v-for="opt in editStatusOptions"
+              v-for="opt in quickStatusOptions"
               :key="opt.value"
               :label="opt.label"
               size="small"
@@ -305,6 +397,26 @@
             </div>
           </div>
 
+          <!-- Voice note -->
+          <div v-if="viewingReport.audioUrl" class="mb-4">
+            <h4 class="font-semibold text-zaccBlack mb-2">Voice note</h4>
+            <audio
+              :src="viewingReport.audioUrl"
+              controls
+              class="w-full max-w-lg"
+              preload="metadata"
+            />
+            <div class="mt-2">
+              <Button
+                label="Open / download"
+                icon="pi pi-download"
+                size="small"
+                outlined
+                @click="downloadFile(viewingReport.audioUrl)"
+              />
+            </div>
+          </div>
+
           <!-- Files -->
           <div v-if="viewingReport.files && viewingReport.files.length > 0">
             <h4 class="font-semibold text-zaccBlack mb-2">Attached Files</h4>
@@ -345,7 +457,7 @@
               >
                 <div class="flex items-center justify-between mb-2">
                   <Tag
-                    :value="formatStatus(update.status)"
+                    :value="formatReportStatus(update.status, update.customStatus)"
                     :severity="getStatusSeverity(update.status)"
                   />
                   <span class="text-xs text-gray-500">{{ formatDateTime(update.createdAt) }}</span>
@@ -381,6 +493,21 @@
               :class="{ 'p-invalid': errors.status }"
             />
             <small v-if="errors.status" class="p-error">{{ errors.status }}</small>
+          </div>
+
+          <div v-if="updateForm.status === 'CUSTOM'">
+            <label for="customStatus" class="block text-sm font-semibold text-zaccBlack mb-2">
+              Custom status label <span class="text-red-500">*</span>
+            </label>
+            <InputText
+              id="customStatus"
+              v-model="updateForm.customStatus"
+              placeholder="e.g. Awaiting witness statement"
+              class="w-full"
+              maxlength="200"
+              :class="{ 'p-invalid': errors.customStatus }"
+            />
+            <small v-if="errors.customStatus" class="p-error">{{ errors.customStatus }}</small>
           </div>
 
           <div>
@@ -476,6 +603,13 @@ const { user, fetch: fetchSession } = useUserSession()
 
 const canAssignUsers = computed(() => user.value?.role !== 'REPORTS_ADMIN')
 const quickUpdating = ref(false)
+const pdfLoadingId = ref<string | null>(null)
+const archivingId = ref<string | null>(null)
+const archiveListFilter = ref<'active' | 'archived'>('active')
+const archiveListOptions = [
+  { label: 'Active reports', value: 'active' },
+  { label: 'Archived reports', value: 'archived' }
+]
 
 // State
 const reports = ref([])
@@ -495,13 +629,15 @@ const filters = ref({
 const updateForm = reactive({
   id: '',
   status: '',
+  customStatus: '',
   priority: '',
   assignedTo: null as string | null,
   notes: ''
 })
 
 const errors = reactive({
-  status: ''
+  status: '',
+  customStatus: ''
 })
 
 const statusOptions = [
@@ -511,7 +647,8 @@ const statusOptions = [
   { label: 'Under Investigation', value: 'UNDER_INVESTIGATION' },
   { label: 'Referred to Prosecution', value: 'REFERRED_TO_PROSECUTION' },
   { label: 'Closed', value: 'CLOSED' },
-  { label: 'Archived', value: 'ARCHIVED' }
+  { label: 'Archived', value: 'ARCHIVED' },
+  { label: 'Custom status', value: 'CUSTOM' }
 ]
 
 // Status options for editing (without "All")
@@ -521,8 +658,14 @@ const editStatusOptions = [
   { label: 'Under Investigation', value: 'UNDER_INVESTIGATION' },
   { label: 'Referred to Prosecution', value: 'REFERRED_TO_PROSECUTION' },
   { label: 'Closed', value: 'CLOSED' },
-  { label: 'Archived', value: 'ARCHIVED' }
+  { label: 'Archived', value: 'ARCHIVED' },
+  { label: 'Custom status', value: 'CUSTOM' }
 ]
+
+/** Preset workflow statuses only — custom must be set from the update dialog with a label. */
+const quickStatusOptions = computed(() =>
+  editStatusOptions.filter((o) => o.value !== 'CUSTOM')
+)
 
 const priorityOptions = [
   { label: 'All', value: null },
@@ -574,6 +717,13 @@ const formatStatus = (status: string) => {
   return status.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
 
+const formatReportStatus = (status: string, customStatus?: string | null) => {
+  if (status === 'CUSTOM' && customStatus?.trim()) {
+    return customStatus.trim()
+  }
+  return formatStatus(status)
+}
+
 const formatCorruptionType = (type: string) => {
   return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
@@ -585,7 +735,8 @@ const getStatusSeverity = (status: string) => {
     UNDER_INVESTIGATION: 'warning',
     REFERRED_TO_PROSECUTION: 'success',
     CLOSED: 'secondary',
-    ARCHIVED: 'secondary'
+    ARCHIVED: 'secondary',
+    CUSTOM: 'info'
   }
   return severityMap[status] || 'secondary'
 }
@@ -607,7 +758,8 @@ const getStatusBorderColor = (status: string) => {
     UNDER_INVESTIGATION: 'border-orange-500',
     REFERRED_TO_PROSECUTION: 'border-green-500',
     CLOSED: 'border-gray-500',
-    ARCHIVED: 'border-gray-400'
+    ARCHIVED: 'border-gray-400',
+    CUSTOM: 'border-violet-500'
   }
   return colorMap[status] || 'border-gray-300'
 }
@@ -630,6 +782,34 @@ const formatFileSize = (bytes: number) => {
 
 const downloadFile = (url: string) => {
   window.open(url, '_blank')
+}
+
+async function downloadReportPdf(reportId: string, reportNumber?: string) {
+  pdfLoadingId.value = reportId
+  try {
+    const blob = await $fetch<Blob>(`/api/reports/${reportId}/pdf`, {
+      responseType: 'blob'
+    })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    const base = (reportNumber || reportId).replace(/[^a-zA-Z0-9-_]+/g, '_')
+    a.download = `ZACC-report-${base}.pdf`
+    a.rel = 'noopener'
+    document.body.appendChild(a)
+    a.click()
+    a.remove()
+    URL.revokeObjectURL(url)
+  } catch (error: any) {
+    toast.add({
+      severity: 'error',
+      summary: 'PDF download failed',
+      detail: error?.data?.message || error?.message || 'Could not generate PDF',
+      life: 4000
+    })
+  } finally {
+    pdfLoadingId.value = null
+  }
 }
 
 const parsePeopleInvolved = (raw: string) => {
@@ -691,6 +871,9 @@ const fetchReports = async () => {
     if (selectedType.value) {
       params.corruptionType = selectedType.value
     }
+    if (archiveListFilter.value === 'archived') {
+      params.archived = 'true'
+    }
 
     const data = await $fetch('/api/reports', { params })
     reports.value = data
@@ -735,10 +918,12 @@ const openViewDialog = async (report: any) => {
 const openEditDialog = (report: any) => {
   updateForm.id = report.id
   updateForm.status = report.status
+  updateForm.customStatus = report.customStatus?.trim() ? report.customStatus : ''
   updateForm.priority = report.priority
   updateForm.assignedTo = report.assignedTo
   updateForm.notes = ''
   errors.status = ''
+  errors.customStatus = ''
   editDialogVisible.value = true
 }
 
@@ -751,20 +936,29 @@ const closeEditDialog = () => {
   editDialogVisible.value = false
   updateForm.id = ''
   updateForm.status = ''
+  updateForm.customStatus = ''
   updateForm.priority = ''
   updateForm.assignedTo = null
   updateForm.notes = ''
   errors.status = ''
+  errors.customStatus = ''
 }
 
 // Update handler
 const handleUpdate = async () => {
+  errors.status = ''
+  errors.customStatus = ''
   if (!updateForm.status) {
     errors.status = 'Status is required'
     return
   }
+  if (updateForm.status === 'CUSTOM' && !updateForm.customStatus?.trim()) {
+    errors.customStatus = 'Enter a label for this custom status'
+    return
+  }
 
   updating.value = true
+  const reportId = updateForm.id
   try {
     const payload: any = {
       status: updateForm.status,
@@ -772,8 +966,13 @@ const handleUpdate = async () => {
       assignedTo: updateForm.assignedTo || null,
       notes: updateForm.notes || null
     }
+    if (updateForm.status === 'CUSTOM') {
+      payload.customStatus = updateForm.customStatus.trim()
+    } else {
+      payload.customStatus = null
+    }
 
-    await $fetch(`/api/reports/${updateForm.id}`, {
+    await $fetch(`/api/reports/${reportId}`, {
       method: 'PUT',
       body: payload
     })
@@ -787,11 +986,10 @@ const handleUpdate = async () => {
 
     await fetchReports()
     closeEditDialog()
-    
-    // If we were viewing a report, refresh it
-    if (viewingReport.value && viewingReport.value.id === updateForm.id) {
+
+    if (viewingReport.value?.id === reportId) {
       try {
-        const data = await $fetch(`/api/reports/${updateForm.id}`)
+        const data = await $fetch(`/api/reports/${reportId}`)
         viewingReport.value = data
       } catch (error: any) {
         console.error('Failed to refresh report:', error)
@@ -852,7 +1050,65 @@ const clearFilters = () => {
   selectedStatus.value = null
   selectedPriority.value = null
   selectedType.value = null
+  archiveListFilter.value = 'active'
   fetchReports()
+}
+
+const confirmArchiveReport = (report: any) => {
+  const num = report.reportNumber ? `${String(report.reportNumber).substring(0, 8)}…` : report.id
+  confirm.require({
+    message: `Archive report #${num}? It will be removed from the active list but you can open Archived reports to find it.`,
+    header: 'Archive report',
+    icon: 'pi pi-inbox',
+    rejectProps: { label: 'Cancel', severity: 'secondary', outlined: true },
+    acceptProps: { label: 'Archive', severity: 'secondary' },
+    accept: () => setReportArchived(report, true)
+  })
+}
+
+const confirmRestoreReport = (report: any) => {
+  confirm.require({
+    message: 'Restore this report to the active list?',
+    header: 'Restore report',
+    icon: 'pi pi-replay',
+    rejectProps: { label: 'Cancel', severity: 'secondary', outlined: true },
+    acceptProps: { label: 'Restore', severity: 'success' },
+    accept: () => setReportArchived(report, false)
+  })
+}
+
+const setReportArchived = async (report: any, isArchived: boolean) => {
+  if (!report?.id) return
+  archivingId.value = report.id
+  try {
+    await $fetch(`/api/reports/${report.id}`, {
+      method: 'PUT',
+      body: { isArchived }
+    })
+    toast.add({
+      severity: 'success',
+      summary: isArchived ? 'Archived' : 'Restored',
+      detail: isArchived ? 'Report hidden from active list.' : 'Report is back on the active list.',
+      life: 3000
+    })
+    await fetchReports()
+    if (viewingReport.value?.id === report.id) {
+      try {
+        viewingReport.value = await $fetch(`/api/reports/${report.id}`)
+      } catch {
+        viewDialogVisible.value = false
+      }
+    }
+  } catch (error: any) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: error.data?.message || error.message || 'Request failed',
+      life: 4000
+    })
+  } finally {
+    archivingId.value = null
+  }
 }
 
 const applyQuickStatus = async (report: any, status: string) => {
@@ -863,7 +1119,7 @@ const applyQuickStatus = async (report: any, status: string) => {
       method: 'PUT',
       body: {
         status,
-        notes: `Status set to ${formatStatus(status)}`
+        notes: `Status set to ${formatReportStatus(status, null)}`
       }
     })
     toast.add({

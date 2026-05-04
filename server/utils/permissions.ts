@@ -4,6 +4,7 @@ import { prisma } from './prisma'
 export const ADMIN_PERMISSION_MODULES = [
   { key: 'dashboard', label: 'Dashboard' },
   { key: 'content', label: 'Content' },
+  { key: 'citizen_hero', label: 'Citizens Action (Hero)' },
   { key: 'news', label: 'News' },
   { key: 'downloads', label: 'Downloads' },
   { key: 'tenders', label: 'Tenders' },

@@ -146,6 +146,7 @@ const userInitials = computed(() => {
 const allMenuItems = [
   { label: 'Dashboard', path: '/admin', icon: 'pi-home' },
   { label: 'Content', path: '/admin/content', icon: 'pi-file-edit' },
+  { label: 'Citizens Action(Hero)', path: '/admin/citizen-hero', icon: 'pi-megaphone' },
   { label: 'News', path: '/admin/news', icon: 'pi-file', badgeKey: 'news' as const },
   { label: 'Downloads', path: '/admin/downloads', icon: 'pi-download' },
   { label: 'Tenders', path: '/admin/tenders', icon: 'pi-file' },
@@ -154,6 +155,7 @@ const allMenuItems = [
   { label: 'Media Library', path: '/admin/gallery', icon: 'pi-images' },
   { label: 'Jobs', path: '/admin/jobs', icon: 'pi-briefcase' },
   { label: 'Reports', path: '/admin/reports', icon: 'pi-flag', badgeKey: 'reports' as const },
+  { label: 'Report analytics', path: '/admin/analytics', icon: 'pi-chart-line' },
   { label: 'Contact Submissions', path: '/admin/contact', icon: 'pi-inbox' },
   { label: 'Statistics', path: '/admin/statistics', icon: 'pi-chart-bar' },
   { label: 'Commissioners', path: '/admin/commissioners', icon: 'pi-users' },
@@ -177,6 +179,11 @@ const menuItems = computed(() => {
         path: '/admin/reports',
         icon: 'pi-flag',
         badge: mapBadge('reports')
+      },
+      {
+        label: 'Report analytics',
+        path: '/admin/analytics',
+        icon: 'pi-chart-line'
       }
     ]
   }
@@ -240,6 +247,12 @@ const userMenuItems = computed(() => {
 const isActive = (path: string) => {
   if (path === '/admin') {
     return route.path === '/admin'
+  }
+  if (path === '/admin/analytics') {
+    return route.path === '/admin/analytics' || route.path.startsWith('/admin/analytics/')
+  }
+  if (path === '/admin/reports') {
+    return route.path === '/admin/reports' || route.path === '/admin/reports/'
   }
   return route.path.startsWith(path)
 }

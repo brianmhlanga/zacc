@@ -160,6 +160,10 @@
               </div>
             </div>
           </div>
+
+          <NuxtLink to="/announcements" class="text-zaccBlack/80 hover:text-zaccGreen py-2">
+            Announcements
+          </NuxtLink>
           
           <!-- News Dropdown -->
           <div
@@ -346,6 +350,7 @@
         <NuxtLink to="/careers" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Vacancies</NuxtLink>
         <NuxtLink to="/downloads" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Downloads</NuxtLink>
         <NuxtLink to="/tenders" class="py-2 pl-6 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Tenders</NuxtLink>
+        <NuxtLink to="/announcements" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Announcements</NuxtLink>
         <NuxtLink to="/report" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Report Corruption</NuxtLink>
         <NuxtLink to="/news" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">News & Updates</NuxtLink>
         <NuxtLink to="/gallery" class="py-2 text-zaccBlack/70 hover:text-zaccBlack" @click="closeMenu">Gallery</NuxtLink>

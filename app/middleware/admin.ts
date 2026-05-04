@@ -27,8 +27,12 @@ export default defineNuxtRouteMiddleware(async (to) => {
       return navigateTo('/admin/login')
     }
 
-    // Reports-only role: only /admin/reports (and nested)
-    if (user.value?.role === 'REPORTS_ADMIN' && !to.path.startsWith('/admin/reports')) {
+    // Reports-only role: reports list + analytics (same data access as reports APIs)
+    const reportsAdminOk =
+      to.path.startsWith('/admin/reports') ||
+      to.path === '/admin/analytics' ||
+      to.path.startsWith('/admin/analytics/')
+    if (user.value?.role === 'REPORTS_ADMIN' && !reportsAdminOk) {
       return navigateTo('/admin/reports')
     }
 
@@ -36,8 +40,10 @@ export default defineNuxtRouteMiddleware(async (to) => {
       await loadPermissions()
       if (!canViewPath(to.path)) {
         const fallbackPaths = [
+          '/admin/analytics',
           '/admin/reports',
           '/admin/content',
+          '/admin/citizen-hero',
           '/admin/news',
           '/admin/downloads',
           '/admin/tenders',

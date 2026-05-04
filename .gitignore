@@ -18,6 +18,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Temp audio for ffmpeg voice masking (server)
+/tmp
+
 # Misc
 .DS_Store
 .fleet

@@ -4,7 +4,17 @@ import { prisma } from '../../utils/prisma'
 const updateDownloadSchema = z.object({
   title: z.string().min(1, 'Title is required').optional(),
   description: z.string().optional().nullable(),
-  category: z.enum(['forms', 'reports', 'policies', 'guidelines', 'publications', 'legal']).optional(),
+  category: z
+    .enum([
+      'forms',
+      'reports',
+      'policies',
+      'guidelines',
+      'publications',
+      'legal',
+      'press_releases'
+    ])
+    .optional(),
   fileType: z.string().min(1, 'File type is required').optional(),
   fileUrl: z.string().min(1, 'File URL is required').optional(),
   fileSize: z.number().int().positive('File size must be positive').optional(),

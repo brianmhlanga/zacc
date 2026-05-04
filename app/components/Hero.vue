@@ -73,7 +73,107 @@
             </div>
           </div>
         </div>
-        <div class="relative"></div>
+        <div class="relative lg:min-h-[420px]">
+          <div
+            v-if="citizenHero.enabled && (citizenHero.items.length > 0 || citizenHero.footerText || citizenHero.footerCta)"
+            class="rounded-2xl border border-zaccGold/50 bg-black/55 p-4 shadow-xl backdrop-blur-md sm:p-5 lg:absolute lg:right-0 lg:top-0 lg:w-full lg:max-w-sm"
+          >
+            <div class="flex items-start gap-2.5 border-b border-white/10 px-0.5 pb-3 sm:gap-3 sm:pb-4">
+              <div
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-zaccGold/60 text-zaccGold sm:h-10 sm:w-10"
+              >
+                <i class="pi pi-users text-base sm:text-lg"></i>
+              </div>
+              <div class="min-w-0 pr-0.5">
+                <h2 class="text-base font-bold text-zaccGold sm:text-lg">{{ citizenHero.title }}</h2>
+                <p v-if="citizenHero.subtitle" class="mt-1 text-xs leading-snug text-white/85 sm:text-sm">
+                  {{ citizenHero.subtitle }}
+                </p>
+              </div>
+            </div>
+
+            <div
+              v-if="citizenHero.items.length > 0"
+              class="citizen-actions-scroll mt-3 max-h-[min(20rem,48vh)] space-y-2.5 overflow-y-auto px-0.5 py-0.5 sm:mt-4 sm:space-y-3"
+            >
+              <div
+                v-for="item in citizenHero.items"
+                :key="item.id"
+                :class="[
+                  'grid min-h-0 overflow-hidden rounded-lg border border-white/10 bg-white/5',
+                  citizenHeroItemHasQr(item)
+                    ? 'grid-cols-[minmax(0,1fr)_minmax(5.25rem,22%)] sm:grid-cols-[minmax(0,1fr)_7.5rem] md:grid-cols-[minmax(0,1fr)_8.5rem]'
+                    : 'grid-cols-1'
+                ]"
+              >
+                <div class="flex min-h-[4rem] min-w-0 gap-2.5 p-2.5 sm:min-h-[4.25rem] sm:gap-3 sm:p-3">
+                  <div
+                    class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm text-white sm:h-10 sm:w-10"
+                    :class="iconToneClass(item.iconTone)"
+                  >
+                    <i :class="`pi pi-${item.iconName || 'users'}`"></i>
+                  </div>
+                  <div class="min-w-0 flex-1 flex flex-col justify-center">
+                    <div class="font-semibold text-sm text-white leading-snug">{{ item.title }}</div>
+                    <p v-if="item.description" class="mt-1 text-xs leading-relaxed text-white/70 line-clamp-2">
+                      {{ item.description }}
+                    </p>
+                    <div class="mt-2 flex flex-wrap items-center gap-2">
+                      <template v-if="item.actionStyle === 'BUTTON' || item.actionStyle === 'BUTTON_QR'">
+                        <component
+                          :is="ctaComponent(item.ctaUrl)"
+                          v-bind="ctaBind(item.ctaUrl)"
+                          class="inline-flex items-center gap-1 rounded-md bg-zaccGold px-3 py-1.5 text-xs font-bold text-zaccBlack hover:bg-zaccGold/90"
+                        >
+                          {{ item.ctaLabel }}
+                          <i class="pi pi-arrow-right text-xs"></i>
+                        </component>
+                      </template>
+                      <template v-else-if="item.actionStyle === 'LINK'">
+                        <component
+                          :is="ctaComponent(item.ctaUrl)"
+                          v-bind="ctaBind(item.ctaUrl)"
+                          class="text-xs font-semibold text-zaccGold hover:underline inline-flex items-center gap-1"
+                        >
+                          {{ item.ctaLabel }}
+                          <i class="pi pi-arrow-right text-xs"></i>
+                        </component>
+                      </template>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  v-if="citizenHeroItemHasQr(item)"
+                  class="relative flex h-full min-h-0 flex-col border-l border-white/10 bg-transparent p-1 sm:p-1.5"
+                >
+                  <img
+                    :src="mediaUrl(item.qrImageUrl!)"
+                    alt=""
+                    class="min-h-0 w-full flex-1 rounded-md object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              v-if="citizenHero.footerText || citizenHero.footerCta"
+              class="mt-3 border-t border-white/10 px-0.5 pt-3 sm:mt-4 sm:pt-4"
+            >
+              <p v-if="citizenHero.footerText" class="text-center text-xs text-white/80">
+                {{ citizenHero.footerText }}
+              </p>
+              <div v-if="citizenHero.footerCta" class="mt-2.5 flex justify-center sm:mt-3">
+                <component
+                  :is="ctaComponent(citizenHero.footerCta.url)"
+                  v-bind="ctaBind(citizenHero.footerCta.url)"
+                  class="inline-flex items-center justify-center rounded-md border border-zaccGold px-5 py-2 text-sm font-semibold text-zaccGold hover:bg-zaccGold/10"
+                >
+                  {{ citizenHero.footerCta.label }}
+                </component>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -82,6 +182,94 @@
 <script setup lang="ts">
 const { startSlideshow } = useHeroSlides()
 const { observeStats } = useCountUp()
+
+const citizenHero = reactive({
+  enabled: false,
+  title: '',
+  subtitle: '',
+  footerText: '',
+  footerCta: null as { label: string; url: string } | null,
+  items: [] as Array<{
+    id: string
+    title: string
+    description: string
+    iconName: string
+    iconTone: string
+    actionStyle: string
+    ctaLabel: string | null
+    ctaUrl: string | null
+    qrImageUrl: string | null
+  }>
+})
+
+function citizenHeroItemHasQr(item: (typeof citizenHero.items)[0]) {
+  return (
+    (item.actionStyle === 'QR' || item.actionStyle === 'BUTTON_QR') &&
+    Boolean(item.qrImageUrl?.trim())
+  )
+}
+
+function iconToneClass(tone: string) {
+  switch (tone) {
+    case 'red':
+      return 'bg-red-900/75'
+    case 'emerald':
+      return 'bg-emerald-900/65'
+    case 'gold':
+      return 'bg-zaccGold/30 text-zaccBlack'
+    default:
+      return 'bg-white/10'
+  }
+}
+
+function isExternal(url: string) {
+  return /^https?:\/\//i.test(url) || url.startsWith('//')
+}
+
+function ctaComponent(url: string | null | undefined) {
+  if (!url || url === '#') return 'span'
+  return isExternal(url) ? 'a' : 'NuxtLink'
+}
+
+function ctaBind(url: string | null | undefined) {
+  if (!url) return {}
+  if (isExternal(url)) {
+    return { href: url, target: '_blank', rel: 'noopener noreferrer' }
+  }
+  return { to: url }
+}
+
+function mediaUrl(url: string) {
+  if (!url) return ''
+  if (url.startsWith('http')) return url
+  if (url.startsWith('/api/')) return url
+  if (url.startsWith('/uploads/')) return `/api${url}`
+  if (url.startsWith('/')) return `/api${url}`
+  return `/api/uploads/${url}`
+}
+
+async function fetchCitizenHero() {
+  try {
+    const data = await $fetch<{
+      enabled: boolean
+      title: string
+      subtitle: string
+      footerText: string
+      footerCta: { label: string; url: string } | null
+      items: typeof citizenHero.items
+    }>('/api/public/citizen-hero')
+    citizenHero.enabled = Boolean(data.enabled)
+    citizenHero.title = data.title || 'Citizen Actions'
+    citizenHero.subtitle = data.subtitle || ''
+    citizenHero.footerText = data.footerText || ''
+    citizenHero.footerCta = data.footerCta
+    citizenHero.items = data.items || []
+  } catch (e) {
+    console.error('Error fetching citizen hero:', e)
+    citizenHero.enabled = false
+    citizenHero.items = []
+  }
+}
 
 const heroSlides = ref<any[]>([])
 const heroContent = ref<any>({
@@ -159,7 +347,8 @@ const fetchData = async () => {
   await Promise.all([
     fetchHeroSlides(),
     fetchHeroContent(),
-    fetchHeroStats()
+    fetchHeroStats(),
+    fetchCitizenHero()
   ])
   loading.value = false
 }
@@ -178,3 +367,21 @@ onMounted(async () => {
   observeStats()
 })
 </script>
+
+<style scoped>
+.citizen-actions-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.7) rgba(255, 255, 255, 0.08);
+}
+.citizen-actions-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.citizen-actions-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+}
+.citizen-actions-scroll::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.65);
+  border-radius: 6px;
+}
+</style>

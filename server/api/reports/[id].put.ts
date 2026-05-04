@@ -1,16 +1,40 @@
 import { z } from 'zod'
 import { prisma } from '../../utils/prisma'
 
-const updateReportSchema = z.object({
-  status: z.enum(['NEW', 'ACKNOWLEDGED', 'UNDER_INVESTIGATION', 'REFERRED_TO_PROSECUTION', 'CLOSED', 'ARCHIVED']).optional(),
-  priority: z.enum(['LOW', 'MEDIUM', 'HIGH', 'URGENT']).optional(),
-  assignedTo: z.string().optional().nullable(),
-  notes: z.string().optional().nullable()
-})
+const statusEnum = z.enum([
+  'NEW',
+  'ACKNOWLEDGED',
+  'UNDER_INVESTIGATION',
+  'REFERRED_TO_PROSECUTION',
+  'CLOSED',
+  'ARCHIVED',
+  'CUSTOM'
+])
+
+const updateReportSchema = z
+  .object({
+    status: statusEnum.optional(),
+    customStatus: z.string().max(200).optional().nullable(),
+    priority: z.enum(['LOW', 'MEDIUM', 'HIGH', 'URGENT']).optional(),
+    assignedTo: z.string().optional().nullable(),
+    notes: z.string().optional().nullable(),
+    isArchived: z.boolean().optional()
+  })
+  .superRefine((data, ctx) => {
+    if (data.status === 'CUSTOM') {
+      const label = data.customStatus?.trim()
+      if (!label) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Enter a label for the custom status',
+          path: ['customStatus']
+        })
+      }
+    }
+  })
 
 export default defineEventHandler(async (event) => {
   try {
-    // Check authentication
     const session = await getUserSession(event)
     if (!session.user) {
       throw createError({
@@ -19,7 +43,6 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // ADMIN, SUPER_ADMIN, EDITOR, and REPORTS_ADMIN can update reports
     if (!['SUPER_ADMIN', 'ADMIN', 'EDITOR', 'REPORTS_ADMIN'].includes(session.user.role)) {
       throw createError({
         statusCode: 403,
@@ -38,7 +61,6 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event)
     const data = updateReportSchema.parse(body)
 
-    // Check if report exists
     const existing = await prisma.corruptionReport.findUnique({
       where: { id }
     })
@@ -50,36 +72,41 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Prepare update data
-    const updateData: any = {}
+    const updateData: Record<string, unknown> = {}
+
     if (data.status !== undefined) {
       updateData.status = data.status
-      
-      // Create status update entry
+      const customTrimmed =
+        data.status === 'CUSTOM' ? (data.customStatus && data.customStatus.trim()) || null : null
+      updateData.customStatus = customTrimmed
+
       await prisma.reportUpdate.create({
         data: {
           reportId: id,
           status: data.status,
+          customStatus: customTrimmed,
           notes: data.notes || null,
           updatedBy: session.user.id
         }
       })
     }
+
     if (data.priority !== undefined) {
       updateData.priority = data.priority
     }
     if (data.assignedTo !== undefined) {
       updateData.assignedTo = data.assignedTo
     }
-    if (data.notes !== undefined && !data.status) {
-      // Only update notes if status is not being updated (to avoid duplicate update entry)
+    if (data.notes !== undefined && data.status === undefined) {
       updateData.notes = data.notes
     }
+    if (data.isArchived !== undefined) {
+      updateData.isArchived = data.isArchived
+    }
 
-    // Update report
     const report = await prisma.corruptionReport.update({
       where: { id },
-      data: updateData,
+      data: updateData as any,
       include: {
         files: {
           orderBy: {
@@ -100,7 +127,6 @@ export default defineEventHandler(async (event) => {
       throw error
     }
 
-    // Handle validation errors
     if (error.issues) {
       throw createError({
         statusCode: 400,
@@ -114,4 +140,3 @@ export default defineEventHandler(async (event) => {
     })
   }
 })
-
