@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     // `ffmpeg-static` puts the binary at install time; Vercel NFT often misses it for `.output`.
     externals: {
       traceInclude: [
-        'ffmpeg-static',
+        // Bare `ffmpeg-static` resolves to `<cwd>/ffmpeg-static` and breaks NFT — use paths under node_modules.
         'node_modules/ffmpeg-static/index.js',
         'node_modules/ffmpeg-static/ffmpeg',
         'node_modules/ffmpeg-static/ffmpeg.exe'
