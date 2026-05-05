@@ -97,16 +97,21 @@ export async function maskVoiceFirstLevel(inputPath: string, outputPath: string)
     )
     stderr = result.stderr
   } catch (err: any) {
-    const msg = err?.stderr?.toString?.() || err?.message || String(err)
+    const stderrStr = err?.stderr?.toString?.()
+    const tail = stderrStr?.slice?.(-900)?.trim?.()
+    if (tail) {
+      console.error('[voiceMaskFfmpeg] ffmpeg stderr (tail):', tail)
+    }
+    const msg = stderrStr || err?.message || String(err)
     const wrapped = new Error(`ffmpeg failed: ${msg}`)
     ;(wrapped as any).cause = err
     throw wrapped
   }
 
   if (stderr && process.env.NODE_ENV === 'development') {
-    const tail = stderr.toString().slice(-400)
-    if (tail.trim()) {
-      console.debug('[voiceMaskFfmpeg] ffmpeg stderr (tail):', tail)
+    const okTail = stderr.toString().slice(-400)
+    if (okTail.trim()) {
+      console.debug('[voiceMaskFfmpeg] ffmpeg stderr (tail):', okTail)
     }
   }
 }

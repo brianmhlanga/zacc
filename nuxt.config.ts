@@ -4,6 +4,12 @@ import Aura from '@primeuix/themes/aura'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
+  nitro: {
+    // `ffmpeg-static` puts the binary at install time; Vercel NFT often misses it for `.output`.
+    externals: {
+      traceInclude: ['node_modules/ffmpeg-static/ffmpeg', 'node_modules/ffmpeg-static/ffmpeg.exe']
+    }
+  },
   modules: [
     '@nuxtjs/tailwindcss',
     '@primevue/nuxt-module',
