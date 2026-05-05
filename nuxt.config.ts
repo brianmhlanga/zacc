@@ -7,7 +7,12 @@ export default defineNuxtConfig({
   nitro: {
     // `ffmpeg-static` puts the binary at install time; Vercel NFT often misses it for `.output`.
     externals: {
-      traceInclude: ['node_modules/ffmpeg-static/ffmpeg', 'node_modules/ffmpeg-static/ffmpeg.exe']
+      traceInclude: [
+        'ffmpeg-static',
+        'node_modules/ffmpeg-static/index.js',
+        'node_modules/ffmpeg-static/ffmpeg',
+        'node_modules/ffmpeg-static/ffmpeg.exe'
+      ]
     }
   },
   modules: [

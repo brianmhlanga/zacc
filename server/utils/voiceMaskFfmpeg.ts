@@ -1,5 +1,6 @@
 import { execFile, execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 import { promisify } from 'node:util'
 import { existsSync } from 'node:fs'
 
@@ -10,18 +11,53 @@ let cachedFfmpegBin: string | null = null
 
 function resolveBundledFfmpeg(): string | null {
   try {
-    const p = require('ffmpeg-static') as string
-    if (typeof p === 'string' && p.length > 0 && existsSync(p)) {
-      return p
+    const pkgJson = require.resolve('ffmpeg-static/package.json')
+    const dir = dirname(pkgJson)
+    const name = process.platform === 'win32' ? 'ffmpeg.exe' : 'ffmpeg'
+    const direct = join(dir, name)
+    if (existsSync(direct)) {
+      return direct
     }
-  } catch {
-    /* optional dependency missing or unsupported platform */
+    try {
+      const exported = require('ffmpeg-static') as string
+      if (typeof exported === 'string' && exported.length > 0 && existsSync(exported)) {
+        return exported
+      }
+    } catch {
+      /* ignore */
+    }
+    console.warn(
+      `[voiceMaskFfmpeg] ffmpeg-static package resolved but binary missing at ${direct}. ` +
+        'If you built on another OS, rebuild on Linux or run `npm install` on this server, or install system ffmpeg.'
+    )
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e)
+    console.warn('[voiceMaskFfmpeg] ffmpeg-static not available:', msg)
+  }
+  return null
+}
+
+/** PM2/systemd often provide a minimal PATH; common locations still work. */
+function resolveWellKnownSystemFfmpeg(): string | null {
+  if (process.platform === 'win32') {
+    return null
+  }
+  const paths = ['/usr/bin/ffmpeg', '/usr/local/bin/ffmpeg', '/snap/bin/ffmpeg']
+  for (const p of paths) {
+    if (!existsSync(p)) continue
+    try {
+      execFileSync(p, ['-hide_banner', '-version'], { stdio: 'ignore' })
+      return p
+    } catch {
+      /* try next */
+    }
   }
   return null
 }
 
 /**
- * Resolve ffmpeg: `FFMPEG_PATH`, then system `ffmpeg` on PATH, then `ffmpeg-static` from npm.
+ * Resolve ffmpeg: `FFMPEG_PATH`, then `ffmpeg` on PATH, then well-known absolute paths,
+ * then `ffmpeg-static` from npm.
  */
 export function getFfmpegBinary(): string {
   if (cachedFfmpegBin) {
@@ -46,6 +82,12 @@ export function getFfmpegBinary(): string {
     }
   }
 
+  const system = resolveWellKnownSystemFfmpeg()
+  if (system) {
+    cachedFfmpegBin = system
+    return cachedFfmpegBin
+  }
+
   const bundled = resolveBundledFfmpeg()
   if (bundled) {
     cachedFfmpegBin = bundled
@@ -53,7 +95,8 @@ export function getFfmpegBinary(): string {
   }
 
   throw new Error(
-    'FFmpeg not found. Install ffmpeg on PATH, set FFMPEG_PATH, or ensure the ffmpeg-static package installed correctly (npm install).'
+    'FFmpeg not found. On the server: `apt install ffmpeg` (or set FFMPEG_PATH to the binary). ' +
+      'If you deploy only .output, build on Linux or run `npm install` inside .output/server on Linux so ffmpeg-static downloads the linux binary.'
   )
 }
 
