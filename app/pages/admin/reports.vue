@@ -401,7 +401,7 @@
           <div v-if="viewingReport.audioUrl" class="mb-4">
             <h4 class="font-semibold text-zaccBlack mb-2">Voice note</h4>
             <audio
-              :src="viewingReport.audioUrl"
+              :src="resolveFileUrl(viewingReport.audioUrl)"
               controls
               class="w-full max-w-lg"
               preload="metadata"
@@ -780,8 +780,16 @@ const formatFileSize = (bytes: number) => {
   return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i]
 }
 
+const resolveFileUrl = (url: string | null | undefined) => {
+  if (!url) return '#'
+  if (url.startsWith('/api/')) return url
+  if (url.startsWith('/uploads/')) return `/api${url}`
+  if (!url.startsWith('/')) return `/api/uploads/${url}`
+  return `/api${url}`
+}
+
 const downloadFile = (url: string) => {
-  window.open(url, '_blank')
+  window.open(resolveFileUrl(url), '_blank')
 }
 
 async function downloadReportPdf(reportId: string, reportNumber?: string) {

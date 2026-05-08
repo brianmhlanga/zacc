@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises'
-import { join } from 'path'
+import { join, normalize, resolve, sep } from 'path'
 import { existsSync } from 'fs'
 
 export default defineEventHandler(async (event) => {
@@ -20,19 +20,27 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Get the filename (last part of the path)
-    const pathParts = pathParam.split('/')
-    const filename = pathParts[pathParts.length - 1]
-    
-    // Additional security: only allow alphanumeric, dots, hyphens, and underscores
-    if (!/^[a-zA-Z0-9._-]+$/.test(filename)) {
+    // Normalize and validate relative path (supports nested folders like reports/audio)
+    const normalizedRelativePath = normalize(pathParam.replace(/\\/g, '/'))
+      .replace(/^\/+/, '')
+
+    if (!normalizedRelativePath || normalizedRelativePath.includes('\0')) {
       throw createError({
         statusCode: 400,
-        statusMessage: 'Invalid file name'
+        statusMessage: 'Invalid file path'
       })
     }
 
-    const filePath = join(process.cwd(), 'uploads', filename)
+    const uploadsRoot = resolve(process.cwd(), 'uploads')
+    const filePath = resolve(uploadsRoot, normalizedRelativePath)
+
+    // Security: ensure resolved path stays within uploads root
+    if (filePath !== uploadsRoot && !filePath.startsWith(uploadsRoot + sep)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Invalid file path'
+      })
+    }
     
     // Check if file exists
     if (!existsSync(filePath)) {
@@ -46,7 +54,7 @@ export default defineEventHandler(async (event) => {
     const fileBuffer = await readFile(filePath)
     
     // Determine content type based on file extension
-    const extension = filename.split('.').pop()?.toLowerCase()
+    const extension = filePath.split('.').pop()?.toLowerCase()
     const contentTypeMap: Record<string, string> = {
       // Images
       'jpg': 'image/jpeg',
