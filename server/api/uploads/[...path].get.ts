@@ -1,5 +1,5 @@
 import { readFile } from 'fs/promises'
-import { join, normalize, resolve, sep } from 'path'
+import { normalize, resolve, sep } from 'path'
 import { existsSync } from 'fs'
 
 export default defineEventHandler(async (event) => {
@@ -31,19 +31,27 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    const uploadsRoot = resolve(process.cwd(), 'uploads')
-    const filePath = resolve(uploadsRoot, normalizedRelativePath)
+    // Reports are currently written to public/uploads/reports, while some legacy uploads
+    // are written to uploads/. Try both roots.
+    const uploadRoots = [resolve(process.cwd(), 'public', 'uploads'), resolve(process.cwd(), 'uploads')]
+    let filePath: string | null = null
 
-    // Security: ensure resolved path stays within uploads root
-    if (filePath !== uploadsRoot && !filePath.startsWith(uploadsRoot + sep)) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Invalid file path'
-      })
+    for (const uploadsRoot of uploadRoots) {
+      const candidate = resolve(uploadsRoot, normalizedRelativePath)
+
+      // Security: ensure resolved path stays within the current uploads root
+      if (candidate !== uploadsRoot && !candidate.startsWith(uploadsRoot + sep)) {
+        continue
+      }
+
+      if (existsSync(candidate)) {
+        filePath = candidate
+        break
+      }
     }
-    
-    // Check if file exists
-    if (!existsSync(filePath)) {
+
+    // Check if file exists in any known uploads root
+    if (!filePath) {
       throw createError({
         statusCode: 404,
         statusMessage: 'File not found'

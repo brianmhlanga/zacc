@@ -181,7 +181,8 @@ export default defineEventHandler(async (event) => {
 
     const report = await createReportWithCaseNumber(reportData)
 
-    const uploadsDir = join(process.cwd(), 'public', 'uploads', 'reports')
+    // Store report attachments/audio in the shared uploads root (no sub-directory).
+    const uploadsDir = join(process.cwd(), 'uploads')
     if (!existsSync(uploadsDir)) {
       await mkdir(uploadsDir, { recursive: true })
     }
@@ -193,7 +194,7 @@ export default defineEventHandler(async (event) => {
 
       const uniqueFileName = `${report.id}-${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${fileExtension}`
       const filePath = join(uploadsDir, uniqueFileName)
-      const fileUrl = `/uploads/reports/${uniqueFileName}`
+      const fileUrl = `/uploads/${uniqueFileName}`
 
       await writeFile(filePath, item.data)
 
@@ -219,7 +220,7 @@ export default defineEventHandler(async (event) => {
     if (audioPart?.data?.length) {
       const outFileName = `${report.id}-audio-${Date.now()}-${Math.random().toString(36).slice(2, 10)}.ogg`
       const outPath = join(uploadsDir, outFileName)
-      const publicUrl = `/uploads/reports/${outFileName}`
+      const publicUrl = `/uploads/${outFileName}`
       const extIn = safeExtension(audioPart.filename || 'recording.webm')
 
       // Client already ran FFmpeg via /voice-preview — store bytes as-is (no raw retained)

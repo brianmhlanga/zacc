@@ -782,7 +782,11 @@ const formatFileSize = (bytes: number) => {
 
 const resolveFileUrl = (url: string | null | undefined) => {
   if (!url) return '#'
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
   if (url.startsWith('/api/')) return url
+  // Backward compatibility for existing stored URLs:
+  // - /uploads/reports/<file> (old)
+  // - /uploads/<file> (new shared folder)
   if (url.startsWith('/uploads/')) return `/api${url}`
   if (!url.startsWith('/')) return `/api/uploads/${url}`
   return `/api${url}`
