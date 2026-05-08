@@ -124,9 +124,9 @@
               </div>
             </template>
 
-            <Column field="reportNumber" header="Report #" sortable>
+            <Column field="reportNumber" header="Report #" sortable style="min-width: 220px">
               <template #body="{ data }">
-                <span class="font-mono text-xs">{{ data.reportNumber.substring(0, 8) }}...</span>
+                <span class="font-mono text-xs whitespace-nowrap">{{ data.reportNumber }}</span>
               </template>
             </Column>
 
@@ -175,7 +175,14 @@
 
             <Column field="_count.files" header="Files" sortable>
               <template #body="{ data }">
-                <span class="font-semibold">{{ data._count?.files || 0 }}</span>
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold">{{ data._count?.files || 0 }}</span>
+                  <i
+                    v-if="data.audioUrl"
+                    class="pi pi-microphone text-zaccGreen"
+                    v-tooltip.top="'Has voice recording'"
+                  />
+                </div>
               </template>
             </Column>
 
