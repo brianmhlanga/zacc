@@ -157,7 +157,7 @@
                 <div class="bg-gradient-to-r from-zaccGreen/10 to-zaccGold/10 px-6 py-4 border-b border-zaccGreen/20">
                   <h2 class="text-2xl font-extrabold mb-2">Send us a message / complaint</h2>
                   <p class="text-sm text-zaccBlack/70">
-                    Compliments, general enquiries, or feedback—use the form below. To report suspected corruption with evidence, use the dedicated reporting channel.
+                    This form is not for reporting corruption. Use it for compliments, general enquiries, or feedback. To report suspected corruption with evidence, use the dedicated reporting channel.
                   </p>
                   <div class="mt-4 flex flex-wrap gap-3">
                     <NuxtLink
@@ -217,6 +217,23 @@
                       placeholder="Select"
                       class="w-full sm:max-w-md"
                     />
+                    <div
+                      v-if="form.category === 'COMPLAINT'"
+                      class="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900"
+                      role="note"
+                    >
+                      <p class="font-semibold">Please note</p>
+                      <p class="mt-1">
+                        This form is not for reporting corruption. Use it for compliments, general enquiries, or feedback. To report suspected corruption with evidence, use the dedicated reporting channel.
+                      </p>
+                      <NuxtLink
+                        to="/report"
+                        class="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-zaccBlack px-4 py-2 text-sm font-semibold text-zaccGold hover:bg-zaccBlack/90"
+                      >
+                        <i class="pi pi-flag"></i>
+                        Report corruption
+                      </NuxtLink>
+                    </div>
                   </div>
 
                   <div class="grid gap-6 sm:grid-cols-2">

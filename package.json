@@ -34,6 +34,7 @@
     "nuxt": "^4.2.2",
     "nuxt-auth-utils": "^0.5.26",
     "nuxt-gtag": "^4.1.0",
+    "nuxt-security": "^2.6.0",
     "pdfkit": "^0.18.0",
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
