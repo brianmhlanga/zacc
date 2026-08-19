@@ -521,6 +521,15 @@
               </template>
             </Column>
 
+            <Column header="Documents">
+              <template #body="{ data }">
+                <span v-if="data.documents?.length" class="inline-flex items-center gap-1 text-zaccBlack">
+                  <i class="pi pi-paperclip text-xs" />{{ data.documents.length }}
+                </span>
+                <span v-else class="text-gray-400">-</span>
+              </template>
+            </Column>
+
             <Column field="status" header="Status" sortable>
               <template #body="{ data }">
                 <Tag
@@ -630,6 +639,37 @@
               outlined
               @click="downloadCV(selectedApplication)"
             />
+          </div>
+
+          <!-- Supporting documents -->
+          <div v-if="selectedApplication.documents?.length">
+            <h4 class="font-semibold text-zaccBlack mb-2">
+              Certificates &amp; Supporting Documents ({{ selectedApplication.documents.length }})
+            </h4>
+            <ul class="space-y-2">
+              <li
+                v-for="doc in selectedApplication.documents"
+                :key="doc.id"
+                class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 bg-gray-50"
+              >
+                <i class="pi pi-file text-zaccGreen" />
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-zaccBlack truncate">{{ doc.fileName }}</p>
+                  <p class="text-xs text-gray-500">
+                    <span v-if="doc.label">{{ doc.label }} &middot; </span>
+                    {{ doc.fileType?.toUpperCase() }} &middot; {{ formatFileSize(doc.fileSize) }}
+                  </p>
+                </div>
+                <Button
+                  label="Download"
+                  icon="pi pi-download"
+                  severity="secondary"
+                  outlined
+                  size="small"
+                  @click="downloadDocument(doc)"
+                />
+              </li>
+            </ul>
           </div>
 
           <!-- Notes -->
@@ -1129,15 +1169,36 @@ const viewApplicationDetails = (application: any) => {
   applicationDetailsDialogVisible.value = true
 }
 
+/**
+ * Uploads are stored outside the public directory and streamed through
+ * /api/uploads/<file>, so stored URLs need the /api prefix before use.
+ */
+const resolveUploadUrl = (url: string | null | undefined) => {
+  if (!url) return null
+  if (url.startsWith('http://') || url.startsWith('https://')) return url
+  if (url.startsWith('/api/')) return url
+  if (url.startsWith('/')) return `/api${url}`
+  return `/api/uploads/${url}`
+}
+
+const formatFileSize = (bytes: number) => {
+  if (!bytes) return null
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
 const downloadCV = (application: any) => {
-  if (application.cvUrl) {
-    const link = document.createElement('a')
-    link.href = application.cvUrl
-    link.target = '_blank'
-    link.download = `${application.name}-CV.pdf`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+  const url = resolveUploadUrl(application?.cvUrl)
+  if (url) {
+    window.open(url, '_blank')
+  }
+}
+
+const downloadDocument = (doc: any) => {
+  const url = resolveUploadUrl(doc?.fileUrl)
+  if (url) {
+    window.open(url, '_blank')
   }
 }
 

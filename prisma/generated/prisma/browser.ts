@@ -173,6 +173,11 @@ export type Job = Prisma.JobModel
  */
 export type JobApplication = Prisma.JobApplicationModel
 /**
+ * Model JobApplicationDocument
+ * 
+ */
+export type JobApplicationDocument = Prisma.JobApplicationDocumentModel
+/**
  * Model CorruptionReport
  * 
  */

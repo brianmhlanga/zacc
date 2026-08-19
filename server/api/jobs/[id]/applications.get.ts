@@ -36,6 +36,11 @@ export default defineEventHandler(async (event) => {
     // Fetch applications
     const applications = await prisma.jobApplication.findMany({
       where,
+      include: {
+        documents: {
+          orderBy: { uploadedAt: 'asc' }
+        }
+      },
       orderBy: [
         { createdAt: 'desc' }
       ]

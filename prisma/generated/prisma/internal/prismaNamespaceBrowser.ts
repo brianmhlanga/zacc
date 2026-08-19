@@ -82,6 +82,7 @@ export const ModelName = {
   TenderBidLineItem: 'TenderBidLineItem',
   Job: 'Job',
   JobApplication: 'JobApplication',
+  JobApplicationDocument: 'JobApplicationDocument',
   CorruptionReport: 'CorruptionReport',
   ReportFile: 'ReportFile',
   ReportUpdate: 'ReportUpdate',
@@ -622,6 +623,20 @@ export const JobApplicationScalarFieldEnum = {
 } as const
 
 export type JobApplicationScalarFieldEnum = (typeof JobApplicationScalarFieldEnum)[keyof typeof JobApplicationScalarFieldEnum]
+
+
+export const JobApplicationDocumentScalarFieldEnum = {
+  id: 'id',
+  applicationId: 'applicationId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileSize: 'fileSize',
+  fileType: 'fileType',
+  label: 'label',
+  uploadedAt: 'uploadedAt'
+} as const
+
+export type JobApplicationDocumentScalarFieldEnum = (typeof JobApplicationDocumentScalarFieldEnum)[keyof typeof JobApplicationDocumentScalarFieldEnum]
 
 
 export const CorruptionReportScalarFieldEnum = {
@@ -1254,6 +1269,18 @@ export const JobApplicationOrderByRelevanceFieldEnum = {
 } as const
 
 export type JobApplicationOrderByRelevanceFieldEnum = (typeof JobApplicationOrderByRelevanceFieldEnum)[keyof typeof JobApplicationOrderByRelevanceFieldEnum]
+
+
+export const JobApplicationDocumentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  applicationId: 'applicationId',
+  fileName: 'fileName',
+  fileUrl: 'fileUrl',
+  fileType: 'fileType',
+  label: 'label'
+} as const
+
+export type JobApplicationDocumentOrderByRelevanceFieldEnum = (typeof JobApplicationDocumentOrderByRelevanceFieldEnum)[keyof typeof JobApplicationDocumentOrderByRelevanceFieldEnum]
 
 
 export const CorruptionReportOrderByRelevanceFieldEnum = {

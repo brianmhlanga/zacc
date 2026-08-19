@@ -444,6 +444,56 @@
             <small class="text-zaccBlack/60">PDF, DOC, or DOCX format. Maximum 5MB.</small>
           </div>
 
+          <div>
+            <label class="block text-sm font-semibold text-zaccBlack mb-2">
+              Certificates &amp; Supporting Documents
+            </label>
+            <FileUpload
+              mode="basic"
+              name="documents"
+              :multiple="true"
+              accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+              :maxFileSize="5000000"
+              :auto="false"
+              chooseLabel="Add Documents"
+              @select="onDocumentsSelect"
+              class="w-full"
+            />
+            <small class="text-zaccBlack/60">
+              Optional. Attach academic certificates, professional qualifications, national ID or
+              reference letters. PDF, DOC, DOCX, JPG or PNG. Maximum 5MB each, up to 10 files.
+            </small>
+
+            <ul v-if="applicationForm.documents.length" class="mt-3 space-y-2">
+              <li
+                v-for="(doc, index) in applicationForm.documents"
+                :key="`${doc.file.name}-${index}`"
+                class="flex items-center gap-3 p-2 rounded-lg border border-gray-200 bg-gray-50"
+              >
+                <i class="pi pi-file text-zaccGreen" />
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-zaccBlack truncate">{{ doc.file.name }}</p>
+                  <p class="text-xs text-zaccBlack/60">{{ formatFileSize(doc.file.size) }}</p>
+                </div>
+                <Dropdown
+                  v-model="doc.label"
+                  :options="documentLabelOptions"
+                  placeholder="Document type"
+                  class="w-44"
+                />
+                <Button
+                  type="button"
+                  icon="pi pi-times"
+                  severity="danger"
+                  text
+                  rounded
+                  aria-label="Remove document"
+                  @click="removeDocument(index)"
+                />
+              </li>
+            </ul>
+          </div>
+
           <div class="flex items-center justify-between pt-4 border-t">
             <div class="text-sm text-zaccBlack/70">
               <span class="text-red-500">*</span> Required fields
@@ -517,8 +567,20 @@ const applicationForm = reactive({
   qualification: '',
   experience: null,
   coverLetter: '',
-  cv: null
+  cv: null,
+  documents: [] as Array<{ file: File; label: string | null }>
 })
+
+const MAX_DOCUMENTS = 10
+const MAX_FILE_BYTES = 5 * 1024 * 1024
+
+const documentLabelOptions = [
+  'Academic Certificate',
+  'Professional Qualification',
+  'National ID / Passport',
+  'Reference Letter',
+  'Other'
+]
 
 // Fetch jobs from API
 const fetchJobs = async () => {
@@ -599,7 +661,8 @@ const applyForJob = (job) => {
     qualification: '',
     experience: null,
     coverLetter: '',
-    cv: null
+    cv: null,
+    documents: []
   })
   applicationSubmitted.value = false
 }
@@ -613,6 +676,50 @@ const onCVSelect = (event) => {
     }
     applicationForm.cv = file
   }
+}
+
+const formatFileSize = (bytes: number) => {
+  if (bytes < 1024) return `${bytes} B`
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+}
+
+const onDocumentsSelect = (event) => {
+  const selected: File[] = Array.from(event.files || [])
+
+  for (const file of selected) {
+    if (file.size > MAX_FILE_BYTES) {
+      toast.add({
+        severity: 'warn',
+        summary: 'File too large',
+        detail: `${file.name} is larger than 5MB and was not attached.`,
+        life: 5000
+      })
+      continue
+    }
+
+    // PrimeVue basic mode re-emits the whole selection, so skip duplicates.
+    const alreadyAttached = applicationForm.documents.some(
+      (doc) => doc.file.name === file.name && doc.file.size === file.size
+    )
+    if (alreadyAttached) continue
+
+    if (applicationForm.documents.length >= MAX_DOCUMENTS) {
+      toast.add({
+        severity: 'warn',
+        summary: 'Too many documents',
+        detail: `You can attach at most ${MAX_DOCUMENTS} supporting documents.`,
+        life: 5000
+      })
+      break
+    }
+
+    applicationForm.documents.push({ file, label: null })
+  }
+}
+
+const removeDocument = (index: number) => {
+  applicationForm.documents.splice(index, 1)
 }
 
 const handleApplicationSubmit = async () => {
@@ -642,6 +749,12 @@ const handleApplicationSubmit = async () => {
       formData.append('cv', applicationForm.cv)
     }
 
+    // Labels are sent in the same order as the files so the server can pair them.
+    for (const doc of applicationForm.documents) {
+      formData.append('documents', doc.file)
+      formData.append('documentLabels', doc.label || '')
+    }
+
     const response = await $fetch('/api/public/jobs/apply', {
       method: 'POST',
       body: formData
@@ -664,7 +777,8 @@ const handleApplicationSubmit = async () => {
       qualification: '',
       experience: null,
       coverLetter: '',
-      cv: null
+      cv: null,
+      documents: []
     })
     applicationSubmitted.value = false
 

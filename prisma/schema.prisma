@@ -718,10 +718,31 @@ model JobApplication {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
+  /** Certificates, qualifications, IDs and other supporting documents. */
+  documents     JobApplicationDocument[]
+
   @@map("job_applications")
   @@index([jobId])
   @@index([status])
   @@index([email])
+}
+
+model JobApplicationDocument {
+  id            String   @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  /** Original filename as uploaded by the applicant. */
+  fileName      String
+  /** Stored in the shared uploads root, served through /api/uploads/<file>. */
+  fileUrl       String
+  fileSize      Int
+  fileType      String
+  /** Applicant-chosen document category, e.g. "Certificate". */
+  label         String?
+  uploadedAt    DateTime @default(now())
+
+  @@map("job_application_documents")
+  @@index([applicationId])
 }
 
 enum ApplicationStatus {
