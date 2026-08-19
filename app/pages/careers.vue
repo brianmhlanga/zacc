@@ -275,7 +275,10 @@
 
         <div class="prose max-w-none">
           <h4 class="font-extrabold text-lg mb-3">Job Description</h4>
-          <p class="text-zaccBlack/80 leading-relaxed mb-6">{{ selectedJob.description }}</p>
+          <div
+            class="text-zaccBlack/80 leading-relaxed mb-6 rich-text"
+            v-html="selectedJob.description"
+          ></div>
 
           <h4 class="font-extrabold text-lg mb-3">Key Requirements</h4>
           <ul class="space-y-2 mb-6">
