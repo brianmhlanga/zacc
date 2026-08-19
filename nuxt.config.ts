@@ -2,10 +2,31 @@
 import Aura from '@primeuix/themes/aura'
 
 /** Allow large multipart bodies (reports, uploads, voice notes). */
-const uploadRouteSecurity = {
+const uploadSecurity = {
   requestSizeLimiter: false,
   xssValidator: false,
 } as const
+
+/**
+ * Rate limit budget per IP per 5 minutes.
+ *
+ * nuxt-security keys its counter by `ip + matched route rule`, so a limit set
+ * globally puts every page view, JS chunk, stylesheet and image into one shared
+ * bucket — a single page load spends dozens of tokens and visitors start seeing
+ * 429s while simply browsing. Limits therefore belong on individual endpoints.
+ */
+const rateLimit = (tokensPerInterval: number) => ({
+  rateLimiter: {
+    tokensPerInterval,
+    interval: 300_000,
+    throwError: true,
+  },
+})
+
+/** nuxt-security only reads route rules nested under a `security` key. */
+const secure = (...parts: Record<string, unknown>[]) => ({
+  security: Object.assign({}, ...parts),
+})
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -89,11 +110,8 @@ export default defineNuxtConfig({
             payment: [],
           },
         },
-        rateLimiter: {
-          tokensPerInterval: 100,
-          interval: 300000,
-          throwError: true,
-        },
+        // Applied per route below, never globally — see the `rateLimit` helper.
+        rateLimiter: false,
         requestSizeLimiter: {
           maxRequestSizeInBytes: 2_000_000,
           maxUploadFileRequestInBytes: 55_000_000,
@@ -123,15 +141,17 @@ export default defineNuxtConfig({
         },
       },
     },
-    '/api/upload/**': uploadRouteSecurity,
-    '/api/public/reports': uploadRouteSecurity,
-    '/api/public/reports/**': uploadRouteSecurity,
-    '/api/public/jobs/apply': uploadRouteSecurity,
-    '/api/public/contact': {
-      security: {
-        xssValidator: false,
-      },
-    },
+    '/api/upload/**': secure(uploadSecurity),
+    '/api/public/reports': secure(uploadSecurity, rateLimit(10)),
+    '/api/public/reports/track': secure(rateLimit(30)),
+    '/api/public/reports/voice-preview': secure(uploadSecurity, rateLimit(30)),
+    '/api/public/reports/**': secure(uploadSecurity),
+    '/api/public/jobs/apply': secure(uploadSecurity, rateLimit(10)),
+    '/api/public/suppliers/documents': secure(uploadSecurity, rateLimit(20)),
+    '/api/public/suppliers/register': secure(rateLimit(5)),
+    '/api/public/suppliers/login': secure(rateLimit(10)),
+    '/api/auth/login': secure(rateLimit(10)),
+    '/api/public/contact': secure({ xssValidator: false }, rateLimit(10)),
     '/api/content/**': {
       security: {
         xssValidator: false,
