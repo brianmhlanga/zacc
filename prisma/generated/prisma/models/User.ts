@@ -228,6 +228,11 @@ export type UserWhereInput = {
   updatedGalleryImages?: Prisma.GalleryImageListRelationFilter
   createdTenders?: Prisma.TenderListRelationFilter
   updatedTenders?: Prisma.TenderListRelationFilter
+  panelMemberships?: Prisma.VacancyPanelMemberListRelationFilter
+  panelScores?: Prisma.ApplicationPanelScoreListRelationFilter
+  applicationReviews?: Prisma.ApplicationReviewListRelationFilter
+  createdScoringTemplates?: Prisma.ScoringTemplateListRelationFilter
+  updatedScoringTemplates?: Prisma.ScoringTemplateListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -254,6 +259,11 @@ export type UserOrderByWithRelationInput = {
   updatedGalleryImages?: Prisma.GalleryImageOrderByRelationAggregateInput
   createdTenders?: Prisma.TenderOrderByRelationAggregateInput
   updatedTenders?: Prisma.TenderOrderByRelationAggregateInput
+  panelMemberships?: Prisma.VacancyPanelMemberOrderByRelationAggregateInput
+  panelScores?: Prisma.ApplicationPanelScoreOrderByRelationAggregateInput
+  applicationReviews?: Prisma.ApplicationReviewOrderByRelationAggregateInput
+  createdScoringTemplates?: Prisma.ScoringTemplateOrderByRelationAggregateInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -284,6 +294,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedGalleryImages?: Prisma.GalleryImageListRelationFilter
   createdTenders?: Prisma.TenderListRelationFilter
   updatedTenders?: Prisma.TenderListRelationFilter
+  panelMemberships?: Prisma.VacancyPanelMemberListRelationFilter
+  panelScores?: Prisma.ApplicationPanelScoreListRelationFilter
+  applicationReviews?: Prisma.ApplicationReviewListRelationFilter
+  createdScoringTemplates?: Prisma.ScoringTemplateListRelationFilter
+  updatedScoringTemplates?: Prisma.ScoringTemplateListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -340,6 +355,11 @@ export type UserCreateInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -366,6 +386,11 @@ export type UserUncheckedCreateInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUpdateInput = {
@@ -392,6 +417,11 @@ export type UserUpdateInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -418,6 +448,11 @@ export type UserUncheckedUpdateInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -501,6 +536,11 @@ export type UserMinOrderByAggregateInput = {
 export type UserNullableScalarRelationFilter = {
   is?: Prisma.UserWhereInput | null
   isNot?: Prisma.UserWhereInput | null
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -751,6 +791,80 @@ export type UserUpdateOneWithoutUpdatedJobsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUpdatedJobsInput, Prisma.UserUpdateWithoutUpdatedJobsInput>, Prisma.UserUncheckedUpdateWithoutUpdatedJobsInput>
 }
 
+export type UserCreateNestedOneWithoutPanelMembershipsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPanelMembershipsInput, Prisma.UserUncheckedCreateWithoutPanelMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPanelMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPanelMembershipsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPanelMembershipsInput, Prisma.UserUncheckedCreateWithoutPanelMembershipsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPanelMembershipsInput
+  upsert?: Prisma.UserUpsertWithoutPanelMembershipsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPanelMembershipsInput, Prisma.UserUpdateWithoutPanelMembershipsInput>, Prisma.UserUncheckedUpdateWithoutPanelMembershipsInput>
+}
+
+export type UserCreateNestedOneWithoutCreatedScoringTemplatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutCreatedScoringTemplatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedScoringTemplatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutUpdatedScoringTemplatesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutUpdatedScoringTemplatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedScoringTemplatesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutCreatedScoringTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutCreatedScoringTemplatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedScoringTemplatesInput
+  upsert?: Prisma.UserUpsertWithoutCreatedScoringTemplatesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedScoringTemplatesInput, Prisma.UserUpdateWithoutCreatedScoringTemplatesInput>, Prisma.UserUncheckedUpdateWithoutCreatedScoringTemplatesInput>
+}
+
+export type UserUpdateOneWithoutUpdatedScoringTemplatesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutUpdatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutUpdatedScoringTemplatesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutUpdatedScoringTemplatesInput
+  upsert?: Prisma.UserUpsertWithoutUpdatedScoringTemplatesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutUpdatedScoringTemplatesInput, Prisma.UserUpdateWithoutUpdatedScoringTemplatesInput>, Prisma.UserUncheckedUpdateWithoutUpdatedScoringTemplatesInput>
+}
+
+export type UserCreateNestedOneWithoutPanelScoresInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPanelScoresInput, Prisma.UserUncheckedCreateWithoutPanelScoresInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPanelScoresInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPanelScoresNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPanelScoresInput, Prisma.UserUncheckedCreateWithoutPanelScoresInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPanelScoresInput
+  upsert?: Prisma.UserUpsertWithoutPanelScoresInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPanelScoresInput, Prisma.UserUpdateWithoutPanelScoresInput>, Prisma.UserUncheckedUpdateWithoutPanelScoresInput>
+}
+
+export type UserCreateNestedOneWithoutApplicationReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationReviewsInput, Prisma.UserUncheckedCreateWithoutApplicationReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutApplicationReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutApplicationReviewsInput, Prisma.UserUncheckedCreateWithoutApplicationReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutApplicationReviewsInput
+  upsert?: Prisma.UserUpsertWithoutApplicationReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutApplicationReviewsInput, Prisma.UserUpdateWithoutApplicationReviewsInput>, Prisma.UserUncheckedUpdateWithoutApplicationReviewsInput>
+}
+
 export type UserCreateWithoutCreatedPageContentInput = {
   id?: string
   email: string
@@ -774,6 +888,11 @@ export type UserCreateWithoutCreatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedPageContentInput = {
@@ -799,6 +918,11 @@ export type UserUncheckedCreateWithoutCreatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedPageContentInput = {
@@ -829,6 +953,11 @@ export type UserCreateWithoutUpdatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedPageContentInput = {
@@ -854,6 +983,11 @@ export type UserUncheckedCreateWithoutUpdatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedPageContentInput = {
@@ -895,6 +1029,11 @@ export type UserUpdateWithoutCreatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedPageContentInput = {
@@ -920,6 +1059,11 @@ export type UserUncheckedUpdateWithoutCreatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedPageContentInput = {
@@ -956,6 +1100,11 @@ export type UserUpdateWithoutUpdatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedPageContentInput = {
@@ -981,6 +1130,11 @@ export type UserUncheckedUpdateWithoutUpdatedPageContentInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedNewsInput = {
@@ -1006,6 +1160,11 @@ export type UserCreateWithoutCreatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedNewsInput = {
@@ -1031,6 +1190,11 @@ export type UserUncheckedCreateWithoutCreatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedNewsInput = {
@@ -1061,6 +1225,11 @@ export type UserCreateWithoutUpdatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedNewsInput = {
@@ -1086,6 +1255,11 @@ export type UserUncheckedCreateWithoutUpdatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedNewsInput = {
@@ -1127,6 +1301,11 @@ export type UserUpdateWithoutCreatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedNewsInput = {
@@ -1152,6 +1331,11 @@ export type UserUncheckedUpdateWithoutCreatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedNewsInput = {
@@ -1188,6 +1372,11 @@ export type UserUpdateWithoutUpdatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedNewsInput = {
@@ -1213,6 +1402,11 @@ export type UserUncheckedUpdateWithoutUpdatedNewsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedDownloadsInput = {
@@ -1238,6 +1432,11 @@ export type UserCreateWithoutCreatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedDownloadsInput = {
@@ -1263,6 +1462,11 @@ export type UserUncheckedCreateWithoutCreatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedDownloadsInput = {
@@ -1293,6 +1497,11 @@ export type UserCreateWithoutUpdatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedDownloadsInput = {
@@ -1318,6 +1527,11 @@ export type UserUncheckedCreateWithoutUpdatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedDownloadsInput = {
@@ -1359,6 +1573,11 @@ export type UserUpdateWithoutCreatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedDownloadsInput = {
@@ -1384,6 +1603,11 @@ export type UserUncheckedUpdateWithoutCreatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedDownloadsInput = {
@@ -1420,6 +1644,11 @@ export type UserUpdateWithoutUpdatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedDownloadsInput = {
@@ -1445,6 +1674,11 @@ export type UserUncheckedUpdateWithoutUpdatedDownloadsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedRulingsInput = {
@@ -1470,6 +1704,11 @@ export type UserCreateWithoutCreatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedRulingsInput = {
@@ -1495,6 +1734,11 @@ export type UserUncheckedCreateWithoutCreatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedRulingsInput = {
@@ -1525,6 +1769,11 @@ export type UserCreateWithoutUpdatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedRulingsInput = {
@@ -1550,6 +1799,11 @@ export type UserUncheckedCreateWithoutUpdatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedRulingsInput = {
@@ -1591,6 +1845,11 @@ export type UserUpdateWithoutCreatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedRulingsInput = {
@@ -1616,6 +1875,11 @@ export type UserUncheckedUpdateWithoutCreatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedRulingsInput = {
@@ -1652,6 +1916,11 @@ export type UserUpdateWithoutUpdatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedRulingsInput = {
@@ -1677,6 +1946,11 @@ export type UserUncheckedUpdateWithoutUpdatedRulingsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedGalleryImagesInput = {
@@ -1702,6 +1976,11 @@ export type UserCreateWithoutCreatedGalleryImagesInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedGalleryImagesInput = {
@@ -1727,6 +2006,11 @@ export type UserUncheckedCreateWithoutCreatedGalleryImagesInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedGalleryImagesInput = {
@@ -1757,6 +2041,11 @@ export type UserCreateWithoutUpdatedGalleryImagesInput = {
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedGalleryImagesInput = {
@@ -1782,6 +2071,11 @@ export type UserUncheckedCreateWithoutUpdatedGalleryImagesInput = {
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedGalleryImagesInput = {
@@ -1823,6 +2117,11 @@ export type UserUpdateWithoutCreatedGalleryImagesInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedGalleryImagesInput = {
@@ -1848,6 +2147,11 @@ export type UserUncheckedUpdateWithoutCreatedGalleryImagesInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedGalleryImagesInput = {
@@ -1884,6 +2188,11 @@ export type UserUpdateWithoutUpdatedGalleryImagesInput = {
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedGalleryImagesInput = {
@@ -1909,6 +2218,11 @@ export type UserUncheckedUpdateWithoutUpdatedGalleryImagesInput = {
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedTendersInput = {
@@ -1934,6 +2248,11 @@ export type UserCreateWithoutCreatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedTendersInput = {
@@ -1959,6 +2278,11 @@ export type UserUncheckedCreateWithoutCreatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedTendersInput = {
@@ -1989,6 +2313,11 @@ export type UserCreateWithoutUpdatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedTendersInput = {
@@ -2014,6 +2343,11 @@ export type UserUncheckedCreateWithoutUpdatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedTendersInput = {
@@ -2055,6 +2389,11 @@ export type UserUpdateWithoutCreatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedTendersInput = {
@@ -2080,6 +2419,11 @@ export type UserUncheckedUpdateWithoutCreatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedTendersInput = {
@@ -2116,6 +2460,11 @@ export type UserUpdateWithoutUpdatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedTendersInput = {
@@ -2141,6 +2490,11 @@ export type UserUncheckedUpdateWithoutUpdatedTendersInput = {
   createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserCreateWithoutCreatedJobsInput = {
@@ -2166,6 +2520,11 @@ export type UserCreateWithoutCreatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutCreatedJobsInput = {
@@ -2191,6 +2550,11 @@ export type UserUncheckedCreateWithoutCreatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutCreatedJobsInput = {
@@ -2221,6 +2585,11 @@ export type UserCreateWithoutUpdatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserUncheckedCreateWithoutUpdatedJobsInput = {
@@ -2246,6 +2615,11 @@ export type UserUncheckedCreateWithoutUpdatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
   createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
   updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
 }
 
 export type UserCreateOrConnectWithoutUpdatedJobsInput = {
@@ -2287,6 +2661,11 @@ export type UserUpdateWithoutCreatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedJobsInput = {
@@ -2312,6 +2691,11 @@ export type UserUncheckedUpdateWithoutCreatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUpsertWithoutUpdatedJobsInput = {
@@ -2348,6 +2732,11 @@ export type UserUpdateWithoutUpdatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
 }
 
 export type UserUncheckedUpdateWithoutUpdatedJobsInput = {
@@ -2373,6 +2762,691 @@ export type UserUncheckedUpdateWithoutUpdatedJobsInput = {
   updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
   createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
   updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserCreateWithoutPanelMembershipsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserUncheckedCreateWithoutPanelMembershipsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserCreateOrConnectWithoutPanelMembershipsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPanelMembershipsInput, Prisma.UserUncheckedCreateWithoutPanelMembershipsInput>
+}
+
+export type UserUpsertWithoutPanelMembershipsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPanelMembershipsInput, Prisma.UserUncheckedUpdateWithoutPanelMembershipsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPanelMembershipsInput, Prisma.UserUncheckedCreateWithoutPanelMembershipsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPanelMembershipsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPanelMembershipsInput, Prisma.UserUncheckedUpdateWithoutPanelMembershipsInput>
+}
+
+export type UserUpdateWithoutPanelMembershipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPanelMembershipsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserCreateWithoutCreatedScoringTemplatesInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserUncheckedCreateWithoutCreatedScoringTemplatesInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserCreateOrConnectWithoutCreatedScoringTemplatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutCreatedScoringTemplatesInput>
+}
+
+export type UserCreateWithoutUpdatedScoringTemplatesInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+}
+
+export type UserUncheckedCreateWithoutUpdatedScoringTemplatesInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+}
+
+export type UserCreateOrConnectWithoutUpdatedScoringTemplatesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutUpdatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutUpdatedScoringTemplatesInput>
+}
+
+export type UserUpsertWithoutCreatedScoringTemplatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedScoringTemplatesInput, Prisma.UserUncheckedUpdateWithoutCreatedScoringTemplatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutCreatedScoringTemplatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCreatedScoringTemplatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedScoringTemplatesInput, Prisma.UserUncheckedUpdateWithoutCreatedScoringTemplatesInput>
+}
+
+export type UserUpdateWithoutCreatedScoringTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCreatedScoringTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUpsertWithoutUpdatedScoringTemplatesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutUpdatedScoringTemplatesInput, Prisma.UserUncheckedUpdateWithoutUpdatedScoringTemplatesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutUpdatedScoringTemplatesInput, Prisma.UserUncheckedCreateWithoutUpdatedScoringTemplatesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutUpdatedScoringTemplatesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutUpdatedScoringTemplatesInput, Prisma.UserUncheckedUpdateWithoutUpdatedScoringTemplatesInput>
+}
+
+export type UserUpdateWithoutUpdatedScoringTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutUpdatedScoringTemplatesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+}
+
+export type UserCreateWithoutPanelScoresInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  applicationReviews?: Prisma.ApplicationReviewCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserUncheckedCreateWithoutPanelScoresInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserCreateOrConnectWithoutPanelScoresInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPanelScoresInput, Prisma.UserUncheckedCreateWithoutPanelScoresInput>
+}
+
+export type UserUpsertWithoutPanelScoresInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPanelScoresInput, Prisma.UserUncheckedUpdateWithoutPanelScoresInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPanelScoresInput, Prisma.UserUncheckedCreateWithoutPanelScoresInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPanelScoresInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPanelScoresInput, Prisma.UserUncheckedUpdateWithoutPanelScoresInput>
+}
+
+export type UserUpdateWithoutPanelScoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPanelScoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  applicationReviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserCreateWithoutApplicationReviewsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserUncheckedCreateWithoutApplicationReviewsInput = {
+  id?: string
+  email: string
+  name?: string | null
+  passwordHash: string
+  role?: $Enums.UserRole
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  createdPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutCreatorInput
+  updatedPageContent?: Prisma.PageContentUncheckedCreateNestedManyWithoutUpdaterInput
+  createdNews?: Prisma.NewsUncheckedCreateNestedManyWithoutCreatorInput
+  updatedNews?: Prisma.NewsUncheckedCreateNestedManyWithoutUpdaterInput
+  createdRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutCreatorInput
+  updatedRulings?: Prisma.RulingUncheckedCreateNestedManyWithoutUpdaterInput
+  createdJobs?: Prisma.JobUncheckedCreateNestedManyWithoutCreatorInput
+  updatedJobs?: Prisma.JobUncheckedCreateNestedManyWithoutUpdaterInput
+  createdDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutCreatorInput
+  updatedDownloads?: Prisma.DownloadUncheckedCreateNestedManyWithoutUpdaterInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutCreatorInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedCreateNestedManyWithoutUpdaterInput
+  createdTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutCreatorInput
+  updatedTenders?: Prisma.TenderUncheckedCreateNestedManyWithoutUpdaterInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedCreateNestedManyWithoutUserInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutReviewerInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutCreatorInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedCreateNestedManyWithoutUpdaterInput
+}
+
+export type UserCreateOrConnectWithoutApplicationReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutApplicationReviewsInput, Prisma.UserUncheckedCreateWithoutApplicationReviewsInput>
+}
+
+export type UserUpsertWithoutApplicationReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutApplicationReviewsInput, Prisma.UserUncheckedUpdateWithoutApplicationReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutApplicationReviewsInput, Prisma.UserUncheckedCreateWithoutApplicationReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutApplicationReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutApplicationReviewsInput, Prisma.UserUncheckedUpdateWithoutApplicationReviewsInput>
+}
+
+export type UserUpdateWithoutApplicationReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUpdateManyWithoutUpdaterNestedInput
+}
+
+export type UserUncheckedUpdateWithoutApplicationReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedPageContent?: Prisma.PageContentUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdNews?: Prisma.NewsUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedNews?: Prisma.NewsUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdRulings?: Prisma.RulingUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedRulings?: Prisma.RulingUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdJobs?: Prisma.JobUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedJobs?: Prisma.JobUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedDownloads?: Prisma.DownloadUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedGalleryImages?: Prisma.GalleryImageUncheckedUpdateManyWithoutUpdaterNestedInput
+  createdTenders?: Prisma.TenderUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedTenders?: Prisma.TenderUncheckedUpdateManyWithoutUpdaterNestedInput
+  panelMemberships?: Prisma.VacancyPanelMemberUncheckedUpdateManyWithoutUserNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutReviewerNestedInput
+  createdScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutCreatorNestedInput
+  updatedScoringTemplates?: Prisma.ScoringTemplateUncheckedUpdateManyWithoutUpdaterNestedInput
 }
 
 
@@ -2395,6 +3469,11 @@ export type UserCountOutputType = {
   updatedGalleryImages: number
   createdTenders: number
   updatedTenders: number
+  panelMemberships: number
+  panelScores: number
+  applicationReviews: number
+  createdScoringTemplates: number
+  updatedScoringTemplates: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2412,6 +3491,11 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   updatedGalleryImages?: boolean | UserCountOutputTypeCountUpdatedGalleryImagesArgs
   createdTenders?: boolean | UserCountOutputTypeCountCreatedTendersArgs
   updatedTenders?: boolean | UserCountOutputTypeCountUpdatedTendersArgs
+  panelMemberships?: boolean | UserCountOutputTypeCountPanelMembershipsArgs
+  panelScores?: boolean | UserCountOutputTypeCountPanelScoresArgs
+  applicationReviews?: boolean | UserCountOutputTypeCountApplicationReviewsArgs
+  createdScoringTemplates?: boolean | UserCountOutputTypeCountCreatedScoringTemplatesArgs
+  updatedScoringTemplates?: boolean | UserCountOutputTypeCountUpdatedScoringTemplatesArgs
 }
 
 /**
@@ -2522,6 +3606,41 @@ export type UserCountOutputTypeCountUpdatedTendersArgs<ExtArgs extends runtime.T
   where?: Prisma.TenderWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPanelMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VacancyPanelMemberWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPanelScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationPanelScoreWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountApplicationReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationReviewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCreatedScoringTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScoringTemplateWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountUpdatedScoringTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScoringTemplateWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2547,6 +3666,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedGalleryImages?: boolean | Prisma.User$updatedGalleryImagesArgs<ExtArgs>
   createdTenders?: boolean | Prisma.User$createdTendersArgs<ExtArgs>
   updatedTenders?: boolean | Prisma.User$updatedTendersArgs<ExtArgs>
+  panelMemberships?: boolean | Prisma.User$panelMembershipsArgs<ExtArgs>
+  panelScores?: boolean | Prisma.User$panelScoresArgs<ExtArgs>
+  applicationReviews?: boolean | Prisma.User$applicationReviewsArgs<ExtArgs>
+  createdScoringTemplates?: boolean | Prisma.User$createdScoringTemplatesArgs<ExtArgs>
+  updatedScoringTemplates?: boolean | Prisma.User$updatedScoringTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2580,6 +3704,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedGalleryImages?: boolean | Prisma.User$updatedGalleryImagesArgs<ExtArgs>
   createdTenders?: boolean | Prisma.User$createdTendersArgs<ExtArgs>
   updatedTenders?: boolean | Prisma.User$updatedTendersArgs<ExtArgs>
+  panelMemberships?: boolean | Prisma.User$panelMembershipsArgs<ExtArgs>
+  panelScores?: boolean | Prisma.User$panelScoresArgs<ExtArgs>
+  applicationReviews?: boolean | Prisma.User$applicationReviewsArgs<ExtArgs>
+  createdScoringTemplates?: boolean | Prisma.User$createdScoringTemplatesArgs<ExtArgs>
+  updatedScoringTemplates?: boolean | Prisma.User$updatedScoringTemplatesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -2600,6 +3729,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedGalleryImages: Prisma.$GalleryImagePayload<ExtArgs>[]
     createdTenders: Prisma.$TenderPayload<ExtArgs>[]
     updatedTenders: Prisma.$TenderPayload<ExtArgs>[]
+    panelMemberships: Prisma.$VacancyPanelMemberPayload<ExtArgs>[]
+    panelScores: Prisma.$ApplicationPanelScorePayload<ExtArgs>[]
+    applicationReviews: Prisma.$ApplicationReviewPayload<ExtArgs>[]
+    createdScoringTemplates: Prisma.$ScoringTemplatePayload<ExtArgs>[]
+    updatedScoringTemplates: Prisma.$ScoringTemplatePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2965,6 +4099,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   updatedGalleryImages<T extends Prisma.User$updatedGalleryImagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedGalleryImagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GalleryImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   createdTenders<T extends Prisma.User$createdTendersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdTendersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   updatedTenders<T extends Prisma.User$updatedTendersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedTendersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TenderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  panelMemberships<T extends Prisma.User$panelMembershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$panelMembershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VacancyPanelMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  panelScores<T extends Prisma.User$panelScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$panelScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPanelScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  applicationReviews<T extends Prisma.User$applicationReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$applicationReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  createdScoringTemplates<T extends Prisma.User$createdScoringTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdScoringTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScoringTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  updatedScoringTemplates<T extends Prisma.User$updatedScoringTemplatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$updatedScoringTemplatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScoringTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3684,6 +4823,126 @@ export type User$updatedTendersArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.TenderScalarFieldEnum | Prisma.TenderScalarFieldEnum[]
+}
+
+/**
+ * User.panelMemberships
+ */
+export type User$panelMembershipsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VacancyPanelMember
+   */
+  select?: Prisma.VacancyPanelMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VacancyPanelMember
+   */
+  omit?: Prisma.VacancyPanelMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VacancyPanelMemberInclude<ExtArgs> | null
+  where?: Prisma.VacancyPanelMemberWhereInput
+  orderBy?: Prisma.VacancyPanelMemberOrderByWithRelationInput | Prisma.VacancyPanelMemberOrderByWithRelationInput[]
+  cursor?: Prisma.VacancyPanelMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VacancyPanelMemberScalarFieldEnum | Prisma.VacancyPanelMemberScalarFieldEnum[]
+}
+
+/**
+ * User.panelScores
+ */
+export type User$panelScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationPanelScore
+   */
+  select?: Prisma.ApplicationPanelScoreSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationPanelScore
+   */
+  omit?: Prisma.ApplicationPanelScoreOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationPanelScoreInclude<ExtArgs> | null
+  where?: Prisma.ApplicationPanelScoreWhereInput
+  orderBy?: Prisma.ApplicationPanelScoreOrderByWithRelationInput | Prisma.ApplicationPanelScoreOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationPanelScoreWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationPanelScoreScalarFieldEnum | Prisma.ApplicationPanelScoreScalarFieldEnum[]
+}
+
+/**
+ * User.applicationReviews
+ */
+export type User$applicationReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationReview
+   */
+  select?: Prisma.ApplicationReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationReview
+   */
+  omit?: Prisma.ApplicationReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationReviewInclude<ExtArgs> | null
+  where?: Prisma.ApplicationReviewWhereInput
+  orderBy?: Prisma.ApplicationReviewOrderByWithRelationInput | Prisma.ApplicationReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationReviewScalarFieldEnum | Prisma.ApplicationReviewScalarFieldEnum[]
+}
+
+/**
+ * User.createdScoringTemplates
+ */
+export type User$createdScoringTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScoringTemplate
+   */
+  select?: Prisma.ScoringTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScoringTemplate
+   */
+  omit?: Prisma.ScoringTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScoringTemplateInclude<ExtArgs> | null
+  where?: Prisma.ScoringTemplateWhereInput
+  orderBy?: Prisma.ScoringTemplateOrderByWithRelationInput | Prisma.ScoringTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.ScoringTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScoringTemplateScalarFieldEnum | Prisma.ScoringTemplateScalarFieldEnum[]
+}
+
+/**
+ * User.updatedScoringTemplates
+ */
+export type User$updatedScoringTemplatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScoringTemplate
+   */
+  select?: Prisma.ScoringTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScoringTemplate
+   */
+  omit?: Prisma.ScoringTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScoringTemplateInclude<ExtArgs> | null
+  where?: Prisma.ScoringTemplateWhereInput
+  orderBy?: Prisma.ScoringTemplateOrderByWithRelationInput | Prisma.ScoringTemplateOrderByWithRelationInput[]
+  cursor?: Prisma.ScoringTemplateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScoringTemplateScalarFieldEnum | Prisma.ScoringTemplateScalarFieldEnum[]
 }
 
 /**

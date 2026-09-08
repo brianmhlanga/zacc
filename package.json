@@ -15,8 +15,11 @@
     "prisma:studio": "prisma studio",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx prisma/seed.ts",
+    "prisma:seed:recruitment": "tsx prisma/seed-recruitment.ts",
     "prisma:fix-checksums": "node scripts/sync-prisma-migration-checksums.mjs",
-    "prisma:fix-checksums:apply": "node scripts/sync-prisma-migration-checksums.mjs --apply"
+    "prisma:fix-checksums:apply": "node scripts/sync-prisma-migration-checksums.mjs --apply",
+    "test": "tsx --test tests/**/*.test.ts",
+    "prisma:seed:demo": "tsx prisma/seed-demo-recruitment.ts"
   },
   "dependencies": {
     "@nuxtjs/seo": "^3.4.0",
@@ -39,7 +42,8 @@
     "primeicons": "^7.0.0",
     "primevue": "^4.5.4",
     "quill": "^2.0.3",
-    "vue": "latest"
+    "vue": "latest",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -50,7 +54,7 @@
     "@types/nodemailer": "^8.0.0",
     "@types/pdfkit": "^0.17.6",
     "dotenv": "^17.2.3",
-    "tsx": "^4.21.0",
-    "zod": "^4.2.1"
+    "prisma": "^7.3.0",
+    "tsx": "^4.21.0"
   }
 }

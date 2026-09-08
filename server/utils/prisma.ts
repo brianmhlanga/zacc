@@ -1,5 +1,6 @@
 import { PrismaClient } from '../../prisma/generated/prisma/client'
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
+import { parseDatabaseUrl } from './databaseUrl'
 
 let prismaInstance: PrismaClient | null = null
 let adapterFactory: PrismaMariaDb | null = null
@@ -9,41 +10,6 @@ declare global {
   var __prisma: PrismaClient | undefined
   // eslint-disable-next-line no-var
   var __prismaAdapterFactory: PrismaMariaDb | undefined
-}
-
-function parseDatabaseUrl(url: string | undefined) {
-  if (!url) {
-    throw new Error('DATABASE_URL environment variable is not set. Please check your .env file.')
-  }
-  
-  // Parse mysql://user:password@host:port/database or mysql://user@host:port/database
-  // Try with password first
-  let match = url.match(/^mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/)
-  if (match) {
-    const [, user, password, host, port, database] = match
-    return {
-      host,
-      port: parseInt(port, 10),
-      user,
-      password,
-      database
-    }
-  }
-  
-  // Try without password
-  match = url.match(/^mysql:\/\/([^@]+)@([^:]+):(\d+)\/(.+)$/)
-  if (match) {
-    const [, user, host, port, database] = match
-    return {
-      host,
-      port: parseInt(port, 10),
-      user,
-      password: undefined,
-      database
-    }
-  }
-  
-  throw new Error(`Invalid DATABASE_URL format: ${url}. Expected format: mysql://user:password@host:port/database or mysql://user@host:port/database`)
 }
 
 function getAdapterFactory(): PrismaMariaDb {
@@ -108,6 +74,27 @@ function createModelProxy(clientPromise: Promise<PrismaClient>, prop: string) {
 // Export prisma with lazy initialization
 export const prisma = new Proxy({} as PrismaClient, {
   get(_target, prop) {
+    // Guard `await prisma` and internal symbol probes (util.inspect, etc.) so they
+    // do not resolve to a model proxy.
+    if (prop === 'then' || typeof prop === 'symbol') return undefined
+
+    // Client-level methods ($transaction, $queryRaw, $executeRaw, $connect, ...) must be
+    // real functions bound to the resolved client. The model proxy below cannot serve
+    // them: its target is a plain object, so `prisma.$transaction(...)` would throw
+    // "is not a function" before ever reaching Prisma.
+    //
+    // NOTE: only the *interactive* form works — `prisma.$transaction(async (tx) => ...)`.
+    // The array form cannot, because createModelProxy returns plain Promises rather than
+    // the PrismaPromise instances Prisma needs in order to batch. Use `tx` in the callback.
+    if (typeof prop === 'string' && prop.charCodeAt(0) === 36 /* '$' */) {
+      return async (...args: any[]) => {
+        const client = await getPrismaClient()
+        const value = (client as any)[prop]
+        if (typeof value !== 'function') return value
+        return value.apply(client, args)
+      }
+    }
+
     // For nested model access (like prisma.user.findUnique)
     // Return a proxy that will resolve the client and call the method
     return createModelProxy(getPrismaClient(), prop as string)

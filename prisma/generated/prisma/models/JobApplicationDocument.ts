@@ -43,6 +43,12 @@ export type JobApplicationDocumentMinAggregateOutputType = {
   fileType: string | null
   label: string | null
   uploadedAt: Date | null
+  slotKey: string | null
+  verification: $Enums.DocumentVerificationState | null
+  verifiedBy: string | null
+  verifiedAt: Date | null
+  verifierNote: string | null
+  candidateDocumentId: string | null
 }
 
 export type JobApplicationDocumentMaxAggregateOutputType = {
@@ -54,6 +60,12 @@ export type JobApplicationDocumentMaxAggregateOutputType = {
   fileType: string | null
   label: string | null
   uploadedAt: Date | null
+  slotKey: string | null
+  verification: $Enums.DocumentVerificationState | null
+  verifiedBy: string | null
+  verifiedAt: Date | null
+  verifierNote: string | null
+  candidateDocumentId: string | null
 }
 
 export type JobApplicationDocumentCountAggregateOutputType = {
@@ -65,6 +77,12 @@ export type JobApplicationDocumentCountAggregateOutputType = {
   fileType: number
   label: number
   uploadedAt: number
+  slotKey: number
+  verification: number
+  verifiedBy: number
+  verifiedAt: number
+  verifierNote: number
+  candidateDocumentId: number
   _all: number
 }
 
@@ -86,6 +104,12 @@ export type JobApplicationDocumentMinAggregateInputType = {
   fileType?: true
   label?: true
   uploadedAt?: true
+  slotKey?: true
+  verification?: true
+  verifiedBy?: true
+  verifiedAt?: true
+  verifierNote?: true
+  candidateDocumentId?: true
 }
 
 export type JobApplicationDocumentMaxAggregateInputType = {
@@ -97,6 +121,12 @@ export type JobApplicationDocumentMaxAggregateInputType = {
   fileType?: true
   label?: true
   uploadedAt?: true
+  slotKey?: true
+  verification?: true
+  verifiedBy?: true
+  verifiedAt?: true
+  verifierNote?: true
+  candidateDocumentId?: true
 }
 
 export type JobApplicationDocumentCountAggregateInputType = {
@@ -108,6 +138,12 @@ export type JobApplicationDocumentCountAggregateInputType = {
   fileType?: true
   label?: true
   uploadedAt?: true
+  slotKey?: true
+  verification?: true
+  verifiedBy?: true
+  verifiedAt?: true
+  verifierNote?: true
+  candidateDocumentId?: true
   _all?: true
 }
 
@@ -206,6 +242,12 @@ export type JobApplicationDocumentGroupByOutputType = {
   fileType: string
   label: string | null
   uploadedAt: Date
+  slotKey: string | null
+  verification: $Enums.DocumentVerificationState
+  verifiedBy: string | null
+  verifiedAt: Date | null
+  verifierNote: string | null
+  candidateDocumentId: string | null
   _count: JobApplicationDocumentCountAggregateOutputType | null
   _avg: JobApplicationDocumentAvgAggregateOutputType | null
   _sum: JobApplicationDocumentSumAggregateOutputType | null
@@ -240,7 +282,14 @@ export type JobApplicationDocumentWhereInput = {
   fileType?: Prisma.StringFilter<"JobApplicationDocument"> | string
   label?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
   uploadedAt?: Prisma.DateTimeFilter<"JobApplicationDocument"> | Date | string
+  slotKey?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFilter<"JobApplicationDocument"> | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"JobApplicationDocument"> | Date | string | null
+  verifierNote?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  candidateDocumentId?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
   application?: Prisma.XOR<Prisma.JobApplicationScalarRelationFilter, Prisma.JobApplicationWhereInput>
+  candidateDocument?: Prisma.XOR<Prisma.CandidateDocumentNullableScalarRelationFilter, Prisma.CandidateDocumentWhereInput> | null
 }
 
 export type JobApplicationDocumentOrderByWithRelationInput = {
@@ -252,7 +301,14 @@ export type JobApplicationDocumentOrderByWithRelationInput = {
   fileType?: Prisma.SortOrder
   label?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
+  slotKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  verification?: Prisma.SortOrder
+  verifiedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifierNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidateDocumentId?: Prisma.SortOrderInput | Prisma.SortOrder
   application?: Prisma.JobApplicationOrderByWithRelationInput
+  candidateDocument?: Prisma.CandidateDocumentOrderByWithRelationInput
   _relevance?: Prisma.JobApplicationDocumentOrderByRelevanceInput
 }
 
@@ -268,7 +324,14 @@ export type JobApplicationDocumentWhereUniqueInput = Prisma.AtLeast<{
   fileType?: Prisma.StringFilter<"JobApplicationDocument"> | string
   label?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
   uploadedAt?: Prisma.DateTimeFilter<"JobApplicationDocument"> | Date | string
+  slotKey?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFilter<"JobApplicationDocument"> | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"JobApplicationDocument"> | Date | string | null
+  verifierNote?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  candidateDocumentId?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
   application?: Prisma.XOR<Prisma.JobApplicationScalarRelationFilter, Prisma.JobApplicationWhereInput>
+  candidateDocument?: Prisma.XOR<Prisma.CandidateDocumentNullableScalarRelationFilter, Prisma.CandidateDocumentWhereInput> | null
 }, "id">
 
 export type JobApplicationDocumentOrderByWithAggregationInput = {
@@ -280,6 +343,12 @@ export type JobApplicationDocumentOrderByWithAggregationInput = {
   fileType?: Prisma.SortOrder
   label?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
+  slotKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  verification?: Prisma.SortOrder
+  verifiedBy?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  verifierNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidateDocumentId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.JobApplicationDocumentCountOrderByAggregateInput
   _avg?: Prisma.JobApplicationDocumentAvgOrderByAggregateInput
   _max?: Prisma.JobApplicationDocumentMaxOrderByAggregateInput
@@ -299,6 +368,12 @@ export type JobApplicationDocumentScalarWhereWithAggregatesInput = {
   fileType?: Prisma.StringWithAggregatesFilter<"JobApplicationDocument"> | string
   label?: Prisma.StringNullableWithAggregatesFilter<"JobApplicationDocument"> | string | null
   uploadedAt?: Prisma.DateTimeWithAggregatesFilter<"JobApplicationDocument"> | Date | string
+  slotKey?: Prisma.StringNullableWithAggregatesFilter<"JobApplicationDocument"> | string | null
+  verification?: Prisma.EnumDocumentVerificationStateWithAggregatesFilter<"JobApplicationDocument"> | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.StringNullableWithAggregatesFilter<"JobApplicationDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplicationDocument"> | Date | string | null
+  verifierNote?: Prisma.StringNullableWithAggregatesFilter<"JobApplicationDocument"> | string | null
+  candidateDocumentId?: Prisma.StringNullableWithAggregatesFilter<"JobApplicationDocument"> | string | null
 }
 
 export type JobApplicationDocumentCreateInput = {
@@ -309,7 +384,13 @@ export type JobApplicationDocumentCreateInput = {
   fileType: string
   label?: string | null
   uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
   application: Prisma.JobApplicationCreateNestedOneWithoutDocumentsInput
+  candidateDocument?: Prisma.CandidateDocumentCreateNestedOneWithoutApplicationDocumentsInput
 }
 
 export type JobApplicationDocumentUncheckedCreateInput = {
@@ -321,6 +402,12 @@ export type JobApplicationDocumentUncheckedCreateInput = {
   fileType: string
   label?: string | null
   uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+  candidateDocumentId?: string | null
 }
 
 export type JobApplicationDocumentUpdateInput = {
@@ -331,7 +418,13 @@ export type JobApplicationDocumentUpdateInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   application?: Prisma.JobApplicationUpdateOneRequiredWithoutDocumentsNestedInput
+  candidateDocument?: Prisma.CandidateDocumentUpdateOneWithoutApplicationDocumentsNestedInput
 }
 
 export type JobApplicationDocumentUncheckedUpdateInput = {
@@ -343,6 +436,12 @@ export type JobApplicationDocumentUncheckedUpdateInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateDocumentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type JobApplicationDocumentCreateManyInput = {
@@ -354,6 +453,12 @@ export type JobApplicationDocumentCreateManyInput = {
   fileType: string
   label?: string | null
   uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+  candidateDocumentId?: string | null
 }
 
 export type JobApplicationDocumentUpdateManyMutationInput = {
@@ -364,6 +469,11 @@ export type JobApplicationDocumentUpdateManyMutationInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type JobApplicationDocumentUncheckedUpdateManyInput = {
@@ -375,6 +485,12 @@ export type JobApplicationDocumentUncheckedUpdateManyInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateDocumentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type JobApplicationDocumentListRelationFilter = {
@@ -402,6 +518,12 @@ export type JobApplicationDocumentCountOrderByAggregateInput = {
   fileType?: Prisma.SortOrder
   label?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
+  slotKey?: Prisma.SortOrder
+  verification?: Prisma.SortOrder
+  verifiedBy?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
+  verifierNote?: Prisma.SortOrder
+  candidateDocumentId?: Prisma.SortOrder
 }
 
 export type JobApplicationDocumentAvgOrderByAggregateInput = {
@@ -417,6 +539,12 @@ export type JobApplicationDocumentMaxOrderByAggregateInput = {
   fileType?: Prisma.SortOrder
   label?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
+  slotKey?: Prisma.SortOrder
+  verification?: Prisma.SortOrder
+  verifiedBy?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
+  verifierNote?: Prisma.SortOrder
+  candidateDocumentId?: Prisma.SortOrder
 }
 
 export type JobApplicationDocumentMinOrderByAggregateInput = {
@@ -428,6 +556,12 @@ export type JobApplicationDocumentMinOrderByAggregateInput = {
   fileType?: Prisma.SortOrder
   label?: Prisma.SortOrder
   uploadedAt?: Prisma.SortOrder
+  slotKey?: Prisma.SortOrder
+  verification?: Prisma.SortOrder
+  verifiedBy?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
+  verifierNote?: Prisma.SortOrder
+  candidateDocumentId?: Prisma.SortOrder
 }
 
 export type JobApplicationDocumentSumOrderByAggregateInput = {
@@ -476,6 +610,52 @@ export type JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInp
   deleteMany?: Prisma.JobApplicationDocumentScalarWhereInput | Prisma.JobApplicationDocumentScalarWhereInput[]
 }
 
+export type EnumDocumentVerificationStateFieldUpdateOperationsInput = {
+  set?: $Enums.DocumentVerificationState
+}
+
+export type JobApplicationDocumentCreateNestedManyWithoutCandidateDocumentInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput> | Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput[] | Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput[]
+  connectOrCreate?: Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput[]
+  createMany?: Prisma.JobApplicationDocumentCreateManyCandidateDocumentInputEnvelope
+  connect?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+}
+
+export type JobApplicationDocumentUncheckedCreateNestedManyWithoutCandidateDocumentInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput> | Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput[] | Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput[]
+  connectOrCreate?: Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput[]
+  createMany?: Prisma.JobApplicationDocumentCreateManyCandidateDocumentInputEnvelope
+  connect?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+}
+
+export type JobApplicationDocumentUpdateManyWithoutCandidateDocumentNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput> | Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput[] | Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput[]
+  connectOrCreate?: Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput[]
+  upsert?: Prisma.JobApplicationDocumentUpsertWithWhereUniqueWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentUpsertWithWhereUniqueWithoutCandidateDocumentInput[]
+  createMany?: Prisma.JobApplicationDocumentCreateManyCandidateDocumentInputEnvelope
+  set?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  disconnect?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  delete?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  connect?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  update?: Prisma.JobApplicationDocumentUpdateWithWhereUniqueWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentUpdateWithWhereUniqueWithoutCandidateDocumentInput[]
+  updateMany?: Prisma.JobApplicationDocumentUpdateManyWithWhereWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentUpdateManyWithWhereWithoutCandidateDocumentInput[]
+  deleteMany?: Prisma.JobApplicationDocumentScalarWhereInput | Prisma.JobApplicationDocumentScalarWhereInput[]
+}
+
+export type JobApplicationDocumentUncheckedUpdateManyWithoutCandidateDocumentNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput> | Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput[] | Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput[]
+  connectOrCreate?: Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput[]
+  upsert?: Prisma.JobApplicationDocumentUpsertWithWhereUniqueWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentUpsertWithWhereUniqueWithoutCandidateDocumentInput[]
+  createMany?: Prisma.JobApplicationDocumentCreateManyCandidateDocumentInputEnvelope
+  set?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  disconnect?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  delete?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  connect?: Prisma.JobApplicationDocumentWhereUniqueInput | Prisma.JobApplicationDocumentWhereUniqueInput[]
+  update?: Prisma.JobApplicationDocumentUpdateWithWhereUniqueWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentUpdateWithWhereUniqueWithoutCandidateDocumentInput[]
+  updateMany?: Prisma.JobApplicationDocumentUpdateManyWithWhereWithoutCandidateDocumentInput | Prisma.JobApplicationDocumentUpdateManyWithWhereWithoutCandidateDocumentInput[]
+  deleteMany?: Prisma.JobApplicationDocumentScalarWhereInput | Prisma.JobApplicationDocumentScalarWhereInput[]
+}
+
 export type JobApplicationDocumentCreateWithoutApplicationInput = {
   id?: string
   fileName: string
@@ -484,6 +664,12 @@ export type JobApplicationDocumentCreateWithoutApplicationInput = {
   fileType: string
   label?: string | null
   uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+  candidateDocument?: Prisma.CandidateDocumentCreateNestedOneWithoutApplicationDocumentsInput
 }
 
 export type JobApplicationDocumentUncheckedCreateWithoutApplicationInput = {
@@ -494,6 +680,12 @@ export type JobApplicationDocumentUncheckedCreateWithoutApplicationInput = {
   fileType: string
   label?: string | null
   uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+  candidateDocumentId?: string | null
 }
 
 export type JobApplicationDocumentCreateOrConnectWithoutApplicationInput = {
@@ -534,6 +726,70 @@ export type JobApplicationDocumentScalarWhereInput = {
   fileType?: Prisma.StringFilter<"JobApplicationDocument"> | string
   label?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
   uploadedAt?: Prisma.DateTimeFilter<"JobApplicationDocument"> | Date | string
+  slotKey?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFilter<"JobApplicationDocument"> | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  verifiedAt?: Prisma.DateTimeNullableFilter<"JobApplicationDocument"> | Date | string | null
+  verifierNote?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+  candidateDocumentId?: Prisma.StringNullableFilter<"JobApplicationDocument"> | string | null
+}
+
+export type JobApplicationDocumentCreateWithoutCandidateDocumentInput = {
+  id?: string
+  fileName: string
+  fileUrl: string
+  fileSize: number
+  fileType: string
+  label?: string | null
+  uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+  application: Prisma.JobApplicationCreateNestedOneWithoutDocumentsInput
+}
+
+export type JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput = {
+  id?: string
+  applicationId: string
+  fileName: string
+  fileUrl: string
+  fileSize: number
+  fileType: string
+  label?: string | null
+  uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+}
+
+export type JobApplicationDocumentCreateOrConnectWithoutCandidateDocumentInput = {
+  where: Prisma.JobApplicationDocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput>
+}
+
+export type JobApplicationDocumentCreateManyCandidateDocumentInputEnvelope = {
+  data: Prisma.JobApplicationDocumentCreateManyCandidateDocumentInput | Prisma.JobApplicationDocumentCreateManyCandidateDocumentInput[]
+  skipDuplicates?: boolean
+}
+
+export type JobApplicationDocumentUpsertWithWhereUniqueWithoutCandidateDocumentInput = {
+  where: Prisma.JobApplicationDocumentWhereUniqueInput
+  update: Prisma.XOR<Prisma.JobApplicationDocumentUpdateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedUpdateWithoutCandidateDocumentInput>
+  create: Prisma.XOR<Prisma.JobApplicationDocumentCreateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedCreateWithoutCandidateDocumentInput>
+}
+
+export type JobApplicationDocumentUpdateWithWhereUniqueWithoutCandidateDocumentInput = {
+  where: Prisma.JobApplicationDocumentWhereUniqueInput
+  data: Prisma.XOR<Prisma.JobApplicationDocumentUpdateWithoutCandidateDocumentInput, Prisma.JobApplicationDocumentUncheckedUpdateWithoutCandidateDocumentInput>
+}
+
+export type JobApplicationDocumentUpdateManyWithWhereWithoutCandidateDocumentInput = {
+  where: Prisma.JobApplicationDocumentScalarWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationDocumentUpdateManyMutationInput, Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutCandidateDocumentInput>
 }
 
 export type JobApplicationDocumentCreateManyApplicationInput = {
@@ -544,6 +800,12 @@ export type JobApplicationDocumentCreateManyApplicationInput = {
   fileType: string
   label?: string | null
   uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+  candidateDocumentId?: string | null
 }
 
 export type JobApplicationDocumentUpdateWithoutApplicationInput = {
@@ -554,6 +816,12 @@ export type JobApplicationDocumentUpdateWithoutApplicationInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateDocument?: Prisma.CandidateDocumentUpdateOneWithoutApplicationDocumentsNestedInput
 }
 
 export type JobApplicationDocumentUncheckedUpdateWithoutApplicationInput = {
@@ -564,6 +832,12 @@ export type JobApplicationDocumentUncheckedUpdateWithoutApplicationInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateDocumentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type JobApplicationDocumentUncheckedUpdateManyWithoutApplicationInput = {
@@ -574,6 +848,76 @@ export type JobApplicationDocumentUncheckedUpdateManyWithoutApplicationInput = {
   fileType?: Prisma.StringFieldUpdateOperationsInput | string
   label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateDocumentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type JobApplicationDocumentCreateManyCandidateDocumentInput = {
+  id?: string
+  applicationId: string
+  fileName: string
+  fileUrl: string
+  fileSize: number
+  fileType: string
+  label?: string | null
+  uploadedAt?: Date | string
+  slotKey?: string | null
+  verification?: $Enums.DocumentVerificationState
+  verifiedBy?: string | null
+  verifiedAt?: Date | string | null
+  verifierNote?: string | null
+}
+
+export type JobApplicationDocumentUpdateWithoutCandidateDocumentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  application?: Prisma.JobApplicationUpdateOneRequiredWithoutDocumentsNestedInput
+}
+
+export type JobApplicationDocumentUncheckedUpdateWithoutCandidateDocumentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type JobApplicationDocumentUncheckedUpdateManyWithoutCandidateDocumentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  applicationId?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  fileSize?: Prisma.IntFieldUpdateOperationsInput | number
+  fileType?: Prisma.StringFieldUpdateOperationsInput | string
+  label?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  uploadedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  slotKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verification?: Prisma.EnumDocumentVerificationStateFieldUpdateOperationsInput | $Enums.DocumentVerificationState
+  verifiedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  verifierNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -587,7 +931,14 @@ export type JobApplicationDocumentSelect<ExtArgs extends runtime.Types.Extension
   fileType?: boolean
   label?: boolean
   uploadedAt?: boolean
+  slotKey?: boolean
+  verification?: boolean
+  verifiedBy?: boolean
+  verifiedAt?: boolean
+  verifierNote?: boolean
+  candidateDocumentId?: boolean
   application?: boolean | Prisma.JobApplicationDefaultArgs<ExtArgs>
+  candidateDocument?: boolean | Prisma.JobApplicationDocument$candidateDocumentArgs<ExtArgs>
 }, ExtArgs["result"]["jobApplicationDocument"]>
 
 
@@ -601,17 +952,25 @@ export type JobApplicationDocumentSelectScalar = {
   fileType?: boolean
   label?: boolean
   uploadedAt?: boolean
+  slotKey?: boolean
+  verification?: boolean
+  verifiedBy?: boolean
+  verifiedAt?: boolean
+  verifierNote?: boolean
+  candidateDocumentId?: boolean
 }
 
-export type JobApplicationDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationId" | "fileName" | "fileUrl" | "fileSize" | "fileType" | "label" | "uploadedAt", ExtArgs["result"]["jobApplicationDocument"]>
+export type JobApplicationDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "applicationId" | "fileName" | "fileUrl" | "fileSize" | "fileType" | "label" | "uploadedAt" | "slotKey" | "verification" | "verifiedBy" | "verifiedAt" | "verifierNote" | "candidateDocumentId", ExtArgs["result"]["jobApplicationDocument"]>
 export type JobApplicationDocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   application?: boolean | Prisma.JobApplicationDefaultArgs<ExtArgs>
+  candidateDocument?: boolean | Prisma.JobApplicationDocument$candidateDocumentArgs<ExtArgs>
 }
 
 export type $JobApplicationDocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "JobApplicationDocument"
   objects: {
     application: Prisma.$JobApplicationPayload<ExtArgs>
+    candidateDocument: Prisma.$CandidateDocumentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -631,6 +990,18 @@ export type $JobApplicationDocumentPayload<ExtArgs extends runtime.Types.Extensi
      */
     label: string | null
     uploadedAt: Date
+    /**
+     * Which VacancyDocumentSlot this satisfies (e.g. "cv", "reference_1").
+     */
+    slotKey: string | null
+    verification: $Enums.DocumentVerificationState
+    verifiedBy: string | null
+    verifiedAt: Date | null
+    verifierNote: string | null
+    /**
+     * Provenance when copied from the candidate's document locker.
+     */
+    candidateDocumentId: string | null
   }, ExtArgs["result"]["jobApplicationDocument"]>
   composites: {}
 }
@@ -972,6 +1343,7 @@ readonly fields: JobApplicationDocumentFieldRefs;
 export interface Prisma__JobApplicationDocumentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   application<T extends Prisma.JobApplicationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplicationDefaultArgs<ExtArgs>>): Prisma.Prisma__JobApplicationClient<runtime.Types.Result.GetResult<Prisma.$JobApplicationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  candidateDocument<T extends Prisma.JobApplicationDocument$candidateDocumentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplicationDocument$candidateDocumentArgs<ExtArgs>>): Prisma.Prisma__CandidateDocumentClient<runtime.Types.Result.GetResult<Prisma.$CandidateDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1009,6 +1381,12 @@ export interface JobApplicationDocumentFieldRefs {
   readonly fileType: Prisma.FieldRef<"JobApplicationDocument", 'String'>
   readonly label: Prisma.FieldRef<"JobApplicationDocument", 'String'>
   readonly uploadedAt: Prisma.FieldRef<"JobApplicationDocument", 'DateTime'>
+  readonly slotKey: Prisma.FieldRef<"JobApplicationDocument", 'String'>
+  readonly verification: Prisma.FieldRef<"JobApplicationDocument", 'DocumentVerificationState'>
+  readonly verifiedBy: Prisma.FieldRef<"JobApplicationDocument", 'String'>
+  readonly verifiedAt: Prisma.FieldRef<"JobApplicationDocument", 'DateTime'>
+  readonly verifierNote: Prisma.FieldRef<"JobApplicationDocument", 'String'>
+  readonly candidateDocumentId: Prisma.FieldRef<"JobApplicationDocument", 'String'>
 }
     
 
@@ -1354,6 +1732,25 @@ export type JobApplicationDocumentDeleteManyArgs<ExtArgs extends runtime.Types.E
    * Limit how many JobApplicationDocuments to delete.
    */
   limit?: number
+}
+
+/**
+ * JobApplicationDocument.candidateDocument
+ */
+export type JobApplicationDocument$candidateDocumentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CandidateDocument
+   */
+  select?: Prisma.CandidateDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CandidateDocument
+   */
+  omit?: Prisma.CandidateDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CandidateDocumentInclude<ExtArgs> | null
+  where?: Prisma.CandidateDocumentWhereInput
 }
 
 /**

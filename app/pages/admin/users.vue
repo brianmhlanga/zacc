@@ -50,9 +50,13 @@
                   <div class="flex h-10 w-10 items-center justify-center rounded-full bg-zaccBlack text-white font-semibold">
                     {{ getUserInitials(data.name) }}
                   </div>
-                  <div>
-                    <div class="font-semibold text-zaccBlack">{{ data.name || 'N/A' }}</div>
-                    <div class="text-xs text-gray-500">{{ data.email }}</div>
+                  <div class="min-w-0">
+                    <button type="button"
+                      class="font-semibold text-zaccBlack hover:text-zaccGreen text-left truncate block"
+                      @click="openDossier(data)">
+                      {{ data.name || 'N/A' }}
+                    </button>
+                    <div class="text-xs text-gray-500 truncate">{{ data.email }}</div>
                   </div>
                 </div>
               </template>
@@ -88,6 +92,14 @@
             <Column header="Actions" :exportable="false" style="min-width: 12rem">
               <template #body="{ data }">
                 <div class="flex items-center gap-2">
+                  <Button
+                    icon="pi pi-eye"
+                    severity="info"
+                    outlined
+                    rounded
+                    @click="openDossier(data)"
+                    v-tooltip.top="'View activity'"
+                  />
                   <Button
                     icon="pi pi-pencil"
                     severity="secondary"
@@ -233,6 +245,10 @@
         </form>
       </Dialog>
 
+      <AdminUiDrawerPanel v-model:visible="dossierVisible" :title="dossierTitle" :subtitle="dossierSubtitle">
+        <AdminUserDossier v-if="dossierId" :id="dossierId" />
+      </AdminUiDrawerPanel>
+
       <!-- Delete Confirmation Dialog -->
       <ConfirmDialog />
     </div>
@@ -313,6 +329,18 @@ const fetchUsers = async () => {
 }
 
 // Open create dialog
+const dossierId = ref<string | null>(null)
+const dossierVisible = ref(false)
+const dossierTitle = ref('')
+const dossierSubtitle = ref('')
+
+const openDossier = (user: any) => {
+  dossierId.value = user.id
+  dossierTitle.value = user.name || 'Unnamed user'
+  dossierSubtitle.value = user.email
+  dossierVisible.value = true
+}
+
 const openCreateDialog = () => {
   isEditMode.value = false
   resetForm()

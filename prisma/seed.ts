@@ -1,42 +1,8 @@
 import 'dotenv/config'
 import { PrismaClient } from './generated/prisma/client'
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
+import { parseDatabaseUrl } from '../server/utils/databaseUrl'
 import bcrypt from 'bcrypt'
-
-function parseDatabaseUrl(url: string | undefined) {
-  if (!url) {
-    throw new Error('DATABASE_URL environment variable is not set. Please check your .env file.')
-  }
-  
-  // Parse mysql://user:password@host:port/database or mysql://user@host:port/database
-  // Try with password first
-  let match = url.match(/^mysql:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)$/)
-  if (match) {
-    const [, user, password, host, port, database] = match
-    return {
-      host,
-      port: parseInt(port, 10),
-      user,
-      password,
-      database
-    }
-  }
-  
-  // Try without password
-  match = url.match(/^mysql:\/\/([^@]+)@([^:]+):(\d+)\/(.+)$/)
-  if (match) {
-    const [, user, host, port, database] = match
-    return {
-      host,
-      port: parseInt(port, 10),
-      user,
-      password: undefined,
-      database
-    }
-  }
-  
-  throw new Error(`Invalid DATABASE_URL format: ${url}. Expected format: mysql://user:password@host:port/database or mysql://user@host:port/database`)
-}
 
 async function main() {
   console.log('🌱 Starting database seed...')

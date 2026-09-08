@@ -5,12 +5,25 @@ import { mailConfig } from '../config/mail'
  * REPORTS_INBOX_EMAIL receives new corruption report notifications.
  */
 
+export interface MailResult {
+  ok: boolean
+  /** True when no transport is configured, so nothing was even attempted. */
+  skipped?: boolean
+  /** Present on failure; recorded by the notification outbox as `lastError`. */
+  error?: string
+}
+
+/** True when either a Resend key or an SMTP host is configured. */
+export function isMailConfigured(): boolean {
+  return Boolean(process.env.RESEND_API_KEY || process.env.SMTP_HOST || mailConfig.host)
+}
+
 export async function sendMail(opts: {
   to: string
   subject: string
   text: string
   html?: string
-}): Promise<boolean> {
+}): Promise<MailResult> {
   const resendKey = process.env.RESEND_API_KEY
   if (resendKey) {
     const from = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'
@@ -31,19 +44,19 @@ export async function sendMail(opts: {
       if (!res.ok) {
         const err = await res.text()
         console.error('[mail] Resend error', res.status, err)
-        return false
+        return { ok: false, error: `Resend ${res.status}: ${err}`.slice(0, 2000) }
       }
-      return true
-    } catch (e) {
+      return { ok: true }
+    } catch (e: any) {
       console.error('[mail] Resend request failed', e)
-      return false
+      return { ok: false, error: String(e?.message || e).slice(0, 2000) }
     }
   }
 
   const host = process.env.SMTP_HOST || mailConfig.host
   if (!host) {
     console.warn('[mail] No RESEND_API_KEY or SMTP_HOST configured; skipping send')
-    return false
+    return { ok: false, skipped: true, error: 'No mail transport configured' }
   }
 
   try {
@@ -66,10 +79,10 @@ export async function sendMail(opts: {
       text: opts.text,
       html: opts.html
     })
-    return true
-  } catch (e) {
+    return { ok: true }
+  } catch (e: any) {
     console.error('[mail] SMTP send failed', e)
-    return false
+    return { ok: false, error: String(e?.message || e).slice(0, 2000) }
   }
 }
 

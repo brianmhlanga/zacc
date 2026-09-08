@@ -9,6 +9,17 @@ const API_PREFIX_TO_MODULE: Array<[string, PermissionModuleKey]> = [
   ['/api/suppliers', 'suppliers'],
   ['/api/rulings', 'rulings'],
   ['/api/gallery', 'gallery'],
+  // Recruitment. Order matters: resolveModule returns the FIRST match, so the
+  // specific prefixes must precede the '/api/recruitment' catch-all below them.
+  ['/api/recruitment/applications', 'applications'],
+  // The candidate register is the same personal data as the applications
+  // console, seen as people rather than as submissions, so it rides the same grant.
+  ['/api/recruitment/candidates', 'applications'],
+  ['/api/recruitment/panel', 'panel_review'],
+  ['/api/recruitment/config', 'recruitment_config'],
+  ['/api/recruitment/reports', 'recruitment_reports'],
+  ['/api/recruitment/vacancies', 'jobs'],
+  ['/api/recruitment', 'jobs'],
   ['/api/jobs', 'jobs'],
   ['/api/reports', 'reports'],
   ['/api/contact', 'contact'],

@@ -28,10 +28,38 @@ export type AggregateJobApplication = {
 
 export type JobApplicationAvgAggregateOutputType = {
   experience: number | null
+  scoringVersion: number | null
+  noticePeriodDays: number | null
+  expectedSalary: number | null
+  totalYearsExperience: number | null
+  autoScore: number | null
+  panelScoreMean: number | null
+  panelScoreMedian: number | null
+  panelScoreSpread: number | null
+  panelScoreStdev: number | null
+  panelReviewCount: number | null
+  finalScore: number | null
+  scoreOverride: number | null
+  keywordMatchPct: number | null
+  integrityFlagCount: number | null
 }
 
 export type JobApplicationSumAggregateOutputType = {
   experience: number | null
+  scoringVersion: number | null
+  noticePeriodDays: number | null
+  expectedSalary: number | null
+  totalYearsExperience: number | null
+  autoScore: number | null
+  panelScoreMean: number | null
+  panelScoreMedian: number | null
+  panelScoreSpread: number | null
+  panelScoreStdev: number | null
+  panelReviewCount: number | null
+  finalScore: number | null
+  scoreOverride: number | null
+  keywordMatchPct: number | null
+  integrityFlagCount: number | null
 }
 
 export type JobApplicationMinAggregateOutputType = {
@@ -50,6 +78,49 @@ export type JobApplicationMinAggregateOutputType = {
   reviewedBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  referenceNumber: string | null
+  candidateId: string | null
+  stageId: string | null
+  mode: $Enums.ApplicationMode | null
+  submittedAt: Date | null
+  lastCandidateViewAt: Date | null
+  scoringVersion: number | null
+  firstName: string | null
+  lastName: string | null
+  nationalIdType: string | null
+  nationalId: string | null
+  dateOfBirth: Date | null
+  gender: string | null
+  nationality: string | null
+  hasDisability: boolean | null
+  province: string | null
+  city: string | null
+  altPhone: string | null
+  howHeard: string | null
+  noticePeriodDays: number | null
+  willingToRelocate: boolean | null
+  expectedSalary: number | null
+  totalYearsExperience: number | null
+  isCurrentlyEmployed: boolean | null
+  highestQualification: $Enums.QualificationLevel | null
+  driversLicenceClass: string | null
+  autoScore: number | null
+  panelScoreMean: number | null
+  panelScoreMedian: number | null
+  panelScoreSpread: number | null
+  panelScoreStdev: number | null
+  panelReviewCount: number | null
+  finalScore: number | null
+  scoreOverride: number | null
+  scoreOverrideNote: string | null
+  keywordMatchPct: number | null
+  scoreComputedAt: Date | null
+  isAutoRejected: boolean | null
+  isShortlisted: boolean | null
+  isWithdrawn: boolean | null
+  withdrawnAt: Date | null
+  withdrawnReason: string | null
+  integrityFlagCount: number | null
 }
 
 export type JobApplicationMaxAggregateOutputType = {
@@ -68,6 +139,49 @@ export type JobApplicationMaxAggregateOutputType = {
   reviewedBy: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  referenceNumber: string | null
+  candidateId: string | null
+  stageId: string | null
+  mode: $Enums.ApplicationMode | null
+  submittedAt: Date | null
+  lastCandidateViewAt: Date | null
+  scoringVersion: number | null
+  firstName: string | null
+  lastName: string | null
+  nationalIdType: string | null
+  nationalId: string | null
+  dateOfBirth: Date | null
+  gender: string | null
+  nationality: string | null
+  hasDisability: boolean | null
+  province: string | null
+  city: string | null
+  altPhone: string | null
+  howHeard: string | null
+  noticePeriodDays: number | null
+  willingToRelocate: boolean | null
+  expectedSalary: number | null
+  totalYearsExperience: number | null
+  isCurrentlyEmployed: boolean | null
+  highestQualification: $Enums.QualificationLevel | null
+  driversLicenceClass: string | null
+  autoScore: number | null
+  panelScoreMean: number | null
+  panelScoreMedian: number | null
+  panelScoreSpread: number | null
+  panelScoreStdev: number | null
+  panelReviewCount: number | null
+  finalScore: number | null
+  scoreOverride: number | null
+  scoreOverrideNote: string | null
+  keywordMatchPct: number | null
+  scoreComputedAt: Date | null
+  isAutoRejected: boolean | null
+  isShortlisted: boolean | null
+  isWithdrawn: boolean | null
+  withdrawnAt: Date | null
+  withdrawnReason: string | null
+  integrityFlagCount: number | null
 }
 
 export type JobApplicationCountAggregateOutputType = {
@@ -86,16 +200,90 @@ export type JobApplicationCountAggregateOutputType = {
   reviewedBy: number
   createdAt: number
   updatedAt: number
+  referenceNumber: number
+  candidateId: number
+  stageId: number
+  mode: number
+  submittedAt: number
+  lastCandidateViewAt: number
+  answers: number
+  schemeSnapshot: number
+  scoringVersion: number
+  firstName: number
+  lastName: number
+  nationalIdType: number
+  nationalId: number
+  dateOfBirth: number
+  gender: number
+  nationality: number
+  hasDisability: number
+  province: number
+  city: number
+  altPhone: number
+  howHeard: number
+  noticePeriodDays: number
+  willingToRelocate: number
+  expectedSalary: number
+  totalYearsExperience: number
+  isCurrentlyEmployed: number
+  highestQualification: number
+  driversLicenceClass: number
+  autoScore: number
+  panelScoreMean: number
+  panelScoreMedian: number
+  panelScoreSpread: number
+  panelScoreStdev: number
+  panelReviewCount: number
+  finalScore: number
+  scoreOverride: number
+  scoreOverrideNote: number
+  keywordMatchPct: number
+  scoreComputedAt: number
+  isAutoRejected: number
+  autoRejectReasons: number
+  isShortlisted: number
+  isWithdrawn: number
+  withdrawnAt: number
+  withdrawnReason: number
+  integrityFlagCount: number
   _all: number
 }
 
 
 export type JobApplicationAvgAggregateInputType = {
   experience?: true
+  scoringVersion?: true
+  noticePeriodDays?: true
+  expectedSalary?: true
+  totalYearsExperience?: true
+  autoScore?: true
+  panelScoreMean?: true
+  panelScoreMedian?: true
+  panelScoreSpread?: true
+  panelScoreStdev?: true
+  panelReviewCount?: true
+  finalScore?: true
+  scoreOverride?: true
+  keywordMatchPct?: true
+  integrityFlagCount?: true
 }
 
 export type JobApplicationSumAggregateInputType = {
   experience?: true
+  scoringVersion?: true
+  noticePeriodDays?: true
+  expectedSalary?: true
+  totalYearsExperience?: true
+  autoScore?: true
+  panelScoreMean?: true
+  panelScoreMedian?: true
+  panelScoreSpread?: true
+  panelScoreStdev?: true
+  panelReviewCount?: true
+  finalScore?: true
+  scoreOverride?: true
+  keywordMatchPct?: true
+  integrityFlagCount?: true
 }
 
 export type JobApplicationMinAggregateInputType = {
@@ -114,6 +302,49 @@ export type JobApplicationMinAggregateInputType = {
   reviewedBy?: true
   createdAt?: true
   updatedAt?: true
+  referenceNumber?: true
+  candidateId?: true
+  stageId?: true
+  mode?: true
+  submittedAt?: true
+  lastCandidateViewAt?: true
+  scoringVersion?: true
+  firstName?: true
+  lastName?: true
+  nationalIdType?: true
+  nationalId?: true
+  dateOfBirth?: true
+  gender?: true
+  nationality?: true
+  hasDisability?: true
+  province?: true
+  city?: true
+  altPhone?: true
+  howHeard?: true
+  noticePeriodDays?: true
+  willingToRelocate?: true
+  expectedSalary?: true
+  totalYearsExperience?: true
+  isCurrentlyEmployed?: true
+  highestQualification?: true
+  driversLicenceClass?: true
+  autoScore?: true
+  panelScoreMean?: true
+  panelScoreMedian?: true
+  panelScoreSpread?: true
+  panelScoreStdev?: true
+  panelReviewCount?: true
+  finalScore?: true
+  scoreOverride?: true
+  scoreOverrideNote?: true
+  keywordMatchPct?: true
+  scoreComputedAt?: true
+  isAutoRejected?: true
+  isShortlisted?: true
+  isWithdrawn?: true
+  withdrawnAt?: true
+  withdrawnReason?: true
+  integrityFlagCount?: true
 }
 
 export type JobApplicationMaxAggregateInputType = {
@@ -132,6 +363,49 @@ export type JobApplicationMaxAggregateInputType = {
   reviewedBy?: true
   createdAt?: true
   updatedAt?: true
+  referenceNumber?: true
+  candidateId?: true
+  stageId?: true
+  mode?: true
+  submittedAt?: true
+  lastCandidateViewAt?: true
+  scoringVersion?: true
+  firstName?: true
+  lastName?: true
+  nationalIdType?: true
+  nationalId?: true
+  dateOfBirth?: true
+  gender?: true
+  nationality?: true
+  hasDisability?: true
+  province?: true
+  city?: true
+  altPhone?: true
+  howHeard?: true
+  noticePeriodDays?: true
+  willingToRelocate?: true
+  expectedSalary?: true
+  totalYearsExperience?: true
+  isCurrentlyEmployed?: true
+  highestQualification?: true
+  driversLicenceClass?: true
+  autoScore?: true
+  panelScoreMean?: true
+  panelScoreMedian?: true
+  panelScoreSpread?: true
+  panelScoreStdev?: true
+  panelReviewCount?: true
+  finalScore?: true
+  scoreOverride?: true
+  scoreOverrideNote?: true
+  keywordMatchPct?: true
+  scoreComputedAt?: true
+  isAutoRejected?: true
+  isShortlisted?: true
+  isWithdrawn?: true
+  withdrawnAt?: true
+  withdrawnReason?: true
+  integrityFlagCount?: true
 }
 
 export type JobApplicationCountAggregateInputType = {
@@ -150,6 +424,52 @@ export type JobApplicationCountAggregateInputType = {
   reviewedBy?: true
   createdAt?: true
   updatedAt?: true
+  referenceNumber?: true
+  candidateId?: true
+  stageId?: true
+  mode?: true
+  submittedAt?: true
+  lastCandidateViewAt?: true
+  answers?: true
+  schemeSnapshot?: true
+  scoringVersion?: true
+  firstName?: true
+  lastName?: true
+  nationalIdType?: true
+  nationalId?: true
+  dateOfBirth?: true
+  gender?: true
+  nationality?: true
+  hasDisability?: true
+  province?: true
+  city?: true
+  altPhone?: true
+  howHeard?: true
+  noticePeriodDays?: true
+  willingToRelocate?: true
+  expectedSalary?: true
+  totalYearsExperience?: true
+  isCurrentlyEmployed?: true
+  highestQualification?: true
+  driversLicenceClass?: true
+  autoScore?: true
+  panelScoreMean?: true
+  panelScoreMedian?: true
+  panelScoreSpread?: true
+  panelScoreStdev?: true
+  panelReviewCount?: true
+  finalScore?: true
+  scoreOverride?: true
+  scoreOverrideNote?: true
+  keywordMatchPct?: true
+  scoreComputedAt?: true
+  isAutoRejected?: true
+  autoRejectReasons?: true
+  isShortlisted?: true
+  isWithdrawn?: true
+  withdrawnAt?: true
+  withdrawnReason?: true
+  integrityFlagCount?: true
   _all?: true
 }
 
@@ -247,14 +567,60 @@ export type JobApplicationGroupByOutputType = {
   phone: string
   qualification: string | null
   experience: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter: string | null
+  cvUrl: string | null
   status: $Enums.ApplicationStatus
   notes: string | null
   reviewedAt: Date | null
   reviewedBy: string | null
   createdAt: Date
   updatedAt: Date
+  referenceNumber: string | null
+  candidateId: string | null
+  stageId: string | null
+  mode: $Enums.ApplicationMode
+  submittedAt: Date | null
+  lastCandidateViewAt: Date | null
+  answers: runtime.JsonValue | null
+  schemeSnapshot: runtime.JsonValue | null
+  scoringVersion: number | null
+  firstName: string | null
+  lastName: string | null
+  nationalIdType: string | null
+  nationalId: string | null
+  dateOfBirth: Date | null
+  gender: string | null
+  nationality: string | null
+  hasDisability: boolean | null
+  province: string | null
+  city: string | null
+  altPhone: string | null
+  howHeard: string | null
+  noticePeriodDays: number | null
+  willingToRelocate: boolean | null
+  expectedSalary: number | null
+  totalYearsExperience: number | null
+  isCurrentlyEmployed: boolean | null
+  highestQualification: $Enums.QualificationLevel | null
+  driversLicenceClass: string | null
+  autoScore: number | null
+  panelScoreMean: number | null
+  panelScoreMedian: number | null
+  panelScoreSpread: number | null
+  panelScoreStdev: number | null
+  panelReviewCount: number
+  finalScore: number | null
+  scoreOverride: number | null
+  scoreOverrideNote: string | null
+  keywordMatchPct: number | null
+  scoreComputedAt: Date | null
+  isAutoRejected: boolean
+  autoRejectReasons: runtime.JsonValue | null
+  isShortlisted: boolean
+  isWithdrawn: boolean
+  withdrawnAt: Date | null
+  withdrawnReason: string | null
+  integrityFlagCount: number
   _count: JobApplicationCountAggregateOutputType | null
   _avg: JobApplicationAvgAggregateOutputType | null
   _sum: JobApplicationSumAggregateOutputType | null
@@ -288,16 +654,76 @@ export type JobApplicationWhereInput = {
   phone?: Prisma.StringFilter<"JobApplication"> | string
   qualification?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   experience?: Prisma.IntNullableFilter<"JobApplication"> | number | null
-  coverLetter?: Prisma.StringFilter<"JobApplication"> | string
-  cvUrl?: Prisma.StringFilter<"JobApplication"> | string
+  coverLetter?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  cvUrl?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   status?: Prisma.EnumApplicationStatusFilter<"JobApplication"> | $Enums.ApplicationStatus
   notes?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   reviewedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   reviewedBy?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   createdAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
+  referenceNumber?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  candidateId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  stageId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  mode?: Prisma.EnumApplicationModeFilter<"JobApplication"> | $Enums.ApplicationMode
+  submittedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  lastCandidateViewAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  answers?: Prisma.JsonNullableFilter<"JobApplication">
+  schemeSnapshot?: Prisma.JsonNullableFilter<"JobApplication">
+  scoringVersion?: Prisma.IntNullableFilter<"JobApplication"> | number | null
+  firstName?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  lastName?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationalIdType?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationalId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  gender?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationality?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  hasDisability?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  province?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  city?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  altPhone?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  howHeard?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  noticePeriodDays?: Prisma.IntNullableFilter<"JobApplication"> | number | null
+  willingToRelocate?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  expectedSalary?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  totalYearsExperience?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  isCurrentlyEmployed?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  highestQualification?: Prisma.EnumQualificationLevelNullableFilter<"JobApplication"> | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  autoScore?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreMean?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreMedian?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreSpread?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreStdev?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelReviewCount?: Prisma.IntFilter<"JobApplication"> | number
+  finalScore?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreOverride?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreOverrideNote?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  keywordMatchPct?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreComputedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  isAutoRejected?: Prisma.BoolFilter<"JobApplication"> | boolean
+  autoRejectReasons?: Prisma.JsonNullableFilter<"JobApplication">
+  isShortlisted?: Prisma.BoolFilter<"JobApplication"> | boolean
+  isWithdrawn?: Prisma.BoolFilter<"JobApplication"> | boolean
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  withdrawnReason?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  integrityFlagCount?: Prisma.IntFilter<"JobApplication"> | number
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
+  candidate?: Prisma.XOR<Prisma.CandidateNullableScalarRelationFilter, Prisma.CandidateWhereInput> | null
+  stage?: Prisma.XOR<Prisma.RecruitmentStageNullableScalarRelationFilter, Prisma.RecruitmentStageWhereInput> | null
   documents?: Prisma.JobApplicationDocumentListRelationFilter
+  qualifications?: Prisma.ApplicationQualificationListRelationFilter
+  employments?: Prisma.ApplicationEmploymentListRelationFilter
+  declarations?: Prisma.ApplicationDeclarationListRelationFilter
+  skills?: Prisma.ApplicationSkillListRelationFilter
+  keywordHits?: Prisma.ApplicationKeywordHitListRelationFilter
+  criterionScores?: Prisma.ApplicationCriterionScoreListRelationFilter
+  panelScores?: Prisma.ApplicationPanelScoreListRelationFilter
+  reviews?: Prisma.ApplicationReviewListRelationFilter
+  flags?: Prisma.ApplicationFlagListRelationFilter
+  stageEvents?: Prisma.ApplicationStageEventListRelationFilter
+  messages?: Prisma.ApplicationMessageListRelationFilter
+  invitations?: Prisma.InterviewInvitationListRelationFilter
 }
 
 export type JobApplicationOrderByWithRelationInput = {
@@ -308,21 +734,82 @@ export type JobApplicationOrderByWithRelationInput = {
   phone?: Prisma.SortOrder
   qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   experience?: Prisma.SortOrderInput | Prisma.SortOrder
-  coverLetter?: Prisma.SortOrder
-  cvUrl?: Prisma.SortOrder
+  coverLetter?: Prisma.SortOrderInput | Prisma.SortOrder
+  cvUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidateId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastCandidateViewAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  answers?: Prisma.SortOrderInput | Prisma.SortOrder
+  schemeSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  firstName?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastName?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationalIdType?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationalId?: Prisma.SortOrderInput | Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasDisability?: Prisma.SortOrderInput | Prisma.SortOrder
+  province?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  altPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  howHeard?: Prisma.SortOrderInput | Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrderInput | Prisma.SortOrder
+  willingToRelocate?: Prisma.SortOrderInput | Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrderInput | Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrderInput | Prisma.SortOrder
+  isCurrentlyEmployed?: Prisma.SortOrderInput | Prisma.SortOrder
+  highestQualification?: Prisma.SortOrderInput | Prisma.SortOrder
+  driversLicenceClass?: Prisma.SortOrderInput | Prisma.SortOrder
+  autoScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoreOverrideNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoreComputedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isAutoRejected?: Prisma.SortOrder
+  autoRejectReasons?: Prisma.SortOrderInput | Prisma.SortOrder
+  isShortlisted?: Prisma.SortOrder
+  isWithdrawn?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
   job?: Prisma.JobOrderByWithRelationInput
+  candidate?: Prisma.CandidateOrderByWithRelationInput
+  stage?: Prisma.RecruitmentStageOrderByWithRelationInput
   documents?: Prisma.JobApplicationDocumentOrderByRelationAggregateInput
+  qualifications?: Prisma.ApplicationQualificationOrderByRelationAggregateInput
+  employments?: Prisma.ApplicationEmploymentOrderByRelationAggregateInput
+  declarations?: Prisma.ApplicationDeclarationOrderByRelationAggregateInput
+  skills?: Prisma.ApplicationSkillOrderByRelationAggregateInput
+  keywordHits?: Prisma.ApplicationKeywordHitOrderByRelationAggregateInput
+  criterionScores?: Prisma.ApplicationCriterionScoreOrderByRelationAggregateInput
+  panelScores?: Prisma.ApplicationPanelScoreOrderByRelationAggregateInput
+  reviews?: Prisma.ApplicationReviewOrderByRelationAggregateInput
+  flags?: Prisma.ApplicationFlagOrderByRelationAggregateInput
+  stageEvents?: Prisma.ApplicationStageEventOrderByRelationAggregateInput
+  messages?: Prisma.ApplicationMessageOrderByRelationAggregateInput
+  invitations?: Prisma.InterviewInvitationOrderByRelationAggregateInput
   _relevance?: Prisma.JobApplicationOrderByRelevanceInput
 }
 
 export type JobApplicationWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  referenceNumber?: string
   AND?: Prisma.JobApplicationWhereInput | Prisma.JobApplicationWhereInput[]
   OR?: Prisma.JobApplicationWhereInput[]
   NOT?: Prisma.JobApplicationWhereInput | Prisma.JobApplicationWhereInput[]
@@ -332,17 +819,76 @@ export type JobApplicationWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"JobApplication"> | string
   qualification?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   experience?: Prisma.IntNullableFilter<"JobApplication"> | number | null
-  coverLetter?: Prisma.StringFilter<"JobApplication"> | string
-  cvUrl?: Prisma.StringFilter<"JobApplication"> | string
+  coverLetter?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  cvUrl?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   status?: Prisma.EnumApplicationStatusFilter<"JobApplication"> | $Enums.ApplicationStatus
   notes?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   reviewedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   reviewedBy?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   createdAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
+  candidateId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  stageId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  mode?: Prisma.EnumApplicationModeFilter<"JobApplication"> | $Enums.ApplicationMode
+  submittedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  lastCandidateViewAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  answers?: Prisma.JsonNullableFilter<"JobApplication">
+  schemeSnapshot?: Prisma.JsonNullableFilter<"JobApplication">
+  scoringVersion?: Prisma.IntNullableFilter<"JobApplication"> | number | null
+  firstName?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  lastName?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationalIdType?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationalId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  gender?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationality?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  hasDisability?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  province?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  city?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  altPhone?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  howHeard?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  noticePeriodDays?: Prisma.IntNullableFilter<"JobApplication"> | number | null
+  willingToRelocate?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  expectedSalary?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  totalYearsExperience?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  isCurrentlyEmployed?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  highestQualification?: Prisma.EnumQualificationLevelNullableFilter<"JobApplication"> | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  autoScore?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreMean?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreMedian?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreSpread?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreStdev?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelReviewCount?: Prisma.IntFilter<"JobApplication"> | number
+  finalScore?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreOverride?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreOverrideNote?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  keywordMatchPct?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreComputedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  isAutoRejected?: Prisma.BoolFilter<"JobApplication"> | boolean
+  autoRejectReasons?: Prisma.JsonNullableFilter<"JobApplication">
+  isShortlisted?: Prisma.BoolFilter<"JobApplication"> | boolean
+  isWithdrawn?: Prisma.BoolFilter<"JobApplication"> | boolean
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  withdrawnReason?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  integrityFlagCount?: Prisma.IntFilter<"JobApplication"> | number
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
+  candidate?: Prisma.XOR<Prisma.CandidateNullableScalarRelationFilter, Prisma.CandidateWhereInput> | null
+  stage?: Prisma.XOR<Prisma.RecruitmentStageNullableScalarRelationFilter, Prisma.RecruitmentStageWhereInput> | null
   documents?: Prisma.JobApplicationDocumentListRelationFilter
-}, "id">
+  qualifications?: Prisma.ApplicationQualificationListRelationFilter
+  employments?: Prisma.ApplicationEmploymentListRelationFilter
+  declarations?: Prisma.ApplicationDeclarationListRelationFilter
+  skills?: Prisma.ApplicationSkillListRelationFilter
+  keywordHits?: Prisma.ApplicationKeywordHitListRelationFilter
+  criterionScores?: Prisma.ApplicationCriterionScoreListRelationFilter
+  panelScores?: Prisma.ApplicationPanelScoreListRelationFilter
+  reviews?: Prisma.ApplicationReviewListRelationFilter
+  flags?: Prisma.ApplicationFlagListRelationFilter
+  stageEvents?: Prisma.ApplicationStageEventListRelationFilter
+  messages?: Prisma.ApplicationMessageListRelationFilter
+  invitations?: Prisma.InterviewInvitationListRelationFilter
+}, "id" | "referenceNumber">
 
 export type JobApplicationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -352,14 +898,60 @@ export type JobApplicationOrderByWithAggregationInput = {
   phone?: Prisma.SortOrder
   qualification?: Prisma.SortOrderInput | Prisma.SortOrder
   experience?: Prisma.SortOrderInput | Prisma.SortOrder
-  coverLetter?: Prisma.SortOrder
-  cvUrl?: Prisma.SortOrder
+  coverLetter?: Prisma.SortOrderInput | Prisma.SortOrder
+  cvUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedBy?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrderInput | Prisma.SortOrder
+  candidateId?: Prisma.SortOrderInput | Prisma.SortOrder
+  stageId?: Prisma.SortOrderInput | Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastCandidateViewAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  answers?: Prisma.SortOrderInput | Prisma.SortOrder
+  schemeSnapshot?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrderInput | Prisma.SortOrder
+  firstName?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastName?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationalIdType?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationalId?: Prisma.SortOrderInput | Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality?: Prisma.SortOrderInput | Prisma.SortOrder
+  hasDisability?: Prisma.SortOrderInput | Prisma.SortOrder
+  province?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  altPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  howHeard?: Prisma.SortOrderInput | Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrderInput | Prisma.SortOrder
+  willingToRelocate?: Prisma.SortOrderInput | Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrderInput | Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrderInput | Prisma.SortOrder
+  isCurrentlyEmployed?: Prisma.SortOrderInput | Prisma.SortOrder
+  highestQualification?: Prisma.SortOrderInput | Prisma.SortOrder
+  driversLicenceClass?: Prisma.SortOrderInput | Prisma.SortOrder
+  autoScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrderInput | Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoreOverrideNote?: Prisma.SortOrderInput | Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrderInput | Prisma.SortOrder
+  scoreComputedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isAutoRejected?: Prisma.SortOrder
+  autoRejectReasons?: Prisma.SortOrderInput | Prisma.SortOrder
+  isShortlisted?: Prisma.SortOrder
+  isWithdrawn?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  withdrawnReason?: Prisma.SortOrderInput | Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
   _count?: Prisma.JobApplicationCountOrderByAggregateInput
   _avg?: Prisma.JobApplicationAvgOrderByAggregateInput
   _max?: Prisma.JobApplicationMaxOrderByAggregateInput
@@ -378,14 +970,60 @@ export type JobApplicationScalarWhereWithAggregatesInput = {
   phone?: Prisma.StringWithAggregatesFilter<"JobApplication"> | string
   qualification?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   experience?: Prisma.IntNullableWithAggregatesFilter<"JobApplication"> | number | null
-  coverLetter?: Prisma.StringWithAggregatesFilter<"JobApplication"> | string
-  cvUrl?: Prisma.StringWithAggregatesFilter<"JobApplication"> | string
+  coverLetter?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  cvUrl?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   status?: Prisma.EnumApplicationStatusWithAggregatesFilter<"JobApplication"> | $Enums.ApplicationStatus
   notes?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   reviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
   reviewedBy?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"JobApplication"> | Date | string
+  referenceNumber?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  candidateId?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  stageId?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  mode?: Prisma.EnumApplicationModeWithAggregatesFilter<"JobApplication"> | $Enums.ApplicationMode
+  submittedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
+  lastCandidateViewAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
+  answers?: Prisma.JsonNullableWithAggregatesFilter<"JobApplication">
+  schemeSnapshot?: Prisma.JsonNullableWithAggregatesFilter<"JobApplication">
+  scoringVersion?: Prisma.IntNullableWithAggregatesFilter<"JobApplication"> | number | null
+  firstName?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  lastName?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  nationalIdType?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  nationalId?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
+  gender?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  nationality?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  hasDisability?: Prisma.BoolNullableWithAggregatesFilter<"JobApplication"> | boolean | null
+  province?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  altPhone?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  howHeard?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  noticePeriodDays?: Prisma.IntNullableWithAggregatesFilter<"JobApplication"> | number | null
+  willingToRelocate?: Prisma.BoolNullableWithAggregatesFilter<"JobApplication"> | boolean | null
+  expectedSalary?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  totalYearsExperience?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  isCurrentlyEmployed?: Prisma.BoolNullableWithAggregatesFilter<"JobApplication"> | boolean | null
+  highestQualification?: Prisma.EnumQualificationLevelNullableWithAggregatesFilter<"JobApplication"> | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  autoScore?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  panelScoreMean?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  panelScoreMedian?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  panelScoreSpread?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  panelScoreStdev?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  panelReviewCount?: Prisma.IntWithAggregatesFilter<"JobApplication"> | number
+  finalScore?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  scoreOverride?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  scoreOverrideNote?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  keywordMatchPct?: Prisma.FloatNullableWithAggregatesFilter<"JobApplication"> | number | null
+  scoreComputedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
+  isAutoRejected?: Prisma.BoolWithAggregatesFilter<"JobApplication"> | boolean
+  autoRejectReasons?: Prisma.JsonNullableWithAggregatesFilter<"JobApplication">
+  isShortlisted?: Prisma.BoolWithAggregatesFilter<"JobApplication"> | boolean
+  isWithdrawn?: Prisma.BoolWithAggregatesFilter<"JobApplication"> | boolean
+  withdrawnAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
+  withdrawnReason?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
+  integrityFlagCount?: Prisma.IntWithAggregatesFilter<"JobApplication"> | number
 }
 
 export type JobApplicationCreateInput = {
@@ -395,16 +1033,74 @@ export type JobApplicationCreateInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
   documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
 }
 
 export type JobApplicationUncheckedCreateInput = {
@@ -415,15 +1111,73 @@ export type JobApplicationUncheckedCreateInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
   documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type JobApplicationUpdateInput = {
@@ -433,16 +1187,74 @@ export type JobApplicationUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
   documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
 }
 
 export type JobApplicationUncheckedUpdateInput = {
@@ -453,15 +1265,73 @@ export type JobApplicationUncheckedUpdateInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
   documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type JobApplicationCreateManyInput = {
@@ -472,14 +1342,60 @@ export type JobApplicationCreateManyInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
 }
 
 export type JobApplicationUpdateManyMutationInput = {
@@ -489,14 +1405,58 @@ export type JobApplicationUpdateManyMutationInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type JobApplicationUncheckedUpdateManyInput = {
@@ -507,14 +1467,60 @@ export type JobApplicationUncheckedUpdateManyInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type JobApplicationListRelationFilter = {
@@ -549,10 +1555,70 @@ export type JobApplicationCountOrderByAggregateInput = {
   reviewedBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrder
+  candidateId?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+  lastCandidateViewAt?: Prisma.SortOrder
+  answers?: Prisma.SortOrder
+  schemeSnapshot?: Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  nationalIdType?: Prisma.SortOrder
+  nationalId?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  hasDisability?: Prisma.SortOrder
+  province?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  altPhone?: Prisma.SortOrder
+  howHeard?: Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrder
+  willingToRelocate?: Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrder
+  isCurrentlyEmployed?: Prisma.SortOrder
+  highestQualification?: Prisma.SortOrder
+  driversLicenceClass?: Prisma.SortOrder
+  autoScore?: Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrder
+  scoreOverrideNote?: Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrder
+  scoreComputedAt?: Prisma.SortOrder
+  isAutoRejected?: Prisma.SortOrder
+  autoRejectReasons?: Prisma.SortOrder
+  isShortlisted?: Prisma.SortOrder
+  isWithdrawn?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnReason?: Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
 }
 
 export type JobApplicationAvgOrderByAggregateInput = {
   experience?: Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrder
+  autoScore?: Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
 }
 
 export type JobApplicationMaxOrderByAggregateInput = {
@@ -571,6 +1637,49 @@ export type JobApplicationMaxOrderByAggregateInput = {
   reviewedBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrder
+  candidateId?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+  lastCandidateViewAt?: Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  nationalIdType?: Prisma.SortOrder
+  nationalId?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  hasDisability?: Prisma.SortOrder
+  province?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  altPhone?: Prisma.SortOrder
+  howHeard?: Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrder
+  willingToRelocate?: Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrder
+  isCurrentlyEmployed?: Prisma.SortOrder
+  highestQualification?: Prisma.SortOrder
+  driversLicenceClass?: Prisma.SortOrder
+  autoScore?: Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrder
+  scoreOverrideNote?: Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrder
+  scoreComputedAt?: Prisma.SortOrder
+  isAutoRejected?: Prisma.SortOrder
+  isShortlisted?: Prisma.SortOrder
+  isWithdrawn?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnReason?: Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
 }
 
 export type JobApplicationMinOrderByAggregateInput = {
@@ -589,10 +1698,67 @@ export type JobApplicationMinOrderByAggregateInput = {
   reviewedBy?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrder
+  candidateId?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mode?: Prisma.SortOrder
+  submittedAt?: Prisma.SortOrder
+  lastCandidateViewAt?: Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrder
+  firstName?: Prisma.SortOrder
+  lastName?: Prisma.SortOrder
+  nationalIdType?: Prisma.SortOrder
+  nationalId?: Prisma.SortOrder
+  dateOfBirth?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
+  nationality?: Prisma.SortOrder
+  hasDisability?: Prisma.SortOrder
+  province?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  altPhone?: Prisma.SortOrder
+  howHeard?: Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrder
+  willingToRelocate?: Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrder
+  isCurrentlyEmployed?: Prisma.SortOrder
+  highestQualification?: Prisma.SortOrder
+  driversLicenceClass?: Prisma.SortOrder
+  autoScore?: Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrder
+  scoreOverrideNote?: Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrder
+  scoreComputedAt?: Prisma.SortOrder
+  isAutoRejected?: Prisma.SortOrder
+  isShortlisted?: Prisma.SortOrder
+  isWithdrawn?: Prisma.SortOrder
+  withdrawnAt?: Prisma.SortOrder
+  withdrawnReason?: Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
 }
 
 export type JobApplicationSumOrderByAggregateInput = {
   experience?: Prisma.SortOrder
+  scoringVersion?: Prisma.SortOrder
+  noticePeriodDays?: Prisma.SortOrder
+  expectedSalary?: Prisma.SortOrder
+  totalYearsExperience?: Prisma.SortOrder
+  autoScore?: Prisma.SortOrder
+  panelScoreMean?: Prisma.SortOrder
+  panelScoreMedian?: Prisma.SortOrder
+  panelScoreSpread?: Prisma.SortOrder
+  panelScoreStdev?: Prisma.SortOrder
+  panelReviewCount?: Prisma.SortOrder
+  finalScore?: Prisma.SortOrder
+  scoreOverride?: Prisma.SortOrder
+  keywordMatchPct?: Prisma.SortOrder
+  integrityFlagCount?: Prisma.SortOrder
 }
 
 export type JobApplicationScalarRelationFilter = {
@@ -642,16 +1808,16 @@ export type JobApplicationUncheckedUpdateManyWithoutJobNestedInput = {
   deleteMany?: Prisma.JobApplicationScalarWhereInput | Prisma.JobApplicationScalarWhereInput[]
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type EnumApplicationStatusFieldUpdateOperationsInput = {
   set?: $Enums.ApplicationStatus
+}
+
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
+}
+
+export type NullableEnumQualificationLevelFieldUpdateOperationsInput = {
+  set?: $Enums.QualificationLevel | null
 }
 
 export type JobApplicationCreateNestedOneWithoutDocumentsInput = {
@@ -668,6 +1834,258 @@ export type JobApplicationUpdateOneRequiredWithoutDocumentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutDocumentsInput, Prisma.JobApplicationUpdateWithoutDocumentsInput>, Prisma.JobApplicationUncheckedUpdateWithoutDocumentsInput>
 }
 
+export type JobApplicationCreateNestedManyWithoutCandidateInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutCandidateInput, Prisma.JobApplicationUncheckedCreateWithoutCandidateInput> | Prisma.JobApplicationCreateWithoutCandidateInput[] | Prisma.JobApplicationUncheckedCreateWithoutCandidateInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutCandidateInput | Prisma.JobApplicationCreateOrConnectWithoutCandidateInput[]
+  createMany?: Prisma.JobApplicationCreateManyCandidateInputEnvelope
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+}
+
+export type JobApplicationUncheckedCreateNestedManyWithoutCandidateInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutCandidateInput, Prisma.JobApplicationUncheckedCreateWithoutCandidateInput> | Prisma.JobApplicationCreateWithoutCandidateInput[] | Prisma.JobApplicationUncheckedCreateWithoutCandidateInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutCandidateInput | Prisma.JobApplicationCreateOrConnectWithoutCandidateInput[]
+  createMany?: Prisma.JobApplicationCreateManyCandidateInputEnvelope
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+}
+
+export type JobApplicationUpdateManyWithoutCandidateNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutCandidateInput, Prisma.JobApplicationUncheckedCreateWithoutCandidateInput> | Prisma.JobApplicationCreateWithoutCandidateInput[] | Prisma.JobApplicationUncheckedCreateWithoutCandidateInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutCandidateInput | Prisma.JobApplicationCreateOrConnectWithoutCandidateInput[]
+  upsert?: Prisma.JobApplicationUpsertWithWhereUniqueWithoutCandidateInput | Prisma.JobApplicationUpsertWithWhereUniqueWithoutCandidateInput[]
+  createMany?: Prisma.JobApplicationCreateManyCandidateInputEnvelope
+  set?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  disconnect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  delete?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  update?: Prisma.JobApplicationUpdateWithWhereUniqueWithoutCandidateInput | Prisma.JobApplicationUpdateWithWhereUniqueWithoutCandidateInput[]
+  updateMany?: Prisma.JobApplicationUpdateManyWithWhereWithoutCandidateInput | Prisma.JobApplicationUpdateManyWithWhereWithoutCandidateInput[]
+  deleteMany?: Prisma.JobApplicationScalarWhereInput | Prisma.JobApplicationScalarWhereInput[]
+}
+
+export type JobApplicationUncheckedUpdateManyWithoutCandidateNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutCandidateInput, Prisma.JobApplicationUncheckedCreateWithoutCandidateInput> | Prisma.JobApplicationCreateWithoutCandidateInput[] | Prisma.JobApplicationUncheckedCreateWithoutCandidateInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutCandidateInput | Prisma.JobApplicationCreateOrConnectWithoutCandidateInput[]
+  upsert?: Prisma.JobApplicationUpsertWithWhereUniqueWithoutCandidateInput | Prisma.JobApplicationUpsertWithWhereUniqueWithoutCandidateInput[]
+  createMany?: Prisma.JobApplicationCreateManyCandidateInputEnvelope
+  set?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  disconnect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  delete?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  update?: Prisma.JobApplicationUpdateWithWhereUniqueWithoutCandidateInput | Prisma.JobApplicationUpdateWithWhereUniqueWithoutCandidateInput[]
+  updateMany?: Prisma.JobApplicationUpdateManyWithWhereWithoutCandidateInput | Prisma.JobApplicationUpdateManyWithWhereWithoutCandidateInput[]
+  deleteMany?: Prisma.JobApplicationScalarWhereInput | Prisma.JobApplicationScalarWhereInput[]
+}
+
+export type JobApplicationCreateNestedManyWithoutStageInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageInput, Prisma.JobApplicationUncheckedCreateWithoutStageInput> | Prisma.JobApplicationCreateWithoutStageInput[] | Prisma.JobApplicationUncheckedCreateWithoutStageInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutStageInput | Prisma.JobApplicationCreateOrConnectWithoutStageInput[]
+  createMany?: Prisma.JobApplicationCreateManyStageInputEnvelope
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+}
+
+export type JobApplicationUncheckedCreateNestedManyWithoutStageInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageInput, Prisma.JobApplicationUncheckedCreateWithoutStageInput> | Prisma.JobApplicationCreateWithoutStageInput[] | Prisma.JobApplicationUncheckedCreateWithoutStageInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutStageInput | Prisma.JobApplicationCreateOrConnectWithoutStageInput[]
+  createMany?: Prisma.JobApplicationCreateManyStageInputEnvelope
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+}
+
+export type JobApplicationUpdateManyWithoutStageNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageInput, Prisma.JobApplicationUncheckedCreateWithoutStageInput> | Prisma.JobApplicationCreateWithoutStageInput[] | Prisma.JobApplicationUncheckedCreateWithoutStageInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutStageInput | Prisma.JobApplicationCreateOrConnectWithoutStageInput[]
+  upsert?: Prisma.JobApplicationUpsertWithWhereUniqueWithoutStageInput | Prisma.JobApplicationUpsertWithWhereUniqueWithoutStageInput[]
+  createMany?: Prisma.JobApplicationCreateManyStageInputEnvelope
+  set?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  disconnect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  delete?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  update?: Prisma.JobApplicationUpdateWithWhereUniqueWithoutStageInput | Prisma.JobApplicationUpdateWithWhereUniqueWithoutStageInput[]
+  updateMany?: Prisma.JobApplicationUpdateManyWithWhereWithoutStageInput | Prisma.JobApplicationUpdateManyWithWhereWithoutStageInput[]
+  deleteMany?: Prisma.JobApplicationScalarWhereInput | Prisma.JobApplicationScalarWhereInput[]
+}
+
+export type JobApplicationUncheckedUpdateManyWithoutStageNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageInput, Prisma.JobApplicationUncheckedCreateWithoutStageInput> | Prisma.JobApplicationCreateWithoutStageInput[] | Prisma.JobApplicationUncheckedCreateWithoutStageInput[]
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutStageInput | Prisma.JobApplicationCreateOrConnectWithoutStageInput[]
+  upsert?: Prisma.JobApplicationUpsertWithWhereUniqueWithoutStageInput | Prisma.JobApplicationUpsertWithWhereUniqueWithoutStageInput[]
+  createMany?: Prisma.JobApplicationCreateManyStageInputEnvelope
+  set?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  disconnect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  delete?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  connect?: Prisma.JobApplicationWhereUniqueInput | Prisma.JobApplicationWhereUniqueInput[]
+  update?: Prisma.JobApplicationUpdateWithWhereUniqueWithoutStageInput | Prisma.JobApplicationUpdateWithWhereUniqueWithoutStageInput[]
+  updateMany?: Prisma.JobApplicationUpdateManyWithWhereWithoutStageInput | Prisma.JobApplicationUpdateManyWithWhereWithoutStageInput[]
+  deleteMany?: Prisma.JobApplicationScalarWhereInput | Prisma.JobApplicationScalarWhereInput[]
+}
+
+export type JobApplicationCreateNestedOneWithoutStageEventsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageEventsInput, Prisma.JobApplicationUncheckedCreateWithoutStageEventsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutStageEventsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutStageEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageEventsInput, Prisma.JobApplicationUncheckedCreateWithoutStageEventsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutStageEventsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutStageEventsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutStageEventsInput, Prisma.JobApplicationUpdateWithoutStageEventsInput>, Prisma.JobApplicationUncheckedUpdateWithoutStageEventsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutQualificationsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutQualificationsInput, Prisma.JobApplicationUncheckedCreateWithoutQualificationsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutQualificationsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutQualificationsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutQualificationsInput, Prisma.JobApplicationUncheckedCreateWithoutQualificationsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutQualificationsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutQualificationsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutQualificationsInput, Prisma.JobApplicationUpdateWithoutQualificationsInput>, Prisma.JobApplicationUncheckedUpdateWithoutQualificationsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutEmploymentsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutEmploymentsInput, Prisma.JobApplicationUncheckedCreateWithoutEmploymentsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutEmploymentsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutEmploymentsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutEmploymentsInput, Prisma.JobApplicationUncheckedCreateWithoutEmploymentsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutEmploymentsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutEmploymentsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutEmploymentsInput, Prisma.JobApplicationUpdateWithoutEmploymentsInput>, Prisma.JobApplicationUncheckedUpdateWithoutEmploymentsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutDeclarationsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutDeclarationsInput, Prisma.JobApplicationUncheckedCreateWithoutDeclarationsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutDeclarationsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutDeclarationsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutDeclarationsInput, Prisma.JobApplicationUncheckedCreateWithoutDeclarationsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutDeclarationsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutDeclarationsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutDeclarationsInput, Prisma.JobApplicationUpdateWithoutDeclarationsInput>, Prisma.JobApplicationUncheckedUpdateWithoutDeclarationsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutSkillsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutSkillsInput, Prisma.JobApplicationUncheckedCreateWithoutSkillsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutSkillsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutSkillsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutSkillsInput, Prisma.JobApplicationUncheckedCreateWithoutSkillsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutSkillsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutSkillsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutSkillsInput, Prisma.JobApplicationUpdateWithoutSkillsInput>, Prisma.JobApplicationUncheckedUpdateWithoutSkillsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutKeywordHitsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutKeywordHitsInput, Prisma.JobApplicationUncheckedCreateWithoutKeywordHitsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutKeywordHitsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutKeywordHitsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutKeywordHitsInput, Prisma.JobApplicationUncheckedCreateWithoutKeywordHitsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutKeywordHitsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutKeywordHitsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutKeywordHitsInput, Prisma.JobApplicationUpdateWithoutKeywordHitsInput>, Prisma.JobApplicationUncheckedUpdateWithoutKeywordHitsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutCriterionScoresInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutCriterionScoresInput, Prisma.JobApplicationUncheckedCreateWithoutCriterionScoresInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutCriterionScoresInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutCriterionScoresNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutCriterionScoresInput, Prisma.JobApplicationUncheckedCreateWithoutCriterionScoresInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutCriterionScoresInput
+  upsert?: Prisma.JobApplicationUpsertWithoutCriterionScoresInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutCriterionScoresInput, Prisma.JobApplicationUpdateWithoutCriterionScoresInput>, Prisma.JobApplicationUncheckedUpdateWithoutCriterionScoresInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutPanelScoresInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutPanelScoresInput, Prisma.JobApplicationUncheckedCreateWithoutPanelScoresInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutPanelScoresInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutPanelScoresNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutPanelScoresInput, Prisma.JobApplicationUncheckedCreateWithoutPanelScoresInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutPanelScoresInput
+  upsert?: Prisma.JobApplicationUpsertWithoutPanelScoresInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutPanelScoresInput, Prisma.JobApplicationUpdateWithoutPanelScoresInput>, Prisma.JobApplicationUncheckedUpdateWithoutPanelScoresInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutReviewsInput, Prisma.JobApplicationUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutReviewsInput, Prisma.JobApplicationUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutReviewsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutReviewsInput, Prisma.JobApplicationUpdateWithoutReviewsInput>, Prisma.JobApplicationUncheckedUpdateWithoutReviewsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutFlagsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutFlagsInput, Prisma.JobApplicationUncheckedCreateWithoutFlagsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutFlagsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutFlagsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutFlagsInput, Prisma.JobApplicationUncheckedCreateWithoutFlagsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutFlagsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutFlagsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutFlagsInput, Prisma.JobApplicationUpdateWithoutFlagsInput>, Prisma.JobApplicationUncheckedUpdateWithoutFlagsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutInvitationsInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutInvitationsInput, Prisma.JobApplicationUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutInvitationsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutInvitationsInput, Prisma.JobApplicationUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutInvitationsInput
+  upsert?: Prisma.JobApplicationUpsertWithoutInvitationsInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutInvitationsInput, Prisma.JobApplicationUpdateWithoutInvitationsInput>, Prisma.JobApplicationUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type JobApplicationCreateNestedOneWithoutMessagesInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutMessagesInput, Prisma.JobApplicationUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutMessagesInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+}
+
+export type JobApplicationUpdateOneRequiredWithoutMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.JobApplicationCreateWithoutMessagesInput, Prisma.JobApplicationUncheckedCreateWithoutMessagesInput>
+  connectOrCreate?: Prisma.JobApplicationCreateOrConnectWithoutMessagesInput
+  upsert?: Prisma.JobApplicationUpsertWithoutMessagesInput
+  connect?: Prisma.JobApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.JobApplicationUpdateToOneWithWhereWithoutMessagesInput, Prisma.JobApplicationUpdateWithoutMessagesInput>, Prisma.JobApplicationUncheckedUpdateWithoutMessagesInput>
+}
+
 export type JobApplicationCreateWithoutJobInput = {
   id?: string
   name: string
@@ -675,15 +2093,73 @@ export type JobApplicationCreateWithoutJobInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
   documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
 }
 
 export type JobApplicationUncheckedCreateWithoutJobInput = {
@@ -693,15 +2169,73 @@ export type JobApplicationUncheckedCreateWithoutJobInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
   documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type JobApplicationCreateOrConnectWithoutJobInput = {
@@ -741,14 +2275,60 @@ export type JobApplicationScalarWhereInput = {
   phone?: Prisma.StringFilter<"JobApplication"> | string
   qualification?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   experience?: Prisma.IntNullableFilter<"JobApplication"> | number | null
-  coverLetter?: Prisma.StringFilter<"JobApplication"> | string
-  cvUrl?: Prisma.StringFilter<"JobApplication"> | string
+  coverLetter?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  cvUrl?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   status?: Prisma.EnumApplicationStatusFilter<"JobApplication"> | $Enums.ApplicationStatus
   notes?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   reviewedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   reviewedBy?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   createdAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"JobApplication"> | Date | string
+  referenceNumber?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  candidateId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  stageId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  mode?: Prisma.EnumApplicationModeFilter<"JobApplication"> | $Enums.ApplicationMode
+  submittedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  lastCandidateViewAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  answers?: Prisma.JsonNullableFilter<"JobApplication">
+  schemeSnapshot?: Prisma.JsonNullableFilter<"JobApplication">
+  scoringVersion?: Prisma.IntNullableFilter<"JobApplication"> | number | null
+  firstName?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  lastName?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationalIdType?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationalId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  dateOfBirth?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  gender?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  nationality?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  hasDisability?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  province?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  city?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  altPhone?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  howHeard?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  noticePeriodDays?: Prisma.IntNullableFilter<"JobApplication"> | number | null
+  willingToRelocate?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  expectedSalary?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  totalYearsExperience?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  isCurrentlyEmployed?: Prisma.BoolNullableFilter<"JobApplication"> | boolean | null
+  highestQualification?: Prisma.EnumQualificationLevelNullableFilter<"JobApplication"> | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  autoScore?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreMean?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreMedian?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreSpread?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelScoreStdev?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  panelReviewCount?: Prisma.IntFilter<"JobApplication"> | number
+  finalScore?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreOverride?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreOverrideNote?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  keywordMatchPct?: Prisma.FloatNullableFilter<"JobApplication"> | number | null
+  scoreComputedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  isAutoRejected?: Prisma.BoolFilter<"JobApplication"> | boolean
+  autoRejectReasons?: Prisma.JsonNullableFilter<"JobApplication">
+  isShortlisted?: Prisma.BoolFilter<"JobApplication"> | boolean
+  isWithdrawn?: Prisma.BoolFilter<"JobApplication"> | boolean
+  withdrawnAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
+  withdrawnReason?: Prisma.StringNullableFilter<"JobApplication"> | string | null
+  integrityFlagCount?: Prisma.IntFilter<"JobApplication"> | number
 }
 
 export type JobApplicationCreateWithoutDocumentsInput = {
@@ -758,15 +2338,73 @@ export type JobApplicationCreateWithoutDocumentsInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
 }
 
 export type JobApplicationUncheckedCreateWithoutDocumentsInput = {
@@ -777,14 +2415,72 @@ export type JobApplicationUncheckedCreateWithoutDocumentsInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
 }
 
 export type JobApplicationCreateOrConnectWithoutDocumentsInput = {
@@ -810,15 +2506,73 @@ export type JobApplicationUpdateWithoutDocumentsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
 }
 
 export type JobApplicationUncheckedUpdateWithoutDocumentsInput = {
@@ -829,14 +2583,4268 @@ export type JobApplicationUncheckedUpdateWithoutDocumentsInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutCandidateInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutCandidateInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutCandidateInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutCandidateInput, Prisma.JobApplicationUncheckedCreateWithoutCandidateInput>
+}
+
+export type JobApplicationCreateManyCandidateInputEnvelope = {
+  data: Prisma.JobApplicationCreateManyCandidateInput | Prisma.JobApplicationCreateManyCandidateInput[]
+  skipDuplicates?: boolean
+}
+
+export type JobApplicationUpsertWithWhereUniqueWithoutCandidateInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutCandidateInput, Prisma.JobApplicationUncheckedUpdateWithoutCandidateInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutCandidateInput, Prisma.JobApplicationUncheckedCreateWithoutCandidateInput>
+}
+
+export type JobApplicationUpdateWithWhereUniqueWithoutCandidateInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutCandidateInput, Prisma.JobApplicationUncheckedUpdateWithoutCandidateInput>
+}
+
+export type JobApplicationUpdateManyWithWhereWithoutCandidateInput = {
+  where: Prisma.JobApplicationScalarWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateManyMutationInput, Prisma.JobApplicationUncheckedUpdateManyWithoutCandidateInput>
+}
+
+export type JobApplicationCreateWithoutStageInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutStageInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutStageInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageInput, Prisma.JobApplicationUncheckedCreateWithoutStageInput>
+}
+
+export type JobApplicationCreateManyStageInputEnvelope = {
+  data: Prisma.JobApplicationCreateManyStageInput | Prisma.JobApplicationCreateManyStageInput[]
+  skipDuplicates?: boolean
+}
+
+export type JobApplicationUpsertWithWhereUniqueWithoutStageInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutStageInput, Prisma.JobApplicationUncheckedUpdateWithoutStageInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageInput, Prisma.JobApplicationUncheckedCreateWithoutStageInput>
+}
+
+export type JobApplicationUpdateWithWhereUniqueWithoutStageInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutStageInput, Prisma.JobApplicationUncheckedUpdateWithoutStageInput>
+}
+
+export type JobApplicationUpdateManyWithWhereWithoutStageInput = {
+  where: Prisma.JobApplicationScalarWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateManyMutationInput, Prisma.JobApplicationUncheckedUpdateManyWithoutStageInput>
+}
+
+export type JobApplicationCreateWithoutStageEventsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutStageEventsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutStageEventsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageEventsInput, Prisma.JobApplicationUncheckedCreateWithoutStageEventsInput>
+}
+
+export type JobApplicationUpsertWithoutStageEventsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutStageEventsInput, Prisma.JobApplicationUncheckedUpdateWithoutStageEventsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutStageEventsInput, Prisma.JobApplicationUncheckedCreateWithoutStageEventsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutStageEventsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutStageEventsInput, Prisma.JobApplicationUncheckedUpdateWithoutStageEventsInput>
+}
+
+export type JobApplicationUpdateWithoutStageEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutStageEventsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutQualificationsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutQualificationsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutQualificationsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutQualificationsInput, Prisma.JobApplicationUncheckedCreateWithoutQualificationsInput>
+}
+
+export type JobApplicationUpsertWithoutQualificationsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutQualificationsInput, Prisma.JobApplicationUncheckedUpdateWithoutQualificationsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutQualificationsInput, Prisma.JobApplicationUncheckedCreateWithoutQualificationsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutQualificationsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutQualificationsInput, Prisma.JobApplicationUncheckedUpdateWithoutQualificationsInput>
+}
+
+export type JobApplicationUpdateWithoutQualificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutQualificationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutEmploymentsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutEmploymentsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutEmploymentsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutEmploymentsInput, Prisma.JobApplicationUncheckedCreateWithoutEmploymentsInput>
+}
+
+export type JobApplicationUpsertWithoutEmploymentsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutEmploymentsInput, Prisma.JobApplicationUncheckedUpdateWithoutEmploymentsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutEmploymentsInput, Prisma.JobApplicationUncheckedCreateWithoutEmploymentsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutEmploymentsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutEmploymentsInput, Prisma.JobApplicationUncheckedUpdateWithoutEmploymentsInput>
+}
+
+export type JobApplicationUpdateWithoutEmploymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutEmploymentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutDeclarationsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutDeclarationsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutDeclarationsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutDeclarationsInput, Prisma.JobApplicationUncheckedCreateWithoutDeclarationsInput>
+}
+
+export type JobApplicationUpsertWithoutDeclarationsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutDeclarationsInput, Prisma.JobApplicationUncheckedUpdateWithoutDeclarationsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutDeclarationsInput, Prisma.JobApplicationUncheckedCreateWithoutDeclarationsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutDeclarationsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutDeclarationsInput, Prisma.JobApplicationUncheckedUpdateWithoutDeclarationsInput>
+}
+
+export type JobApplicationUpdateWithoutDeclarationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutDeclarationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutSkillsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutSkillsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutSkillsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutSkillsInput, Prisma.JobApplicationUncheckedCreateWithoutSkillsInput>
+}
+
+export type JobApplicationUpsertWithoutSkillsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutSkillsInput, Prisma.JobApplicationUncheckedUpdateWithoutSkillsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutSkillsInput, Prisma.JobApplicationUncheckedCreateWithoutSkillsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutSkillsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutSkillsInput, Prisma.JobApplicationUncheckedUpdateWithoutSkillsInput>
+}
+
+export type JobApplicationUpdateWithoutSkillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutSkillsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutKeywordHitsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutKeywordHitsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutKeywordHitsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutKeywordHitsInput, Prisma.JobApplicationUncheckedCreateWithoutKeywordHitsInput>
+}
+
+export type JobApplicationUpsertWithoutKeywordHitsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutKeywordHitsInput, Prisma.JobApplicationUncheckedUpdateWithoutKeywordHitsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutKeywordHitsInput, Prisma.JobApplicationUncheckedCreateWithoutKeywordHitsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutKeywordHitsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutKeywordHitsInput, Prisma.JobApplicationUncheckedUpdateWithoutKeywordHitsInput>
+}
+
+export type JobApplicationUpdateWithoutKeywordHitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutKeywordHitsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutCriterionScoresInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutCriterionScoresInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutCriterionScoresInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutCriterionScoresInput, Prisma.JobApplicationUncheckedCreateWithoutCriterionScoresInput>
+}
+
+export type JobApplicationUpsertWithoutCriterionScoresInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutCriterionScoresInput, Prisma.JobApplicationUncheckedUpdateWithoutCriterionScoresInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutCriterionScoresInput, Prisma.JobApplicationUncheckedCreateWithoutCriterionScoresInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutCriterionScoresInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutCriterionScoresInput, Prisma.JobApplicationUncheckedUpdateWithoutCriterionScoresInput>
+}
+
+export type JobApplicationUpdateWithoutCriterionScoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutCriterionScoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutPanelScoresInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutPanelScoresInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutPanelScoresInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutPanelScoresInput, Prisma.JobApplicationUncheckedCreateWithoutPanelScoresInput>
+}
+
+export type JobApplicationUpsertWithoutPanelScoresInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutPanelScoresInput, Prisma.JobApplicationUncheckedUpdateWithoutPanelScoresInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutPanelScoresInput, Prisma.JobApplicationUncheckedCreateWithoutPanelScoresInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutPanelScoresInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutPanelScoresInput, Prisma.JobApplicationUncheckedUpdateWithoutPanelScoresInput>
+}
+
+export type JobApplicationUpdateWithoutPanelScoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutPanelScoresInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutReviewsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutReviewsInput, Prisma.JobApplicationUncheckedCreateWithoutReviewsInput>
+}
+
+export type JobApplicationUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutReviewsInput, Prisma.JobApplicationUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutReviewsInput, Prisma.JobApplicationUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutReviewsInput, Prisma.JobApplicationUncheckedUpdateWithoutReviewsInput>
+}
+
+export type JobApplicationUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutFlagsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutFlagsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutFlagsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutFlagsInput, Prisma.JobApplicationUncheckedCreateWithoutFlagsInput>
+}
+
+export type JobApplicationUpsertWithoutFlagsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutFlagsInput, Prisma.JobApplicationUncheckedUpdateWithoutFlagsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutFlagsInput, Prisma.JobApplicationUncheckedCreateWithoutFlagsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutFlagsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutFlagsInput, Prisma.JobApplicationUncheckedUpdateWithoutFlagsInput>
+}
+
+export type JobApplicationUpdateWithoutFlagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutFlagsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutInvitationsInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutInvitationsInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  messages?: Prisma.ApplicationMessageUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutInvitationsInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutInvitationsInput, Prisma.JobApplicationUncheckedCreateWithoutInvitationsInput>
+}
+
+export type JobApplicationUpsertWithoutInvitationsInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutInvitationsInput, Prisma.JobApplicationUncheckedUpdateWithoutInvitationsInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutInvitationsInput, Prisma.JobApplicationUncheckedCreateWithoutInvitationsInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutInvitationsInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutInvitationsInput, Prisma.JobApplicationUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type JobApplicationUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationCreateWithoutMessagesInput = {
+  id?: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  candidate?: Prisma.CandidateCreateNestedOneWithoutApplicationsInput
+  stage?: Prisma.RecruitmentStageCreateNestedOneWithoutApplicationsInput
+  documents?: Prisma.JobApplicationDocumentCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationUncheckedCreateWithoutMessagesInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+  documents?: Prisma.JobApplicationDocumentUncheckedCreateNestedManyWithoutApplicationInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedCreateNestedManyWithoutApplicationInput
+  employments?: Prisma.ApplicationEmploymentUncheckedCreateNestedManyWithoutApplicationInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedCreateNestedManyWithoutApplicationInput
+  skills?: Prisma.ApplicationSkillUncheckedCreateNestedManyWithoutApplicationInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedCreateNestedManyWithoutApplicationInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedCreateNestedManyWithoutApplicationInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedCreateNestedManyWithoutApplicationInput
+  reviews?: Prisma.ApplicationReviewUncheckedCreateNestedManyWithoutApplicationInput
+  flags?: Prisma.ApplicationFlagUncheckedCreateNestedManyWithoutApplicationInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedCreateNestedManyWithoutApplicationInput
+  invitations?: Prisma.InterviewInvitationUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type JobApplicationCreateOrConnectWithoutMessagesInput = {
+  where: Prisma.JobApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutMessagesInput, Prisma.JobApplicationUncheckedCreateWithoutMessagesInput>
+}
+
+export type JobApplicationUpsertWithoutMessagesInput = {
+  update: Prisma.XOR<Prisma.JobApplicationUpdateWithoutMessagesInput, Prisma.JobApplicationUncheckedUpdateWithoutMessagesInput>
+  create: Prisma.XOR<Prisma.JobApplicationCreateWithoutMessagesInput, Prisma.JobApplicationUncheckedCreateWithoutMessagesInput>
+  where?: Prisma.JobApplicationWhereInput
+}
+
+export type JobApplicationUpdateToOneWithWhereWithoutMessagesInput = {
+  where?: Prisma.JobApplicationWhereInput
+  data: Prisma.XOR<Prisma.JobApplicationUpdateWithoutMessagesInput, Prisma.JobApplicationUncheckedUpdateWithoutMessagesInput>
+}
+
+export type JobApplicationUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutMessagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type JobApplicationCreateManyJobInput = {
@@ -846,14 +6854,60 @@ export type JobApplicationCreateManyJobInput = {
   phone: string
   qualification?: string | null
   experience?: number | null
-  coverLetter: string
-  cvUrl: string
+  coverLetter?: string | null
+  cvUrl?: string | null
   status?: $Enums.ApplicationStatus
   notes?: string | null
   reviewedAt?: Date | string | null
   reviewedBy?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
 }
 
 export type JobApplicationUpdateWithoutJobInput = {
@@ -863,15 +6917,73 @@ export type JobApplicationUpdateWithoutJobInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
   documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
 }
 
 export type JobApplicationUncheckedUpdateWithoutJobInput = {
@@ -881,15 +6993,73 @@ export type JobApplicationUncheckedUpdateWithoutJobInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
   documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
@@ -899,14 +7069,616 @@ export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  coverLetter?: Prisma.StringFieldUpdateOperationsInput | string
-  cvUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type JobApplicationCreateManyCandidateInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  stageId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+}
+
+export type JobApplicationUpdateWithoutCandidateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  stage?: Prisma.RecruitmentStageUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutCandidateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateManyWithoutCandidateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type JobApplicationCreateManyStageInput = {
+  id?: string
+  jobId: string
+  name: string
+  email: string
+  phone: string
+  qualification?: string | null
+  experience?: number | null
+  coverLetter?: string | null
+  cvUrl?: string | null
+  status?: $Enums.ApplicationStatus
+  notes?: string | null
+  reviewedAt?: Date | string | null
+  reviewedBy?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  referenceNumber?: string | null
+  candidateId?: string | null
+  mode?: $Enums.ApplicationMode
+  submittedAt?: Date | string | null
+  lastCandidateViewAt?: Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: number | null
+  firstName?: string | null
+  lastName?: string | null
+  nationalIdType?: string | null
+  nationalId?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: string | null
+  nationality?: string | null
+  hasDisability?: boolean | null
+  province?: string | null
+  city?: string | null
+  altPhone?: string | null
+  howHeard?: string | null
+  noticePeriodDays?: number | null
+  willingToRelocate?: boolean | null
+  expectedSalary?: number | null
+  totalYearsExperience?: number | null
+  isCurrentlyEmployed?: boolean | null
+  highestQualification?: $Enums.QualificationLevel | null
+  driversLicenceClass?: string | null
+  autoScore?: number | null
+  panelScoreMean?: number | null
+  panelScoreMedian?: number | null
+  panelScoreSpread?: number | null
+  panelScoreStdev?: number | null
+  panelReviewCount?: number
+  finalScore?: number | null
+  scoreOverride?: number | null
+  scoreOverrideNote?: string | null
+  keywordMatchPct?: number | null
+  scoreComputedAt?: Date | string | null
+  isAutoRejected?: boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: Date | string | null
+  withdrawnReason?: string | null
+  integrityFlagCount?: number
+}
+
+export type JobApplicationUpdateWithoutStageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  candidate?: Prisma.CandidateUpdateOneWithoutApplicationsNestedInput
+  documents?: Prisma.JobApplicationDocumentUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateWithoutStageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.JobApplicationDocumentUncheckedUpdateManyWithoutApplicationNestedInput
+  qualifications?: Prisma.ApplicationQualificationUncheckedUpdateManyWithoutApplicationNestedInput
+  employments?: Prisma.ApplicationEmploymentUncheckedUpdateManyWithoutApplicationNestedInput
+  declarations?: Prisma.ApplicationDeclarationUncheckedUpdateManyWithoutApplicationNestedInput
+  skills?: Prisma.ApplicationSkillUncheckedUpdateManyWithoutApplicationNestedInput
+  keywordHits?: Prisma.ApplicationKeywordHitUncheckedUpdateManyWithoutApplicationNestedInput
+  criterionScores?: Prisma.ApplicationCriterionScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  panelScores?: Prisma.ApplicationPanelScoreUncheckedUpdateManyWithoutApplicationNestedInput
+  reviews?: Prisma.ApplicationReviewUncheckedUpdateManyWithoutApplicationNestedInput
+  flags?: Prisma.ApplicationFlagUncheckedUpdateManyWithoutApplicationNestedInput
+  stageEvents?: Prisma.ApplicationStageEventUncheckedUpdateManyWithoutApplicationNestedInput
+  messages?: Prisma.ApplicationMessageUncheckedUpdateManyWithoutApplicationNestedInput
+  invitations?: Prisma.InterviewInvitationUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type JobApplicationUncheckedUpdateManyWithoutStageInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  qualification?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  experience?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewedBy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schemeSnapshot?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  scoringVersion?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalIdType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationalId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hasDisability?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  altPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  howHeard?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  noticePeriodDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  willingToRelocate?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  expectedSalary?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  totalYearsExperience?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  isCurrentlyEmployed?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  highestQualification?: Prisma.NullableEnumQualificationLevelFieldUpdateOperationsInput | $Enums.QualificationLevel | null
+  driversLicenceClass?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  autoScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMean?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreMedian?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreSpread?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelScoreStdev?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  panelReviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  finalScore?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverride?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreOverrideNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  keywordMatchPct?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  scoreComputedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isAutoRejected?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  autoRejectReasons?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  isShortlisted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isWithdrawn?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  withdrawnAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  withdrawnReason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  integrityFlagCount?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -916,10 +7688,34 @@ export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
 
 export type JobApplicationCountOutputType = {
   documents: number
+  qualifications: number
+  employments: number
+  declarations: number
+  skills: number
+  keywordHits: number
+  criterionScores: number
+  panelScores: number
+  reviews: number
+  flags: number
+  stageEvents: number
+  messages: number
+  invitations: number
 }
 
 export type JobApplicationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documents?: boolean | JobApplicationCountOutputTypeCountDocumentsArgs
+  qualifications?: boolean | JobApplicationCountOutputTypeCountQualificationsArgs
+  employments?: boolean | JobApplicationCountOutputTypeCountEmploymentsArgs
+  declarations?: boolean | JobApplicationCountOutputTypeCountDeclarationsArgs
+  skills?: boolean | JobApplicationCountOutputTypeCountSkillsArgs
+  keywordHits?: boolean | JobApplicationCountOutputTypeCountKeywordHitsArgs
+  criterionScores?: boolean | JobApplicationCountOutputTypeCountCriterionScoresArgs
+  panelScores?: boolean | JobApplicationCountOutputTypeCountPanelScoresArgs
+  reviews?: boolean | JobApplicationCountOutputTypeCountReviewsArgs
+  flags?: boolean | JobApplicationCountOutputTypeCountFlagsArgs
+  stageEvents?: boolean | JobApplicationCountOutputTypeCountStageEventsArgs
+  messages?: boolean | JobApplicationCountOutputTypeCountMessagesArgs
+  invitations?: boolean | JobApplicationCountOutputTypeCountInvitationsArgs
 }
 
 /**
@@ -939,6 +7735,90 @@ export type JobApplicationCountOutputTypeCountDocumentsArgs<ExtArgs extends runt
   where?: Prisma.JobApplicationDocumentWhereInput
 }
 
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountQualificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationQualificationWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountEmploymentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationEmploymentWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountDeclarationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationDeclarationWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountSkillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationSkillWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountKeywordHitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationKeywordHitWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountCriterionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationCriterionScoreWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountPanelScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationPanelScoreWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationReviewWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountFlagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationFlagWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountStageEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationStageEventWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationMessageWhereInput
+}
+
+/**
+ * JobApplicationCountOutputType without action
+ */
+export type JobApplicationCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InterviewInvitationWhereInput
+}
+
 
 export type JobApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -956,8 +7836,68 @@ export type JobApplicationSelect<ExtArgs extends runtime.Types.Extensions.Intern
   reviewedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  referenceNumber?: boolean
+  candidateId?: boolean
+  stageId?: boolean
+  mode?: boolean
+  submittedAt?: boolean
+  lastCandidateViewAt?: boolean
+  answers?: boolean
+  schemeSnapshot?: boolean
+  scoringVersion?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  nationalIdType?: boolean
+  nationalId?: boolean
+  dateOfBirth?: boolean
+  gender?: boolean
+  nationality?: boolean
+  hasDisability?: boolean
+  province?: boolean
+  city?: boolean
+  altPhone?: boolean
+  howHeard?: boolean
+  noticePeriodDays?: boolean
+  willingToRelocate?: boolean
+  expectedSalary?: boolean
+  totalYearsExperience?: boolean
+  isCurrentlyEmployed?: boolean
+  highestQualification?: boolean
+  driversLicenceClass?: boolean
+  autoScore?: boolean
+  panelScoreMean?: boolean
+  panelScoreMedian?: boolean
+  panelScoreSpread?: boolean
+  panelScoreStdev?: boolean
+  panelReviewCount?: boolean
+  finalScore?: boolean
+  scoreOverride?: boolean
+  scoreOverrideNote?: boolean
+  keywordMatchPct?: boolean
+  scoreComputedAt?: boolean
+  isAutoRejected?: boolean
+  autoRejectReasons?: boolean
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: boolean
+  withdrawnReason?: boolean
+  integrityFlagCount?: boolean
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  candidate?: boolean | Prisma.JobApplication$candidateArgs<ExtArgs>
+  stage?: boolean | Prisma.JobApplication$stageArgs<ExtArgs>
   documents?: boolean | Prisma.JobApplication$documentsArgs<ExtArgs>
+  qualifications?: boolean | Prisma.JobApplication$qualificationsArgs<ExtArgs>
+  employments?: boolean | Prisma.JobApplication$employmentsArgs<ExtArgs>
+  declarations?: boolean | Prisma.JobApplication$declarationsArgs<ExtArgs>
+  skills?: boolean | Prisma.JobApplication$skillsArgs<ExtArgs>
+  keywordHits?: boolean | Prisma.JobApplication$keywordHitsArgs<ExtArgs>
+  criterionScores?: boolean | Prisma.JobApplication$criterionScoresArgs<ExtArgs>
+  panelScores?: boolean | Prisma.JobApplication$panelScoresArgs<ExtArgs>
+  reviews?: boolean | Prisma.JobApplication$reviewsArgs<ExtArgs>
+  flags?: boolean | Prisma.JobApplication$flagsArgs<ExtArgs>
+  stageEvents?: boolean | Prisma.JobApplication$stageEventsArgs<ExtArgs>
+  messages?: boolean | Prisma.JobApplication$messagesArgs<ExtArgs>
+  invitations?: boolean | Prisma.JobApplication$invitationsArgs<ExtArgs>
   _count?: boolean | Prisma.JobApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["jobApplication"]>
 
@@ -979,12 +7919,72 @@ export type JobApplicationSelectScalar = {
   reviewedBy?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  referenceNumber?: boolean
+  candidateId?: boolean
+  stageId?: boolean
+  mode?: boolean
+  submittedAt?: boolean
+  lastCandidateViewAt?: boolean
+  answers?: boolean
+  schemeSnapshot?: boolean
+  scoringVersion?: boolean
+  firstName?: boolean
+  lastName?: boolean
+  nationalIdType?: boolean
+  nationalId?: boolean
+  dateOfBirth?: boolean
+  gender?: boolean
+  nationality?: boolean
+  hasDisability?: boolean
+  province?: boolean
+  city?: boolean
+  altPhone?: boolean
+  howHeard?: boolean
+  noticePeriodDays?: boolean
+  willingToRelocate?: boolean
+  expectedSalary?: boolean
+  totalYearsExperience?: boolean
+  isCurrentlyEmployed?: boolean
+  highestQualification?: boolean
+  driversLicenceClass?: boolean
+  autoScore?: boolean
+  panelScoreMean?: boolean
+  panelScoreMedian?: boolean
+  panelScoreSpread?: boolean
+  panelScoreStdev?: boolean
+  panelReviewCount?: boolean
+  finalScore?: boolean
+  scoreOverride?: boolean
+  scoreOverrideNote?: boolean
+  keywordMatchPct?: boolean
+  scoreComputedAt?: boolean
+  isAutoRejected?: boolean
+  autoRejectReasons?: boolean
+  isShortlisted?: boolean
+  isWithdrawn?: boolean
+  withdrawnAt?: boolean
+  withdrawnReason?: boolean
+  integrityFlagCount?: boolean
 }
 
-export type JobApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "name" | "email" | "phone" | "qualification" | "experience" | "coverLetter" | "cvUrl" | "status" | "notes" | "reviewedAt" | "reviewedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["jobApplication"]>
+export type JobApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "name" | "email" | "phone" | "qualification" | "experience" | "coverLetter" | "cvUrl" | "status" | "notes" | "reviewedAt" | "reviewedBy" | "createdAt" | "updatedAt" | "referenceNumber" | "candidateId" | "stageId" | "mode" | "submittedAt" | "lastCandidateViewAt" | "answers" | "schemeSnapshot" | "scoringVersion" | "firstName" | "lastName" | "nationalIdType" | "nationalId" | "dateOfBirth" | "gender" | "nationality" | "hasDisability" | "province" | "city" | "altPhone" | "howHeard" | "noticePeriodDays" | "willingToRelocate" | "expectedSalary" | "totalYearsExperience" | "isCurrentlyEmployed" | "highestQualification" | "driversLicenceClass" | "autoScore" | "panelScoreMean" | "panelScoreMedian" | "panelScoreSpread" | "panelScoreStdev" | "panelReviewCount" | "finalScore" | "scoreOverride" | "scoreOverrideNote" | "keywordMatchPct" | "scoreComputedAt" | "isAutoRejected" | "autoRejectReasons" | "isShortlisted" | "isWithdrawn" | "withdrawnAt" | "withdrawnReason" | "integrityFlagCount", ExtArgs["result"]["jobApplication"]>
 export type JobApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  candidate?: boolean | Prisma.JobApplication$candidateArgs<ExtArgs>
+  stage?: boolean | Prisma.JobApplication$stageArgs<ExtArgs>
   documents?: boolean | Prisma.JobApplication$documentsArgs<ExtArgs>
+  qualifications?: boolean | Prisma.JobApplication$qualificationsArgs<ExtArgs>
+  employments?: boolean | Prisma.JobApplication$employmentsArgs<ExtArgs>
+  declarations?: boolean | Prisma.JobApplication$declarationsArgs<ExtArgs>
+  skills?: boolean | Prisma.JobApplication$skillsArgs<ExtArgs>
+  keywordHits?: boolean | Prisma.JobApplication$keywordHitsArgs<ExtArgs>
+  criterionScores?: boolean | Prisma.JobApplication$criterionScoresArgs<ExtArgs>
+  panelScores?: boolean | Prisma.JobApplication$panelScoresArgs<ExtArgs>
+  reviews?: boolean | Prisma.JobApplication$reviewsArgs<ExtArgs>
+  flags?: boolean | Prisma.JobApplication$flagsArgs<ExtArgs>
+  stageEvents?: boolean | Prisma.JobApplication$stageEventsArgs<ExtArgs>
+  messages?: boolean | Prisma.JobApplication$messagesArgs<ExtArgs>
+  invitations?: boolean | Prisma.JobApplication$invitationsArgs<ExtArgs>
   _count?: boolean | Prisma.JobApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -992,10 +7992,24 @@ export type $JobApplicationPayload<ExtArgs extends runtime.Types.Extensions.Inte
   name: "JobApplication"
   objects: {
     job: Prisma.$JobPayload<ExtArgs>
+    candidate: Prisma.$CandidatePayload<ExtArgs> | null
+    stage: Prisma.$RecruitmentStagePayload<ExtArgs> | null
     /**
      * * Certificates, qualifications, IDs and other supporting documents.
      */
     documents: Prisma.$JobApplicationDocumentPayload<ExtArgs>[]
+    qualifications: Prisma.$ApplicationQualificationPayload<ExtArgs>[]
+    employments: Prisma.$ApplicationEmploymentPayload<ExtArgs>[]
+    declarations: Prisma.$ApplicationDeclarationPayload<ExtArgs>[]
+    skills: Prisma.$ApplicationSkillPayload<ExtArgs>[]
+    keywordHits: Prisma.$ApplicationKeywordHitPayload<ExtArgs>[]
+    criterionScores: Prisma.$ApplicationCriterionScorePayload<ExtArgs>[]
+    panelScores: Prisma.$ApplicationPanelScorePayload<ExtArgs>[]
+    reviews: Prisma.$ApplicationReviewPayload<ExtArgs>[]
+    flags: Prisma.$ApplicationFlagPayload<ExtArgs>[]
+    stageEvents: Prisma.$ApplicationStageEventPayload<ExtArgs>[]
+    messages: Prisma.$ApplicationMessagePayload<ExtArgs>[]
+    invitations: Prisma.$InterviewInvitationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1005,14 +8019,83 @@ export type $JobApplicationPayload<ExtArgs extends runtime.Types.Extensions.Inte
     phone: string
     qualification: string | null
     experience: number | null
-    coverLetter: string
-    cvUrl: string
+    /**
+     * Widened: STRUCTURED applications have no single cover-letter field.
+     */
+    coverLetter: string | null
+    /**
+     * Widened: the CV now arrives through a document slot.
+     */
+    cvUrl: string | null
+    /**
+     * Retained as a denormalised mirror of stage.legacyStatus so the existing
+     * /admin/jobs page keeps working unchanged. `stageId` is authoritative.
+     */
     status: $Enums.ApplicationStatus
     notes: string | null
     reviewedAt: Date | null
     reviewedBy: string | null
     createdAt: Date
     updatedAt: Date
+    /**
+     * e.g. "ZACC-APP-2026-00483921". Null for pre-existing legacy rows.
+     */
+    referenceNumber: string | null
+    candidateId: string | null
+    stageId: string | null
+    mode: $Enums.ApplicationMode
+    submittedAt: Date | null
+    lastCandidateViewAt: Date | null
+    /**
+     * Verbatim wizard payload — the immutable evidence record of what was sent.
+     */
+    answers: runtime.JsonValue | null
+    /**
+     * The vacancy's criteria/keywords/disqualifiers frozen at submit time, so a
+     * later scheme edit can never retroactively change an already-scored application.
+     */
+    schemeSnapshot: runtime.JsonValue | null
+    scoringVersion: number | null
+    firstName: string | null
+    lastName: string | null
+    nationalIdType: string | null
+    nationalId: string | null
+    dateOfBirth: Date | null
+    gender: string | null
+    nationality: string | null
+    hasDisability: boolean | null
+    province: string | null
+    city: string | null
+    altPhone: string | null
+    howHeard: string | null
+    noticePeriodDays: number | null
+    willingToRelocate: boolean | null
+    expectedSalary: number | null
+    totalYearsExperience: number | null
+    isCurrentlyEmployed: boolean | null
+    highestQualification: $Enums.QualificationLevel | null
+    driversLicenceClass: string | null
+    autoScore: number | null
+    panelScoreMean: number | null
+    panelScoreMedian: number | null
+    panelScoreSpread: number | null
+    panelScoreStdev: number | null
+    panelReviewCount: number
+    /**
+     * Blended auto + panel score; what the shortlisting console sorts on.
+     */
+    finalScore: number | null
+    scoreOverride: number | null
+    scoreOverrideNote: string | null
+    keywordMatchPct: number | null
+    scoreComputedAt: Date | null
+    isAutoRejected: boolean
+    autoRejectReasons: runtime.JsonValue | null
+    isShortlisted: boolean
+    isWithdrawn: boolean
+    withdrawnAt: Date | null
+    withdrawnReason: string | null
+    integrityFlagCount: number
   }, ExtArgs["result"]["jobApplication"]>
   composites: {}
 }
@@ -1354,7 +8437,21 @@ readonly fields: JobApplicationFieldRefs;
 export interface Prisma__JobApplicationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   job<T extends Prisma.JobDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobDefaultArgs<ExtArgs>>): Prisma.Prisma__JobClient<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  candidate<T extends Prisma.JobApplication$candidateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$candidateArgs<ExtArgs>>): Prisma.Prisma__CandidateClient<runtime.Types.Result.GetResult<Prisma.$CandidatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  stage<T extends Prisma.JobApplication$stageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$stageArgs<ExtArgs>>): Prisma.Prisma__RecruitmentStageClient<runtime.Types.Result.GetResult<Prisma.$RecruitmentStagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   documents<T extends Prisma.JobApplication$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobApplicationDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qualifications<T extends Prisma.JobApplication$qualificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$qualificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationQualificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  employments<T extends Prisma.JobApplication$employmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$employmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationEmploymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  declarations<T extends Prisma.JobApplication$declarationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$declarationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationDeclarationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  skills<T extends Prisma.JobApplication$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  keywordHits<T extends Prisma.JobApplication$keywordHitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$keywordHitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationKeywordHitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  criterionScores<T extends Prisma.JobApplication$criterionScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$criterionScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationCriterionScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  panelScores<T extends Prisma.JobApplication$panelScoresArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$panelScoresArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPanelScorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.JobApplication$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  flags<T extends Prisma.JobApplication$flagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$flagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationFlagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  stageEvents<T extends Prisma.JobApplication$stageEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$stageEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationStageEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  messages<T extends Prisma.JobApplication$messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.JobApplication$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobApplication$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InterviewInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1399,6 +8496,52 @@ export interface JobApplicationFieldRefs {
   readonly reviewedBy: Prisma.FieldRef<"JobApplication", 'String'>
   readonly createdAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
+  readonly referenceNumber: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly candidateId: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly stageId: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly mode: Prisma.FieldRef<"JobApplication", 'ApplicationMode'>
+  readonly submittedAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
+  readonly lastCandidateViewAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
+  readonly answers: Prisma.FieldRef<"JobApplication", 'Json'>
+  readonly schemeSnapshot: Prisma.FieldRef<"JobApplication", 'Json'>
+  readonly scoringVersion: Prisma.FieldRef<"JobApplication", 'Int'>
+  readonly firstName: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly lastName: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly nationalIdType: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly nationalId: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly dateOfBirth: Prisma.FieldRef<"JobApplication", 'DateTime'>
+  readonly gender: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly nationality: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly hasDisability: Prisma.FieldRef<"JobApplication", 'Boolean'>
+  readonly province: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly city: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly altPhone: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly howHeard: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly noticePeriodDays: Prisma.FieldRef<"JobApplication", 'Int'>
+  readonly willingToRelocate: Prisma.FieldRef<"JobApplication", 'Boolean'>
+  readonly expectedSalary: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly totalYearsExperience: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly isCurrentlyEmployed: Prisma.FieldRef<"JobApplication", 'Boolean'>
+  readonly highestQualification: Prisma.FieldRef<"JobApplication", 'QualificationLevel'>
+  readonly driversLicenceClass: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly autoScore: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly panelScoreMean: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly panelScoreMedian: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly panelScoreSpread: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly panelScoreStdev: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly panelReviewCount: Prisma.FieldRef<"JobApplication", 'Int'>
+  readonly finalScore: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly scoreOverride: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly scoreOverrideNote: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly keywordMatchPct: Prisma.FieldRef<"JobApplication", 'Float'>
+  readonly scoreComputedAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
+  readonly isAutoRejected: Prisma.FieldRef<"JobApplication", 'Boolean'>
+  readonly autoRejectReasons: Prisma.FieldRef<"JobApplication", 'Json'>
+  readonly isShortlisted: Prisma.FieldRef<"JobApplication", 'Boolean'>
+  readonly isWithdrawn: Prisma.FieldRef<"JobApplication", 'Boolean'>
+  readonly withdrawnAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
+  readonly withdrawnReason: Prisma.FieldRef<"JobApplication", 'String'>
+  readonly integrityFlagCount: Prisma.FieldRef<"JobApplication", 'Int'>
 }
     
 
@@ -1747,6 +8890,44 @@ export type JobApplicationDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * JobApplication.candidate
+ */
+export type JobApplication$candidateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Candidate
+   */
+  select?: Prisma.CandidateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Candidate
+   */
+  omit?: Prisma.CandidateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CandidateInclude<ExtArgs> | null
+  where?: Prisma.CandidateWhereInput
+}
+
+/**
+ * JobApplication.stage
+ */
+export type JobApplication$stageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RecruitmentStage
+   */
+  select?: Prisma.RecruitmentStageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RecruitmentStage
+   */
+  omit?: Prisma.RecruitmentStageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RecruitmentStageInclude<ExtArgs> | null
+  where?: Prisma.RecruitmentStageWhereInput
+}
+
+/**
  * JobApplication.documents
  */
 export type JobApplication$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1768,6 +8949,294 @@ export type JobApplication$documentsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.JobApplicationDocumentScalarFieldEnum | Prisma.JobApplicationDocumentScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.qualifications
+ */
+export type JobApplication$qualificationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationQualification
+   */
+  select?: Prisma.ApplicationQualificationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationQualification
+   */
+  omit?: Prisma.ApplicationQualificationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationQualificationInclude<ExtArgs> | null
+  where?: Prisma.ApplicationQualificationWhereInput
+  orderBy?: Prisma.ApplicationQualificationOrderByWithRelationInput | Prisma.ApplicationQualificationOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationQualificationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationQualificationScalarFieldEnum | Prisma.ApplicationQualificationScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.employments
+ */
+export type JobApplication$employmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationEmployment
+   */
+  select?: Prisma.ApplicationEmploymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationEmployment
+   */
+  omit?: Prisma.ApplicationEmploymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationEmploymentInclude<ExtArgs> | null
+  where?: Prisma.ApplicationEmploymentWhereInput
+  orderBy?: Prisma.ApplicationEmploymentOrderByWithRelationInput | Prisma.ApplicationEmploymentOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationEmploymentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationEmploymentScalarFieldEnum | Prisma.ApplicationEmploymentScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.declarations
+ */
+export type JobApplication$declarationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationDeclaration
+   */
+  select?: Prisma.ApplicationDeclarationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationDeclaration
+   */
+  omit?: Prisma.ApplicationDeclarationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationDeclarationInclude<ExtArgs> | null
+  where?: Prisma.ApplicationDeclarationWhereInput
+  orderBy?: Prisma.ApplicationDeclarationOrderByWithRelationInput | Prisma.ApplicationDeclarationOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationDeclarationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationDeclarationScalarFieldEnum | Prisma.ApplicationDeclarationScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.skills
+ */
+export type JobApplication$skillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationSkill
+   */
+  select?: Prisma.ApplicationSkillSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationSkill
+   */
+  omit?: Prisma.ApplicationSkillOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationSkillInclude<ExtArgs> | null
+  where?: Prisma.ApplicationSkillWhereInput
+  orderBy?: Prisma.ApplicationSkillOrderByWithRelationInput | Prisma.ApplicationSkillOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationSkillWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationSkillScalarFieldEnum | Prisma.ApplicationSkillScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.keywordHits
+ */
+export type JobApplication$keywordHitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationKeywordHit
+   */
+  select?: Prisma.ApplicationKeywordHitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationKeywordHit
+   */
+  omit?: Prisma.ApplicationKeywordHitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationKeywordHitInclude<ExtArgs> | null
+  where?: Prisma.ApplicationKeywordHitWhereInput
+  orderBy?: Prisma.ApplicationKeywordHitOrderByWithRelationInput | Prisma.ApplicationKeywordHitOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationKeywordHitWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationKeywordHitScalarFieldEnum | Prisma.ApplicationKeywordHitScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.criterionScores
+ */
+export type JobApplication$criterionScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationCriterionScore
+   */
+  select?: Prisma.ApplicationCriterionScoreSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationCriterionScore
+   */
+  omit?: Prisma.ApplicationCriterionScoreOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationCriterionScoreInclude<ExtArgs> | null
+  where?: Prisma.ApplicationCriterionScoreWhereInput
+  orderBy?: Prisma.ApplicationCriterionScoreOrderByWithRelationInput | Prisma.ApplicationCriterionScoreOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationCriterionScoreWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationCriterionScoreScalarFieldEnum | Prisma.ApplicationCriterionScoreScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.panelScores
+ */
+export type JobApplication$panelScoresArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationPanelScore
+   */
+  select?: Prisma.ApplicationPanelScoreSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationPanelScore
+   */
+  omit?: Prisma.ApplicationPanelScoreOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationPanelScoreInclude<ExtArgs> | null
+  where?: Prisma.ApplicationPanelScoreWhereInput
+  orderBy?: Prisma.ApplicationPanelScoreOrderByWithRelationInput | Prisma.ApplicationPanelScoreOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationPanelScoreWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationPanelScoreScalarFieldEnum | Prisma.ApplicationPanelScoreScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.reviews
+ */
+export type JobApplication$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationReview
+   */
+  select?: Prisma.ApplicationReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationReview
+   */
+  omit?: Prisma.ApplicationReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationReviewInclude<ExtArgs> | null
+  where?: Prisma.ApplicationReviewWhereInput
+  orderBy?: Prisma.ApplicationReviewOrderByWithRelationInput | Prisma.ApplicationReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationReviewScalarFieldEnum | Prisma.ApplicationReviewScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.flags
+ */
+export type JobApplication$flagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationFlag
+   */
+  select?: Prisma.ApplicationFlagSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationFlag
+   */
+  omit?: Prisma.ApplicationFlagOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationFlagInclude<ExtArgs> | null
+  where?: Prisma.ApplicationFlagWhereInput
+  orderBy?: Prisma.ApplicationFlagOrderByWithRelationInput | Prisma.ApplicationFlagOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationFlagWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationFlagScalarFieldEnum | Prisma.ApplicationFlagScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.stageEvents
+ */
+export type JobApplication$stageEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationStageEvent
+   */
+  select?: Prisma.ApplicationStageEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationStageEvent
+   */
+  omit?: Prisma.ApplicationStageEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationStageEventInclude<ExtArgs> | null
+  where?: Prisma.ApplicationStageEventWhereInput
+  orderBy?: Prisma.ApplicationStageEventOrderByWithRelationInput | Prisma.ApplicationStageEventOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationStageEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationStageEventScalarFieldEnum | Prisma.ApplicationStageEventScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.messages
+ */
+export type JobApplication$messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ApplicationMessage
+   */
+  select?: Prisma.ApplicationMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ApplicationMessage
+   */
+  omit?: Prisma.ApplicationMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ApplicationMessageInclude<ExtArgs> | null
+  where?: Prisma.ApplicationMessageWhereInput
+  orderBy?: Prisma.ApplicationMessageOrderByWithRelationInput | Prisma.ApplicationMessageOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationMessageScalarFieldEnum | Prisma.ApplicationMessageScalarFieldEnum[]
+}
+
+/**
+ * JobApplication.invitations
+ */
+export type JobApplication$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InterviewInvitation
+   */
+  select?: Prisma.InterviewInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InterviewInvitation
+   */
+  omit?: Prisma.InterviewInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InterviewInvitationInclude<ExtArgs> | null
+  where?: Prisma.InterviewInvitationWhereInput
+  orderBy?: Prisma.InterviewInvitationOrderByWithRelationInput | Prisma.InterviewInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.InterviewInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InterviewInvitationScalarFieldEnum | Prisma.InterviewInvitationScalarFieldEnum[]
 }
 
 /**

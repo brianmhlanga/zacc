@@ -126,3 +126,44 @@ html, body {
 .report-now-button {
   animation: reportPulse 2s ease-in-out infinite;
 }
+/* ---------------------------------------------------------------------------
+   Icon-inside-input
+
+   PrimeVue 3 shipped `.p-input-icon-left`, which positioned the icon and padded
+   the field to clear it. PrimeVue 4 dropped it in favour of IconField/InputIcon,
+   so on this site the class resolved to nothing: the icon rendered in the normal
+   flow and the placeholder ran straight through it. Fifteen screens were
+   affected — every admin search box, plus the sign-in and forgot-password forms.
+
+   Reimplemented here rather than rewritten at fifteen call sites: the markup is
+   identical in all of them, and the class name no longer belongs to PrimeVue, so
+   there is nothing left to collide with.
+
+   Deliberately NOT inside @layer components: Tailwind v3 purges layered rules it
+   cannot see used, and these class names only ever appear in markup Tailwind does
+   scan — but the utilities layer would then win the padding, which is the exact
+   bug being fixed.
+--------------------------------------------------------------------------- */
+.p-input-icon-left {
+  position: relative;
+  display: inline-block;
+}
+
+.p-input-icon-left > i:first-child {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: #6b7280;
+  /* The icon is decoration; a click on it should land in the field. */
+  pointer-events: none;
+}
+
+/* Applied to the control itself so it beats the component's own padding. */
+.p-input-icon-left > .p-inputtext,
+.p-input-icon-left > input.p-inputtext {
+  padding-left: 2.5rem;
+}

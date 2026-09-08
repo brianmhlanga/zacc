@@ -32,14 +32,16 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Order list must include every action' })
   }
 
-  await prisma.$transaction(
-    orderedIds.map((id, index) =>
-      prisma.citizenHeroAction.update({
+  // Interactive form: `tx` is the real client, so these are genuine PrismaPromises.
+  // The array form cannot be used here — see the note in server/utils/prisma.ts.
+  await prisma.$transaction(async (tx) => {
+    for (const [index, id] of orderedIds.entries()) {
+      await tx.citizenHeroAction.update({
         where: { id },
         data: { sortOrder: index }
       })
-    )
-  )
+    }
+  })
 
   return { ok: true }
 })

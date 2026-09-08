@@ -147,6 +147,16 @@ export default defineNuxtConfig({
     '/api/public/reports/voice-preview': secure(uploadSecurity, rateLimit(30)),
     '/api/public/reports/**': secure(uploadSecurity),
     '/api/public/jobs/apply': secure(uploadSecurity, rateLimit(10)),
+    // Candidate portal. The draft limit is deliberately generous: autosave fires
+    // while typing, and an institutional NAT puts a whole office behind one IP.
+    '/api/public/candidates/register': secure(rateLimit(5)),
+    '/api/public/candidates/login': secure(rateLimit(10)),
+    '/api/public/candidates/forgot-password': secure(rateLimit(5)),
+    '/api/public/candidates/reset-password': secure(rateLimit(10)),
+    '/api/public/candidates/documents': secure(uploadSecurity, rateLimit(40)),
+    '/api/public/candidates': secure({ xssValidator: false }, rateLimit(300)),
+    // Free-text answers legitimately contain quotes, angle brackets and dashes.
+    '/api/public/vacancies': secure(uploadSecurity, rateLimit(300)),
     '/api/public/suppliers/documents': secure(uploadSecurity, rateLimit(20)),
     '/api/public/suppliers/register': secure(rateLimit(5)),
     '/api/public/suppliers/login': secure(rateLimit(10)),

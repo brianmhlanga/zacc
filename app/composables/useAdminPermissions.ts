@@ -11,6 +11,21 @@ const routeToModule: Array<[string, string]> = [
   ['/admin/suppliers', 'suppliers'],
   ['/admin/rulings', 'rulings'],
   ['/admin/gallery', 'gallery'],
+  // Recruitment. moduleFromPath uses .find with startsWith, so the specific
+  // routes must precede '/admin/recruitment', and all of them must stay above
+  // the '/admin' catch-all at the end of this list.
+  ['/admin/recruitment/applications', 'applications'],
+  ['/admin/recruitment/shortlist', 'applications'],
+  ['/admin/recruitment/application-', 'applications'],
+  ['/admin/recruitment/candidates', 'applications'],
+  ['/admin/recruitment/panel', 'panel_review'],
+  ['/admin/recruitment/review-', 'panel_review'],
+  ['/admin/recruitment/stages', 'recruitment_config'],
+  ['/admin/recruitment/templates', 'recruitment_config'],
+  ['/admin/recruitment/outbox', 'recruitment_config'],
+  ['/admin/recruitment/reports', 'recruitment_reports'],
+  ['/admin/recruitment/analytics', 'recruitment_reports'],
+  ['/admin/recruitment', 'jobs'],
   ['/admin/jobs', 'jobs'],
   ['/admin/analytics', 'reports'],
   ['/admin/reports', 'reports'],

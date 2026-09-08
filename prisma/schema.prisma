@@ -39,6 +39,13 @@ model User {
   createdTenders       Tender[]        @relation("TenderCreator")
   updatedTenders       Tender[]        @relation("TenderUpdater")
 
+  // Recruitment
+  panelMemberships        VacancyPanelMember[]      @relation("VacancyPanelUser")
+  panelScores             ApplicationPanelScore[]   @relation("PanelScoreReviewer")
+  applicationReviews      ApplicationReview[]       @relation("ApplicationReviewer")
+  createdScoringTemplates ScoringTemplate[]         @relation("ScoringTemplateCreator")
+  updatedScoringTemplates ScoringTemplate[]         @relation("ScoringTemplateUpdater")
+
   @@map("users")
 }
 
@@ -692,12 +699,57 @@ model Job {
   creator         User?    @relation("JobCreator", fields: [createdBy], references: [id])
   updater         User?    @relation("JobUpdater", fields: [updatedBy], references: [id])
 
+  // ---- Recruitment (all nullable / defaulted; existing rows unaffected) ----
+  /// LEGACY keeps the original simple form. Existing rows are migrated to LEGACY.
+  applicationMode    ApplicationMode @default(STRUCTURED)
+  grade              String?
+  /// Distinct from `location`, which is the province.
+  dutyStation        String?
+  province           String?
+  numberOfPosts      Int             @default(1)
+  openingDate        DateTime?
+  /// Overrides the default "ZACC-APP" reference prefix.
+  referencePrefix    String?
+  /// Plain-text job description used as the keyword-matching corpus.
+  jobDescriptionText String?         @db.Text
+
+  /// { required: string[], preferred: string[], synonyms: Record<string,string[]> }
+  keywords      Json?
+  /// { QUALIFICATIONS_EXPERIENCE: 40, SKILLS: 30, INTEGRITY: 20, FIT: 10 }
+  bucketWeights Json?
+
+  minYearsExperience  Int?
+  maxNoticePeriodDays Int?
+
+  panelAggregation       PanelAggregation @default(MEAN)
+  /// Percentage-point spread above which the panel is flagged as disagreeing.
+  panelSpreadThreshold   Float            @default(20)
+  panelBlindIdentity     Boolean          @default(false)
+  panelBlindDemographics Boolean          @default(true)
+
+  autoRejectEnabled      Boolean @default(true)
+  /// Overrides the rejection stage's own delay for this vacancy.
+  autoRejectDelayMinutes Int?
+
+  /// Bumped whenever criteria change, so a score records which scheme produced it.
+  scoringVersion    Int    @default(1)
+  scoringTemplateId String?
+  scoringTemplate   ScoringTemplate? @relation(fields: [scoringTemplateId], references: [id], onDelete: SetNull)
+
   // Relations
   applications    JobApplication[]
+  criteria        VacancyCriterion[]
+  disqualifiers   VacancyDisqualifier[]
+  documentSlots   VacancyDocumentSlot[]
+  panelMembers    VacancyPanelMember[]
+  drafts          ApplicationDraft[]
+  interviewEvents InterviewEvent[]
 
   @@map("jobs")
   @@index([department])
   @@index([isPublished, isActive, closingDate])
+  @@index([applicationMode])
+  @@index([scoringTemplateId])
 }
 
 model JobApplication {
@@ -709,8 +761,12 @@ model JobApplication {
   phone         String
   qualification String?
   experience    Int?
-  coverLetter   String   @db.Text
-  cvUrl         String
+  /// Widened: STRUCTURED applications have no single cover-letter field.
+  coverLetter   String?  @db.Text
+  /// Widened: the CV now arrives through a document slot.
+  cvUrl         String?
+  /// Retained as a denormalised mirror of stage.legacyStatus so the existing
+  /// /admin/jobs page keeps working unchanged. `stageId` is authoritative.
   status        ApplicationStatus @default(PENDING)
   notes         String?  @db.Text
   reviewedAt    DateTime?
@@ -718,13 +774,97 @@ model JobApplication {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
+  // ---- Identity and routing ----
+  /// e.g. "ZACC-APP-2026-00483921". Null for pre-existing legacy rows.
+  referenceNumber     String?  @unique
+  candidateId         String?
+  candidate           Candidate? @relation(fields: [candidateId], references: [id], onDelete: SetNull)
+  stageId             String?
+  stage               RecruitmentStage? @relation(fields: [stageId], references: [id], onDelete: SetNull)
+  mode                ApplicationMode @default(LEGACY)
+  submittedAt         DateTime?
+  lastCandidateViewAt DateTime?
+
+  /// Verbatim wizard payload — the immutable evidence record of what was sent.
+  answers        Json?
+  /// The vacancy's criteria/keywords/disqualifiers frozen at submit time, so a
+  /// later scheme edit can never retroactively change an already-scored application.
+  schemeSnapshot Json?
+  scoringVersion Int?
+
+  // ---- Denormalised out of `answers` on submit, so reports never parse JSON ----
+  firstName            String?
+  lastName             String?
+  nationalIdType       String?
+  nationalId           String?
+  dateOfBirth          DateTime?
+  gender               String?
+  nationality          String?
+  hasDisability        Boolean?
+  province             String?
+  city                 String?
+  altPhone             String?
+  howHeard             String?
+  noticePeriodDays     Int?
+  willingToRelocate    Boolean?
+  expectedSalary       Float?
+  totalYearsExperience Float?
+  isCurrentlyEmployed  Boolean?
+  highestQualification QualificationLevel?
+  driversLicenceClass  String?
+
+  // ---- Scoring ----
+  autoScore         Float?
+  panelScoreMean    Float?
+  panelScoreMedian  Float?
+  panelScoreSpread  Float?
+  panelScoreStdev   Float?
+  panelReviewCount  Int      @default(0)
+  /// Blended auto + panel score; what the shortlisting console sorts on.
+  finalScore        Float?
+  scoreOverride     Float?
+  scoreOverrideNote String?  @db.Text
+  keywordMatchPct   Float?
+  scoreComputedAt   DateTime?
+
+  // ---- Outcome ----
+  isAutoRejected     Boolean   @default(false)
+  autoRejectReasons  Json?
+  isShortlisted      Boolean   @default(false)
+  isWithdrawn        Boolean   @default(false)
+  withdrawnAt        DateTime?
+  withdrawnReason    String?   @db.Text
+  integrityFlagCount Int       @default(0)
+
   /** Certificates, qualifications, IDs and other supporting documents. */
   documents     JobApplicationDocument[]
+
+  qualifications  ApplicationQualification[]
+  employments     ApplicationEmployment[]
+  declarations    ApplicationDeclaration[]
+  skills          ApplicationSkill[]
+  keywordHits     ApplicationKeywordHit[]
+  criterionScores ApplicationCriterionScore[]
+  panelScores     ApplicationPanelScore[]
+  reviews         ApplicationReview[]
+  flags           ApplicationFlag[]
+  stageEvents     ApplicationStageEvent[]
+  messages        ApplicationMessage[]
+  invitations     InterviewInvitation[]
 
   @@map("job_applications")
   @@index([jobId])
   @@index([status])
   @@index([email])
+  @@index([candidateId])
+  @@index([stageId])
+  @@index([referenceNumber])
+  @@index([jobId, isWithdrawn, isAutoRejected])
+  @@index([jobId, finalScore])
+  @@index([gender])
+  @@index([province])
+  @@index([highestQualification])
+  @@index([submittedAt])
 }
 
 model JobApplicationDocument {
@@ -741,8 +881,20 @@ model JobApplicationDocument {
   label         String?
   uploadedAt    DateTime @default(now())
 
+  /// Which VacancyDocumentSlot this satisfies (e.g. "cv", "reference_1").
+  slotKey      String?
+  verification DocumentVerificationState @default(RECEIVED)
+  verifiedBy   String?
+  verifiedAt   DateTime?
+  verifierNote String?   @db.Text
+  /// Provenance when copied from the candidate's document locker.
+  candidateDocumentId String?
+  candidateDocument   CandidateDocument? @relation(fields: [candidateDocumentId], references: [id], onDelete: SetNull)
+
   @@map("job_application_documents")
   @@index([applicationId])
+  @@index([applicationId, slotKey])
+  @@index([verification])
 }
 
 enum ApplicationStatus {
@@ -752,6 +904,907 @@ enum ApplicationStatus {
   INTERVIEWED
   ACCEPTED
   REJECTED
+}
+
+// ============================================
+// RECRUITMENT / ATS
+// ============================================
+// Extends the Job / JobApplication models above rather than replacing them, so
+// existing postings, applications and the `jobs` permission grants keep working.
+// Every column added to those two models is nullable or defaulted.
+
+/// LEGACY postings use the original single-page form and are not scored.
+/// STRUCTURED postings use the 8-step wizard and the scoring engine.
+enum ApplicationMode {
+  LEGACY
+  STRUCTURED
+}
+
+enum QualificationLevel {
+  DOCTORATE
+  MASTERS
+  POSTGRAD_DIPLOMA
+  FIRST_DEGREE
+  HIGHER_DIPLOMA
+  DIPLOMA
+  CERTIFICATE
+  A_LEVEL
+  O_LEVEL
+  GRADE_7
+}
+
+enum LanguageProficiency {
+  NONE
+  BASIC
+  GOOD
+  FLUENT
+  NATIVE
+}
+
+/// The four weighted buckets shown on the candidate's live scorecard.
+enum ScoreBucket {
+  QUALIFICATIONS_EXPERIENCE
+  SKILLS
+  INTEGRITY
+  FIT
+}
+
+enum CriterionType {
+  /// Numeric value falls into a band worth N points (e.g. 5-10 years = 30).
+  BANDED
+  /// Highest attained qualification maps to ladder points.
+  QUALIFICATION_LADDER
+  /// Application text is matched against the vacancy keyword set.
+  KEYWORD
+  /// Yes/no answer worth configured points either way.
+  BOOLEAN
+  /// Value drawn from a fixed set, each worth configured points.
+  CHOICE
+  /// Scored by the panel only; never computed.
+  MANUAL
+}
+
+enum DisqualifierType {
+  MIN_NUMERIC
+  MAX_NUMERIC
+  REQUIRED_TRUE
+  REQUIRED_FALSE
+  REQUIRED_QUALIFICATION
+  VALUE_IN
+  VALUE_NOT_IN
+  MISSING_DOCUMENT
+  AGE_RANGE
+  CLOSING_DATE
+}
+
+enum DisqualifierAction {
+  AUTO_REJECT
+  FLAG_ONLY
+}
+
+enum FlagSeverity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum FlagStatus {
+  OPEN
+  ACKNOWLEDGED
+  CLEARED
+  UPHELD
+}
+
+enum PanelRole {
+  CHAIR
+  MEMBER
+  OBSERVER
+  HR_COORDINATOR
+}
+
+enum PanelAggregation {
+  MEAN
+  MEDIAN
+  TRIMMED_MEAN
+  CHAIR_OVERRIDE
+}
+
+enum StageCategory {
+  INTAKE
+  SCREENING
+  ASSESSMENT
+  INTERVIEW
+  OFFER
+  CLOSED
+}
+
+enum DocumentVerificationState {
+  RECEIVED
+  VERIFIED
+  AWAITING_REFEREE
+  ACTION_NEEDED
+  REJECTED
+}
+
+enum CandidateTokenPurpose {
+  EMAIL_VERIFY
+  PASSWORD_RESET
+  EMAIL_CHANGE
+}
+
+enum OutboxStatus {
+  SCHEDULED
+  CLAIMED
+  SENT
+  FAILED
+  CANCELLED
+  SKIPPED
+}
+
+enum InterviewMode {
+  IN_PERSON
+  VIRTUAL
+  TELEPHONE
+}
+
+enum InvitationResponse {
+  PENDING
+  CONFIRMED
+  DECLINED
+  RESCHEDULE_REQUESTED
+}
+
+enum MessageDirection {
+  TO_CANDIDATE
+  FROM_CANDIDATE
+}
+
+// --------------------------------------------
+// Candidate accounts
+// --------------------------------------------
+// Modelled on the Supplier portal, but deliberately not copying its weaknesses:
+// sessions ride an httpOnly cookie rather than a localStorage bearer token, and
+// email verification, password reset and lockout all exist here.
+
+model Candidate {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  passwordHash     String
+  firstName        String
+  lastName         String
+  phone            String?
+  isActive         Boolean   @default(true)
+  emailVerifiedAt  DateTime?
+  lastLoginAt      DateTime?
+  failedLoginCount Int       @default(0)
+  lockedUntil      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  profile      CandidateProfile?
+  sessions     CandidateSession[]
+  tokens       CandidateToken[]
+  documents    CandidateDocument[]
+  drafts       ApplicationDraft[]
+  applications JobApplication[]
+  messages     ApplicationMessage[]
+
+  @@map("candidates")
+  @@index([isActive])
+}
+
+model CandidateSession {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  /// SHA-256 of the token. The raw token is never stored.
+  tokenHash   String    @unique
+  expiresAt   DateTime
+  lastUsedAt  DateTime  @default(now())
+  revokedAt   DateTime?
+  ipAddress   String?
+  userAgent   String?   @db.Text
+  createdAt   DateTime  @default(now())
+
+  @@map("candidate_sessions")
+  @@index([candidateId])
+  @@index([expiresAt])
+}
+
+model CandidateToken {
+  id          String                @id @default(cuid())
+  candidateId String
+  candidate   Candidate             @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  purpose     CandidateTokenPurpose
+  tokenHash   String                @unique
+  /// For EMAIL_CHANGE, the address being moved to.
+  payload     String?
+  expiresAt   DateTime
+  consumedAt  DateTime?
+  createdAt   DateTime              @default(now())
+
+  @@map("candidate_tokens")
+  @@index([candidateId, purpose])
+  @@index([expiresAt])
+}
+
+/// Reusable biographical data so a candidate fills it in once, not per application.
+model CandidateProfile {
+  id          String    @id @default(cuid())
+  candidateId String    @unique
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+
+  middleName        String?
+  dateOfBirth       DateTime?
+  placeOfBirth      String?
+  nationalIdType    String?   @default("National ID")
+  nationalId        String?
+  nationality       String?   @default("Zimbabwean")
+  gender            String?
+  hasDisability     Boolean?
+  disabilityDetail  String?   @db.Text
+  currentAddress    String?   @db.Text
+  permanentAddress  String?   @db.Text
+  province          String?
+  city              String?
+  altPhone          String?
+
+  /// Free-form arrays kept as JSON: edited wholesale in repeaters, never queried
+  /// relationally. Same judgement as Job.keyRequirements.
+  qualifications Json?
+  memberships    Json?
+  employment     Json?
+  skills         Json?
+  languages      Json?
+
+  driversLicenceClass  String?
+  driversLicenceExpiry DateTime?
+
+  /// 0-100, recomputed on save; drives the "complete your profile" nudge.
+  completionPct Int      @default(0)
+  updatedAt     DateTime @updatedAt
+  createdAt     DateTime @default(now())
+
+  @@map("candidate_profiles")
+}
+
+/// The candidate's document locker — upload once, attach to many applications.
+model CandidateDocument {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  label       String?
+  fileName    String
+  /// Stored under uploads/recruitment/<candidateId>/, served via /api/uploads.
+  fileUrl     String
+  fileSize    Int
+  fileType    String
+  createdAt   DateTime  @default(now())
+
+  applicationDocuments JobApplicationDocument[]
+
+  @@map("candidate_documents")
+  @@index([candidateId])
+}
+
+/// Server-side wizard autosave, so a draft survives a device change.
+model ApplicationDraft {
+  id          String    @id @default(cuid())
+  candidateId String
+  candidate   Candidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+  jobId       String
+  job         Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  /// Partial ScorableApplication payload.
+  answers     Json
+  currentStep Int       @default(1)
+  /// Incremented per save; lets the client detect a conflicting newer draft.
+  version     Int       @default(1)
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+
+  @@map("application_drafts")
+  @@unique([candidateId, jobId])
+  @@index([jobId])
+}
+
+// --------------------------------------------
+// Vacancy scoring configuration
+// --------------------------------------------
+
+model VacancyCriterion {
+  id          String        @id @default(cuid())
+  jobId       String
+  job         Job           @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  /// Stable slug, e.g. "years_experience". Referenced by scores and reports.
+  key         String
+  label       String
+  description String?       @db.Text
+  bucket      ScoreBucket   @default(QUALIFICATIONS_EXPERIENCE)
+  type        CriterionType
+  /// Relative weight within its bucket; normalised at scoring time.
+  weight      Float         @default(1)
+  maxPoints   Float         @default(100)
+  /// Discriminated by `type`; see CriterionConfig in shared/recruitment/types.ts.
+  config      Json
+  /// Dotted path into the answers payload, e.g. "employment.totalYears".
+  sourceField String?
+
+  isAutoScored    Boolean @default(true)
+  isPanelScored   Boolean @default(false)
+  isRequired      Boolean @default(false)
+  /// Whether this criterion appears on the candidate's live scorecard.
+  showToCandidate Boolean @default(true)
+  sortOrder       Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  scores      ApplicationCriterionScore[]
+  panelScores ApplicationPanelScore[]
+
+  @@map("vacancy_criteria")
+  @@unique([jobId, key])
+  @@index([jobId])
+}
+
+model VacancyDisqualifier {
+  id          String             @id @default(cuid())
+  jobId       String
+  job         Job                @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  key         String
+  label       String
+  type        DisqualifierType
+  sourceField String?
+  config      Json
+  action      DisqualifierAction @default(AUTO_REJECT)
+  severity    FlagSeverity       @default(HIGH)
+  /// Shown to the candidate. Kept separate from internalReason on purpose.
+  publicReason   String? @db.Text
+  internalReason String? @db.Text
+  isActive       Boolean @default(true)
+  sortOrder      Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  flags ApplicationFlag[]
+
+  @@map("vacancy_disqualifiers")
+  @@unique([jobId, key])
+  @@index([jobId])
+}
+
+model VacancyDocumentSlot {
+  id          String  @id @default(cuid())
+  jobId       String
+  job         Job     @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  key         String
+  label       String
+  description String? @db.Text
+  isMandatory Boolean @default(false)
+  allowMultiple Boolean @default(false)
+  maxFiles      Int     @default(1)
+  /// e.g. ["pdf","doc","docx"]
+  allowedExtensions Json
+  maxSizeBytes      Int  @default(5242880)
+  sortOrder         Int  @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vacancy_document_slots")
+  @@unique([jobId, key])
+  @@index([jobId])
+}
+
+model VacancyPanelMember {
+  id     String    @id @default(cuid())
+  jobId  String
+  job    Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  userId String
+  user   User      @relation("VacancyPanelUser", fields: [userId], references: [id], onDelete: Cascade)
+  role   PanelRole @default(MEMBER)
+
+  /// Masking is enforced server-side when projecting an application.
+  canSeeIdentity     Boolean @default(true)
+  canSeeDemographics Boolean @default(false)
+  /// Withheld until this reviewer submits, to keep scores independent.
+  canSeeOtherScores  Boolean @default(false)
+
+  assignedBy String?
+  assignedAt DateTime @default(now())
+
+  @@map("vacancy_panel_members")
+  @@unique([jobId, userId])
+  @@index([jobId])
+  @@index([userId])
+}
+
+/// A reusable scheme library. Attaching a template COPIES its definition into
+/// vacancy-owned rows; editing the template never alters a scored application.
+model ScoringTemplate {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  description String? @db.Text
+  /// { bucketWeights, criteria[], disqualifiers[], documentSlots[] }
+  definition  Json
+  isActive    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  createdBy String?
+  updatedBy String?
+  creator   User?    @relation("ScoringTemplateCreator", fields: [createdBy], references: [id])
+  updater   User?    @relation("ScoringTemplateUpdater", fields: [updatedBy], references: [id])
+
+  jobs Job[]
+
+  @@map("scoring_templates")
+}
+
+// --------------------------------------------
+// Pipeline stages
+// --------------------------------------------
+
+/// One global catalogue. Carries the internal -> public label mapping, the bridge
+/// back to the legacy ApplicationStatus enum, and the delayed-notification knobs.
+model RecruitmentStage {
+  id                  String        @id @default(cuid())
+  key                 String        @unique
+  /// What staff see, e.g. "Security checks".
+  internalLabel       String
+  /// What the candidate sees, e.g. "Under review".
+  publicLabel         String
+  internalDescription String?       @db.Text
+  publicDescription   String?       @db.Text
+  category            StageCategory @default(SCREENING)
+  /// Mirrored onto JobApplication.status so the legacy admin page keeps working.
+  legacyStatus        ApplicationStatus @default(REVIEWING)
+  colorHex            String        @default("#209341")
+  sortOrder           Int           @default(0)
+
+  isDefault               Boolean @default(false)
+  isTerminal              Boolean @default(false)
+  isRejection             Boolean @default(false)
+  isAutoRejectTarget      Boolean @default(false)
+  showOnCandidateTimeline Boolean @default(true)
+
+  notifyCandidate                Boolean @default(false)
+  notificationTemplateId         String?
+  notificationTemplate           NotificationTemplate? @relation(fields: [notificationTemplateId], references: [id], onDelete: SetNull)
+  /// Delay before a queued notification becomes due, so rejection does not land
+  /// instantly and read as automated.
+  notificationDelayMinutes       Int     @default(0)
+  notificationDelayJitterMinutes Int     @default(0)
+  respectSendWindow              Boolean @default(true)
+
+  isActive Boolean @default(true)
+  /// Seeded stages the UI must not allow deleting.
+  isSystem Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  applications JobApplication[]
+  stageEvents  ApplicationStageEvent[]
+
+  @@map("recruitment_stages")
+  @@index([sortOrder])
+  @@index([isActive])
+}
+
+model ApplicationStageEvent {
+  id            String   @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  stageId       String?
+  stage         RecruitmentStage? @relation(fields: [stageId], references: [id], onDelete: SetNull)
+  /// Denormalised so history survives a stage being renamed or deleted.
+  fromStageKey   String?
+  toStageKey     String?
+  toInternalLabel String?
+  toPublicLabel   String?
+  note          String?  @db.Text
+  /// Whether this transition was written by the scoring engine, not a person.
+  isAutomated   Boolean  @default(false)
+  changedBy     String?
+  changedByName String?
+  createdAt     DateTime @default(now())
+
+  @@map("application_stage_events")
+  @@index([applicationId])
+  @@index([stageId])
+  @@index([createdAt])
+}
+
+// --------------------------------------------
+// Structured application content
+// --------------------------------------------
+// Materialised out of JobApplication.answers on submit so reports can aggregate
+// without parsing JSON on every row.
+
+model ApplicationQualification {
+  id            String             @id @default(cuid())
+  applicationId String
+  application   JobApplication     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  level         QualificationLevel
+  fieldOfStudy  String?
+  institution   String?
+  country       String?
+  yearObtained  Int?
+  classGrade    String?
+  /// School-level rows carry a result string instead of field/institution.
+  result        String?
+
+  @@map("application_qualifications")
+  @@index([applicationId])
+  @@index([level])
+}
+
+model ApplicationEmployment {
+  id            String         @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  sortOrder     Int            @default(0)
+  employer      String
+  jobTitle      String
+  fromMonth     String?
+  toMonth       String?
+  isCurrent     Boolean        @default(false)
+  salary        Float?
+  responsibilities String?     @db.Text
+  reasonForLeaving String?
+  noticePeriod     String?
+  supervisorName   String?
+  supervisorRole   String?
+  supervisorPhone  String?
+
+  @@map("application_employments")
+  @@index([applicationId])
+}
+
+model ApplicationDeclaration {
+  id            String         @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  /// e.g. "corruption", "criminal", "relatives", "vetting"
+  key           String
+  question      String         @db.Text
+  answer        Boolean
+  /// Mandatory when the answer is adverse.
+  explanation   String?        @db.Text
+  /// Supporting evidence, e.g. certified court documents.
+  documentId    String?
+  isAdverse     Boolean        @default(false)
+
+  @@map("application_declarations")
+  @@unique([applicationId, key])
+  @@index([applicationId])
+}
+
+model ApplicationSkill {
+  id            String         @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  /// "software" | "language" | "licence"
+  kind          String
+  name          String
+  proficiency   LanguageProficiency?
+  /// For languages: read/write/speak stored as three rows or one JSON blob.
+  detail        Json?
+
+  @@map("application_skills")
+  @@index([applicationId])
+  @@index([kind])
+}
+
+/// One row per keyword the engine looked for, so "most-missed required keyword"
+/// is a group-by rather than a JSON scan.
+model ApplicationKeywordHit {
+  id            String         @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  keyword       String
+  isRequired    Boolean        @default(false)
+  matched       Boolean        @default(false)
+  occurrences   Int            @default(0)
+  /// Which synonym actually matched, when it was not the keyword itself.
+  matchedVia    String?
+  /// "skills" | "employment" | "qualifications" | "coverLetter"
+  source        String?
+
+  @@map("application_keyword_hits")
+  @@unique([applicationId, keyword])
+  @@index([applicationId])
+  @@index([keyword, matched])
+}
+
+// --------------------------------------------
+// Scoring results, panel review, flags
+// --------------------------------------------
+
+model ApplicationCriterionScore {
+  id            String           @id @default(cuid())
+  applicationId String
+  application   JobApplication   @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  criterionId   String
+  criterion     VacancyCriterion @relation(fields: [criterionId], references: [id], onDelete: Cascade)
+  criterionKey  String
+  bucket        ScoreBucket
+
+  rawPoints     Float @default(0)
+  maxPoints     Float @default(0)
+  normalizedPct Float @default(0)
+  /// Contribution to the 0-100 total.
+  weightedPoints Float @default(0)
+  /// True for MANUAL criteria still awaiting panel input.
+  pending       Boolean @default(false)
+  /// Matched band, ladder level, hit list — whatever explains the number.
+  detail        Json?
+  explanation   String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("application_criterion_scores")
+  @@unique([applicationId, criterionId])
+  @@index([applicationId])
+  @@index([criterionId])
+}
+
+model ApplicationPanelScore {
+  id            String           @id @default(cuid())
+  applicationId String
+  application   JobApplication   @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  criterionId   String
+  criterion     VacancyCriterion @relation(fields: [criterionId], references: [id], onDelete: Cascade)
+  reviewerId    String
+  reviewer      User             @relation("PanelScoreReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  points     Float
+  maxPoints  Float
+  comment    String?  @db.Text
+  /// Draft scores are invisible to other reviewers and excluded from aggregates.
+  isSubmitted Boolean @default(false)
+  submittedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("application_panel_scores")
+  @@unique([applicationId, criterionId, reviewerId])
+  @@index([applicationId])
+  @@index([reviewerId])
+}
+
+/// A reviewer's overall verdict on an application, separate from per-criterion scores.
+model ApplicationReview {
+  id            String         @id @default(cuid())
+  applicationId String
+  application   JobApplication @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  reviewerId    String
+  reviewer      User           @relation("ApplicationReviewer", fields: [reviewerId], references: [id], onDelete: Cascade)
+  role          PanelRole      @default(MEMBER)
+
+  recommendation String?  // "SHORTLIST" | "RESERVE" | "REJECT"
+  comments       String?  @db.Text
+  isSubmitted    Boolean  @default(false)
+  submittedAt    DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("application_reviews")
+  @@unique([applicationId, reviewerId])
+  @@index([applicationId])
+  @@index([reviewerId])
+}
+
+/// Integrity issues and disqualifier hits raised against an application.
+model ApplicationFlag {
+  id             String               @id @default(cuid())
+  applicationId  String
+  application    JobApplication       @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  disqualifierId String?
+  disqualifier   VacancyDisqualifier? @relation(fields: [disqualifierId], references: [id], onDelete: SetNull)
+
+  code        String
+  label       String
+  severity    FlagSeverity @default(MEDIUM)
+  status      FlagStatus   @default(OPEN)
+  /// True when this flag caused an automatic rejection.
+  causedReject Boolean     @default(false)
+  detail      String?      @db.Text
+  publicReason String?     @db.Text
+
+  resolvedBy   String?
+  resolvedAt   DateTime?
+  resolutionNote String?   @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("application_flags")
+  @@index([applicationId])
+  @@index([code])
+  @@index([status])
+}
+
+// --------------------------------------------
+// Interviews and candidate messages
+// --------------------------------------------
+
+model InterviewEvent {
+  id       String        @id @default(cuid())
+  jobId    String
+  job      Job           @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  title    String
+  mode     InterviewMode @default(IN_PERSON)
+  venue    String?       @db.Text
+  meetingUrl String?     @db.Text
+  scheduledAt DateTime
+  durationMinutes Int    @default(45)
+  /// Panel names/roles shown to the candidate, and what to bring.
+  panelSummary Json?
+  bringItems   Json?
+  notes        String?   @db.Text
+
+  createdBy String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  invitations InterviewInvitation[]
+
+  @@map("interview_events")
+  @@index([jobId])
+  @@index([scheduledAt])
+}
+
+model InterviewInvitation {
+  id            String             @id @default(cuid())
+  eventId       String
+  event         InterviewEvent     @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  applicationId String
+  application   JobApplication     @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  response      InvitationResponse @default(PENDING)
+  respondedAt   DateTime?
+  responseNote  String?            @db.Text
+  confirmByDate DateTime?
+  sentAt        DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("interview_invitations")
+  @@unique([eventId, applicationId])
+  @@index([applicationId])
+}
+
+/// Messages shown on the candidate's tracking page.
+model ApplicationMessage {
+  id            String           @id @default(cuid())
+  applicationId String
+  application   JobApplication   @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  candidateId   String?
+  candidate     Candidate?       @relation(fields: [candidateId], references: [id], onDelete: SetNull)
+  direction     MessageDirection @default(TO_CANDIDATE)
+
+  fromLabel String   @default("Human Capital & Administration")
+  subject   String?
+  body      String   @db.Text
+  /// Internal notes never reach the candidate; kept here for one timeline.
+  isInternal Boolean @default(false)
+  readAt     DateTime?
+
+  createdBy String?
+  createdAt DateTime @default(now())
+
+  @@map("application_messages")
+  @@index([applicationId])
+  @@index([candidateId])
+}
+
+// --------------------------------------------
+// Notification templates and the send outbox
+// --------------------------------------------
+
+/// Editable in the back office. SiteSetting is a flat key/value store with no
+/// rich-text editing, so templates get their own model and their own page.
+model NotificationTemplate {
+  id          String  @id @default(cuid())
+  /// Event key the template answers to, e.g. "application.received".
+  key         String  @unique
+  name        String
+  description String? @db.Text
+  subject     String
+  bodyHtml    String  @db.Text
+  /// Optional plain-text part; derived from bodyHtml when blank.
+  bodyText    String? @db.Text
+  /// Documented placeholders, for the editor's token palette.
+  variables   Json?
+  isActive    Boolean @default(true)
+  /// Seeded templates the UI must not allow deleting.
+  isSystem    Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  updatedBy String?
+
+  stages  RecruitmentStage[]
+  outbox  EmailOutbox[]
+
+  @@map("notification_templates")
+  @@index([isActive])
+}
+
+/// Persisted send queue. A delayed rejection cannot use setTimeout: PM2 restarts
+/// and deploys vaporise in-memory timers, and a notice that silently never
+/// arrives is worse than an instant one.
+model EmailOutbox {
+  id         String                @id @default(cuid())
+  templateId String?
+  template   NotificationTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  templateKey String?
+
+  toEmail   String
+  toName    String?
+  subject   String
+  bodyHtml  String  @db.Text
+  bodyText  String  @db.Text
+
+  status       OutboxStatus @default(SCHEDULED)
+  /// When the row becomes due. Delay + jitter are baked in at enqueue time.
+  scheduledFor DateTime
+  claimToken   String?
+  claimedAt    DateTime?
+  sentAt       DateTime?
+  attempts     Int          @default(0)
+  maxAttempts  Int          @default(5)
+  lastError    String?      @db.Text
+
+  /// What this message is about, so a stage change can cancel a pending rejection.
+  contextType String?
+  contextId   String?
+  /// Placeholder values, retained for audit and for re-render on retry.
+  variables   Json?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("email_outbox")
+  @@index([status, scheduledFor])
+  @@index([claimToken])
+  @@index([contextType, contextId])
+}
+
+// --------------------------------------------
+// Audit
+// --------------------------------------------
+
+/// Hiring decisions at an anti-corruption commission will be challenged, so every
+/// consequential action is recorded: stage moves, score overrides, panel scores,
+/// demographic unmasking and exports.
+model RecruitmentAuditLog {
+  id         String   @id @default(cuid())
+  action     String
+  entityType String
+  entityId   String?
+  jobId      String?
+  actorId    String?
+  actorName  String?
+  actorRole  String?
+  summary    String?  @db.Text
+  detail     Json?
+  ipAddress  String?
+  createdAt  DateTime @default(now())
+
+  @@map("recruitment_audit_logs")
+  @@index([entityType, entityId])
+  @@index([jobId])
+  @@index([actorId])
+  @@index([createdAt])
 }
 
 // ============================================

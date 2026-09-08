@@ -178,6 +178,154 @@ export type JobApplication = Prisma.JobApplicationModel
  */
 export type JobApplicationDocument = Prisma.JobApplicationDocumentModel
 /**
+ * Model Candidate
+ * 
+ */
+export type Candidate = Prisma.CandidateModel
+/**
+ * Model CandidateSession
+ * 
+ */
+export type CandidateSession = Prisma.CandidateSessionModel
+/**
+ * Model CandidateToken
+ * 
+ */
+export type CandidateToken = Prisma.CandidateTokenModel
+/**
+ * Model CandidateProfile
+ * Reusable biographical data so a candidate fills it in once, not per application.
+ */
+export type CandidateProfile = Prisma.CandidateProfileModel
+/**
+ * Model CandidateDocument
+ * The candidate's document locker — upload once, attach to many applications.
+ */
+export type CandidateDocument = Prisma.CandidateDocumentModel
+/**
+ * Model ApplicationDraft
+ * Server-side wizard autosave, so a draft survives a device change.
+ */
+export type ApplicationDraft = Prisma.ApplicationDraftModel
+/**
+ * Model VacancyCriterion
+ * 
+ */
+export type VacancyCriterion = Prisma.VacancyCriterionModel
+/**
+ * Model VacancyDisqualifier
+ * 
+ */
+export type VacancyDisqualifier = Prisma.VacancyDisqualifierModel
+/**
+ * Model VacancyDocumentSlot
+ * 
+ */
+export type VacancyDocumentSlot = Prisma.VacancyDocumentSlotModel
+/**
+ * Model VacancyPanelMember
+ * 
+ */
+export type VacancyPanelMember = Prisma.VacancyPanelMemberModel
+/**
+ * Model ScoringTemplate
+ * A reusable scheme library. Attaching a template COPIES its definition into
+ * vacancy-owned rows; editing the template never alters a scored application.
+ */
+export type ScoringTemplate = Prisma.ScoringTemplateModel
+/**
+ * Model RecruitmentStage
+ * One global catalogue. Carries the internal -> public label mapping, the bridge
+ * back to the legacy ApplicationStatus enum, and the delayed-notification knobs.
+ */
+export type RecruitmentStage = Prisma.RecruitmentStageModel
+/**
+ * Model ApplicationStageEvent
+ * 
+ */
+export type ApplicationStageEvent = Prisma.ApplicationStageEventModel
+/**
+ * Model ApplicationQualification
+ * 
+ */
+export type ApplicationQualification = Prisma.ApplicationQualificationModel
+/**
+ * Model ApplicationEmployment
+ * 
+ */
+export type ApplicationEmployment = Prisma.ApplicationEmploymentModel
+/**
+ * Model ApplicationDeclaration
+ * 
+ */
+export type ApplicationDeclaration = Prisma.ApplicationDeclarationModel
+/**
+ * Model ApplicationSkill
+ * 
+ */
+export type ApplicationSkill = Prisma.ApplicationSkillModel
+/**
+ * Model ApplicationKeywordHit
+ * One row per keyword the engine looked for, so "most-missed required keyword"
+ * is a group-by rather than a JSON scan.
+ */
+export type ApplicationKeywordHit = Prisma.ApplicationKeywordHitModel
+/**
+ * Model ApplicationCriterionScore
+ * 
+ */
+export type ApplicationCriterionScore = Prisma.ApplicationCriterionScoreModel
+/**
+ * Model ApplicationPanelScore
+ * 
+ */
+export type ApplicationPanelScore = Prisma.ApplicationPanelScoreModel
+/**
+ * Model ApplicationReview
+ * A reviewer's overall verdict on an application, separate from per-criterion scores.
+ */
+export type ApplicationReview = Prisma.ApplicationReviewModel
+/**
+ * Model ApplicationFlag
+ * Integrity issues and disqualifier hits raised against an application.
+ */
+export type ApplicationFlag = Prisma.ApplicationFlagModel
+/**
+ * Model InterviewEvent
+ * 
+ */
+export type InterviewEvent = Prisma.InterviewEventModel
+/**
+ * Model InterviewInvitation
+ * 
+ */
+export type InterviewInvitation = Prisma.InterviewInvitationModel
+/**
+ * Model ApplicationMessage
+ * Messages shown on the candidate's tracking page.
+ */
+export type ApplicationMessage = Prisma.ApplicationMessageModel
+/**
+ * Model NotificationTemplate
+ * Editable in the back office. SiteSetting is a flat key/value store with no
+ * rich-text editing, so templates get their own model and their own page.
+ */
+export type NotificationTemplate = Prisma.NotificationTemplateModel
+/**
+ * Model EmailOutbox
+ * Persisted send queue. A delayed rejection cannot use setTimeout: PM2 restarts
+ * and deploys vaporise in-memory timers, and a notice that silently never
+ * arrives is worse than an instant one.
+ */
+export type EmailOutbox = Prisma.EmailOutboxModel
+/**
+ * Model RecruitmentAuditLog
+ * Hiring decisions at an anti-corruption commission will be challenged, so every
+ * consequential action is recorded: stage moves, score overrides, panel scores,
+ * demographic unmasking and exports.
+ */
+export type RecruitmentAuditLog = Prisma.RecruitmentAuditLogModel
+/**
  * Model CorruptionReport
  * 
  */

@@ -67,6 +67,198 @@ export const ApplicationStatus = {
 export type ApplicationStatus = (typeof ApplicationStatus)[keyof typeof ApplicationStatus]
 
 
+export const ApplicationMode = {
+  LEGACY: 'LEGACY',
+  STRUCTURED: 'STRUCTURED'
+} as const
+
+export type ApplicationMode = (typeof ApplicationMode)[keyof typeof ApplicationMode]
+
+
+export const QualificationLevel = {
+  DOCTORATE: 'DOCTORATE',
+  MASTERS: 'MASTERS',
+  POSTGRAD_DIPLOMA: 'POSTGRAD_DIPLOMA',
+  FIRST_DEGREE: 'FIRST_DEGREE',
+  HIGHER_DIPLOMA: 'HIGHER_DIPLOMA',
+  DIPLOMA: 'DIPLOMA',
+  CERTIFICATE: 'CERTIFICATE',
+  A_LEVEL: 'A_LEVEL',
+  O_LEVEL: 'O_LEVEL',
+  GRADE_7: 'GRADE_7'
+} as const
+
+export type QualificationLevel = (typeof QualificationLevel)[keyof typeof QualificationLevel]
+
+
+export const LanguageProficiency = {
+  NONE: 'NONE',
+  BASIC: 'BASIC',
+  GOOD: 'GOOD',
+  FLUENT: 'FLUENT',
+  NATIVE: 'NATIVE'
+} as const
+
+export type LanguageProficiency = (typeof LanguageProficiency)[keyof typeof LanguageProficiency]
+
+
+export const ScoreBucket = {
+  QUALIFICATIONS_EXPERIENCE: 'QUALIFICATIONS_EXPERIENCE',
+  SKILLS: 'SKILLS',
+  INTEGRITY: 'INTEGRITY',
+  FIT: 'FIT'
+} as const
+
+export type ScoreBucket = (typeof ScoreBucket)[keyof typeof ScoreBucket]
+
+
+export const CriterionType = {
+  BANDED: 'BANDED',
+  QUALIFICATION_LADDER: 'QUALIFICATION_LADDER',
+  KEYWORD: 'KEYWORD',
+  BOOLEAN: 'BOOLEAN',
+  CHOICE: 'CHOICE',
+  MANUAL: 'MANUAL'
+} as const
+
+export type CriterionType = (typeof CriterionType)[keyof typeof CriterionType]
+
+
+export const DisqualifierType = {
+  MIN_NUMERIC: 'MIN_NUMERIC',
+  MAX_NUMERIC: 'MAX_NUMERIC',
+  REQUIRED_TRUE: 'REQUIRED_TRUE',
+  REQUIRED_FALSE: 'REQUIRED_FALSE',
+  REQUIRED_QUALIFICATION: 'REQUIRED_QUALIFICATION',
+  VALUE_IN: 'VALUE_IN',
+  VALUE_NOT_IN: 'VALUE_NOT_IN',
+  MISSING_DOCUMENT: 'MISSING_DOCUMENT',
+  AGE_RANGE: 'AGE_RANGE',
+  CLOSING_DATE: 'CLOSING_DATE'
+} as const
+
+export type DisqualifierType = (typeof DisqualifierType)[keyof typeof DisqualifierType]
+
+
+export const DisqualifierAction = {
+  AUTO_REJECT: 'AUTO_REJECT',
+  FLAG_ONLY: 'FLAG_ONLY'
+} as const
+
+export type DisqualifierAction = (typeof DisqualifierAction)[keyof typeof DisqualifierAction]
+
+
+export const FlagSeverity = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH',
+  CRITICAL: 'CRITICAL'
+} as const
+
+export type FlagSeverity = (typeof FlagSeverity)[keyof typeof FlagSeverity]
+
+
+export const FlagStatus = {
+  OPEN: 'OPEN',
+  ACKNOWLEDGED: 'ACKNOWLEDGED',
+  CLEARED: 'CLEARED',
+  UPHELD: 'UPHELD'
+} as const
+
+export type FlagStatus = (typeof FlagStatus)[keyof typeof FlagStatus]
+
+
+export const PanelRole = {
+  CHAIR: 'CHAIR',
+  MEMBER: 'MEMBER',
+  OBSERVER: 'OBSERVER',
+  HR_COORDINATOR: 'HR_COORDINATOR'
+} as const
+
+export type PanelRole = (typeof PanelRole)[keyof typeof PanelRole]
+
+
+export const PanelAggregation = {
+  MEAN: 'MEAN',
+  MEDIAN: 'MEDIAN',
+  TRIMMED_MEAN: 'TRIMMED_MEAN',
+  CHAIR_OVERRIDE: 'CHAIR_OVERRIDE'
+} as const
+
+export type PanelAggregation = (typeof PanelAggregation)[keyof typeof PanelAggregation]
+
+
+export const StageCategory = {
+  INTAKE: 'INTAKE',
+  SCREENING: 'SCREENING',
+  ASSESSMENT: 'ASSESSMENT',
+  INTERVIEW: 'INTERVIEW',
+  OFFER: 'OFFER',
+  CLOSED: 'CLOSED'
+} as const
+
+export type StageCategory = (typeof StageCategory)[keyof typeof StageCategory]
+
+
+export const DocumentVerificationState = {
+  RECEIVED: 'RECEIVED',
+  VERIFIED: 'VERIFIED',
+  AWAITING_REFEREE: 'AWAITING_REFEREE',
+  ACTION_NEEDED: 'ACTION_NEEDED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type DocumentVerificationState = (typeof DocumentVerificationState)[keyof typeof DocumentVerificationState]
+
+
+export const CandidateTokenPurpose = {
+  EMAIL_VERIFY: 'EMAIL_VERIFY',
+  PASSWORD_RESET: 'PASSWORD_RESET',
+  EMAIL_CHANGE: 'EMAIL_CHANGE'
+} as const
+
+export type CandidateTokenPurpose = (typeof CandidateTokenPurpose)[keyof typeof CandidateTokenPurpose]
+
+
+export const OutboxStatus = {
+  SCHEDULED: 'SCHEDULED',
+  CLAIMED: 'CLAIMED',
+  SENT: 'SENT',
+  FAILED: 'FAILED',
+  CANCELLED: 'CANCELLED',
+  SKIPPED: 'SKIPPED'
+} as const
+
+export type OutboxStatus = (typeof OutboxStatus)[keyof typeof OutboxStatus]
+
+
+export const InterviewMode = {
+  IN_PERSON: 'IN_PERSON',
+  VIRTUAL: 'VIRTUAL',
+  TELEPHONE: 'TELEPHONE'
+} as const
+
+export type InterviewMode = (typeof InterviewMode)[keyof typeof InterviewMode]
+
+
+export const InvitationResponse = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  DECLINED: 'DECLINED',
+  RESCHEDULE_REQUESTED: 'RESCHEDULE_REQUESTED'
+} as const
+
+export type InvitationResponse = (typeof InvitationResponse)[keyof typeof InvitationResponse]
+
+
+export const MessageDirection = {
+  TO_CANDIDATE: 'TO_CANDIDATE',
+  FROM_CANDIDATE: 'FROM_CANDIDATE'
+} as const
+
+export type MessageDirection = (typeof MessageDirection)[keyof typeof MessageDirection]
+
+
 export const ReportStatus = {
   NEW: 'NEW',
   ACKNOWLEDGED: 'ACKNOWLEDGED',

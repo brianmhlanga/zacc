@@ -13,6 +13,32 @@
           <p class="mt-6 text-xl text-white/90 max-w-3xl mx-auto">
             Join us in the fight against corruption. Build a meaningful career while serving Zimbabwe.
           </p>
+
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <template v-if="isSignedIn">
+              <NuxtLink to="/candidate">
+                <Button label="My applications" icon="pi pi-briefcase"
+                  style="background:#209341;border-color:#209341" />
+              </NuxtLink>
+              <NuxtLink to="/candidate/profile">
+                <Button :label="profileCta" icon="pi pi-user" outlined
+                  class="!text-white !border-white/40 hover:!bg-white/10" />
+              </NuxtLink>
+            </template>
+            <template v-else>
+              <NuxtLink to="/candidate/login">
+                <Button label="Sign in to apply" icon="pi pi-sign-in"
+                  style="background:#209341;border-color:#209341" />
+              </NuxtLink>
+              <NuxtLink to="/candidate/register">
+                <Button label="Create an account" outlined
+                  class="!text-white !border-white/40 hover:!bg-white/10" />
+              </NuxtLink>
+            </template>
+          </div>
+          <p v-if="isSignedIn" class="mt-3 text-sm text-white/70">
+            Signed in as {{ candidate?.email }}
+          </p>
         </div>
       </div>
     </section>
@@ -528,6 +554,16 @@
 import { useToast } from 'primevue/usetoast'
 
 const toast = useToast()
+
+// The careers portal has its own session, entirely separate from the admin one.
+const { candidate, isSignedIn, fetchSession } = useCandidateAuth()
+const profileCta = computed(() =>
+  (candidate.value?.profileCompletion ?? 0) >= 100
+    ? 'My profile'
+    : `Complete my profile (${candidate.value?.profileCompletion ?? 0}%)`
+)
+onMounted(() => fetchSession())
+
 useHead({
   title: 'Careers - Zimbabwe Anti-Corruption Commission (ZACC)',
   meta: [
@@ -653,6 +689,14 @@ const viewJob = (job) => {
 }
 
 const applyForJob = (job) => {
+  // Screened vacancies have criteria, document slots and a live scorecard, none
+  // of which the legacy modal can collect. The wizard handles its own sign-in
+  // redirect, so an unauthenticated visitor is sent to sign in and returned here.
+  if (job?.applicationMode === 'STRUCTURED' && job?.slug) {
+    showJobDialog.value = false
+    return navigateTo(`/careers/apply/${job.slug}`)
+  }
+
   applicationJob.value = job
   showApplicationDialog.value = true
   showJobDialog.value = false

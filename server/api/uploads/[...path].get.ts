@@ -1,6 +1,7 @@
 import { readFile } from 'fs/promises'
 import { normalize, resolve, sep } from 'path'
 import { existsSync } from 'fs'
+import { canAccessProtectedFile, isProtectedUploadPath } from '../../utils/protectedFiles'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -29,6 +30,20 @@ export default defineEventHandler(async (event) => {
         statusCode: 400,
         statusMessage: 'Invalid file path'
       })
+    }
+
+    // Files holding personal data (CVs, ID scans, certificates) are fenced by path
+    // prefix. Everything else — news images, commissioner photos, the media
+    // library — keeps its previous unauthenticated, long-cached behaviour.
+    const isProtected = isProtectedUploadPath(normalizedRelativePath)
+    if (isProtected) {
+      const session = await getUserSession(event)
+      const allowed = await canAccessProtectedFile(event, normalizedRelativePath, session?.user)
+      if (!allowed) {
+        // 404 rather than 403: a 403 confirms the file exists, and these paths
+        // embed candidate identifiers.
+        throw createError({ statusCode: 404, statusMessage: 'File not found' })
+      }
     }
 
     // Reports are currently written to public/uploads/reports, while some legacy uploads
@@ -84,7 +99,13 @@ export default defineEventHandler(async (event) => {
 
     // Set headers
     setHeader(event, 'Content-Type', contentType)
-    setHeader(event, 'Cache-Control', 'public, max-age=31536000') // Cache for 1 year
+    if (isProtected) {
+      // Never let a shared cache or proxy retain someone's CV or ID scan.
+      setHeader(event, 'Cache-Control', 'private, no-store, max-age=0')
+      setHeader(event, 'X-Content-Type-Options', 'nosniff')
+    } else {
+      setHeader(event, 'Cache-Control', 'public, max-age=31536000') // Cache for 1 year
+    }
     setHeader(event, 'Content-Length', fileBuffer.length.toString())
     
     // Return the buffer directly - H3 will handle binary data correctly
