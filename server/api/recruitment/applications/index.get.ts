@@ -44,6 +44,7 @@ export default defineEventHandler(async (event) => {
           finalScore: true, autoScore: true, panelScoreMean: true, panelScoreSpread: true,
           panelReviewCount: true, keywordMatchPct: true, integrityFlagCount: true,
           isAutoRejected: true, isShortlisted: true, isWithdrawn: true,
+        wasTestModeAtSubmit: true,
           status: true, notes: true, submittedAt: true, createdAt: true, mode: true,
           job: { select: { id: true, title: true, department: true, panelSpreadThreshold: true } },
           stage: { select: { id: true, key: true, internalLabel: true, publicLabel: true, colorHex: true, isRejection: true } },

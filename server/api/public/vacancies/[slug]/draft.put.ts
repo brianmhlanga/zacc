@@ -20,8 +20,16 @@ export default defineEventHandler(async (event) => {
     const candidate = await requireCandidate(event)
     const slug = getRouterParam(event, 'slug')
 
+    markVariesBySession(event)
+
+    // requireOpen: false keeps the explicit 410 below; filtering closed
+    // vacancies out here would turn that into a 404 and change the UX.
     const job = await prisma.job.findFirst({
-      where: { OR: [{ slug }, { id: slug }], isPublished: true, isActive: true },
+      where: publicVacancyWhere({
+        staffViewer: await isStaffViewer(event),
+        requireOpen: false,
+        identity: { kind: 'idOrSlug', value: String(slug) }
+      }),
       select: { id: true, closingDate: true }
     })
     if (!job) throw createError({ statusCode: 404, statusMessage: 'Vacancy not found' })

@@ -24,6 +24,20 @@
         {{ job.schemeLockReason }}
       </Message>
 
+      <Message v-if="job?.isTestMode" severity="warn" :closable="false" class="mb-4">
+        <div class="font-semibold">Test mode — not visible to the public</div>
+        <div class="text-sm mt-1">
+          This vacancy is live but the careers site shows it only to someone signed in to this
+          back office. To rehearse the whole flow you need <b>both</b> sessions in the same
+          browser: stay signed in here, then sign in to the careers portal as a test candidate.
+          An incognito window will show "Vacancy not found".
+        </div>
+        <div class="mt-2 flex flex-wrap items-center gap-2">
+          <code class="text-xs bg-white/60 px-2 py-1 rounded">{{ publicUrl }}</code>
+          <Button label="Copy link" icon="pi pi-copy" text size="small" @click="copyPublicUrl" />
+        </div>
+      </Message>
+
       <Message v-if="weightError" severity="error" :closable="false" class="mb-4">{{ weightError }}</Message>
 
       <Message v-if="rescoreOffer" severity="warn" class="mb-4" @close="rescoreOffer = false">
@@ -46,6 +60,7 @@
 
       <Tabs v-else v-model:value="activeTab">
         <TabList>
+          <Tab value="details">Details</Tab>
           <Tab value="screening">Screening &amp; scoring</Tab>
           <Tab value="rules">Disqualification rules</Tab>
           <Tab value="documents">Documents</Tab>
@@ -53,6 +68,40 @@
         </TabList>
 
         <TabPanels>
+          <!-- ---------------- Details ---------------- -->
+          <TabPanel value="details">
+            <Card class="border-0 shadow-sm mb-4">
+              <template #content>
+                <h3 class="font-bold text-zaccBlack mb-1">Test mode</h3>
+                <p class="text-sm text-gray-600 mb-4 max-w-2xl">
+                  Rehearse this vacancy on the live site before anyone can see it. With test mode
+                  on, the careers page, the application wizard and both submit endpoints all
+                  behave normally for signed-in staff and return "not found" to everyone else.
+                  Notifications still send for real.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-3">
+                  <Checkbox v-model="testMode" binary :disabled="togglingTest" inputId="testMode"
+                    @change="onToggleTest" />
+                  <span class="text-sm font-semibold" :class="testMode ? 'text-amber-700' : 'text-gray-500'">
+                    {{ testMode ? 'On — staff only' : 'Off — visible to the public' }}
+                  </span>
+                  <i v-if="togglingTest" class="pi pi-spin pi-spinner text-gray-400" />
+                </div>
+
+                <Message v-if="testError" severity="error" class="mt-4">{{ testError }}</Message>
+
+                <div class="mt-5 rounded-lg bg-gray-50 border border-gray-200 p-3 text-xs text-gray-600 max-w-2xl">
+                  <b class="text-gray-700">When you are finished:</b> delete this vacancy rather
+                  than taking it live. Applications submitted during a rehearsal count in every
+                  report, and they permanently lock the scoring criteria — so a rehearsal that
+                  found a scheme problem would stop you fixing it. Deleting also clears any
+                  queued notifications, which would otherwise still send.
+                </div>
+              </template>
+            </Card>
+          </TabPanel>
+
           <!-- ---------------- Screening ---------------- -->
           <TabPanel value="screening">
             <Card class="border-0 shadow-sm mb-4">
@@ -373,6 +422,48 @@ const previewVisible = ref(false)
 const activeTab = ref((route.query.tab as string) || 'screening')
 
 const job = ref<any>(null)
+const testMode = ref(false)
+const togglingTest = ref(false)
+const testError = ref('')
+
+const publicUrl = computed(() =>
+  job.value?.slug ? `${window?.location?.origin ?? ''}/careers/apply/${job.value.slug}` : ''
+)
+
+const copyPublicUrl = async () => {
+  try {
+    await navigator.clipboard.writeText(publicUrl.value)
+    toast.add({ severity: 'success', summary: 'Copied', detail: publicUrl.value, life: 3000 })
+  } catch {
+    toast.add({ severity: 'warn', summary: 'Could not copy', detail: publicUrl.value, life: 6000 })
+  }
+}
+
+/**
+ * The server owns the guards — an unpublished vacancy, candidates mid-application,
+ * or rehearsal applications already submitted all refuse with a 409 explaining
+ * why. On refusal the switch snaps back, so it never shows a state the server
+ * did not accept.
+ */
+const onToggleTest = async () => {
+  const desired = testMode.value
+  togglingTest.value = true
+  testError.value = ''
+  try {
+    const res = await $fetch<any>(`/api/recruitment/vacancies/${jobId.value}/test-mode`, {
+      method: 'PUT',
+      body: { isTestMode: desired }
+    })
+    if (job.value) job.value.isTestMode = res.isTestMode
+    testMode.value = res.isTestMode
+    toast.add({ severity: 'success', summary: 'Test mode updated', detail: res.message, life: 6000 })
+  } catch (e: any) {
+    testMode.value = !desired
+    testError.value = e.data?.statusMessage || 'Could not change test mode.'
+  } finally {
+    togglingTest.value = false
+  }
+}
 const criteria = ref<any[]>([])
 const disqualifiers = ref<any[]>([])
 const documentSlots = ref<any[]>([])
@@ -494,6 +585,7 @@ const load = async () => {
       $fetch<any[]>('/api/users').catch(() => [])
     ])
     job.value = data
+    testMode.value = Boolean(data.isTestMode)
     useHead({ title: `${data.title} - ZACC CMS` })
 
     Object.assign(bucketWeights, data.bucketWeights ?? bucketWeights)

@@ -4,15 +4,16 @@ export default defineEventHandler(async (event) => {
   try {
     const id = getRouterParam(event, 'id')
 
+    markVariesBySession(event)
+
+    // requireOpen: false preserves this route's existing behaviour — it has
+    // never filtered on closingDate. The helper owns the id-or-slug OR.
     const job = await prisma.job.findFirst({
-      where: {
-        OR: [
-          { id },
-          { slug: id }
-        ],
-        isPublished: true,
-        isActive: true
-      }
+      where: publicVacancyWhere({
+        staffViewer: await isStaffViewer(event),
+        requireOpen: false,
+        identity: { kind: 'idOrSlug', value: String(id) }
+      })
     })
 
     if (!job) {

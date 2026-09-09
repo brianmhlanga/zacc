@@ -59,6 +59,7 @@ export type JobMinAggregateOutputType = {
   closingDate: Date | null
   isPublished: boolean | null
   isActive: boolean | null
+  isTestMode: boolean | null
   publishedAt: Date | null
   applicationCount: number | null
   createdAt: Date | null
@@ -98,6 +99,7 @@ export type JobMaxAggregateOutputType = {
   closingDate: Date | null
   isPublished: boolean | null
   isActive: boolean | null
+  isTestMode: boolean | null
   publishedAt: Date | null
   applicationCount: number | null
   createdAt: Date | null
@@ -139,6 +141,7 @@ export type JobCountAggregateOutputType = {
   closingDate: number
   isPublished: number
   isActive: number
+  isTestMode: number
   publishedAt: number
   applicationCount: number
   createdAt: number
@@ -202,6 +205,7 @@ export type JobMinAggregateInputType = {
   closingDate?: true
   isPublished?: true
   isActive?: true
+  isTestMode?: true
   publishedAt?: true
   applicationCount?: true
   createdAt?: true
@@ -241,6 +245,7 @@ export type JobMaxAggregateInputType = {
   closingDate?: true
   isPublished?: true
   isActive?: true
+  isTestMode?: true
   publishedAt?: true
   applicationCount?: true
   createdAt?: true
@@ -282,6 +287,7 @@ export type JobCountAggregateInputType = {
   closingDate?: true
   isPublished?: true
   isActive?: true
+  isTestMode?: true
   publishedAt?: true
   applicationCount?: true
   createdAt?: true
@@ -412,6 +418,7 @@ export type JobGroupByOutputType = {
   closingDate: Date
   isPublished: boolean
   isActive: boolean
+  isTestMode: boolean
   publishedAt: Date | null
   applicationCount: number
   createdAt: Date
@@ -478,6 +485,7 @@ export type JobWhereInput = {
   closingDate?: Prisma.DateTimeFilter<"Job"> | Date | string
   isPublished?: Prisma.BoolFilter<"Job"> | boolean
   isActive?: Prisma.BoolFilter<"Job"> | boolean
+  isTestMode?: Prisma.BoolFilter<"Job"> | boolean
   publishedAt?: Prisma.DateTimeNullableFilter<"Job"> | Date | string | null
   applicationCount?: Prisma.IntFilter<"Job"> | number
   createdAt?: Prisma.DateTimeFilter<"Job"> | Date | string
@@ -531,6 +539,7 @@ export type JobOrderByWithRelationInput = {
   closingDate?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  isTestMode?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   applicationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -588,6 +597,7 @@ export type JobWhereUniqueInput = Prisma.AtLeast<{
   closingDate?: Prisma.DateTimeFilter<"Job"> | Date | string
   isPublished?: Prisma.BoolFilter<"Job"> | boolean
   isActive?: Prisma.BoolFilter<"Job"> | boolean
+  isTestMode?: Prisma.BoolFilter<"Job"> | boolean
   publishedAt?: Prisma.DateTimeNullableFilter<"Job"> | Date | string | null
   applicationCount?: Prisma.IntFilter<"Job"> | number
   createdAt?: Prisma.DateTimeFilter<"Job"> | Date | string
@@ -641,6 +651,7 @@ export type JobOrderByWithAggregationInput = {
   closingDate?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  isTestMode?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   applicationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -692,6 +703,7 @@ export type JobScalarWhereWithAggregatesInput = {
   closingDate?: Prisma.DateTimeWithAggregatesFilter<"Job"> | Date | string
   isPublished?: Prisma.BoolWithAggregatesFilter<"Job"> | boolean
   isActive?: Prisma.BoolWithAggregatesFilter<"Job"> | boolean
+  isTestMode?: Prisma.BoolWithAggregatesFilter<"Job"> | boolean
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Job"> | Date | string | null
   applicationCount?: Prisma.IntWithAggregatesFilter<"Job"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Job"> | Date | string
@@ -735,6 +747,7 @@ export type JobCreateInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -785,6 +798,7 @@ export type JobUncheckedCreateInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -835,6 +849,7 @@ export type JobUpdateInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -885,6 +900,7 @@ export type JobUncheckedUpdateInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -935,6 +951,7 @@ export type JobCreateManyInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -978,6 +995,7 @@ export type JobUpdateManyMutationInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1018,6 +1036,7 @@ export type JobUncheckedUpdateManyInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1077,6 +1096,7 @@ export type JobCountOrderByAggregateInput = {
   closingDate?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  isTestMode?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   applicationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1128,6 +1148,7 @@ export type JobMaxOrderByAggregateInput = {
   closingDate?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  isTestMode?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   applicationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1167,6 +1188,7 @@ export type JobMinOrderByAggregateInput = {
   closingDate?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
+  isTestMode?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   applicationCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1463,6 +1485,7 @@ export type JobCreateWithoutCreatorInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -1512,6 +1535,7 @@ export type JobUncheckedCreateWithoutCreatorInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -1571,6 +1595,7 @@ export type JobCreateWithoutUpdaterInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -1620,6 +1645,7 @@ export type JobUncheckedCreateWithoutUpdaterInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -1698,6 +1724,7 @@ export type JobScalarWhereInput = {
   closingDate?: Prisma.DateTimeFilter<"Job"> | Date | string
   isPublished?: Prisma.BoolFilter<"Job"> | boolean
   isActive?: Prisma.BoolFilter<"Job"> | boolean
+  isTestMode?: Prisma.BoolFilter<"Job"> | boolean
   publishedAt?: Prisma.DateTimeNullableFilter<"Job"> | Date | string | null
   applicationCount?: Prisma.IntFilter<"Job"> | number
   createdAt?: Prisma.DateTimeFilter<"Job"> | Date | string
@@ -1757,6 +1784,7 @@ export type JobCreateWithoutApplicationsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -1806,6 +1834,7 @@ export type JobUncheckedCreateWithoutApplicationsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -1871,6 +1900,7 @@ export type JobUpdateWithoutApplicationsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1920,6 +1950,7 @@ export type JobUncheckedUpdateWithoutApplicationsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1969,6 +2000,7 @@ export type JobCreateWithoutDraftsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2018,6 +2050,7 @@ export type JobUncheckedCreateWithoutDraftsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2083,6 +2116,7 @@ export type JobUpdateWithoutDraftsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2132,6 +2166,7 @@ export type JobUncheckedUpdateWithoutDraftsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2181,6 +2216,7 @@ export type JobCreateWithoutCriteriaInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2230,6 +2266,7 @@ export type JobUncheckedCreateWithoutCriteriaInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2295,6 +2332,7 @@ export type JobUpdateWithoutCriteriaInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2344,6 +2382,7 @@ export type JobUncheckedUpdateWithoutCriteriaInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2393,6 +2432,7 @@ export type JobCreateWithoutDisqualifiersInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2442,6 +2482,7 @@ export type JobUncheckedCreateWithoutDisqualifiersInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2507,6 +2548,7 @@ export type JobUpdateWithoutDisqualifiersInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2556,6 +2598,7 @@ export type JobUncheckedUpdateWithoutDisqualifiersInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2605,6 +2648,7 @@ export type JobCreateWithoutDocumentSlotsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2654,6 +2698,7 @@ export type JobUncheckedCreateWithoutDocumentSlotsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2719,6 +2764,7 @@ export type JobUpdateWithoutDocumentSlotsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2768,6 +2814,7 @@ export type JobUncheckedUpdateWithoutDocumentSlotsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2817,6 +2864,7 @@ export type JobCreateWithoutPanelMembersInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2866,6 +2914,7 @@ export type JobUncheckedCreateWithoutPanelMembersInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -2931,6 +2980,7 @@ export type JobUpdateWithoutPanelMembersInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2980,6 +3030,7 @@ export type JobUncheckedUpdateWithoutPanelMembersInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3029,6 +3080,7 @@ export type JobCreateWithoutScoringTemplateInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3078,6 +3130,7 @@ export type JobUncheckedCreateWithoutScoringTemplateInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3153,6 +3206,7 @@ export type JobCreateWithoutInterviewEventsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3202,6 +3256,7 @@ export type JobUncheckedCreateWithoutInterviewEventsInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3267,6 +3322,7 @@ export type JobUpdateWithoutInterviewEventsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3316,6 +3372,7 @@ export type JobUncheckedUpdateWithoutInterviewEventsInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3365,6 +3422,7 @@ export type JobCreateManyCreatorInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3407,6 +3465,7 @@ export type JobCreateManyUpdaterInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3449,6 +3508,7 @@ export type JobUpdateWithoutCreatorInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3498,6 +3558,7 @@ export type JobUncheckedUpdateWithoutCreatorInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3547,6 +3608,7 @@ export type JobUncheckedUpdateManyWithoutCreatorInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3589,6 +3651,7 @@ export type JobUpdateWithoutUpdaterInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3638,6 +3701,7 @@ export type JobUncheckedUpdateWithoutUpdaterInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3687,6 +3751,7 @@ export type JobUncheckedUpdateManyWithoutUpdaterInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3729,6 +3794,7 @@ export type JobCreateManyScoringTemplateInput = {
   closingDate: Date | string
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: Date | string | null
   applicationCount?: number
   createdAt?: Date | string
@@ -3771,6 +3837,7 @@ export type JobUpdateWithoutScoringTemplateInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3820,6 +3887,7 @@ export type JobUncheckedUpdateWithoutScoringTemplateInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3869,6 +3937,7 @@ export type JobUncheckedUpdateManyWithoutScoringTemplateInput = {
   closingDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isTestMode?: Prisma.BoolFieldUpdateOperationsInput | boolean
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   applicationCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3996,6 +4065,7 @@ export type JobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   closingDate?: boolean
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: boolean
   applicationCount?: boolean
   createdAt?: boolean
@@ -4052,6 +4122,7 @@ export type JobSelectScalar = {
   closingDate?: boolean
   isPublished?: boolean
   isActive?: boolean
+  isTestMode?: boolean
   publishedAt?: boolean
   applicationCount?: boolean
   createdAt?: boolean
@@ -4080,7 +4151,7 @@ export type JobSelectScalar = {
   scoringTemplateId?: boolean
 }
 
-export type JobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "department" | "location" | "type" | "summary" | "description" | "keyRequirements" | "responsibilities" | "benefits" | "closingDate" | "isPublished" | "isActive" | "publishedAt" | "applicationCount" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy" | "applicationMode" | "grade" | "dutyStation" | "province" | "numberOfPosts" | "openingDate" | "referencePrefix" | "jobDescriptionText" | "keywords" | "bucketWeights" | "minYearsExperience" | "maxNoticePeriodDays" | "panelAggregation" | "panelSpreadThreshold" | "panelBlindIdentity" | "panelBlindDemographics" | "autoRejectEnabled" | "autoRejectDelayMinutes" | "scoringVersion" | "scoringTemplateId", ExtArgs["result"]["job"]>
+export type JobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "slug" | "department" | "location" | "type" | "summary" | "description" | "keyRequirements" | "responsibilities" | "benefits" | "closingDate" | "isPublished" | "isActive" | "isTestMode" | "publishedAt" | "applicationCount" | "createdAt" | "updatedAt" | "createdBy" | "updatedBy" | "applicationMode" | "grade" | "dutyStation" | "province" | "numberOfPosts" | "openingDate" | "referencePrefix" | "jobDescriptionText" | "keywords" | "bucketWeights" | "minYearsExperience" | "maxNoticePeriodDays" | "panelAggregation" | "panelSpreadThreshold" | "panelBlindIdentity" | "panelBlindDemographics" | "autoRejectEnabled" | "autoRejectDelayMinutes" | "scoringVersion" | "scoringTemplateId", ExtArgs["result"]["job"]>
 export type JobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.Job$creatorArgs<ExtArgs>
   updater?: boolean | Prisma.Job$updaterArgs<ExtArgs>
@@ -4124,6 +4195,16 @@ export type $JobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     closingDate: Date
     isPublished: boolean
     isActive: boolean
+    /**
+     * Live on production and passing every publish check, but matched by the
+     * public careers routes only for a viewer holding a valid CMS session — so a
+     * vacancy can be rehearsed end to end before a real candidate sees it.
+     * 
+     * This is the LIVE flag: it answers "is this vacancy in test mode now", and
+     * is what vacancy-level badges read. An application-level badge must read
+     * `JobApplication.wasTestModeAtSubmit` instead — see the note there.
+     */
+    isTestMode: boolean
     publishedAt: Date | null
     applicationCount: number
     createdAt: Date
@@ -4570,6 +4651,7 @@ export interface JobFieldRefs {
   readonly closingDate: Prisma.FieldRef<"Job", 'DateTime'>
   readonly isPublished: Prisma.FieldRef<"Job", 'Boolean'>
   readonly isActive: Prisma.FieldRef<"Job", 'Boolean'>
+  readonly isTestMode: Prisma.FieldRef<"Job", 'Boolean'>
   readonly publishedAt: Prisma.FieldRef<"Job", 'DateTime'>
   readonly applicationCount: Prisma.FieldRef<"Job", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Job", 'DateTime'>

@@ -84,11 +84,18 @@ export default defineEventHandler(async (event) => {
     const candidate = await requireCandidate(event)
     const slug = getRouterParam(event, 'slug')
 
+    markVariesBySession(event)
+
+    // requireOpen: false keeps the explicit 410 below.
     const job = await prisma.job.findFirst({
-      where: { OR: [{ slug }, { id: slug }], isPublished: true, isActive: true },
+      where: publicVacancyWhere({
+        staffViewer: await isStaffViewer(event),
+        requireOpen: false,
+        identity: { kind: 'idOrSlug', value: String(slug) }
+      }),
       select: {
         id: true, title: true, department: true, grade: true, closingDate: true,
-        referencePrefix: true, applicationMode: true,
+        referencePrefix: true, applicationMode: true, isTestMode: true,
         documentSlots: { select: { key: true, label: true, isMandatory: true } }
       }
     })
@@ -143,6 +150,9 @@ export default defineEventHandler(async (event) => {
           candidateId: candidate.id,
           referenceNumber: reference,
           mode: 'STRUCTURED',
+          // Snapshot of the vacancy's test flag, so this application still says
+          // "rehearsal" if the switch is turned off afterwards.
+          wasTestModeAtSubmit: job.isTestMode,
           stageId: defaultStage?.id ?? null,
           status: defaultStage?.legacyStatus ?? 'PENDING',
           submittedAt: new Date(),

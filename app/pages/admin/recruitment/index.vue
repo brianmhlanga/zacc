@@ -82,8 +82,14 @@
 
             <Column header="Status">
               <template #body="{ data }">
-                <Tag :value="data.isOpen ? 'Open' : data.isPublished ? 'Closed' : 'Draft'"
-                  :severity="data.isOpen ? 'success' : data.isPublished ? 'secondary' : 'warn'" />
+                <div class="flex flex-col items-start gap-1">
+                  <Tag :value="data.isOpen ? 'Open' : data.isPublished ? 'Closed' : 'Draft'"
+                    :severity="data.isOpen ? 'success' : data.isPublished ? 'secondary' : 'warn'" />
+                  <!-- Test mode is a property of the vacancy, not a lifecycle
+                       state, so it sits beside the state rather than replacing it. -->
+                  <Tag v-if="data.isTestMode" value="Test mode" severity="warn"
+                    v-tooltip.top="'Visible on the careers site to signed-in staff only'" />
+                </div>
               </template>
             </Column>
 

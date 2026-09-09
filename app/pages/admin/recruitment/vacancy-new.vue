@@ -100,12 +100,23 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between mt-5">
-            <label class="flex items-center gap-2 text-sm">
-              <Checkbox v-model="form.isPublished" binary />
-              Publish immediately
-              <span class="text-gray-400">— leave off while you configure screening</span>
-            </label>
+          <div class="flex flex-wrap items-center justify-between gap-3 mt-5">
+            <div class="flex flex-col gap-2">
+              <label class="flex items-center gap-2 text-sm">
+                <Checkbox v-model="form.isPublished" binary />
+                Publish immediately
+                <span class="text-gray-400">— leave off while you configure screening</span>
+              </label>
+              <!-- Only meaningful on a published vacancy: an unpublished one is
+                   invisible to everyone, staff included. The server enforces
+                   this too, and refuses the combination. -->
+              <label class="flex items-center gap-2 text-sm"
+                :class="form.isPublished ? '' : 'opacity-50'">
+                <Checkbox v-model="form.isTestMode" binary :disabled="!form.isPublished" />
+                Test mode
+                <span class="text-gray-400">— live, but only signed-in staff can see it</span>
+              </label>
+            </div>
             <div class="flex gap-2">
               <Button label="Cancel" severity="secondary" outlined @click="navigateTo('/admin/recruitment')" />
               <Button label="Create vacancy" icon="pi pi-check" :loading="saving"
@@ -138,7 +149,8 @@ const form = reactive<any>({
   title: '', slug: '', department: '', location: 'Harare', dutyStation: '', grade: '',
   numberOfPosts: 1, type: 'Full-time', closingDate: null,
   summary: '', description: '', keyRequirements: [], responsibilities: [], benefits: '',
-  applicationMode: 'STRUCTURED', isPublished: false, isActive: true
+  applicationMode: 'STRUCTURED', isPublished: false,
+  isTestMode: false, isActive: true
 })
 
 const deriveSlug = () => {

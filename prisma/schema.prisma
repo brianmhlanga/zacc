@@ -690,6 +690,14 @@ model Job {
   closingDate     DateTime
   isPublished     Boolean  @default(false)
   isActive        Boolean  @default(true)
+  /// Live on production and passing every publish check, but matched by the
+  /// public careers routes only for a viewer holding a valid CMS session — so a
+  /// vacancy can be rehearsed end to end before a real candidate sees it.
+  ///
+  /// This is the LIVE flag: it answers "is this vacancy in test mode now", and
+  /// is what vacancy-level badges read. An application-level badge must read
+  /// `JobApplication.wasTestModeAtSubmit` instead — see the note there.
+  isTestMode      Boolean  @default(false)
   publishedAt     DateTime?
   applicationCount Int     @default(0)
   createdAt       DateTime @default(now())
@@ -782,6 +790,19 @@ model JobApplication {
   stageId             String?
   stage               RecruitmentStage? @relation(fields: [stageId], references: [id], onDelete: SetNull)
   mode                ApplicationMode @default(LEGACY)
+  /// Whether the vacancy was in test mode at the moment this was submitted.
+  ///
+  /// A SNAPSHOT, exactly like `mode` above and for the same reason: an
+  /// application is an evidence record. Reading `job.isTestMode` live would let
+  /// one click on the switch retroactively relabel history in both directions —
+  /// real applications marked "test", or rehearsal submissions silently
+  /// promoted to real when a vacancy goes live.
+  ///
+  /// Nothing filters on this: test applications deliberately count in every
+  /// statistic. It exists because it CANNOT be added retrospectively — once the
+  /// live flag moves, the information is gone. Application-level badges read
+  /// this; vacancy-level badges read `Job.isTestMode`.
+  wasTestModeAtSubmit Boolean @default(false)
   submittedAt         DateTime?
   lastCandidateViewAt DateTime?
 

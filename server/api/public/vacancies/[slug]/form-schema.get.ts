@@ -14,12 +14,16 @@ export default defineEventHandler(async (event) => {
     const slug = getRouterParam(event, 'slug')
     if (!slug) throw createError({ statusCode: 400, statusMessage: 'Vacancy is required' })
 
+    markVariesBySession(event)
+
+    // requireOpen: false — a closed vacancy must still be found so the wizard
+    // can render its "closed" state; the `closed` flag below does that work.
     const job = await prisma.job.findFirst({
-      where: {
-        OR: [{ slug }, { id: slug }],
-        isPublished: true,
-        isActive: true
-      },
+      where: publicVacancyWhere({
+        staffViewer: await isStaffViewer(event),
+        requireOpen: false,
+        identity: { kind: 'idOrSlug', value: String(slug) }
+      }),
       select: {
         id: true, title: true, slug: true, department: true, location: true,
         grade: true, dutyStation: true, type: true, numberOfPosts: true,

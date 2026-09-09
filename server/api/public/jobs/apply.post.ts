@@ -110,16 +110,17 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    // Verify job exists and is still accepting applications
+    // Verify job exists and is still accepting applications.
+    //
+    // This is the one fully anonymous write path in the module — no candidate
+    // session is required — so the test-mode gate matters most here: without
+    // it, anyone holding a jobId could submit against a rehearsal vacancy.
     const job = await prisma.job.findFirst({
-      where: {
-        id: data.jobId,
-        isPublished: true,
-        isActive: true,
-        closingDate: {
-          gte: new Date()
-        }
-      }
+      where: publicVacancyWhere({
+        staffViewer: await isStaffViewer(event),
+        requireOpen: true,
+        identity: { kind: 'id', value: String(data.jobId) }
+      })
     })
 
     if (!job) {
@@ -179,6 +180,9 @@ export default defineEventHandler(async (event) => {
         coverLetter: data.coverLetter,
         cvUrl: savedCv.url,
         status: 'PENDING',
+        // Snapshot of the vacancy's test flag at submit time — see the note on
+        // the column in prisma/schema.prisma.
+        wasTestModeAtSubmit: job.isTestMode,
         documents: savedDocuments.length
           ? { create: savedDocuments }
           : undefined

@@ -95,6 +95,8 @@
               <template #body="{ data }">
                 <div class="font-mono text-xs text-gray-600">{{ data.referenceNumber || '—' }}</div>
                 <Tag v-if="data.mode === 'LEGACY'" value="Legacy" severity="secondary" class="mt-1" />
+                <Tag v-if="data.wasTestModeAtSubmit" value="Test" severity="warn" class="mt-1"
+                  v-tooltip.top="'Submitted while the vacancy was in test mode'" />
               </template>
             </Column>
 

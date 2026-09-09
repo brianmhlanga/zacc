@@ -82,6 +82,7 @@ export type JobApplicationMinAggregateOutputType = {
   candidateId: string | null
   stageId: string | null
   mode: $Enums.ApplicationMode | null
+  wasTestModeAtSubmit: boolean | null
   submittedAt: Date | null
   lastCandidateViewAt: Date | null
   scoringVersion: number | null
@@ -143,6 +144,7 @@ export type JobApplicationMaxAggregateOutputType = {
   candidateId: string | null
   stageId: string | null
   mode: $Enums.ApplicationMode | null
+  wasTestModeAtSubmit: boolean | null
   submittedAt: Date | null
   lastCandidateViewAt: Date | null
   scoringVersion: number | null
@@ -204,6 +206,7 @@ export type JobApplicationCountAggregateOutputType = {
   candidateId: number
   stageId: number
   mode: number
+  wasTestModeAtSubmit: number
   submittedAt: number
   lastCandidateViewAt: number
   answers: number
@@ -306,6 +309,7 @@ export type JobApplicationMinAggregateInputType = {
   candidateId?: true
   stageId?: true
   mode?: true
+  wasTestModeAtSubmit?: true
   submittedAt?: true
   lastCandidateViewAt?: true
   scoringVersion?: true
@@ -367,6 +371,7 @@ export type JobApplicationMaxAggregateInputType = {
   candidateId?: true
   stageId?: true
   mode?: true
+  wasTestModeAtSubmit?: true
   submittedAt?: true
   lastCandidateViewAt?: true
   scoringVersion?: true
@@ -428,6 +433,7 @@ export type JobApplicationCountAggregateInputType = {
   candidateId?: true
   stageId?: true
   mode?: true
+  wasTestModeAtSubmit?: true
   submittedAt?: true
   lastCandidateViewAt?: true
   answers?: true
@@ -579,6 +585,7 @@ export type JobApplicationGroupByOutputType = {
   candidateId: string | null
   stageId: string | null
   mode: $Enums.ApplicationMode
+  wasTestModeAtSubmit: boolean
   submittedAt: Date | null
   lastCandidateViewAt: Date | null
   answers: runtime.JsonValue | null
@@ -666,6 +673,7 @@ export type JobApplicationWhereInput = {
   candidateId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   stageId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   mode?: Prisma.EnumApplicationModeFilter<"JobApplication"> | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFilter<"JobApplication"> | boolean
   submittedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   lastCandidateViewAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   answers?: Prisma.JsonNullableFilter<"JobApplication">
@@ -746,6 +754,7 @@ export type JobApplicationOrderByWithRelationInput = {
   candidateId?: Prisma.SortOrderInput | Prisma.SortOrder
   stageId?: Prisma.SortOrderInput | Prisma.SortOrder
   mode?: Prisma.SortOrder
+  wasTestModeAtSubmit?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lastCandidateViewAt?: Prisma.SortOrderInput | Prisma.SortOrder
   answers?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -830,6 +839,7 @@ export type JobApplicationWhereUniqueInput = Prisma.AtLeast<{
   candidateId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   stageId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   mode?: Prisma.EnumApplicationModeFilter<"JobApplication"> | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFilter<"JobApplication"> | boolean
   submittedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   lastCandidateViewAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   answers?: Prisma.JsonNullableFilter<"JobApplication">
@@ -910,6 +920,7 @@ export type JobApplicationOrderByWithAggregationInput = {
   candidateId?: Prisma.SortOrderInput | Prisma.SortOrder
   stageId?: Prisma.SortOrderInput | Prisma.SortOrder
   mode?: Prisma.SortOrder
+  wasTestModeAtSubmit?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   lastCandidateViewAt?: Prisma.SortOrderInput | Prisma.SortOrder
   answers?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -982,6 +993,7 @@ export type JobApplicationScalarWhereWithAggregatesInput = {
   candidateId?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   stageId?: Prisma.StringNullableWithAggregatesFilter<"JobApplication"> | string | null
   mode?: Prisma.EnumApplicationModeWithAggregatesFilter<"JobApplication"> | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolWithAggregatesFilter<"JobApplication"> | boolean
   submittedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
   lastCandidateViewAt?: Prisma.DateTimeNullableWithAggregatesFilter<"JobApplication"> | Date | string | null
   answers?: Prisma.JsonNullableWithAggregatesFilter<"JobApplication">
@@ -1043,6 +1055,7 @@ export type JobApplicationCreateInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1123,6 +1136,7 @@ export type JobApplicationUncheckedCreateInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1197,6 +1211,7 @@ export type JobApplicationUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1277,6 +1292,7 @@ export type JobApplicationUncheckedUpdateInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1354,6 +1370,7 @@ export type JobApplicationCreateManyInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1415,6 +1432,7 @@ export type JobApplicationUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1479,6 +1497,7 @@ export type JobApplicationUncheckedUpdateManyInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -1559,6 +1578,7 @@ export type JobApplicationCountOrderByAggregateInput = {
   candidateId?: Prisma.SortOrder
   stageId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
+  wasTestModeAtSubmit?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   lastCandidateViewAt?: Prisma.SortOrder
   answers?: Prisma.SortOrder
@@ -1641,6 +1661,7 @@ export type JobApplicationMaxOrderByAggregateInput = {
   candidateId?: Prisma.SortOrder
   stageId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
+  wasTestModeAtSubmit?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   lastCandidateViewAt?: Prisma.SortOrder
   scoringVersion?: Prisma.SortOrder
@@ -1702,6 +1723,7 @@ export type JobApplicationMinOrderByAggregateInput = {
   candidateId?: Prisma.SortOrder
   stageId?: Prisma.SortOrder
   mode?: Prisma.SortOrder
+  wasTestModeAtSubmit?: Prisma.SortOrder
   submittedAt?: Prisma.SortOrder
   lastCandidateViewAt?: Prisma.SortOrder
   scoringVersion?: Prisma.SortOrder
@@ -2103,6 +2125,7 @@ export type JobApplicationCreateWithoutJobInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2181,6 +2204,7 @@ export type JobApplicationUncheckedCreateWithoutJobInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2287,6 +2311,7 @@ export type JobApplicationScalarWhereInput = {
   candidateId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   stageId?: Prisma.StringNullableFilter<"JobApplication"> | string | null
   mode?: Prisma.EnumApplicationModeFilter<"JobApplication"> | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFilter<"JobApplication"> | boolean
   submittedAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   lastCandidateViewAt?: Prisma.DateTimeNullableFilter<"JobApplication"> | Date | string | null
   answers?: Prisma.JsonNullableFilter<"JobApplication">
@@ -2348,6 +2373,7 @@ export type JobApplicationCreateWithoutDocumentsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2427,6 +2453,7 @@ export type JobApplicationUncheckedCreateWithoutDocumentsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2516,6 +2543,7 @@ export type JobApplicationUpdateWithoutDocumentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2595,6 +2623,7 @@ export type JobApplicationUncheckedUpdateWithoutDocumentsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2668,6 +2697,7 @@ export type JobApplicationCreateWithoutCandidateInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2746,6 +2776,7 @@ export type JobApplicationUncheckedCreateWithoutCandidateInput = {
   referenceNumber?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2846,6 +2877,7 @@ export type JobApplicationCreateWithoutStageInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -2924,6 +2956,7 @@ export type JobApplicationUncheckedCreateWithoutStageInput = {
   referenceNumber?: string | null
   candidateId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3024,6 +3057,7 @@ export type JobApplicationCreateWithoutStageEventsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3103,6 +3137,7 @@ export type JobApplicationUncheckedCreateWithoutStageEventsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3192,6 +3227,7 @@ export type JobApplicationUpdateWithoutStageEventsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3271,6 +3307,7 @@ export type JobApplicationUncheckedUpdateWithoutStageEventsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3344,6 +3381,7 @@ export type JobApplicationCreateWithoutQualificationsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3423,6 +3461,7 @@ export type JobApplicationUncheckedCreateWithoutQualificationsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3512,6 +3551,7 @@ export type JobApplicationUpdateWithoutQualificationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3591,6 +3631,7 @@ export type JobApplicationUncheckedUpdateWithoutQualificationsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3664,6 +3705,7 @@ export type JobApplicationCreateWithoutEmploymentsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3743,6 +3785,7 @@ export type JobApplicationUncheckedCreateWithoutEmploymentsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3832,6 +3875,7 @@ export type JobApplicationUpdateWithoutEmploymentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3911,6 +3955,7 @@ export type JobApplicationUncheckedUpdateWithoutEmploymentsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -3984,6 +4029,7 @@ export type JobApplicationCreateWithoutDeclarationsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4063,6 +4109,7 @@ export type JobApplicationUncheckedCreateWithoutDeclarationsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4152,6 +4199,7 @@ export type JobApplicationUpdateWithoutDeclarationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4231,6 +4279,7 @@ export type JobApplicationUncheckedUpdateWithoutDeclarationsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4304,6 +4353,7 @@ export type JobApplicationCreateWithoutSkillsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4383,6 +4433,7 @@ export type JobApplicationUncheckedCreateWithoutSkillsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4472,6 +4523,7 @@ export type JobApplicationUpdateWithoutSkillsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4551,6 +4603,7 @@ export type JobApplicationUncheckedUpdateWithoutSkillsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4624,6 +4677,7 @@ export type JobApplicationCreateWithoutKeywordHitsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4703,6 +4757,7 @@ export type JobApplicationUncheckedCreateWithoutKeywordHitsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4792,6 +4847,7 @@ export type JobApplicationUpdateWithoutKeywordHitsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4871,6 +4927,7 @@ export type JobApplicationUncheckedUpdateWithoutKeywordHitsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -4944,6 +5001,7 @@ export type JobApplicationCreateWithoutCriterionScoresInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5023,6 +5081,7 @@ export type JobApplicationUncheckedCreateWithoutCriterionScoresInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5112,6 +5171,7 @@ export type JobApplicationUpdateWithoutCriterionScoresInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5191,6 +5251,7 @@ export type JobApplicationUncheckedUpdateWithoutCriterionScoresInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5264,6 +5325,7 @@ export type JobApplicationCreateWithoutPanelScoresInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5343,6 +5405,7 @@ export type JobApplicationUncheckedCreateWithoutPanelScoresInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5432,6 +5495,7 @@ export type JobApplicationUpdateWithoutPanelScoresInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5511,6 +5575,7 @@ export type JobApplicationUncheckedUpdateWithoutPanelScoresInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5584,6 +5649,7 @@ export type JobApplicationCreateWithoutReviewsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5663,6 +5729,7 @@ export type JobApplicationUncheckedCreateWithoutReviewsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5752,6 +5819,7 @@ export type JobApplicationUpdateWithoutReviewsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5831,6 +5899,7 @@ export type JobApplicationUncheckedUpdateWithoutReviewsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5904,6 +5973,7 @@ export type JobApplicationCreateWithoutFlagsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -5983,6 +6053,7 @@ export type JobApplicationUncheckedCreateWithoutFlagsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6072,6 +6143,7 @@ export type JobApplicationUpdateWithoutFlagsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6151,6 +6223,7 @@ export type JobApplicationUncheckedUpdateWithoutFlagsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6224,6 +6297,7 @@ export type JobApplicationCreateWithoutInvitationsInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6303,6 +6377,7 @@ export type JobApplicationUncheckedCreateWithoutInvitationsInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6392,6 +6467,7 @@ export type JobApplicationUpdateWithoutInvitationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6471,6 +6547,7 @@ export type JobApplicationUncheckedUpdateWithoutInvitationsInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6544,6 +6621,7 @@ export type JobApplicationCreateWithoutMessagesInput = {
   updatedAt?: Date | string
   referenceNumber?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6623,6 +6701,7 @@ export type JobApplicationUncheckedCreateWithoutMessagesInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6712,6 +6791,7 @@ export type JobApplicationUpdateWithoutMessagesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6791,6 +6871,7 @@ export type JobApplicationUncheckedUpdateWithoutMessagesInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6866,6 +6947,7 @@ export type JobApplicationCreateManyJobInput = {
   candidateId?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -6927,6 +7009,7 @@ export type JobApplicationUpdateWithoutJobInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7005,6 +7088,7 @@ export type JobApplicationUncheckedUpdateWithoutJobInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7081,6 +7165,7 @@ export type JobApplicationUncheckedUpdateManyWithoutJobInput = {
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7144,6 +7229,7 @@ export type JobApplicationCreateManyCandidateInput = {
   referenceNumber?: string | null
   stageId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7205,6 +7291,7 @@ export type JobApplicationUpdateWithoutCandidateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7283,6 +7370,7 @@ export type JobApplicationUncheckedUpdateWithoutCandidateInput = {
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7359,6 +7447,7 @@ export type JobApplicationUncheckedUpdateManyWithoutCandidateInput = {
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   stageId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7422,6 +7511,7 @@ export type JobApplicationCreateManyStageInput = {
   referenceNumber?: string | null
   candidateId?: string | null
   mode?: $Enums.ApplicationMode
+  wasTestModeAtSubmit?: boolean
   submittedAt?: Date | string | null
   lastCandidateViewAt?: Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7483,6 +7573,7 @@ export type JobApplicationUpdateWithoutStageInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7561,6 +7652,7 @@ export type JobApplicationUncheckedUpdateWithoutStageInput = {
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7637,6 +7729,7 @@ export type JobApplicationUncheckedUpdateManyWithoutStageInput = {
   referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   candidateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   mode?: Prisma.EnumApplicationModeFieldUpdateOperationsInput | $Enums.ApplicationMode
+  wasTestModeAtSubmit?: Prisma.BoolFieldUpdateOperationsInput | boolean
   submittedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastCandidateViewAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -7840,6 +7933,7 @@ export type JobApplicationSelect<ExtArgs extends runtime.Types.Extensions.Intern
   candidateId?: boolean
   stageId?: boolean
   mode?: boolean
+  wasTestModeAtSubmit?: boolean
   submittedAt?: boolean
   lastCandidateViewAt?: boolean
   answers?: boolean
@@ -7923,6 +8017,7 @@ export type JobApplicationSelectScalar = {
   candidateId?: boolean
   stageId?: boolean
   mode?: boolean
+  wasTestModeAtSubmit?: boolean
   submittedAt?: boolean
   lastCandidateViewAt?: boolean
   answers?: boolean
@@ -7967,7 +8062,7 @@ export type JobApplicationSelectScalar = {
   integrityFlagCount?: boolean
 }
 
-export type JobApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "name" | "email" | "phone" | "qualification" | "experience" | "coverLetter" | "cvUrl" | "status" | "notes" | "reviewedAt" | "reviewedBy" | "createdAt" | "updatedAt" | "referenceNumber" | "candidateId" | "stageId" | "mode" | "submittedAt" | "lastCandidateViewAt" | "answers" | "schemeSnapshot" | "scoringVersion" | "firstName" | "lastName" | "nationalIdType" | "nationalId" | "dateOfBirth" | "gender" | "nationality" | "hasDisability" | "province" | "city" | "altPhone" | "howHeard" | "noticePeriodDays" | "willingToRelocate" | "expectedSalary" | "totalYearsExperience" | "isCurrentlyEmployed" | "highestQualification" | "driversLicenceClass" | "autoScore" | "panelScoreMean" | "panelScoreMedian" | "panelScoreSpread" | "panelScoreStdev" | "panelReviewCount" | "finalScore" | "scoreOverride" | "scoreOverrideNote" | "keywordMatchPct" | "scoreComputedAt" | "isAutoRejected" | "autoRejectReasons" | "isShortlisted" | "isWithdrawn" | "withdrawnAt" | "withdrawnReason" | "integrityFlagCount", ExtArgs["result"]["jobApplication"]>
+export type JobApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "name" | "email" | "phone" | "qualification" | "experience" | "coverLetter" | "cvUrl" | "status" | "notes" | "reviewedAt" | "reviewedBy" | "createdAt" | "updatedAt" | "referenceNumber" | "candidateId" | "stageId" | "mode" | "wasTestModeAtSubmit" | "submittedAt" | "lastCandidateViewAt" | "answers" | "schemeSnapshot" | "scoringVersion" | "firstName" | "lastName" | "nationalIdType" | "nationalId" | "dateOfBirth" | "gender" | "nationality" | "hasDisability" | "province" | "city" | "altPhone" | "howHeard" | "noticePeriodDays" | "willingToRelocate" | "expectedSalary" | "totalYearsExperience" | "isCurrentlyEmployed" | "highestQualification" | "driversLicenceClass" | "autoScore" | "panelScoreMean" | "panelScoreMedian" | "panelScoreSpread" | "panelScoreStdev" | "panelReviewCount" | "finalScore" | "scoreOverride" | "scoreOverrideNote" | "keywordMatchPct" | "scoreComputedAt" | "isAutoRejected" | "autoRejectReasons" | "isShortlisted" | "isWithdrawn" | "withdrawnAt" | "withdrawnReason" | "integrityFlagCount", ExtArgs["result"]["jobApplication"]>
 export type JobApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   candidate?: boolean | Prisma.JobApplication$candidateArgs<ExtArgs>
@@ -8044,6 +8139,21 @@ export type $JobApplicationPayload<ExtArgs extends runtime.Types.Extensions.Inte
     candidateId: string | null
     stageId: string | null
     mode: $Enums.ApplicationMode
+    /**
+     * Whether the vacancy was in test mode at the moment this was submitted.
+     * 
+     * A SNAPSHOT, exactly like `mode` above and for the same reason: an
+     * application is an evidence record. Reading `job.isTestMode` live would let
+     * one click on the switch retroactively relabel history in both directions —
+     * real applications marked "test", or rehearsal submissions silently
+     * promoted to real when a vacancy goes live.
+     * 
+     * Nothing filters on this: test applications deliberately count in every
+     * statistic. It exists because it CANNOT be added retrospectively — once the
+     * live flag moves, the information is gone. Application-level badges read
+     * this; vacancy-level badges read `Job.isTestMode`.
+     */
+    wasTestModeAtSubmit: boolean
     submittedAt: Date | null
     lastCandidateViewAt: Date | null
     /**
@@ -8500,6 +8610,7 @@ export interface JobApplicationFieldRefs {
   readonly candidateId: Prisma.FieldRef<"JobApplication", 'String'>
   readonly stageId: Prisma.FieldRef<"JobApplication", 'String'>
   readonly mode: Prisma.FieldRef<"JobApplication", 'ApplicationMode'>
+  readonly wasTestModeAtSubmit: Prisma.FieldRef<"JobApplication", 'Boolean'>
   readonly submittedAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
   readonly lastCandidateViewAt: Prisma.FieldRef<"JobApplication", 'DateTime'>
   readonly answers: Prisma.FieldRef<"JobApplication", 'Json'>

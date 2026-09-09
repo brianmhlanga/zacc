@@ -29,6 +29,7 @@ export default defineEventHandler(async (event) => {
         id: true, title: true, slug: true, department: true, location: true,
         grade: true, dutyStation: true, type: true, numberOfPosts: true,
         closingDate: true, openingDate: true, isPublished: true, isActive: true,
+        isTestMode: true,
         applicationMode: true, applicationCount: true, scoringVersion: true,
         autoRejectEnabled: true, bucketWeights: true, createdAt: true, updatedAt: true,
         _count: {

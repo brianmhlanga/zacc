@@ -5,16 +5,18 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const department = query.department as string | undefined
 
-    const where: any = {
-      isPublished: true,
-      isActive: true
-    }
+    markVariesBySession(event)
 
-    // Only show jobs that haven't closed yet
-    where.closingDate = {
-      gte: new Date()
-    }
+    // A vacancy in test mode is matched only for a signed-in staff member, so
+    // the whole flow can be rehearsed on production before a real candidate
+    // sees the post. See server/utils/vacancyVisibility.ts.
+    const where: any = publicVacancyWhere({
+      staffViewer: await isStaffViewer(event),
+      requireOpen: true
+    })
 
+    // Mutated after the helper returns rather than merged in: the helper owns
+    // the whole predicate, and a merge is where a caller's key silently wins.
     if (department) {
       where.department = department
     }

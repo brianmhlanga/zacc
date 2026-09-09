@@ -25,6 +25,8 @@ const bodySchema = z.object({
   closingDate: z.string().min(1),
   applicationMode: z.enum(['LEGACY', 'STRUCTURED']).default('STRUCTURED'),
   isPublished: z.boolean().default(false),
+  /** Published, but visible on the careers site to signed-in staff only. */
+  isTestMode: z.boolean().default(false),
   isActive: z.boolean().default(true),
   /** Copy criteria from an existing scheme library entry. */
   scoringTemplateId: z.string().nullish()
@@ -170,6 +172,9 @@ export default defineEventHandler(async (event) => {
         closingDate: new Date(data.closingDate),
         applicationMode: data.applicationMode,
         isPublished: data.isPublished,
+        // Only meaningful on a published vacancy — an unpublished one is
+        // invisible to everyone, staff included.
+        isTestMode: data.isPublished && data.isTestMode,
         isActive: data.isActive,
         publishedAt: data.isPublished ? new Date() : null,
         scoringTemplateId: data.scoringTemplateId ?? null,

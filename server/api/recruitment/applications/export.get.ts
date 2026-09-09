@@ -55,6 +55,7 @@ export default defineEventHandler(async (event) => {
         finalScore: true, autoScore: true, panelScoreMean: true, panelScoreSpread: true,
         panelReviewCount: true, keywordMatchPct: true, integrityFlagCount: true,
         isAutoRejected: true, isShortlisted: true, isWithdrawn: true,
+        wasTestModeAtSubmit: true,
         howHeard: true, submittedAt: true, createdAt: true,
         job: { select: { title: true, department: true } },
         stage: { select: { internalLabel: true, publicLabel: true } }
@@ -91,6 +92,9 @@ export default defineEventHandler(async (event) => {
       { header: 'Shortlisted', value: (r: any) => yesNo(r.isShortlisted) },
       { header: 'Auto-rejected', value: (r: any) => yesNo(r.isAutoRejected) },
       { header: 'Withdrawn', value: (r: any) => yesNo(r.isWithdrawn) },
+      // From the snapshot, not the vacancy's current flag: this column must
+      // still read Yes for a rehearsal submission after the switch is turned off.
+      { header: 'Test submission', value: (r: any) => yesNo(r.wasTestModeAtSubmit) },
       { header: 'Heard via', value: (r: any) => r.howHeard },
       { header: 'Submitted', value: (r: any) => date(r.submittedAt) }
     ]
